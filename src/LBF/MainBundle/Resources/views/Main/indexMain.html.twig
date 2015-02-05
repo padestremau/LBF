@@ -187,6 +187,7 @@
 						</ul>
 						<br/>
 
+						<!-- Varying numbers -->
 						<script type="text/javascript">
 							var div_types = [];
 							var div_maxs = [];
@@ -324,9 +325,9 @@
 																	<strong>
 																		Price:
 																	</strong>
-																	{{ product.price }} S. 
+																	{{ product.price }} S/. 
 																	{% if product.category == 'Jamones' %}
-																		/10 pieces
+																		for 10 pieces
 																	{% else %}
 																		/piece
 																	{% endif %}
@@ -386,12 +387,17 @@
 																	</div>
 																</div>
 																<div class="inline_div margin_right_10">
-																	S.
+																	S/.
 																</div>
 															</div>
 															<div class="inline_div col-md-2 col-xs-2 ">
-																<input type="submit" class="btn btn-add-to-cart" value="" title="Add to cart"/>
+																<input type="submit" class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart" onClick="javascript:loading_img()"/>
 															</div>
+															<script type="text/javascript">
+																function loading_img() {
+																	document.getElementById('btn-add-to-cart').className = "btn-loading";
+																}
+															</script>
 														</div>
 
 													</div>

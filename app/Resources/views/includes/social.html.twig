@@ -33,9 +33,112 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close"><span class="white" aria-hidden="true">&times;</span></button>
-        <div id="div_toBeFilled_login">
-          Coucou
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title center">
+            {{ 'header.titles.myCart' | trans }}
+          </h3>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    Test
+                  </th>
+                  <th>
+                    Test
+                  </th>
+                  <th>
+                    Test
+                  </th>
+                  <th>
+                    Test
+                  </th>
+                  <th>
+                    Test
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    Test
+                  </th>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Test
+                  </th>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Test
+                  </th>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                  <td>
+                    coco
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-xs-3"></div>
+            <div class="col-md-6 col-xs-6 modal_price">
+              <div class="row">
+                <div class="inline_div left col-md-6 col-xs-6">
+                  TOTAL:
+                </div>
+                <div class="inline_div right col-md-6 col-xs-6">
+                  250 S/.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-3"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-modal float-left" data-dismiss="modal">
+            Continue shopping ...
+          </button>
+          <button type="button" class="btn btn-modal float-right">
+            <img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+            {{ 'ourProducts.actions.order' | trans }}
+          </button>
         </div>
       </div>
     </div>

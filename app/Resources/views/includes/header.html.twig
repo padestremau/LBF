@@ -34,7 +34,7 @@
       </div>
       
       <div class="button_anchors float-right" data-menuanchor="aboutUs">
-        <a href="{{ path('lbf_main_homepage') }}#aboutUs" style="no_style_a">
+        <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a">
           <button class="btn btn-log" id="btn_section1">
             {{ 'header.titles.aboutUs' | trans }}
           </button>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="button_anchors float-right" data-menuanchor="ourProducts">
-        <a href="{{ path('lbf_main_homepage') }}#ourProducts" style="no_style_a">
+        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
           <button class="btn btn-log"  id="btn_section2">
             {{ 'header.titles.ourProducts' | trans }}
           </button>
@@ -76,21 +76,21 @@
           {% set current_language = 'es' %}
         {% endif %}
       {% endif %}
-      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection
+      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection no_style_a
       {% if current_language == 'es' %}
         language_active
       {% endif %}
       ">
         <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
       </a>
-      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection
+      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection no_style_a
       {% if current_language == 'fr' %}
         language_active
       {% endif %}
       ">
         <img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
       </a>
-      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection
+      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection no_style_a
       {% if current_language == 'en' %}
         language_active
       {% endif %}
