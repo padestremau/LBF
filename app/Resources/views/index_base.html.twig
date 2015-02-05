@@ -1,0 +1,154 @@
+{# app/Resources/views/index_base.html.twig #}
+
+{# For clearer view #}
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<!DOCTYPE html>
+
+<!-- BEGIN HEAD -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+      {% block title %}
+        Le Buffet Frances
+      {% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    {% stylesheets
+      
+      'css/bootstrap.css'
+      'css/bootstrap.min.css'
+      'css/bootstrap-responsive.css'
+      'css/bootstrap-responsive.min.css'
+      'css/bootstrap-theme.css.map'
+      'css/bootstrap.css.map'
+
+      'bootstrap/css/bootstrap-theme.css'
+      'bootstrap/css/bootstrap-theme.min.css'
+      'bootstrap/css/bootstrap.min.css'
+      'bootstrap/css/bootstrap.css'
+
+      'css/font.css'
+      'css/main_style.css'
+
+      'css/jquery.fullPage.css'
+
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+        
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
+    <link rel="icon" type="image/ico" href="{{ asset('favicon.ico') }}" />
+
+
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+  <body>
+        <!-- BEGIN header -->
+          {% include 'includes/header.html.twig' %}
+        <!-- END header -->
+
+
+
+        <!-- BEGIN header -->
+          {% include 'includes/social.html.twig' %}
+        <!-- END header -->
+
+        <!-- BEGIN header -->
+          {% include 'includes/button_to_top.html.twig' %}
+        <!-- END header -->
+        
+        <!-- BEGIN CONTAINER -->
+        <div id="page_container_gen" class="page-container row margin0">
+            {% block body %}
+            {% endblock body %}  
+            <script type="text/javascript">
+              $(document).ready(function() {
+                $('#fullpage').fullpage({
+                  anchors: ['mainSection', 'ourProducts', 'aboutUs', 'footerSection'],
+                  menu: '#menu',
+                  // autoScrolling: false,   // Undo one for the other
+                  scrollingSpeed: 1000,  // Other
+                  scrollOverflow: true,
+                  allowScrolling: true,
+                  css3: true,
+                  // slidesNavigation: false,
+                  // controlArrows: false,
+                  // loopHorizontal: false,
+                  navigation: true,
+                  navigationPosition: 'right',
+                  responsive: 1200,
+                  verticalCentered: false,
+                  paddingTop: '50px',
+                  // sectionSelector: '.section',
+                  // slideSelector: '.slide',
+                  afterLoad: function(anchorLink, index){
+                    // Active buttons
+                    if (anchorLink == 'aboutUs' || anchorLink == 'ourProducts' || anchorLink == 'footerSection') {
+                      document.getElementById("button_to_top").className = "opacity1";
+                    }
+                    else {
+                      document.getElementById("button_to_top").className = "opacity0";
+                    }
+
+                    if (anchorLink == 'aboutUs') {
+                      document.getElementById("btn_section2").className = "btn btn-log";
+                      document.getElementById("btn_section1").className += " btn-log-active";
+                    }
+                    else if (anchorLink == 'ourProducts') {
+                      document.getElementById("btn_section1").className = "btn btn-log";
+                      document.getElementById("btn_section2").className += " btn-log-active";
+                    }
+                    else {
+                      document.getElementById("btn_section1").className = "btn btn-log";
+                      document.getElementById("btn_section2").className = "btn btn-log";
+                    }
+                  }
+
+                });
+
+                //fullPage.js initialization
+
+                // $('#button_login_a').click(function(e){
+                //   e.preventDefault();
+                //   $.fn.fullpage.moveSlideLeft();
+                // });
+
+              });
+            </script>
+        </div>
+        <!-- END CONTAINER -->
+
+
+        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+        {% javascripts 
+          'bootstrap/js/bootstrap.js'
+          'js/bootstrap.js'
+
+          'js/ajax_load.js'
+          
+          'js/jssor.slider.js'
+          'js/jssor.js'
+          'js/jquery-1.10.2.min.js'
+          'js/jquery-ui-1.9.1.min.js'
+
+          'js/jquery.fullPage.js'
+          %}
+          <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+          <!-- 'js/jquery.slimscroll.min.js' -->
+
+        <!-- END JAVASCRIPTS -->
+  </body>
+  <!-- END BODY -->
+</html>

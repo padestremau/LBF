@@ -1,0 +1,113 @@
+# Profile
+user:
+    titles:
+        profile:            Mon profil
+        member:             Membre
+    actions:
+        edit:               Modifier ses infos
+        change:             Changer l'avatar
+        changeRoute:        Echanger
+        back:               Retour
+        save:               Enregistrer
+        cancel:             Annuler
+        changePassword:     Changer de mot de passe
+        home:               Accueil
+        remove:             Retirer
+    details: 
+        username :          Pseudo :
+        firstName:          Prénom :
+        lastName:           Nom :
+        gender:             Sexe :
+        email:              Email :
+        tel:                Tel :
+        country:            Pays :
+        age:                Âge :
+        address:            Adresse :
+        team:               Equipe :
+        male:               Homme
+        female:             Femme
+        avatar:             Mon avatar
+        changeAvatar:       Sélectionner une nouvelle photo :
+        empty:              (Vide)
+    warning:
+        fileMustBe:         Le fichier doit :
+        under1Mo:           "< 1Mo"
+        square:             Carré si possible ...
+        face:               Contenir ton visage
+        warning:            Attention !
+
+# Register and forgotten password
+registerUser:
+    titles:
+        signUp:             "S'inscrire"
+        enterDetails:       Saisissez vos informations :
+        username:           "Nom d'utilisateur"
+        password:           Mot de passe
+        rePassword:         Saisissez à nouveau votre mot de passe
+        email:              Email
+        iAgreeToThe:        J'accepte les 
+        TermsOfService:     "Conditions d'utilisation"
+        and:                et les
+        PrivacyPolicy:      Mentions légales
+    actions: 
+        back:               Retour
+        signUp:             INSCRIPTION
+forgotPassword:
+    titles:
+        forgotPassword:     Mot de passe oublié ?
+        enterEmail:         "Saisissez votre e-mail ci-dessous pour réinitialiser votre mot de passe."
+        email:              Email
+    actions:
+        back:               Retour
+        submit:             Envoyer
+resetPassword:
+    titles:
+        resetPassword:      Changer de mot de passe ?
+        enterOld:           Mot de passe actuel
+        enterNew:           Nouveau mot de passe
+        reEnterNew:         Entrer à nouveau votre nouveau mot de passe
+    actions:
+        back:               Retour
+        changePassword:     Changer le mot de passe
+check:
+    titles: 
+        welcome:            "Merci de nous avoir rejoint(e). Peux-tu vérifier tes emails pour nous confirmer que c'est ton adresse s'il te plaît ?"
+        confirm:            Peux-tu vérifier s'il te plaît ?
+        confirmEmailForPassword:    Peux-tu nous confirmer que c'est bien toi avant de renouveler ton mot de passe ?
+        allGood:            Parfait ! Merci encore et à bientôt.
+        participate:        N'hésite pas à aller voir quelle parcours tu préfères effectuer :
+        anyProblem:         "Si tu as un quelconque problème, n'hésite pas à contacter l'administration."
+    actions:
+        checkEmail:         Vérifier vos emails
+        pleaseConfirm:      A vérifier
+        done:               Bravo !
+    link: 
+        route:              Voir les parcours
+        contact:            Contacter l'administration
+
+
+# Login
+login:
+    titles:
+        loginTitle:     Se connecter à son compte
+        enterUsernameAndPassword:   Enter a username and a password. 
+        email:          Email
+        username:       "Nom d'utilisateur"
+        password:       Mot de passe
+        orLoginWith:    Ou se connecter avec
+        forgetPassword: Mot de passe oublié ?
+        noWorriesClick: cliquez
+        here:           ici
+        toResetPassword: pour réinitialiser votre mot de passe.
+        noAccount:      "Toujours pas de compte ?"
+    actions:
+        login:          CONNEXION
+        remember_me:    Se souvenir de moi
+        createAccount:  Créer un compte
+    connected:
+        titleAlreadyConnected:  Vous êtes déjà connecté
+        accessAccount:  Accédez rapidement à votre compte
+    comments:
+        anyComments:    Des commentaires à propos de SWYCA ?
+        feelFreeTo:     "N'hésitez pas à nous"
+        tellUs:         en faire part

@@ -1,0 +1,121 @@
+{# For clearer view #}
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<div id="header" class="row">
+
+  <div class="col-md-4 col-xs-4">
+    <div class="row"  id="header_buttons">
+      <div class="button_anchors float-left">
+        <div id="login_name_status">
+          <a href="{{ path('fos_user_security_login') }}" class="no_style_a">
+            <button id="button_login_a" class="btn btn-log
+            {% if (route == 'fos_user_security_login')
+                or (route == 'fos_user_resetting_reset')
+                or (route == 'fos_user_resetting_request')
+                or (route == 'fos_user_change_password')
+                or (route == 'fos_user_registration_register') %}
+            btn-log-active
+            {% endif %}
+            ">
+              {% if (route == 'fos_user_resetting_reset') %}
+                {{ 'header.titles.reset' | trans }}
+              {% elseif (route == 'fos_user_resetting_request') %}
+                {{ 'header.titles.request' | trans }}
+              {% elseif (route == 'fos_user_change_password') %}
+                {{ 'header.titles.changePassword' | trans }}
+              {% elseif (route == 'fos_user_registration_register') %}
+                {{ 'header.titles.register' | trans }}
+              {% else %}
+                {{ 'header.titles.login' | trans }}
+              {% endif %}
+            </button>
+          </a>
+        </div>
+      </div>
+      
+      <div class="button_anchors float-right" data-menuanchor="aboutUs">
+        <a href="{{ path('lbf_main_homepage') }}#aboutUs" style="no_style_a">
+          <button class="btn btn-log" id="btn_section1">
+            {{ 'header.titles.aboutUs' | trans }}
+          </button>
+        </a>
+      </div>
+
+      <div class="button_anchors float-right" data-menuanchor="ourProducts">
+        <a href="{{ path('lbf_main_homepage') }}#ourProducts" style="no_style_a">
+          <button class="btn btn-log"  id="btn_section2">
+            {{ 'header.titles.ourProducts' | trans }}
+          </button>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-4 col-xs-4">
+    <!-- Main title -->
+    <a href="{{ path('lbf_main_homepage') }}#mainSection" class="no_style_a">
+      <h1 id="main_title" class="opacity1">
+        Le Buffet Francés
+      </h1>
+    </a>
+  </div>
+
+  <div class="col-md-4 col-xs-4" id="language_selection">
+
+    <!-- BEGIN LANGUAGE SELECTION DROPDOWN -->
+    <div class="language_box">
+      {% set current_language = '' %}
+      {% if (app.request.get('_route_params')) != null %}
+        {% if (app.request.get('_route_params')._locale == 'fr') %}
+          {% set current_language = 'fr' %}
+        {% elseif (app.request.get('_route_params')._locale == 'en') %}
+          {% set current_language = 'en' %}
+        {% else %}
+          {% set current_language = 'es' %}
+        {% endif %}
+      {% endif %}
+      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection
+      {% if current_language == 'es' %}
+        language_active
+      {% endif %}
+      ">
+        <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+      </a>
+      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection
+      {% if current_language == 'fr' %}
+        language_active
+      {% endif %}
+      ">
+        <img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
+      </a>
+      <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection
+      {% if current_language == 'en' %}
+        language_active
+      {% endif %}
+      ">
+        <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+      </a>
+    </div>
+    <!-- END LANGUAGE SELECTION DROPDOWN -->
+
+
+    <!-- BEGIN CART -->
+    <div class="cart_button">
+      <button  type="button" data-toggle="modal" data-target="#cartModal" id="button_cart_a"  class="btn btn-log float-right">
+        <div class="cart_label">
+          {{ 'header.titles.myCart' | trans }}
+        </div>
+        <div class="number_notif">
+          5
+        </div>
+      </button>
+    </div>
+    <!-- END CART -->
+
+    
+  </div>
+
+
+</div>

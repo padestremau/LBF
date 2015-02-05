@@ -1,0 +1,104 @@
+# Header
+
+header:
+    titles:
+        login:                  CONNEXION
+        reset:                  RESET
+        request:                REQUÊTE
+        changePassword:         MOT DE PASSE
+        register:               INSCRIPTION
+        aboutUs: 				A PROPOS
+        ourProducts: 			PRODUITS
+        myCart: 				MON PANIER
+    special:
+        buttonToTop: 			HAUT
+
+# Main
+
+main:
+    titles:
+        title_meat: 			La viande comme on l'aime. 
+        title_meat_s: 			En trois clics. 
+        variatyOfChoice: 		Variété de choix
+        qualityProduct: 		Produit de qualité
+        securedPayment: 		Paiment sécurisé
+    content:
+        variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
+        qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
+        securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
+    actions:
+        learnMore: 				En savoir plus
+
+# Products
+
+ourProducts:
+    titles:
+        title_ourProducts: 		Nos produits.
+        title_ourProducts_s: 	A choisir avec amour.
+    actions: 
+        order: 					COMMANDER
+
+
+# About us
+
+aboutUs:
+    titles:
+        title_aboutUs: 			A propos.
+        title_aboutUs_s: 		Histoires et anecdotes.
+
+
+
+# Contact
+
+contact:
+    titles:
+        contact:                Contact
+        thankYou:               Thank you!
+    actions: 
+        send:                   Send
+    content:
+        sender:                 Sender
+        name:                   Name
+        email:                  Email
+        recipient:              Recipient
+        message:                Message
+        object:                 Object
+        content:                Content
+        messageSent:            Message sent.
+
+# Footer
+
+footer:
+    titles:
+        receiveOurNewsletter: 	Recevez notre newsletter
+        witnesses: 				Témoignages
+        clientService: 			Service client
+        aboutUs: 				A propos
+        needHelp: 				Besoin d'aide ?
+        meatPanel: 				Viandes proposées
+        blog: 					Le blog
+    content:
+        receiveOurNewsletter: 	Restez abonnés à nos offres et recettes !
+        witnesses: 				Ils ont déjà gouté à notre viande.
+        clientService: 			A votre écoute de 10h à 2h00 !
+        contact: 				Contact
+        thanks: 				Remerciements
+        legalMentions: 			Mentions légales/ CGV
+        moreInfo: 				Tout comprendre
+        delivery: 				La Livraison
+        ourWork: 				Notre travail
+        questions: 				Vos questions - FAQ
+        entireBlog: 			Tout le blog
+        cookingRecipe: 			Les recettes
+        news: 					Actualité
+
+    actions: 
+        send: 					OK
+        enterEmail:             Entrez votre email
+
+    bottom: 
+        allRightsReserved: 		TOUS DROITS RESERVES
+
+
+
+

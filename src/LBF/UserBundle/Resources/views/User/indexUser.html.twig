@@ -1,0 +1,350 @@
+{# src/LBF/UserBundle/Resources/User/indexUser.html.twig #}
+
+{% extends "LBFUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - {{ 'user.titles.profile' | trans }}
+{% endblock %}
+
+{% block LBF_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div class="col-md-8 page-content" id="page-content">  <!-- Must have a col-md-8 -->
+		<!-- BEGIN CONTENT -->
+		<div id="content" class="content">
+
+			{% if user == app.user %}
+
+			<div>
+				<a href="{{ path('lbf_user_edit') }}" class="btn btn-perso float-right">
+			    	{{ 'user.actions.edit'|trans }}
+			     	<i class="fa fa-sign-in"></i>
+			    </a>
+			    <a href="{{ path('fos_user_change_password') }}" class="btn btn-perso float-right margin_right_10">
+			    	{{ 'user.actions.changePassword'|trans }}
+			     	<i class="fa fa-sign-in"></i>
+			    </a>
+			</div>
+
+			<h2>
+				{{ 'user.titles.profile'|trans }}
+			</h2>
+
+			{% else %}
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+	        		<div>
+						<a href="{{ path('lbf_user_admin') }}" class="btn btn-perso float-right">
+					    	{{ 'user.actions.back'|trans }}
+					     	<i class="fa fa-sign-in"></i>
+					    </a>
+					</div>
+
+					<!-- <div class="col-md-3">
+						<div class="photo_souvenir"
+							style="width: 100%; background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%;"
+							onClick="showPhoto('{{ photo.id }}')"
+							>
+							<script type="text/javascript">
+								var cw = $('.photo_souvenir').width();
+								$('.photo_souvenir').css({'height':cw+'px'});
+							</script>
+						</div>
+					</div> -->
+	        	{% endif %}
+
+			<h2>
+				{{ 'user.titles.member'|trans }} #{{ user.id }}
+			</h2>
+			{% endif %}
+			<hr/>
+
+			<div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-4 right">
+							<ul class="list_no_style_li">
+								<li class="bold">
+									{{ 'user.details.firstName'|trans }}
+								</li>
+								<li class="bold">
+									{{ 'user.details.lastName'|trans }}
+								</li>
+								<li class="bold">
+									{{ 'user.details.gender'|trans }}
+								</li>
+								<li class="bold">
+									{{ 'user.details.email'|trans }}
+								</li>
+								<li class="bold">
+									{{ 'user.details.tel'|trans }}
+								</li>
+								<li class="bold">
+									{{ 'user.details.age'|trans }}
+								</li>
+								<li class="bold">
+									{{ 'user.details.address'|trans }}
+								</li>
+								<li class="bold">
+									<br/>
+								</li>
+								<li class="bold">
+									{{ 'user.details.team'|trans }}
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-8 left">
+							<ul class="list_no_style_li">
+								<li>
+									{% if user.firstName|length > 0 %}
+										{{ user.firstName }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.lastName|length > 0 %}
+										{{ user.lastName }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.gender|length > 0 %}
+										{% if user.gender == 1 %}
+											{{ 'user.details.male'|trans }}
+										{% else %}
+											{{ 'user.details.female'|trans }}
+										{% endif %}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.email|length > 0 %}
+										<a href="mailto:{{ user.email }}">{{ user.email }}</a>
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.tel|length > 0 %}
+										{{ user.tel }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.age|length > 0 %}
+										{{ user.age }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.address1|length > 0 %}
+										{{ user.address1 }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.address2|length > 0 %}
+										{{ user.address2 }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+								<li>
+									{% if user.team %}
+										{{ user.team.name }}
+									{% else %}
+										<br/>
+									{% endif %}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					{% if user.avatar %}
+						<img  src="{{ asset(user.avatar.webPath) }}"  alt="{{ user.avatar.alt }}" class="avatar_profile"/> 
+					{% else %}
+						<img src="{{ asset('img/profile/profil_defaut.png') }}" alt="Default" class="avatar_profile"/> 
+					{% endif %}
+
+					{% if user == app.user %}
+					<div>
+						<button class="btn float-right change_avatar">
+							<a href="{{ path('lbf_user_editAvatar') }}" class="no_style_a">
+						    	{{ 'user.actions.change'|trans }}
+						     	<i class="fa fa-sign-in"></i>
+							</a>
+					    </button>
+					</div>
+					{% else %}
+					<div>
+						<button class="btn float-right">
+						    <strong>
+						    	{{ 'user.details.team'|trans }}	
+						    </strong> 
+						    {% if user.team %}
+						    	{{ user.team.name }}
+						    {% else %}
+						    	{{ 'user.details.empty'|trans }}	
+						    {% endif %}
+					    </button>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+
+			<br/><br/>
+
+			<h2>------------------------</h2>
+
+			<div class="row margin0">
+			{% if user.routes %}
+
+				<h2>
+					{{ 'route.titles.chosenStep'|trans }} : {{ 'route.content.step'|trans }} {{ user.routes.routeNumber }}
+				</h2>
+				<hr/>
+
+				<div class="single_route">
+					<h3>
+						{{ user.routes.name }}
+					</h3>
+
+					<div class="row">
+						<div class="col-md-6">
+							<img src="{{ asset(user.routes.url) }}" alt="{{ user.routes.alt }}" class="route_img"/>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-5 right bold">
+									{{ 'route.content.startCity'|trans }}
+								</div>
+								<div class="col-md-7 left">
+									{{ user.routes.startCity }}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-5 right bold">
+									{{ 'route.content.endCity'|trans }}
+								</div>
+								<div class="col-md-7 left">
+									{{ user.routes.endCity }}
+								</div>
+							</div>
+
+							<hr/>
+
+							<div class="row">
+								<div class="col-md-5 right bold">
+									{{ 'route.content.length'|trans }}
+									<br/>
+									{{ 'route.content.heightPos'|trans }}
+									<br/>
+									{{ 'route.content.heightNeg'|trans }}
+								</div>
+								<div class="col-md-3 left">
+									{{ user.routes.length }}
+									<br/>
+									{{ user.routes.heightPos }}
+									<br/>
+									{{ user.routes.heightNeg }}
+								</div>
+								<div class="col-md-4 right">
+									{% if user == app.user %}
+									<a href="{{ path('lbf_presentation_route') }}" class="btn btn-perso float-right width80">
+								    	{{ 'user.actions.changeRoute'|trans }}
+								     	<i class="fa fa-sign-in"></i>
+								    </a>
+								    <button class="btn btn-perso float-right warning_background width80" onClick="
+															{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+																areYouSureDelete()
+															{% endif %}
+															">
+								    	{{ 'user.actions.remove'|trans }}
+								     	<i class="fa fa-sign-in"></i>
+								    </button>
+									<script type="text/javascript">
+										function areYouSureDelete()
+										{
+											if (confirm('{{ 'route.content.areYouSureDelete'|trans }}')) {
+												window.location = "{{ path('lbf_presentation_route_delete') }}";
+											}
+										}
+									</script>
+								    {% endif %}
+								</div>
+							</div>
+							
+							<hr/>
+
+							<div class="row">
+								<div class="col-md-5 right bold">
+									{{ 'route.content.startDate'|trans }}
+								</div>
+								<div class="col-md-7 left">
+									{{ user.routes.startDate|date('d M Y') }} - {{ user.routes.startDate|date('h:i') }}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-5 right bold">
+									{{ 'route.content.endDate'|trans }}
+								</div>
+								<div class="col-md-7 left">
+									{{ user.routes.endDate|date('d M Y') }} - {{ user.routes.endDate|date('h:i') }}
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+			{% else %}
+
+				<h2>
+					{{ 'route.titles.chosenStep'|trans }} : 
+				</h2>
+				<hr/>
+
+				<div class="center">
+					<p>
+						<br/><br/><br/><br/>
+					</p>
+					<p class="center">
+						{{ 'route.content.noRouteYetMessage'|trans }}
+					</p>
+					<p>
+						<br/><br/><br/><br/>
+					</p>
+					<a href="
+    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+							{{ path('lbf_presentation_route') }}
+						{% else %}
+							{{ path('fos_user_registration_register') }}
+						{% endif %}
+						" class="btn btn-perso font18">
+				    	{{ 'route.actions.join'|trans }}
+				     	<i class="fa fa-sign-in"></i>
+				    </a>
+				</div>
+
+			{% endif %}
+			</div>
+
+			
+		</div>
+		<!-- END CONTENT -->
+	</div>
+	<!-- END CONTENT -->
+
+	<!-- BEGIN rightbar -->
+      {% include 'includes/rightbar.html.twig' %}
+    <!-- END rightbar -->
+
+{% endblock LBF_User_body %}

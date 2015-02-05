@@ -1,0 +1,104 @@
+# Header
+
+header:
+    titles:
+        login:                  CONNECCION
+        reset:                  RESET
+        request:                REQUESTA
+        changePassword:         CONTRASEÑA
+        register:               INSCRIPCIÓN
+        aboutUs: 				A PROPUESTO
+        ourProducts: 			PRODUCTOS
+        myCart: 				MIS ORDENES
+    special:
+        buttonToTop: 			ARRIBA
+
+# Main
+
+main:
+    titles:
+        title_meat: 			La carne como la queremos.
+        title_meat_s: 			En tres clicks.
+        variatyOfChoice: 		Variedad de juicio
+        qualityProduct: 		Qualitad de producto
+        securedPayment: 		Pagamento securo
+    content:
+        variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
+        qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
+        securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
+    actions:
+        learnMore: 				Mas ínfo
+
+# Products
+
+ourProducts:
+    titles:
+        title_ourProducts: 		Nuestros productos.
+        title_ourProducts_s: 	A elegir con amor.
+    actions: 
+        order: 					ORDENER
+
+
+# About us
+
+aboutUs:
+    titles:
+        title_aboutUs: 			A propuesto.
+        title_aboutUs_s: 		Historias y anecdotas.
+
+
+
+# Contact
+
+contact:
+    titles:
+        contact:                Contact
+        thankYou:               Thank you!
+    actions: 
+        send:                   Send
+    content:
+        sender:                 Sender
+        name:                   Name
+        email:                  Email
+        recipient:              Recipient
+        message:                Message
+        object:                 Object
+        content:                Content
+        messageSent:            Message sent.
+
+# Footer
+
+footer:
+    titles:
+        receiveOurNewsletter: 	Reciben nuestra newsletter
+        witnesses: 				Témoignages
+        clientService: 			Servicio al cliente
+        aboutUs: 				A propuesto
+        needHelp: 				Necesitan ayuda ?
+        meatPanel: 				Carne propuesta
+        blog: 					El blog
+    content:
+        receiveOurNewsletter: 	Restez abonnés à nos offres et recettes !
+        witnesses: 				Ya han probado nuestra carne.
+        clientService: 			A vuestro servicio desde las 10 hasta media noche !
+        contact: 				Contacto
+        thanks: 				Remerciements
+        legalMentions: 			Mentiones legales/ CGV
+        moreInfo: 				Comprender todo
+        delivery: 				La Livraison
+        ourWork: 				Nuestro trabajo
+        questions: 				Vuestras preguntas - FAQ
+        entireBlog: 			Todo el blog
+        cookingRecipe: 			Les recettes
+        news: 					Actualidad
+
+    actions: 
+        send: 					OK
+        enterEmail:             Escriben vuestro email
+
+    bottom: 
+        allRightsReserved: 		TOUS DROITS RESERVES
+
+
+
+

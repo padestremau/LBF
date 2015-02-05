@@ -1,0 +1,491 @@
+{# src/LBF/MainBundle/Resources/Main/indexMain.html.twig #}
+
+{% extends "LBFMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block LBF_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="fullpage">
+			<div class="section" id="section0">
+
+				<!-- <div id="div_login_create" class="slide" style="display:none;">
+				</div> -->
+
+				<div class="slide">
+					<div class="intro">
+						<div class="presentation_photos row">
+							<div class="col-md-4 col-xs-4">
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<div class="welcome_page">
+							      <div class="logo_welcome">
+							        <img src="{{ asset('img/logo/LeBuffetFrances_Final_Small.png') }}" alt="Logo" class="logo_welcome_img"/>
+							      </div>
+							    </div>
+							</div>
+						    <div class="col-md-4 col-xs-4">
+							</div>
+
+							<div class="content_presentation row">
+								
+							    <script>
+							        jQuery(document).ready(function ($) {
+							            var options = {
+
+							                $AutoPlay: true,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+							                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+							            };
+
+							            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+										//responsive code begin
+										//you can remove responsive code if you don't want the slider scales while window resizes
+										function ScaleSlider() {
+										    var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+										    if (parentWidth)
+										        jssor_slider1.$ScaleWidth(Math.min(parentWidth, 1920));
+										    else
+										        window.setTimeout(ScaleSlider, 30);
+										}
+										ScaleSlider();
+
+										$(window).bind("load", ScaleSlider);
+										$(window).bind("resize", ScaleSlider);
+										$(window).bind("orientationchange", ScaleSlider);
+										//responsive code end
+							        });
+							    </script>
+							    <!-- Jssor Slider Begin -->
+							    <!-- You can move inline styles to css file or css block. -->
+								<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 1200px;
+							        height: 430px; margin:auto;">
+							        <!-- Slides Container -->
+							        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 430px;
+							            overflow: hidden;">
+							            <div>
+							                <img u=image src="{{ asset('img/presentation/1.jpg') }}" />
+							                <div u="thumb">Une viande de qualité,</div>
+							            </div>
+							            <div>
+							                <img u=image src="{{ asset('img/presentation/2.jpg') }}" />
+							                <div u="thumb">Une fidélisation à un produit,</div>
+							            </div>
+							            <div>
+							                <img u=image src="{{ asset('img/presentation/3.jpg') }}" />
+							                <div u="thumb">Une saveur comme jamais ailleurs,</div>
+							            </div>
+							            <div>
+							                <img u=image src="{{ asset('img/presentation/4.jpg') }}" />
+							                <div u="thumb"> ... telle est notre devise !</div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+
+							<div class="presentation_texte row">
+								<div class="row80">
+									<div class="center">
+										<h2>
+											{{ 'main.titles.title_meat' | trans }}<br/>
+											<span>
+												{{ 'main.titles.title_meat_s' | trans }}
+											</span>
+										</h2>
+									</div>
+								</div>
+								<br/>
+								<div class="row80">
+
+									<div class="col-md-4 col-xs-4 center">
+										<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
+										<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
+										<p class="center">
+											{{ 'main.content.variatyOfChoice' | trans }}
+											<br/>
+											<br/>
+											<a class="read-more" href="#">
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
+									<div class="col-md-4 col-xs-4 center">
+										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
+										<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
+										<p class="center">
+											{{ 'main.content.qualityProduct' | trans }}
+											<br/>
+											<br/>
+											<a class="read-more" href="#">
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
+									<div class="col-md-4 col-xs-4 center">
+										<img alt="Security" src="{{ asset('img/system/icons/security.png') }}" class="icon_presentation"/>
+										<h3> {{ 'main.titles.securedPayment' | trans }} </h3>
+										<p class="center">
+											{{ 'main.content.securedPayment' | trans }}
+											<br/>
+											<br/>
+											<a class="read-more" href="#">
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- <div class="slide">
+				</div> -->
+			</div>
+
+			<div class="section" id="section1">
+				<div class="presentation_texte row">
+		        	<div class="row center">
+		        		<div class="col-md-2 col-xs-2"></div>
+		        		<div class="col-md-8 col-xs-8">
+							<h2>
+								{{ 'ourProducts.titles.title_ourProducts' | trans }}
+								<br/>
+								<span>
+									{{ 'ourProducts.titles.title_ourProducts_s' | trans }}
+								</span>
+							</h2>
+		        		</div>
+						<div class="col-md-2 col-xs-2 white">
+							<button class="btn btn-log">
+								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+								{{ 'ourProducts.actions.order' | trans }}
+							</button>
+						</div>
+					</div>
+					<br/>
+					<br/>
+
+
+					<!-- Product content -->
+					{% if allProducts|length > 0 %}
+						<ul class="nav nav-tabs row80">
+							{% set index_general = 1 %}
+							{% for category in allCategories %}
+								{% set productsArray = allSortedProducts[index_general] %}
+								<li class="{% if index_general == 1 %} active {% endif %}">
+									<a href="#tab_{{ index_general }}" data-toggle="tab">
+										{{ category }} ({{ productsArray|length }})
+									</a>
+								</li>
+								{% set index_general = index_general + 1 %}
+							{% endfor %}
+						</ul>
+						<br/>
+
+						<script type="text/javascript">
+							var div_types = [];
+							var div_maxs = [];
+							var div_counter_values = [];
+							var div_weights_values = [];
+							var div_finalWeight = [];
+							var div_prices_values = [];
+							var div_cart_values = [];
+						</script>
+						{% for product in allProducts %}
+							<script type="text/javascript">
+								div_types[div_types.length] = "{{ product.type }}";
+								div_maxs[div_maxs.length] = eval('{{ product.quantity }}');
+								div_counter_values[div_counter_values.length] = 0;
+								div_weights_values[div_weights_values.length] = eval('{{ product.weight }}');
+								div_finalWeight[div_finalWeight.length] = 0;
+								div_prices_values[div_prices_values.length] = eval('{{ product.price }}');
+								div_cart_values[div_cart_values.length] = 0;
+							</script>
+						{% endfor %}
+						<script type="text/javascript">
+							function addOne(type, div_counter, div_weight, div_price) {
+								var pos = 0;
+								for (var i = 0; i < div_types.length; i++) {
+									pos = i;
+									if (div_types[i] == type) {
+										break;
+									}
+								}
+								var counter_j = div_counter_values[pos];
+								var weight_j = div_weights_values[pos];
+								var weight_final_j = div_finalWeight[pos];
+								var price_j = div_prices_values[pos];
+								var cart_to_add_j = div_cart_values[pos];
+								if (counter_j < div_maxs[pos]) {
+									counter_j = counter_j + 1;
+									div_counter_values[pos] = counter_j ;
+									weight_final_j = counter_j * weight_j;
+									div_finalWeight[pos] = weight_final_j ;
+									cart_to_add_j = counter_j * price_j;
+									div_cart_values[pos] = cart_to_add_j ;
+									document.getElementById(div_counter).innerHTML = counter_j;
+									document.getElementById(div_weight).innerHTML = weight_final_j;
+									document.getElementById(div_price).innerHTML = cart_to_add_j;
+								}
+								else {
+									alert("You've reached the maximum availability.")
+								}
+							}
+							function deleteOne(type, div_counter, div_weight, div_price) {
+								var pos = 0;
+								for (var i = 0; i < div_types.length; i++) {
+									pos = i;
+									if (div_types[i] == type) {
+										break;
+									}
+								}
+								var counter_j = div_counter_values[pos];
+								var weight_j = div_weights_values[pos];
+								var weight_final_j = div_finalWeight[pos];
+								var price_j = div_prices_values[pos];
+								var cart_to_add_j = div_cart_values[pos];
+								if (counter_j > 0) {
+									counter_j = counter_j - 1;
+									div_counter_values[pos] = counter_j ;
+								}
+								else {
+									counter_j = 0;
+									div_counter_values[pos] = 0;
+								}
+								weight_final_j = counter_j * weight_j;
+								div_finalWeight[pos] = weight_final_j ;
+								cart_to_add_j = counter_j * price_j;
+								div_cart_values[pos] = cart_to_add_j ;
+								document.getElementById(div_counter).innerHTML = counter_j;
+								document.getElementById(div_weight).innerHTML = weight_final_j;
+								document.getElementById(div_price).innerHTML = cart_to_add_j;
+							}
+						</script>
+
+						<div class="tab-content white row80">
+							{% set index_general = 1 %}
+							{% for category in allCategories %}
+								{% set productsArray = allSortedProducts[index_general] %}
+								<!-- BEGIN Tab pane {{ index_general }}  -->
+								<div class="tab-pane fade 
+									{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
+									<div class="row">
+										<div class="col-md-4 col-xs-4">
+											<ul class="ver-inline-menu tabbable list_no_style_li">
+											{% set index_category = 1 %}
+											{% for product in productsArray %}
+												<li class="tab_select {% if index_category == 1 %} active {% endif %}">
+													<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
+														{{ product.name }}
+														<div class="float-right inner_arrow">
+															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+														</div>
+													</a>
+												</li>
+												{% set index_category = index_category + 1 %}
+											{% endfor %}
+											</ul>
+										</div>
+										<div class="col-md-8 col-xs-8">
+											<div class="tab-content">
+												{% set index_category = 1 %}
+												{% set naturalProductDef = false %}
+												{% for product in productsArray %}
+													<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane 
+														{% if index_category == 1 %} active {% endif %}">
+														<div class="row">
+															<div class="col-md-4 col-xs-4">
+																<div class="product_img_div">
+																	<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+																</div>
+																<br/>
+																<div class="center">
+																	<strong>
+																		Weight:
+																	</strong>
+																	{{ product.weight }} g
+																</div>
+																<div class="center">
+																	<div class="inline_div">
+																		<strong>
+																			Available:
+																		</strong>
+																	</div>
+																	<div class="inline_div">
+																		{{ product.quantity }}
+																	</div>
+																</div>
+																<div class="center">
+																	<strong>
+																		Price:
+																	</strong>
+																	{{ product.price }} S. 
+																	{% if product.category == 'Jamones' %}
+																		/10 pieces
+																	{% else %}
+																		/piece
+																	{% endif %}
+																</div>
+															</div>
+															<div class="col-md-8 col-xs-8">
+																<div class="row">
+																	<h4>
+																		{{ product.name }}. 
+																		{% if product.naturalProduct == true %} 
+																			* 
+																			{% set naturalProductDef = true %}
+																		{% endif %} 
+																	</h4>
+																	{{ product.description }} 
+																</div>
+																<br/>
+																<div class="row">
+																	{% if naturalProductDef == true %}
+																		<div class="row small_quote">
+																			* Productos naturales sin colorantes ni preservantes
+																		</div>
+																	{% endif %} 
+																</div>
+															</div>
+														</div>
+														<br/>
+														<div class="row right">
+															<div class="col-md-2 col-xs-2 inline_div margin_right_10">
+																<input onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="+" title="Add one more"/>
+																<input onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="-" title="Delete one"/>
+															</div>
+															<div class="inline_div col-md-2 col-xs-2">
+																<div class="inline_div counter_info_divs">
+																	<div id="counter_value_{{ product.type }}">
+																		0
+																	</div>
+																</div>
+																<div class="inline_div counter_info_divs margin_right_10">
+																	pieces,
+																</div>
+															</div>
+															<div class="inline_div col-md-2 col-xs-2">
+																<div class="inline_div counter_info_divs">
+																	<div id="weight_value_{{ product.type }}">
+																		0
+																	</div>
+																</div>
+																<div class="inline_div counter_info_divs margin_right_10">
+																	g,
+																</div>
+															</div>
+															<div class="inline_div col-md-2 col-xs-2 counter_price_divs">
+																<div class="inline_div">
+																	<div id="price_value_{{ product.type }}">
+																		0
+																	</div>
+																</div>
+																<div class="inline_div margin_right_10">
+																	S.
+																</div>
+															</div>
+															<div class="inline_div col-md-2 col-xs-2 ">
+																<input type="submit" class="btn btn-add-to-cart" value="" title="Add to cart"/>
+															</div>
+														</div>
+
+													</div>
+													{% set index_category = index_category + 1 %}
+												{% endfor %}
+											</div>
+										</div>	
+									</div>
+								</div>
+								<!-- END Tab pane {{ index_general }}  -->
+
+								{% set index_general = index_general + 1 %}
+							{% endfor %}
+						</div>
+
+					<!-- Otherwise .... -->
+					{% else %}
+						<p class="center">
+							This page is empty. Contact the web-master.
+						</p>
+					{% endif %}
+
+				</div>
+			</div>
+
+			<div class="section" id="section2">
+				<div class="presentation_texte">
+					<div class="row center">
+		        		<div class="col-md-2 col-xs-2"></div>
+		        		<div class="col-md-8 col-xs-8">
+							<h2>A propos. <br/>
+								<span>Histoire et anecdotes. </span>
+							</h2>
+		        		</div>
+						<div class="col-md-2 col-xs-2">
+						</div>
+					</div>
+					<br/>
+					<br/>
+					<div class="row">
+						<div class="row80">
+							<div class="col-md-3 col-xs-3">
+								<div class="product_img_div">
+									<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+								</div>
+							</div>
+							<div class="col-md-9 col-xs-9">
+								<div class="row">
+									<h4>Aude de Penfentenyo </h4>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nemo illum incidunt tempora, libero repellendus deleniti consequatur. Commodi non saepe recusandae repellat adipisci numquam ducimus odit. Eligendi, veniam dolorum voluptas!
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sep_dotted"></div>
+					<div class="row">
+						<div class="row80">
+							<div class="col-md-9 col-xs-9">
+								<div class="row">
+									<h4>Antoine de Penfentenyo </h4>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nemo illum incidunt tempora, libero repellendus deleniti consequatur. Commodi non saepe recusandae repellat adipisci numquam ducimus odit. Eligendi, veniam dolorum voluptas!
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-3">
+								<div class="product_img_div">
+									<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sep_dotted"></div>
+					<div class="row">
+						<div class="row80">
+							<div class="col-md-3 col-xs-3">
+								<div class="product_img_div">
+									<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+								</div>
+							</div>
+							<div class="col-md-9 col-xs-9">
+								<div class="row">
+									<h4>Pierre-Arnaud Destremau</h4>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nemo illum incidunt tempora, libero repellendus deleniti consequatur. Commodi non saepe recusandae repellat adipisci numquam ducimus odit. Eligendi, veniam dolorum voluptas!
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- BEGIN FOOTER -->
+              {% include 'includes/footer.html.twig' %}
+            <!-- END FOOTER -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Main_body %}

@@ -1,0 +1,69 @@
+<!-- Navigation pour l'administrateur -->
+
+{% set route = app.request.attributes.get( '_route' ) %}
+<div class="nav_admin">
+	<ul class="nav_admin_ul">
+		<li class="nav_admin_li">
+			<a href="{{ path('lvnp_admin_homepage') }}" class="no_style_a">
+				<button class="li-admin
+					{% if route == 'lvnp_admin_homepage' %}
+						li-admin-active
+					{% endif %}
+					"> 
+					ACCUEIL
+	            </button>
+			</a>
+		</li>
+		<li class="nav_admin_li">
+			<a href="{{ path('lvnp_admin_locations') }}" class="no_style_a">
+				<button class="li-admin
+					{% if route == 'lvnp_admin_locations' 
+						or route == 'lvnp_admin_location_new'
+						or route == 'lvnp_admin_location_edit' %}
+						li-admin-active
+					{% endif %}
+					"> 
+					LOCATION
+	            </button>
+			</a>
+		</li>
+		<li class="nav_admin_li">
+			<a href="{{ path('lvnp_admin_ventes') }}" class="no_style_a">
+				<button class="li-admin
+					{% if route == 'lvnp_admin_ventes'
+						or route == 'lvnp_admin_vente_new'
+						or route == 'lvnp_admin_vente_edit' %}
+						li-admin-active
+					{% endif %}
+					">
+					VENTE
+	            </button>
+			</a>
+		</li>
+		<li class="nav_admin_li">
+			<a href="{{ path('lvnp_admin_textes') }}" class="no_style_a">
+				<button class="li-admin
+					{% if route == 'lvnp_admin_textes' 
+						or route == 'lvnp_admin_text_choice'
+						or route == 'lvnp_admin_text_edit'
+						or route == 'lvnp_admin_texte_delete' %}
+						li-admin-active
+					{% endif %}
+					">
+					TEXTES
+	            </button>
+			</a>
+		</li>
+		<li class="nav_admin_li">
+			<a href="{{ path('lvnp_admin_photos') }}" class="no_style_a">
+				<button class="li-admin
+					{% if route == 'lvnp_admin_photos' %}
+						li-admin-active
+					{% endif %}
+					">
+					PHOTOS
+	            </button>
+			</a>
+		</li>
+	</ul>
+</div>
