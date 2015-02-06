@@ -2,9 +2,12 @@ lbf_main_homepage:
     path:     /
     defaults: { _controller: LBFMainBundle:Main:index }
 
+lbf_main_add_to_cart:
+    path:     /addToCart/{type}/{quantity}
+    defaults: { _controller: LBFMainBundle:Main:addToCart }
+    requirements:
+        quantity: \d*
 
-# gbe_presentation_photos_routes:
-#     pattern:  /photos/{routesId}
-#     defaults: { _controller: GBEPresentationBundle:Photos:photosRoutes }
-#     requirements:
-#         routesId: \d*
+lbf_main_empty_cart:
+    path:     /emptyCart
+    defaults: { _controller: LBFMainBundle:Main:emptyCart }

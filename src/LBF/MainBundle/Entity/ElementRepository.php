@@ -11,5 +11,5 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class ElementRepository extends EntityRepository
-{
+{	
 }

@@ -13,138 +13,157 @@
 
 		<div id="fullpage">
 			<div class="section" id="section0">
+				
+				<div class="presentation_photos row">
+					<div class="col-md-4 col-xs-4">
+					</div>
+					<div class="col-md-4 col-xs-4">
+						<div class="welcome_page">
+					      <div class="logo_welcome">
+					        <img src="{{ asset('img/logo/LeBuffetFrances_Final_Small.png') }}" alt="Logo" class="logo_welcome_img"/>
+					      </div>
+					    </div>
+					</div>
+				    <div class="col-md-4 col-xs-4">
+					</div>
 
-				<!-- <div id="div_login_create" class="slide" style="display:none;">
-				</div> -->
+					<div class="content_presentation row">
+						
+					    <script>
+					        jQuery(document).ready(function ($) {
+					            var options = {
 
-				<div class="slide">
-					<div class="intro">
-						<div class="presentation_photos row">
-							<div class="col-md-4 col-xs-4">
+					                $AutoPlay: true,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+					                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+					            };
+
+					            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+								//responsive code begin
+								//you can remove responsive code if you don't want the slider scales while window resizes
+								function ScaleSlider() {
+								    var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+								    if (parentWidth)
+								        jssor_slider1.$ScaleWidth(Math.min(parentWidth, 1920));
+								    else
+								        window.setTimeout(ScaleSlider, 30);
+								}
+								ScaleSlider();
+
+								$(window).bind("load", ScaleSlider);
+								$(window).bind("resize", ScaleSlider);
+								$(window).bind("orientationchange", ScaleSlider);
+								//responsive code end
+					        });
+					    </script>
+					    <!-- Jssor Slider Begin -->
+					    <!-- You can move inline styles to css file or css block. -->
+						<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 1200px;
+					        height: 430px; margin:auto;">
+					        <!-- Slides Container -->
+					        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 430px;
+					            overflow: hidden;">
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/1.jpg') }}" />
+					                <div u="thumb">Une viande de qualité,</div>
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/2.jpg') }}" />
+					                <div u="thumb">Une fidélisation à un produit,</div>
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/3.jpg') }}" />
+					                <div u="thumb">Une saveur comme jamais ailleurs,</div>
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/4.jpg') }}" />
+					                <div u="thumb"> ... telle est notre devise !</div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+
+					<div class="presentation_texte row">
+						<div class="row80">
+							<div class="center">
+								<h2>
+									{{ 'main.titles.title_meat' | trans }}<br/>
+									<span>
+										{{ 'main.titles.title_meat_s' | trans }}
+									</span>
+								</h2>
 							</div>
-							<div class="col-md-4 col-xs-4">
-								<div class="welcome_page">
-							      <div class="logo_welcome">
-							        <img src="{{ asset('img/logo/LeBuffetFrances_Final_Small.png') }}" alt="Logo" class="logo_welcome_img"/>
-							      </div>
-							    </div>
+						</div>
+						<br/>
+						<div class="row80">
+
+							<script type="text/javascript">
+								var panel_info_open = 'NO';
+								function revealPanelOne() {
+									if (panel_info_open == 'NO') {
+										$('#info_panel_two').animate({'left' : '50%'}, {duration : 500});
+										$('#info_panel_three').animate({'left' : '50%'}, {duration : 500});
+										// document.getElementById(info_panel_details_one).style.display = 'inline-block';
+										panel_info_open = 'YES';
+									}
+									else {
+										$('#info_panel_two').animate({'right' : '50%'}, {duration : 500});
+										$('#info_panel_three').animate({'right' : '50%'}, {duration : 500});
+										panel_info_open = 'NO';
+									}
+								}
+							</script>
+
+							<div class="inline_div col-md-4 col-xs-4 center" id="info_panel_one">
+								<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
+								<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
+								<p class="center">
+									{{ 'main.content.variatyOfChoice' | trans }}
+									<br/>
+									<br/>
+									<button class="no_style_button" onClick="revealPanelOne()">
+										<a href="javascript:void(0)" class="read-more">
+											{{ 'main.actions.learnMore' | trans }}
+										</a>
+									</button>
+								</p>
 							</div>
-						    <div class="col-md-4 col-xs-4">
+							<div class="inline_div info_panel_details" style="display:none;" id="info_panel_details_one">
+								Coucou c'est moi le test
 							</div>
-
-							<div class="content_presentation row">
-								
-							    <script>
-							        jQuery(document).ready(function ($) {
-							            var options = {
-
-							                $AutoPlay: true,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
-							                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
-							            };
-
-							            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
-										//responsive code begin
-										//you can remove responsive code if you don't want the slider scales while window resizes
-										function ScaleSlider() {
-										    var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
-										    if (parentWidth)
-										        jssor_slider1.$ScaleWidth(Math.min(parentWidth, 1920));
-										    else
-										        window.setTimeout(ScaleSlider, 30);
-										}
-										ScaleSlider();
-
-										$(window).bind("load", ScaleSlider);
-										$(window).bind("resize", ScaleSlider);
-										$(window).bind("orientationchange", ScaleSlider);
-										//responsive code end
-							        });
-							    </script>
-							    <!-- Jssor Slider Begin -->
-							    <!-- You can move inline styles to css file or css block. -->
-								<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 1200px;
-							        height: 430px; margin:auto;">
-							        <!-- Slides Container -->
-							        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 430px;
-							            overflow: hidden;">
-							            <div>
-							                <img u=image src="{{ asset('img/presentation/1.jpg') }}" />
-							                <div u="thumb">Une viande de qualité,</div>
-							            </div>
-							            <div>
-							                <img u=image src="{{ asset('img/presentation/2.jpg') }}" />
-							                <div u="thumb">Une fidélisation à un produit,</div>
-							            </div>
-							            <div>
-							                <img u=image src="{{ asset('img/presentation/3.jpg') }}" />
-							                <div u="thumb">Une saveur comme jamais ailleurs,</div>
-							            </div>
-							            <div>
-							                <img u=image src="{{ asset('img/presentation/4.jpg') }}" />
-							                <div u="thumb"> ... telle est notre devise !</div>
-							            </div>
-							        </div>
-							    </div>
+							<div class="inline_div col-md-4 col-xs-4 center" id="info_panel_two">
+								<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
+								<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
+								<p class="center">
+									{{ 'main.content.qualityProduct' | trans }}
+									<br/>
+									<br/>
+									<a class="read-more" href="#">
+										{{ 'main.actions.learnMore' | trans }}
+									</a> >
+								</p>
 							</div>
-
-							<div class="presentation_texte row">
-								<div class="row80">
-									<div class="center">
-										<h2>
-											{{ 'main.titles.title_meat' | trans }}<br/>
-											<span>
-												{{ 'main.titles.title_meat_s' | trans }}
-											</span>
-										</h2>
-									</div>
-								</div>
-								<br/>
-								<div class="row80">
-
-									<div class="col-md-4 col-xs-4 center">
-										<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
-										<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
-										<p class="center">
-											{{ 'main.content.variatyOfChoice' | trans }}
-											<br/>
-											<br/>
-											<a class="read-more" href="#">
-												{{ 'main.actions.learnMore' | trans }}
-											</a> >
-										</p>
-									</div>
-									<div class="col-md-4 col-xs-4 center">
-										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
-										<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
-										<p class="center">
-											{{ 'main.content.qualityProduct' | trans }}
-											<br/>
-											<br/>
-											<a class="read-more" href="#">
-												{{ 'main.actions.learnMore' | trans }}
-											</a> >
-										</p>
-									</div>
-									<div class="col-md-4 col-xs-4 center">
-										<img alt="Security" src="{{ asset('img/system/icons/security.png') }}" class="icon_presentation"/>
-										<h3> {{ 'main.titles.securedPayment' | trans }} </h3>
-										<p class="center">
-											{{ 'main.content.securedPayment' | trans }}
-											<br/>
-											<br/>
-											<a class="read-more" href="#">
-												{{ 'main.actions.learnMore' | trans }}
-											</a> >
-										</p>
-									</div>
-								</div>
+							<div class="inline_div info_panel_details" style="display:none;" id="info_panel_details_two">
+								Coucou c'est moi le test
 							</div>
-
+							<div class="inline_div col-md-4 col-xs-4 center" id="info_panel_three">
+								<img alt="Security" src="{{ asset('img/system/icons/security.png') }}" class="icon_presentation"/>
+								<h3> {{ 'main.titles.securedPayment' | trans }} </h3>
+								<p class="center">
+									{{ 'main.content.securedPayment' | trans }}
+									<br/>
+									<br/>
+									<a class="read-more" href="#">
+										{{ 'main.actions.learnMore' | trans }}
+									</a> >
+								</p>
+							</div>
+							<div class="inline_div info_panel_details" style="display:none;" id="info_panel_details_three">
+								Coucou c'est moi le test
+							</div>
 						</div>
 					</div>
+
 				</div>
-				<!-- <div class="slide">
-				</div> -->
 			</div>
 
 			<div class="section" id="section1">
@@ -196,6 +215,7 @@
 							var div_finalWeight = [];
 							var div_prices_values = [];
 							var div_cart_values = [];
+							var div_paths_addCart = [];
 						</script>
 						{% for product in allProducts %}
 							<script type="text/javascript">
@@ -206,14 +226,16 @@
 								div_finalWeight[div_finalWeight.length] = 0;
 								div_prices_values[div_prices_values.length] = eval('{{ product.price }}');
 								div_cart_values[div_cart_values.length] = 0;
+								var route_blank = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':0}) }}';
+								div_paths_addCart[div_paths_addCart.length] = route_blank;
 							</script>
 						{% endfor %}
 						<script type="text/javascript">
-							function addOne(type, div_counter, div_weight, div_price) {
+							function addOne(type_c, div_counter, div_weight, div_price) {
 								var pos = 0;
 								for (var i = 0; i < div_types.length; i++) {
 									pos = i;
-									if (div_types[i] == type) {
+									if (div_types[i] == type_c) {
 										break;
 									}
 								}
@@ -229,19 +251,26 @@
 									div_finalWeight[pos] = weight_final_j ;
 									cart_to_add_j = counter_j * price_j;
 									div_cart_values[pos] = cart_to_add_j ;
+
+									var route = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':'0000'}) }}';
+									var path_chosen_j = route.replace('TYPETOREPLACE',type_c).replace('0000', counter_j);
+
+									div_paths_addCart[pos] = path_chosen_j ;
+
 									document.getElementById(div_counter).innerHTML = counter_j;
 									document.getElementById(div_weight).innerHTML = weight_final_j;
 									document.getElementById(div_price).innerHTML = cart_to_add_j;
+
 								}
 								else {
 									alert("You've reached the maximum availability.")
 								}
 							}
-							function deleteOne(type, div_counter, div_weight, div_price) {
+							function deleteOne(type_c, div_counter, div_weight, div_price) {
 								var pos = 0;
 								for (var i = 0; i < div_types.length; i++) {
 									pos = i;
-									if (div_types[i] == type) {
+									if (div_types[i] == type_c) {
 										break;
 									}
 								}
@@ -262,13 +291,53 @@
 								div_finalWeight[pos] = weight_final_j ;
 								cart_to_add_j = counter_j * price_j;
 								div_cart_values[pos] = cart_to_add_j ;
+
+								var route = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':'0000'}) }}';
+								var path_chosen_j = route.replace('TYPETOREPLACE',type_c).replace('0000', counter_j);
+
+								div_paths_addCart[pos] = path_chosen_j ;
+
 								document.getElementById(div_counter).innerHTML = counter_j;
 								document.getElementById(div_weight).innerHTML = weight_final_j;
 								document.getElementById(div_price).innerHTML = cart_to_add_j;
 							}
+
+							function add_to_cart(type_c, input_id) {
+								document.getElementById(input_id).className = "btn-loading";
+								$('#number_notif').fadeOut('fast',addingAction());
+								var headerChange = "{{ path('lbf_main_homepage') }}"+' #number_notif';
+								function addingAction() {
+									var pos = 0;
+									for (var i = 0; i < div_types.length; i++) {
+										pos = i;
+										if (div_types[i] == type_c) {
+											break;
+										}
+									}
+									window.location = div_paths_addCart[pos];   // TO EDIT !!!!!!!
+
+									$('#product_content').load(toLoad,'', loadHeader());
+								}
+								function loadHeader() {
+									$('#number_notif').load(headerChange, '', returnToPage());
+								}
+								function returnToPage() {
+									$('#number_notif').fadeIn('slow');
+									document.getElementById(input_id).className = "btn-add-to-cart";
+
+									// Remise à zéro
+									div_counter_values[pos] = 0;
+									div_finalWeight[pos] = 0;
+									div_cart_values[pos] = 0;
+									var route_blank = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':0}) }}';
+									div_paths_addCart[pos] = route_blank;
+								}
+
+								return false;
+							}
 						</script>
 
-						<div class="tab-content white row80">
+						<div class="tab-content white row80" id="product_content">
 							{% set index_general = 1 %}
 							{% for category in allCategories %}
 								{% set productsArray = allSortedProducts[index_general] %}
@@ -390,14 +459,10 @@
 																	S/.
 																</div>
 															</div>
-															<div class="inline_div col-md-2 col-xs-2 ">
-																<input type="submit" class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart" onClick="javascript:loading_img()"/>
+															<div class="inline_div col-md-2 col-xs-2">
+																<input type="submit" class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
+																onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'div_add-to-cart_{{ product.type }}')"/>
 															</div>
-															<script type="text/javascript">
-																function loading_img() {
-																	document.getElementById('btn-add-to-cart').className = "btn-loading";
-																}
-															</script>
 														</div>
 
 													</div>

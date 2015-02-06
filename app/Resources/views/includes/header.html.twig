@@ -107,8 +107,13 @@
         <div class="cart_label">
           {{ 'header.titles.myCart' | trans }}
         </div>
-        <div class="number_notif">
-          5
+        <div id="number_notif">
+          {% set cart = app.session.get('cart') %}
+          {% if cart|length > 0 %}
+            <div class="number_notif">
+              {{ cart|length }}
+            </div>
+          {% endif %}
         </div>
       </button>
     </div>
