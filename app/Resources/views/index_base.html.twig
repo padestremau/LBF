@@ -56,8 +56,6 @@
           {% include 'includes/header.html.twig' %}
         <!-- END header -->
 
-
-
         <!-- BEGIN header -->
           {% include 'includes/social.html.twig' %}
         <!-- END header -->
@@ -91,6 +89,17 @@
                   // sectionSelector: '.section',
                   // slideSelector: '.slide',
                   afterLoad: function(anchorLink, index){
+
+                    // Cookies
+                    $.cookie.json = true;
+                    var sessionCart = $.cookie("sessionCart");
+                    if (sessionCart) {}
+                    else {
+                      var sessionCart = [];
+                      $.cookie("sessionCart", sessionCart);
+                    }
+                    updateNotifNumber();
+
                     // Active buttons
                     if (anchorLink == 'aboutUs' || anchorLink == 'ourProducts' || anchorLink == 'footerSection') {
                       document.getElementById("button_to_top").className = "opacity1";
@@ -132,7 +141,9 @@
 
         {% javascripts 
           'bootstrap/js/bootstrap.js'
+          'bootstrap/js/bootstrap.min.js'
           'js/bootstrap.js'
+          'js/bootstrap.min.js'
 
           'js/ajax_load.js'
           
@@ -143,6 +154,8 @@
 
           'js/jquery.fullPage.js'
           'js/jquery.slimscroll.min.js'
+
+          'js/jquery-cookie/jquery.cookie.js'
           %}
           <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

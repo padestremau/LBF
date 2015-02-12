@@ -3,6 +3,7 @@
 namespace LBF\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class MainController extends Controller
 {
@@ -60,7 +61,85 @@ class MainController extends Controller
         	));
     }
 
-    public function addToCartAction($type, $quantity)
+    public function addToCartAction()
+    {
+
+        $request = Request::createFromGlobals();
+        $cart = json_decode($request->cookies->get('sessionCart'), true);
+
+        // Système de session pour éviter de créer des comptes.
+        $session = $this->getRequest()->getSession();
+        $sessionCart = $session->get('cart');
+        if ($session and $sessionCart) {
+            // Si oui, On continue
+        }
+        else {
+            // Sinon, On crée d'abord la session
+            $IP_user = $this->container->get('request')->getClientIp();
+            $session->set('IP', $IP_user);
+            $session->set('cart',array());
+
+            $sessionCart = array();
+        }
+
+        // On vérifie que l'élément est bien un produit proposé
+        $allProducts = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Element')
+                            ->findAll();
+
+        for ($i=0; $i < sizeof($cart); $i++) { 
+            $single_el = $cart[$i];
+            for ($j=0; $j < sizeof($allProducts); $j++) { 
+                $typeAvailable = $allProducts[$j];
+                if ($typeAvailable->getType() == $single_el['type']) {
+                    for ($k=0; $k < sizeof($sessionCart); $k++) { 
+                        if ($sessionCart[$k]['item'] == $typeAvailable) {
+                            $new_qty = $single_el['qty'] + $sessionCart[$i]['qty'];
+                            $sessionCart[$i] = array('item' => $typeAvailable, 'qty' => $new_qty);
+                            break;
+                        }
+                    }
+                    $sessionCart[$i] = array('item' => $typeAvailable, 'qty' => $single_el['qty']);
+                    break;
+                }
+            }
+        }
+        $session->set('cart', $sessionCart);   
+
+        return $this->redirect($this->generateUrl('lbf_main_cart'));
+    }
+
+    public function deleteFromCartAction ($type)
+    {
+        // Système de session pour éviter de créer des comptes.
+        $session = $this->getRequest()->getSession();
+        $sessionCart = $session->get('cart');
+        if ($session and $sessionCart) {
+            // Si oui, On continue
+        }
+        else {
+            // Sinon, On crée d'abord la session
+            $IP_user = $this->container->get('request')->getClientIp();
+            $session->set('IP', $IP_user);
+            $session->set('cart',array());
+
+            $sessionCart = array();
+        }
+
+        for ($i=0; $i < sizeof($sessionCart); $i++) { 
+            $cart_el = $sessionCart[$i];
+            if ($cart_el['item']->getType() == $type) {
+                array_splice($sessionCart, $i, 1);
+                break;
+            }
+        }
+        $session->set('cart', $sessionCart);   
+
+        return $this->redirect($this->generateUrl('lbf_main_cart'));   
+    }
+
+    public function myCartAction()
     {
         // Système de session pour éviter de créer des comptes.
         $session = $this->getRequest()->getSession();
@@ -75,60 +154,9 @@ class MainController extends Controller
             $session->set('cart',array());
         }
 
-        // On vérifie que l'élément est bien un produit proposé
-        $allProducts = $this ->getDoctrine()
-                            ->getManager()
-                            ->getRepository('LBFMainBundle:Element')
-                            ->findAll();
-
-        $typeAvailable = '';
-        $proceed = 'NO';
-        for ($i=0; $i < sizeof($allProducts); $i++) { 
-            $checking = $allProducts[$i];
-            if ($checking->getType() == $type) {
-                $proceed = 'YES';
-                $typeAvailable = $checking;
-            }
-        }
-
-
-        // Si oui, on l'ajoute au panier
-        if ($proceed == 'YES') {
-            // Vérifier si les éléments sont disponibles 
-            if ($typeAvailable->getQuantity() > 0) {
-                if (sizeof($cart) > 0) {
-                    $validator = 'NO';
-                    for ($i=0; $i < sizeof($cart); $i++) { 
-                        $inCart = $cart[$i];
-                        $item_s = $inCart['item'];
-                        if ($item_s->getType() == $typeAvailable->getType()) {
-                            $newQty = $inCart['qty'];
-                            if ($newQty <= $typeAvailable->getQuantity()) {
-                                $newQty = $inCart['qty'] + $quantity ;
-                                $cart[$i] = array('item' => $typeAvailable, 'qty' => $newQty);
-                                $validator = 'YES';
-                            }
-                            else {
-                                $session->set('exceed', 'Sorry, there are only '.$quantity.' elements left in stock');
-                            }
-                            break;
-                        }
-                    }
-                    if ($validator == 'NO') {
-                        $cart[] = array('item' => $typeAvailable, 'qty' => $quantity);
-                    }
-                }
-                else {
-                    $cart[] = array('item' => $typeAvailable, 'qty' => $quantity);
-                }
-                $session->set('cart', $cart);
-            }
-            else {
-                $session->set('exceed', 'Sorry, no more of these items in stock');
-            }
-        }
-
-        return $this->redirect($this->generateUrl('lbf_main_homepage').'#ourProducts');
+        return $this->render('LBFMainBundle:Main:cart.html.twig', array(
+            'cart' => $cart
+        ));
     }
 
     public function emptyCartAction()
@@ -137,9 +165,8 @@ class MainController extends Controller
         $session = $this->getRequest()->getSession();
         if ($session) {
             $session->clear('cart');
-
         }
-        session_destroy();
+
         return $this->redirect($this->generateUrl('lbf_main_homepage'));
     }
 }

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\ExecutionContextInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * User
@@ -144,7 +144,15 @@ class User extends BaseUser
 
     /*   *********     Setter and getter Functions  *************  */
 
-
+    /**
+     * @ORM\PreUpdate()
+     * @ORM\PrePersist()
+     */
+    public function setUsernameToEmail()
+    {
+        $this->username = $this->email;
+        $this->usernameCanonical = $this->emailCanonical;
+    }
 
 
     /**

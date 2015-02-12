@@ -303,6 +303,38 @@ class ElementFixtures implements FixtureInterface
         '22'=> false
         );
 
+    $types_alt = array(
+        // Embutidos
+        '1'=>'1.png',
+        '2'=>'2.png',
+        '3'=>'3.png',
+        '4'=>'4.png',
+        '5'=>'5.png',
+        '6'=>'6.png',
+        
+        // Patés
+        '7'=>'7.png',
+        '8'=>'8.png',
+        '9'=>'9.png',
+        '10'=>'10.png',
+        
+        // Jamones
+        '11'=>'11.png',
+        '12'=>'12.png',
+
+        // Epicerie fine
+        '13'=>'13.png',
+        '14'=>'14.png',
+        '15'=>'15.png',
+        '16'=>'16.png',
+        '17'=>'17.png',
+        '18'=>'18.png',
+        '19'=>'19.png',
+        '20'=>'20.png',
+        '21'=>'21.png',
+        '22'=>'22.png'
+        );
+
     // Combining
     for ($i=1; $i < 23; $i++) { 
         $Element = new Element();
@@ -315,6 +347,8 @@ class ElementFixtures implements FixtureInterface
         $Element->setFlavour($flavours_Element[$i]);
         $Element->setCategory($categories_Element[$i]);
         $Element->setNaturalProduct($natural_Element[$i]);
+        $Element->setUrl('png');
+        $Element->setAlt($types_alt[$i]);
         $manager->persist($Element);
     }    
     

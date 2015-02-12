@@ -3,11 +3,21 @@ lbf_main_homepage:
     defaults: { _controller: LBFMainBundle:Main:index }
 
 lbf_main_add_to_cart:
-    path:     /addToCart/{type}/{quantity}
+    path:     /addToCart
     defaults: { _controller: LBFMainBundle:Main:addToCart }
-    requirements:
-        quantity: \d*
+
+lbf_main_cart:
+    path:     /myCart
+    defaults: { _controller: LBFMainBundle:Main:myCart }
+
+lbf_main_delete_fromCart:
+    path:     /deleteFromCart/{type}
+    defaults: { _controller: LBFMainBundle:Main:deleteFromCart }
 
 lbf_main_empty_cart:
     path:     /emptyCart
     defaults: { _controller: LBFMainBundle:Main:emptyCart }
+
+lbf_main_confirm:
+    path:     /confirm
+    defaults: { _controller: LBFMainBundle:Main:confirm }

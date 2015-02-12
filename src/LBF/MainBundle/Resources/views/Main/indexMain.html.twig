@@ -11,6 +11,9 @@
 	<!-- BEGIN CONTENT -->
 	<div id="page_content" class="row">
 
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
 		<div id="fullpage">
 			<div class="section" id="section0">
 				
@@ -58,9 +61,9 @@
 					    <!-- Jssor Slider Begin -->
 					    <!-- You can move inline styles to css file or css block. -->
 						<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 1200px;
-					        height: 430px; margin:auto;">
+					        height: 400px; margin:auto;">
 					        <!-- Slides Container -->
-					        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 430px;
+					        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 400px;
 					            overflow: hidden;">
 					            <div>
 					                <img u=image src="{{ asset('img/presentation/1.jpg') }}" />
@@ -215,7 +218,6 @@
 							var div_finalWeight = [];
 							var div_prices_values = [];
 							var div_cart_values = [];
-							var div_paths_addCart = [];
 						</script>
 						{% for product in allProducts %}
 							<script type="text/javascript">
@@ -226,8 +228,6 @@
 								div_finalWeight[div_finalWeight.length] = 0;
 								div_prices_values[div_prices_values.length] = eval('{{ product.price }}');
 								div_cart_values[div_cart_values.length] = 0;
-								var route_blank = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':0}) }}';
-								div_paths_addCart[div_paths_addCart.length] = route_blank;
 							</script>
 						{% endfor %}
 						<script type="text/javascript">
@@ -252,19 +252,26 @@
 									cart_to_add_j = counter_j * price_j;
 									div_cart_values[pos] = cart_to_add_j ;
 
-									var route = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':'0000'}) }}';
-									var path_chosen_j = route.replace('TYPETOREPLACE',type_c).replace('0000', counter_j);
-
-									div_paths_addCart[pos] = path_chosen_j ;
-
 									document.getElementById(div_counter).innerHTML = counter_j;
 									document.getElementById(div_weight).innerHTML = weight_final_j;
 									document.getElementById(div_price).innerHTML = cart_to_add_j;
 
 								}
 								else {
-									alert("You've reached the maximum availability.")
+									// Flash message
+									document.getElementById("sessionFlash").style.display = "block";
+									document.getElementById("sessionFlash").innerHTML = '\
+									<div class="alert alert-danger alert-dismissible fade in" role="alert">\
+								      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+								      <strong>Careful!</strong> You\'ve reached the maximum availability.\
+								    </div>';
+								    setTimeout(function() {
+								    	$('.alert').fadeOut('fast');
+								    	document.getElementById("sessionFlash").style.display = "none";
+								    },4000);
 								}
+
+								return false;
 							}
 							function deleteOne(type_c, div_counter, div_weight, div_price) {
 								var pos = 0;
@@ -292,49 +299,100 @@
 								cart_to_add_j = counter_j * price_j;
 								div_cart_values[pos] = cart_to_add_j ;
 
-								var route = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':'0000'}) }}';
-								var path_chosen_j = route.replace('TYPETOREPLACE',type_c).replace('0000', counter_j);
-
-								div_paths_addCart[pos] = path_chosen_j ;
-
 								document.getElementById(div_counter).innerHTML = counter_j;
 								document.getElementById(div_weight).innerHTML = weight_final_j;
 								document.getElementById(div_price).innerHTML = cart_to_add_j;
+
+								return false;
 							}
 
-							function add_to_cart(type_c, input_id) {
+							function add_to_cart(type_c, input_id, div_counter, div_weight, div_price) {
 								document.getElementById(input_id).className = "btn-loading";
-								$('#number_notif').fadeOut('fast',addingAction());
-								var headerChange = "{{ path('lbf_main_homepage') }}"+' #number_notif';
-								function addingAction() {
-									var pos = 0;
-									for (var i = 0; i < div_types.length; i++) {
-										pos = i;
-										if (div_types[i] == type_c) {
-											break;
-										}
+								
+								var pos = 0;
+								for (var i = 0; i < div_types.length; i++) {
+									pos = i;
+									if (div_types[i] == type_c) {
+										break;
 									}
-									window.location = div_paths_addCart[pos];   // TO EDIT !!!!!!!
+								}
 
-									$('#product_content').load(toLoad,'', loadHeader());
-								}
-								function loadHeader() {
-									$('#number_notif').load(headerChange, '', returnToPage());
-								}
-								function returnToPage() {
-									$('#number_notif').fadeIn('slow');
+								if (div_counter_values[pos] > 0) {
+						            // To read the cart:
+						            var sessionCart = $.cookie("sessionCart");
+						            if (div_counter_values[pos] <= div_maxs[pos]) {
+						            	if (sessionCart.length > 0) {
+						            		var add_it = true;
+						            		for (var i = 0; i < sessionCart.length; i++) {
+						            			if (sessionCart[i].type == div_types[pos]) {
+						            				sessionCart[i].qty ++;
+						            				add_it = false;
+						            				break;
+						            			}
+						            		}
+						            		if (add_it == true) {
+					            				sessionCart[sessionCart.length] = {type: div_types[pos], qty: div_counter_values[pos]};
+						            		}
+						            	}
+						            	else {
+						            		var sessionCart = [];
+						            		sessionCart[0] = {type: div_types[pos], qty: div_counter_values[pos]};
+						            	}
+						            }
+						            else {
+						            	// Flash message
+										document.getElementById("sessionFlash").style.display = "block";
+										document.getElementById("sessionFlash").innerHTML = '\
+										<div class="alert alert-danger alert-dismissible fade in" role="alert">\
+									      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+									      <strong>Careful!</strong> There aren\'t as many objects of that type. Please select a smaller number. Thank you.\
+									    </div>';
+									    setTimeout(function() {
+									    	$('.alert').fadeOut('fast');
+									    	document.getElementById("sessionFlash").style.display = "none";
+									    },4000);
+									}
+
+						            // To write the cart:
+						            $.cookie("sessionCart", sessionCart);
+
+						            // To put button again normal, and update number_notif
 									document.getElementById(input_id).className = "btn-add-to-cart";
+									updateNotifNumber();
 
-									// Remise à zéro
+									// Remise à zéro des compteurs pour cet élément
 									div_counter_values[pos] = 0;
 									div_finalWeight[pos] = 0;
 									div_cart_values[pos] = 0;
-									var route_blank = '{{ path('lbf_main_add_to_cart', {'type':'TYPETOREPLACE', 'quantity':0}) }}';
-									div_paths_addCart[pos] = route_blank;
+									document.getElementById(div_counter).innerHTML = div_counter_values[pos];
+									document.getElementById(div_weight).innerHTML = div_finalWeight[pos];
+									document.getElementById(div_price).innerHTML = div_cart_values[pos];
+
+									// Flash message
+									document.getElementById("sessionFlash").style.display = "block";
+									document.getElementById("sessionFlash").innerHTML = '\
+									<div class="alert alert-success alert-dismissible fade in" role="alert">\
+								      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+								      <strong>Congratulations!</strong> This element was added to your cart. \
+								      <button  type="button" data-toggle="modal" data-target="#cartModal" id="button_cart_a"  class="no_style_button">\
+								      	<a><strong>\
+								      		{{ "header.titles.myCart" | trans }}\
+								      	</strong></a>\
+								      </button>\
+								    </div>';
+								    setTimeout(function() {
+								    	$('.alert').fadeOut('fast');
+								    	document.getElementById("sessionFlash").style.display = "none";
+								    },4000);
+								    
+								}
+								else {
+									document.getElementById(input_id).className = "btn-add-to-cart";
 								}
 
 								return false;
 							}
+
 						</script>
 
 						<div class="tab-content white row80" id="product_content">
@@ -371,7 +429,17 @@
 														<div class="row">
 															<div class="col-md-4 col-xs-4">
 																<div class="product_img_div">
+																{% if product.webPath|length > 0 %}
+																	<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
+																		<!-- onClick="showPhoto('{{ product.id }}')" -->
+																		<script type="text/javascript">
+																			var cw = $('.product_img').width();
+																			$('.product_img').css({'height':cw+'px'});
+																		</script>
+																	</div>
+																{% else %}
 																	<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+																{% endif %}
 																</div>
 																<br/>
 																<div class="center">
@@ -394,7 +462,7 @@
 																	<strong>
 																		Price:
 																	</strong>
-																	{{ product.price }} S/. 
+																	S/. {{ product.price }} 
 																	{% if product.category == 'Jamones' %}
 																		for 10 pieces
 																	{% else %}
@@ -450,18 +518,19 @@
 																</div>
 															</div>
 															<div class="inline_div col-md-2 col-xs-2 counter_price_divs">
-																<div class="inline_div">
+																<div class="inline_div float-left">
+																	S/.
+																</div>
+																<div class="inline_div margin_right_10">
 																	<div id="price_value_{{ product.type }}">
 																		0
 																	</div>
 																</div>
-																<div class="inline_div margin_right_10">
-																	S/.
-																</div>
 															</div>
 															<div class="inline_div col-md-2 col-xs-2">
-																<input type="submit" class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
-																onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'div_add-to-cart_{{ product.type }}')"/>
+																<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
+																onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
+																</button>
 															</div>
 														</div>
 

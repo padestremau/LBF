@@ -1,0 +1,282 @@
+{# src/LBF/MainBundle/Resources/Main/cart.html.twig #}
+
+{% extends "LBFMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block LBF_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section0">
+		        <script type="text/javascript">
+
+		            function addOneToCart(type_c) {
+		              var pos = 0;
+		              for (var i = 0; i < div_types.length; i++) {
+		                pos = i;
+		                if (div_types[i] == type_c) {
+		                  break;
+		                }
+		              }
+		              var counter_j = div_counter_values[pos];
+		              var weight_j = div_weights_values[pos];
+		              var weight_final_j = div_finalWeight[pos];
+		              var price_j = div_prices_values[pos];
+		              var cart_to_add_j = div_cart_values[pos];
+		              if (counter_j < div_maxs[pos]) {
+		                counter_j = counter_j + 1;
+		                div_counter_values[pos] = counter_j ;
+		                weight_final_j = counter_j * weight_j;
+		                div_finalWeight[pos] = weight_final_j ;
+		                cart_to_add_j = counter_j * price_j;
+		                div_cart_values[pos] = cart_to_add_j ;
+
+		                document.getElementById(div_counter).innerHTML = counter_j;
+		                document.getElementById(div_weight).innerHTML = weight_final_j;
+		                document.getElementById(div_price).innerHTML = cart_to_add_j;
+
+		              }
+		              else {
+		                // Flash message
+		                document.getElementById("sessionFlash").style.display = "block";
+		                document.getElementById("sessionFlash").innerHTML = '\
+		                <div class="alert alert-danger alert-dismissible fade in" role="alert">\
+		                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+		                    <strong>Careful!</strong> You\'ve reached the maximum availability.\
+		                  </div>';
+		                  setTimeout(function() {
+		                    $('.alert').fadeOut('fast');
+		                    document.getElementById("sessionFlash").style.display = "none";
+		                  },4000);
+		              }
+		            }
+		            function deleteOneFromCart(type_c) {
+		              var pos = 0;
+		              for (var i = 0; i < div_types.length; i++) {
+		                pos = i;
+		                if (div_types[i] == type_c) {
+		                  break;
+		                }
+		              }
+		              var counter_j = div_counter_values[pos];
+		              var weight_j = div_weights_values[pos];
+		              var weight_final_j = div_finalWeight[pos];
+		              var price_j = div_prices_values[pos];
+		              var cart_to_add_j = div_cart_values[pos];
+		              if (counter_j > 0) {
+		                counter_j = counter_j - 1;
+		                div_counter_values[pos] = counter_j ;
+		              }
+		              else {
+		                counter_j = 0;
+		                div_counter_values[pos] = 0;
+		              }
+		              weight_final_j = counter_j * weight_j;
+		              div_finalWeight[pos] = weight_final_j ;
+		              cart_to_add_j = counter_j * price_j;
+		              div_cart_values[pos] = cart_to_add_j ;
+
+		              document.getElementById(div_counter).innerHTML = counter_j;
+		              document.getElementById(div_weight).innerHTML = weight_final_j;
+		              document.getElementById(div_price).innerHTML = cart_to_add_j;
+		            }
+
+		            function deleteTotalFromCart(type_c) {
+		              if (confirm("Are you sure you want to delete ?")) {
+		              	var sessionCart = JSON.parse($.cookie("sessionCart"));
+	              		for (var i = 0; i < sessionCart.length; i++) {
+	            			if (sessionCart[i].type == type_c) {
+	            				sessionCart.splice(i, 1);
+	            				alert(sessionCart.length);
+	            				break;
+	            			}
+	            		}
+						if (sessionCart.length == 0) {
+							window.location = "{{ path('lbf_main_empty_cart') }}";
+						}
+						else {
+							var path_route = "{{ path('lbf_main_delete_fromCart', {'type':'TYPETOREPLACE'}) }}"
+							window.location = path_route.replace('TYPETOREPLACE', type_c);	
+						}
+
+		                // Flash message
+		                document.getElementById("sessionFlash").style.display = "block";
+		                document.getElementById("sessionFlash").innerHTML = '\
+		                <div class="alert alert-warning alert-dismissible fade in" role="alert">\
+		                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+		                  Element deleted.\
+		                </div>';
+		                setTimeout(function() {
+		                  $('.alert').fadeOut('fast');
+		                  document.getElementById("sessionFlash").style.display = "none";
+		                },4000);
+		              }
+		            }
+
+		            function emptyCart() {
+		              if (confirm('Are you sure you want to empty your cart ? All orders will be lost.')) {
+		                $.cookie("sessionCart", null);
+		                // Flash message
+		                document.getElementById("sessionFlash").style.display = "block";
+		                document.getElementById("sessionFlash").innerHTML = '\
+		                <div class="alert alert-success alert-dismissible fade in" role="alert">\
+		                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+		                  Cart was successfully emptied.\
+		                </div>';
+		                setTimeout(function() {
+		                  $('.alert').fadeOut('fast');
+		                  document.getElementById("sessionFlash").style.display = "none";
+		                },4000);
+		                window.location = "{{ path('lbf_main_empty_cart') }}";
+		              }
+		            }
+
+		        </script>
+
+		        <br/><br/>
+
+		        <div class="row">
+		        	<div class="col-md-4">
+				        <button onClick="emptyCart()" class="no_style_button float-left delete_buttons_cart" type="button" value="Empty cart">
+				            Empty cart
+				        </button>
+		        	</div>
+		        	<div class="col-md-4">
+				        <h2 class="center">
+				            {{ 'header.titles.myCart' | trans }}
+				        </h2>
+		        	</div>
+		        	<div class="col-md-4"></div>
+		        </div>
+
+		        <div class="row">
+		        	
+	                {% set cart = app.session.get('cart') %}
+	                {% if cart|length > 0 %}
+	                    <div class="table-responsive">
+	                      <table class="table">
+	                        <thead>
+	                          <tr>
+	                            <th>
+	                              Item
+	                            </th>
+	                            <th class="center">
+	                              Quantity
+	                            </th>
+	                            <th class="center">
+	                              Weight
+	                            </th>
+	                            <th class="center">
+	                              Price
+	                            </th>
+	                            <th class="center">
+	                              Action
+	                            </th>
+	                          </tr>
+	                        </thead>
+	                        <tbody>
+	                          {% set total_weight_general = 0 %}
+	                          {% set total_price_general = 0 %}
+	                          {% for item_array in cart %}
+	                            {% set item = item_array['item'] %}
+	                            {% set qty = item_array['qty'] %}
+	                            <tr>
+	                              <th>
+	                                {{ item.name }}
+	                              </th>
+	                              <td class="center">
+	                                {{ qty }}
+	                              </td>
+	                              <td class="center">
+	                                {% set total_weight = qty * item.weight %}
+	                                {% set total_weight_general = total_weight_general + total_weight %}
+	                                {% if total_weight > 999 %}
+	                                  {{ (total_weight / 1000) | number_format(1, '.', ',') }} kg
+	                                {% else %}
+	                                  {{ total_weight }} g
+	                                {% endif %}
+	                              </td>
+	                              <td class="center">
+	                                {% set total_price = qty * item.price %}
+	                                {% set total_price_general = total_price_general + total_price %}
+	                                S/. {{ total_price }}
+	                              </td>
+	                              <td class="center">
+	                                <input onClick="addOneToCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="+" title="Add one more"/>
+	                                <input onClick="deleteOneFromCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="-" title="Delete one"/>
+	                                <input onClick="deleteTotalFromCart('{{ item.type }}')" class="delete_buttons_cart" type="button" value="Delete" title="Delete total"/>
+	                              </td>
+	                            </tr>
+	                          {% endfor %}
+	                        </tbody>
+	                      </table>
+	                    </div>
+	                    <div class="row">
+	                      <div class="col-md-4 col-xs-4"></div>
+	                      <div class="col-md-4 col-xs-4 modal_price">
+	                        <div class="row">
+	                          <div class="inline_div left col-md-4 col-xs-4">
+	                            TOTAL:
+	                          </div>
+	                          <div class="inline_div center col-md-4 col-xs-4">
+	                            {% if total_weight_general > 999 %}
+	                              {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
+	                            {% else %}
+	                              {{ total_weight_general }} g
+	                            {% endif %}
+	                          </div>
+	                          <div class="inline_div right col-md-4 col-xs-4">
+	                            S/. {{ total_price_general }} 
+	                          </div>
+	                        </div>
+	                      </div>
+	                      <div class="col-md-4 col-xs-4"></div>
+	                    </div>
+	                {% else %}
+	                    <div class="row center">
+	                      Sorry, nothing here for now ...
+	                    </div>
+	                {% endif %}
+		        </div>
+
+                <div class="row">
+                	<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal float-left" data-dismiss="modal">
+			            Continue shopping ...
+			        </a>
+			        <button type="button" class="btn btn-modal float-right">
+			        	<a href="
+				        	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+								{{ path('lbf_main_confirm') }}
+							{% else %}
+				        		{{ path('fos_user_security_login') }}
+							{% endif %}
+			        		" class="no_style_a" onClick="startedOrder()">
+				            <img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+				            {{ 'ourProducts.actions.order' | trans }}
+
+				            <script type="text/javascript">
+				            	function startedOrder() {
+				            		$.cookie("startedOrder", "YES");
+				            	}
+				            </script>
+				        </a>
+			        </button>
+                </div>
+			</div>
+
+			<!-- BEGIN FOOTER -->
+              {% include 'includes/footer.html.twig' %}
+            <!-- END FOOTER -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Main_body %}

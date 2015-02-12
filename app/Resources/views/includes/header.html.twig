@@ -103,17 +103,63 @@
 
     <!-- BEGIN CART -->
     <div class="cart_button">
-      <button  type="button" data-toggle="modal" data-target="#cartModal" id="button_cart_a"  class="btn btn-log float-right">
+      <button id="button_cart_a"  class="btn btn-log float-right" onClick="addToSessionCart()" disabled>
         <div class="cart_label">
           {{ 'header.titles.myCart' | trans }}
         </div>
         <div id="number_notif">
-          {% set cart = app.session.get('cart') %}
+          <div  class="number_notif" id="number_in_number_notif" style="display:none;">
+          </div>
+          <script type="text/javascript">
+            function updateNotifNumber() {
+              // To empty cart manually
+              // $.cookie("sessionCart", null);
+
+              var sessionCart = $.cookie("sessionCart");
+              if (sessionCart) {
+                var cart_length = sessionCart.length;
+                if (cart_length > 0) {
+                  document.getElementById("number_in_number_notif").style.display = "block";
+                  document.getElementById("number_in_number_notif").innerHTML = cart_length;
+
+                  document.getElementById("button_cart_a").disabled = false;
+                }
+              }
+
+              return false;
+            }
+
+            function addToSessionCart() {
+              var sessionCart = $.cookie("sessionCart"); 
+              // var sessionCart = JSON.parse($.cookie("sessionCart"));
+              if (sessionCart.length > 0) {
+                window.location = '{{ path('lbf_main_add_to_cart') }}';
+              }
+              else {
+                // Flash message
+                document.getElementById("sessionFlash").style.display = "block";
+                document.getElementById("sessionFlash").innerHTML = '\
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">\
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+                  <strong>Careful!</strong> Your cart is curently empty.\
+                </div>';
+                setTimeout(function() {
+                  $('.alert').fadeOut('fast');
+                  document.getElementById("sessionFlash").style.display = "none";
+                },4000);
+              }
+              return false;
+            }
+          </script>
+
+
+          <!-- Old version -->
+          {# set cart = app.session.get('cart') %}
           {% if cart|length > 0 %}
             <div class="number_notif">
               {{ cart|length }}
             </div>
-          {% endif %}
+          {% endif #}
         </div>
       </button>
     </div>
