@@ -9,342 +9,581 @@
 {% block LBF_User_body %}
 
 	<!-- BEGIN CONTENT -->
-	<div class="col-md-8 page-content" id="page-content">  <!-- Must have a col-md-8 -->
-		<!-- BEGIN CONTENT -->
-		<div id="content" class="content">
+	<div id="page_content" class="row">
 
-			{% if user == app.user %}
-
-			<div>
-				<a href="{{ path('lbf_user_edit') }}" class="btn btn-perso float-right">
-			    	{{ 'user.actions.edit'|trans }}
-			     	<i class="fa fa-sign-in"></i>
-			    </a>
-			    <a href="{{ path('fos_user_change_password') }}" class="btn btn-perso float-right margin_right_10">
-			    	{{ 'user.actions.changePassword'|trans }}
-			     	<i class="fa fa-sign-in"></i>
-			    </a>
-			</div>
-
-			<h2>
-				{{ 'user.titles.profile'|trans }}
-			</h2>
-
-			{% else %}
-
-				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
-	        	{% if is_granted("ROLE_ADMIN") %}
-	        		<div>
-						<a href="{{ path('lbf_user_admin') }}" class="btn btn-perso float-right">
-					    	{{ 'user.actions.back'|trans }}
-					     	<i class="fa fa-sign-in"></i>
-					    </a>
-					</div>
-
-					<!-- <div class="col-md-3">
-						<div class="photo_souvenir"
-							style="width: 100%; background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%;"
-							onClick="showPhoto('{{ photo.id }}')"
-							>
-							<script type="text/javascript">
-								var cw = $('.photo_souvenir').width();
-								$('.photo_souvenir').css({'height':cw+'px'});
-							</script>
-						</div>
-					</div> -->
-	        	{% endif %}
-
-			<h2>
-				{{ 'user.titles.member'|trans }} #{{ user.id }}
-			</h2>
-			{% endif %}
-			<hr/>
-
-			<div>
-				<div class="col-md-8">
-					<div class="row">
-						<div class="col-md-4 right">
-							<ul class="list_no_style_li">
-								<li class="bold">
-									{{ 'user.details.firstName'|trans }}
-								</li>
-								<li class="bold">
-									{{ 'user.details.lastName'|trans }}
-								</li>
-								<li class="bold">
-									{{ 'user.details.gender'|trans }}
-								</li>
-								<li class="bold">
-									{{ 'user.details.email'|trans }}
-								</li>
-								<li class="bold">
-									{{ 'user.details.tel'|trans }}
-								</li>
-								<li class="bold">
-									{{ 'user.details.age'|trans }}
-								</li>
-								<li class="bold">
-									{{ 'user.details.address'|trans }}
-								</li>
-								<li class="bold">
-									<br/>
-								</li>
-								<li class="bold">
-									{{ 'user.details.team'|trans }}
-								</li>
-							</ul>
-						</div>
-						<div class="col-md-8 left">
-							<ul class="list_no_style_li">
-								<li>
-									{% if user.firstName|length > 0 %}
-										{{ user.firstName }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.lastName|length > 0 %}
-										{{ user.lastName }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.gender|length > 0 %}
-										{% if user.gender == 1 %}
-											{{ 'user.details.male'|trans }}
-										{% else %}
-											{{ 'user.details.female'|trans }}
-										{% endif %}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.email|length > 0 %}
-										<a href="mailto:{{ user.email }}">{{ user.email }}</a>
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.tel|length > 0 %}
-										{{ user.tel }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.age|length > 0 %}
-										{{ user.age }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.address1|length > 0 %}
-										{{ user.address1 }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.address2|length > 0 %}
-										{{ user.address2 }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-								<li>
-									{% if user.team %}
-										{{ user.team.name }}
-									{% else %}
-										<br/>
-									{% endif %}
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					{% if user.avatar %}
-						<img  src="{{ asset(user.avatar.webPath) }}"  alt="{{ user.avatar.alt }}" class="avatar_profile"/> 
-					{% else %}
-						<img src="{{ asset('img/profile/profil_defaut.png') }}" alt="Default" class="avatar_profile"/> 
-					{% endif %}
-
-					{% if user == app.user %}
-					<div>
-						<button class="btn float-right change_avatar">
-							<a href="{{ path('lbf_user_editAvatar') }}" class="no_style_a">
-						    	{{ 'user.actions.change'|trans }}
-						     	<i class="fa fa-sign-in"></i>
-							</a>
-					    </button>
-					</div>
-					{% else %}
-					<div>
-						<button class="btn float-right">
-						    <strong>
-						    	{{ 'user.details.team'|trans }}	
-						    </strong> 
-						    {% if user.team %}
-						    	{{ user.team.name }}
-						    {% else %}
-						    	{{ 'user.details.empty'|trans }}	
-						    {% endif %}
-					    </button>
-					</div>
-					{% endif %}
-				</div>
-			</div>
-
-			<br/><br/>
-
-			<h2>------------------------</h2>
-
-			<div class="row margin0">
-			{% if user.routes %}
-
-				<h2>
-					{{ 'route.titles.chosenStep'|trans }} : {{ 'route.content.step'|trans }} {{ user.routes.routeNumber }}
-				</h2>
-				<hr/>
-
-				<div class="single_route">
-					<h3>
-						{{ user.routes.name }}
-					</h3>
-
-					<div class="row">
-						<div class="col-md-6">
-							<img src="{{ asset(user.routes.url) }}" alt="{{ user.routes.alt }}" class="route_img"/>
-						</div>
-						<div class="col-md-6">
-							<div class="row">
-								<div class="col-md-5 right bold">
-									{{ 'route.content.startCity'|trans }}
-								</div>
-								<div class="col-md-7 left">
-									{{ user.routes.startCity }}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-5 right bold">
-									{{ 'route.content.endCity'|trans }}
-								</div>
-								<div class="col-md-7 left">
-									{{ user.routes.endCity }}
-								</div>
-							</div>
-
-							<hr/>
-
-							<div class="row">
-								<div class="col-md-5 right bold">
-									{{ 'route.content.length'|trans }}
-									<br/>
-									{{ 'route.content.heightPos'|trans }}
-									<br/>
-									{{ 'route.content.heightNeg'|trans }}
-								</div>
-								<div class="col-md-3 left">
-									{{ user.routes.length }}
-									<br/>
-									{{ user.routes.heightPos }}
-									<br/>
-									{{ user.routes.heightNeg }}
-								</div>
-								<div class="col-md-4 right">
-									{% if user == app.user %}
-									<a href="{{ path('lbf_presentation_route') }}" class="btn btn-perso float-right width80">
-								    	{{ 'user.actions.changeRoute'|trans }}
-								     	<i class="fa fa-sign-in"></i>
-								    </a>
-								    <button class="btn btn-perso float-right warning_background width80" onClick="
-															{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-																areYouSureDelete()
-															{% endif %}
-															">
-								    	{{ 'user.actions.remove'|trans }}
-								     	<i class="fa fa-sign-in"></i>
-								    </button>
-									<script type="text/javascript">
-										function areYouSureDelete()
-										{
-											if (confirm('{{ 'route.content.areYouSureDelete'|trans }}')) {
-												window.location = "{{ path('lbf_presentation_route_delete') }}";
-											}
-										}
-									</script>
-								    {% endif %}
-								</div>
-							</div>
-							
-							<hr/>
-
-							<div class="row">
-								<div class="col-md-5 right bold">
-									{{ 'route.content.startDate'|trans }}
-								</div>
-								<div class="col-md-7 left">
-									{{ user.routes.startDate|date('d M Y') }} - {{ user.routes.startDate|date('h:i') }}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-5 right bold">
-									{{ 'route.content.endDate'|trans }}
-								</div>
-								<div class="col-md-7 left">
-									{{ user.routes.endDate|date('d M Y') }} - {{ user.routes.endDate|date('h:i') }}
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-
-			{% else %}
-
-				<h2>
-					{{ 'route.titles.chosenStep'|trans }} : 
-				</h2>
-				<hr/>
-
-				<div class="center">
-					<p>
-						<br/><br/><br/><br/>
-					</p>
-					<p class="center">
-						{{ 'route.content.noRouteYetMessage'|trans }}
-					</p>
-					<p>
-						<br/><br/><br/><br/>
-					</p>
-					<a href="
-    					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-							{{ path('lbf_presentation_route') }}
-						{% else %}
-							{{ path('fos_user_registration_register') }}
-						{% endif %}
-						" class="btn btn-perso font18">
-				    	{{ 'route.actions.join'|trans }}
-				     	<i class="fa fa-sign-in"></i>
-				    </a>
-				</div>
-
-			{% endif %}
-			</div>
-
-			
+		<div id="sessionFlash" class="sessionFlash">
 		</div>
-		<!-- END CONTENT -->
+
+		<div id="fullpage">
+			<div class="section" id="section0">
+				<br/><br/>
+				
+				<div class="row">
+					<div class="col-md-4"></div>
+
+					<div class="col-md-4">
+						<h2 class="center">
+							{{ 'user.titles.profile'|trans }}
+						</h2>
+					</div>
+
+					<div class="col-md-4"></div>
+				</div>
+				<hr/>
+
+				<div role="tabpanel">
+
+					  <!-- Nav tabs -->
+					  <div class="col-md-3 border_white_right">
+						  <ul class="nav_tabs_user list_no_style_li" role="tablist">
+						    <li role="user_tabs" class="active">
+						    	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="btn btn-choice">
+						    		Profile
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/info.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						    <li role="user_tabs" class="">
+						    	<a href="#edit" aria-controls="edit" role="tab" data-toggle="tab" class="btn btn-choice">
+						    		Edit information
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/edit.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						    <li role="user_tabs" class="">
+						    	<a href="#password" aria-controls="password" role="tab" data-toggle="tab" class="btn btn-choice">
+						    		Password
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/password.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						    <li role="user_tabs" class="">
+						    	<a href="#avatar" aria-controls="avatar" role="tab" data-toggle="tab" class="btn btn-choice">
+						    		Avatar
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/avatar.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						    <br/>
+						    <li role="user_tabs" class="">
+						    	<a href="#current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+						    		Current orders
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						    <li role="user_tabs" class="">
+						    	<a href="#past" aria-controls="past" role="tab" data-toggle="tab" class="btn btn-choice">
+						    		Past orders
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						    <br/>
+						    <li role="user_tabs" class="">
+						    	<a href="{{ path('fos_user_security_logout') }}" class="btn btn-choice logout-btn">
+						    		Logout
+						    		<div class="float-right inner_arrow">
+										<img src="{{ asset('img/system/defaults/logout.png') }}" alt="" class="btn_right_arrow"/>
+									</div>
+						    	</a>
+						    </li>
+						  </ul>
+					  </div>
+
+				  	<!-- Tab panes -->
+				  	<div class="col-md-9 tab-content">
+				    	<div role="tabpanel" class="tab-pane nav active" id="profile">
+				    		<div class="col-md-9">
+								<div class="row">
+									<div class="col-md-5 right">
+										<ul class="list_no_style_li">
+											<li class="bold">
+												{{ 'user.details.firstName'|trans }}
+											</li>
+											<li class="bold">
+												{{ 'user.details.lastName'|trans }}
+											</li>
+											<li class="bold">
+												{{ 'user.details.gender'|trans }}
+											</li>
+											<li class="bold">
+												{{ 'user.details.email'|trans }}
+											</li>
+											<li class="bold">
+												{{ 'user.details.tel'|trans }}
+											</li>
+											<li class="bold">
+												{{ 'user.details.age'|trans }}
+											</li>
+											<li class="bold">
+												{{ 'user.details.address'|trans }}
+											</li>
+											<li class="bold">
+												<br/>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-7 left">
+										<ul class="list_no_style_li">
+											<li>
+												{% if app.user.firstName|length > 0 %}
+													{{ app.user.firstName }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.lastName|length > 0 %}
+													{{ app.user.lastName }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.gender|length > 0 %}
+													{% if app.user.gender == 1 %}
+														{{ 'user.details.male'|trans }}
+													{% else %}
+														{{ 'user.details.female'|trans }}
+													{% endif %}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.email|length > 0 %}
+													<a href="mailto:{{ app.user.email }}">{{ app.user.email }}</a>
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.tel|length > 0 %}
+													{{ app.user.tel }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.age|length > 0 %}
+													{{ app.user.age }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.addressNumber|length > 0 or app.user.addressStreet|length > 0 %}
+													{{ app.user.addressNumber }}, {{ app.user.addressStreet }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.addressPostCode|length > 0 or app.user.addressCity|length > 0 %}
+													{{ app.user.addressPostCode }}  {{ app.user.addressCity }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>
+											<li>
+												{% if app.user.addressCountry|length > 0 %}
+													{{ app.user.addressCountry }}
+												{% else %}
+													<br/>
+												{% endif %}
+											</li>											
+										</ul>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-md-3">
+								{% if app.user.webPath|length > 0 %}
+									<div class="user_img" style="width: 100%; background-image: url('{{ asset( app.user.webPath) }}'); background-size: cover; background-position: 50%;">
+										<!-- onClick="showPhoto('{{ app.user.id }}')" -->
+										<script type="text/javascript">
+											var cw = $('.user_img').width();
+											$('.user_img').css({'height':cw+'px'});
+										</script>
+									</div>
+								{% else %}
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="Default" class="user_img"/>
+										<script type="text/javascript">
+											var cw = $('.user_img').width();
+											$('.user_img').css({'height':cw+'px'});
+										</script>
+								{% endif %}
+							</div>
+				    	</div>
+				    	<div role="tabpanel" class="tab-pane" id="password">
+				    		Your current password was edited the ... of ... 20.. : <br/>
+				    		To change password, click here :
+							<a href="{{ path('fos_user_change_password') }}" class="">
+						    	{{ 'user.actions.changePassword'|trans }}
+						     	<i class="fa fa-sign-in"></i>
+						    </a>
+				    	</div>
+				    	<div role="tabpanel" class="tab-pane" id="avatar">
+							<form method="post" action="{{ path('fos_user_change_password') }}" {{ form_enctype(formEditAvatar) }}>
+								<div class="edit_profile">
+									<div class="form-group row">
+										{% set name_title = 'user.details.changeAvatar' | trans %}
+										{{ form_label(formEditAvatar.file, name_title, 
+											{'label_attr': {'class': 'control-label'}}) }}
+										{{ form_errors(formEditAvatar) }}
+										<div class="input-icon">
+								        	{{ form_widget(formEditAvatar.file) }}
+								        </div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-3">
+										</div>
+										<div class="col-md-6">
+											{{ 'user.warning.fileMustBe' | trans }}
+											<ul>
+												<li>{{ 'user.warning.under1Mo' | trans }}</li>
+												<li>{{ 'user.warning.square' | trans }}</li>
+												<li>{{ 'user.warning.face' | trans }}</li>
+											</ul>
+										</div>
+										<div class="col-md-3">
+										</div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<input type="submit" class="btn btn-perso  float-right validate_button"  
+										value="{{'user.actions.save' | trans }}"/>
+								</div>
+
+								<!-- Le reste du formulaire :) -->
+								{{ form_widget(formEditAvatar) }}
+							</form>
+				    	</div>
+				    	<div role="tabpanel" class="tab-pane" id="edit">
+				    		To edit your information, fill-in the missing fields : 
+							<form method="post" action="{{ path('lbf_user_edit') }}" {{ form_enctype(formEditUser) }}>
+				        		{% if form_errors(formEditUser) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formEditUser) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="edit_profile">
+									<div class="form-group row">
+										{% set firstName_title = 'user.details.firstName' | trans %}
+								        {{ form_label(formEditUser.firstName, firstName_title, 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.firstName) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.firstName) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_firstname = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'John', 'value':app.user.firstName, 'id':'firstName', 
+								        		'name':'_firstName'}} %}
+								        	{{ form_widget(formEditUser.firstName, opt_firstname) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set lastName_title = 'user.details.lastName' | trans %}
+								        {{ form_label(formEditUser.lastName, lastName_title, 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.lastName) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.lastName) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-group"></i>
+								        	{% set opt_lastname = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'Doe', 'value':app.user.lastName, 'id':'lastName', 
+								        		'name':'_lastName'}} %}
+								        	{{ form_widget(formEditUser.lastName, opt_lastname) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set email_title = 'user.details.email' | trans %}
+								        {{ form_label(formEditUser.email, email_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.email) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.email) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-envelope"></i>
+								        	{% set opt_email = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'j.doe@gmail.com', 'value':app.user.email, 'id':'email', 
+								        		'name':'_email', 'required':'required'}} %}
+								        	{{ form_widget(formEditUser.email, opt_email) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set gender_title = 'user.details.gender' | trans %}
+								        {{ form_label(formEditUser.gender, gender_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.gender) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.gender) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_gender = {'attr': {'class': 'form-control select2',
+								        		'type':'text', 'id':'gender', 'name':'_gender'}} %}
+								        	{{ form_widget(formEditUser.gender, opt_gender) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+							        	{% set age_title = 'user.details.age' | trans %}
+										{{ form_label(formEditUser.age, age_title, 
+											{'label_attr': {'class': 'control-label'}}) }}
+										{% if form_errors(formEditUser.age) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.age) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+											{% set opt_age = {'attr': {'class': 'form-control select2',
+								        		'type':'text', 'id':'age', 'name':'_age'}} %}
+								        	{{ form_widget(formEditUser.age, opt_age) }}
+										</div>
+									</div>
+									<div class="form-group row">
+										{% set tel_title = 'user.details.tel' | trans %}
+								        {{ form_label(formEditUser.tel, tel_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.tel) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.tel) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-envelope"></i>
+								        	{% set opt_tel = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'+33 6 45 36 37 22', 'value':app.user.tel, 'id':'tel', 
+								        		'name':'_tel'}} %}
+								        	{{ form_widget(formEditUser.tel, opt_tel) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set addressNumber_title = 'user.details.address' | trans %}
+								        {{ form_label(formEditUser.addressNumber, addressNumber_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.addressNumber) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.addressNumber) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-envelope"></i>
+								        	{% set opt_addressNumber = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'C-19', 'value':app.user.addressNumber, 'id':'addressNumber', 
+								        		'name':'_addressNumber'}} %}
+								        	{{ form_widget(formEditUser.addressNumber, opt_addressNumber) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set addressStreet_title = 'user.details.address' | trans %}
+								        {{ form_label(formEditUser.addressStreet, addressStreet_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.addressStreet) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.addressStreet) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-envelope"></i>
+								        	{% set opt_addressStreet = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'Calle de las Orquideas', 'value':app.user.addressStreet, 'id':'addressStreet', 
+								        		'name':'_addressStreet'}} %}
+								        	{{ form_widget(formEditUser.addressStreet, opt_addressStreet) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set addressPostCode_title = 'user.details.address' | trans %}
+								        {{ form_label(formEditUser.addressPostCode, addressPostCode_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.addressPostCode) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.addressPostCode) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-envelope"></i>
+								        	{% set opt_addressPostCode = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'08056', 'value':app.user.addressPostCode, 'id':'addressPostCode', 
+								        		'name':'_addressPostCode'}} %}
+								        	{{ form_widget(formEditUser.addressPostCode, opt_addressPostCode) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+										{% set addressCity_title = 'user.details.address' | trans %}
+								        {{ form_label(formEditUser.addressCity, addressCity_title, {'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formEditUser.addressCity) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.addressCity) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-envelope"></i>
+								        	{% set opt_addressCity = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'Cusco', 'value':app.user.addressCity, 'id':'addressCity', 
+								        		'name':'_addressCity'}} %}
+								        	{{ form_widget(formEditUser.addressCity, opt_addressCity) }}
+								        </div>
+									</div>
+									<div class="form-group row">
+							        	{% set country_title = 'user.details.country' | trans %}
+										{{ form_label(formEditUser.addressCountry, country_title, 
+											{'label_attr': {'class': 'control-label'}}) }}
+										{% if form_errors(formEditUser.addressCountry) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formEditUser.addressCountry) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+											{% set opt_country = {'attr': {'class': 'form-control select2',
+								        		'type':'text', 'id':'country', 'name':'_country'}} %}
+								        	{{ form_widget(formEditUser.addressCountry, opt_country) }}
+										</div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formEditUser) }}
+									<input type="submit" class="btn btn-perso  float-right validate_button"  
+										value="{{'user.actions.save' | trans }}"/>
+								</div>
+							</form>
+				    	</div>
+				    	<div role="tabpanel" class="tab-pane" id="current">
+							{% if app.user.currentOrders|length > 0 %}
+								{{ app.user.currentOrders }}
+							{% else %}
+								<div class="center col-md-9">
+									Sorry, no current orders in progress.
+									<br/><br/><br/>
+									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal" data-dismiss="modal">
+							            Go shopping 
+							        </a>
+								</div>
+								<div class="col-md-3"></div>
+							{% endif %}
+				    	</div>
+				    	<div role="tabpanel" class="tab-pane" id="past">
+				    		{% if app.user.pastOrders|length > 0 %}
+								{{ app.user.pastOrders }}
+							{% else %}
+								<div class="center col-md-9">
+									Sorry, no past orders in progress.
+									<br/><br/><br/>
+									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal" data-dismiss="modal">
+							            Go shopping 
+							        </a>
+								</div>
+								<div class="col-md-3"></div>
+							{% endif %}
+				    	</div>
+				    	<div role="tabpanel" class="tab-pane" id="logout">
+							
+				    	</div>
+				    	
+				  	</div>
+
+				</div>
+
+			</div>
+
+			<!-- BEGIN FOOTER -->
+              {% include 'includes/footer.html.twig' %}
+            <!-- END FOOTER -->
+		</div>
 	</div>
 	<!-- END CONTENT -->
 
 	<!-- BEGIN rightbar -->
-      {% include 'includes/rightbar.html.twig' %}
+      {% include 'includes/footer.html.twig' %}
     <!-- END rightbar -->
 
 {% endblock LBF_User_body %}

@@ -183,7 +183,7 @@
 							</h2>
 		        		</div>
 						<div class="col-md-2 col-xs-2 white">
-							<button class="btn btn-log">
+							<button class="btn btn-log" onClick="addToSessionCart()">
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourProducts.actions.order' | trans }}
 							</button>
@@ -439,6 +439,10 @@
 																	</div>
 																{% else %}
 																	<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+																		<script type="text/javascript">
+																			var cw = $('.product_img').width();
+																			$('.product_img').css({'height':cw+'px'});
+																		</script>
 																{% endif %}
 																</div>
 																<br/>

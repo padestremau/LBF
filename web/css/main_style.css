@@ -163,6 +163,9 @@ hr {
 .bold {
 	font-weight: 800;
 }
+.font1em {
+	font-size: 1em;
+}
 .font10 {
 	font-size: 10px;
 }
@@ -303,6 +306,23 @@ strong {
 #menu li {
 	display: inline-block;
 	list-style-type: none;
+}
+
+.user_img_header {
+	border-radius: 20px;
+	border: 1px solid white;
+	width: 40px !important;
+	margin: 0;
+}
+.user_info_header {
+	font-size: 0.8em;
+	overflow: hidden;
+	border-bottom: 1px solid transparent;
+	position: relative;
+	top: -14px;
+}
+.user_access_button:hover .user_info_header {
+	border-bottom: 1px solid white;
 }
 
 .button_anchors {
@@ -725,9 +745,9 @@ a.captionOrange:hover
 	margin-bottom: 20px;
 	margin-top: 5px;
 }
-.product_img:hover {
+/*.product_img:hover {
 	cursor: pointer;
-}
+}*/
 .small_quote {
 	font-size: 0.7em;
 	font-style: italic;
@@ -918,6 +938,31 @@ a.captionOrange:hover
 	background-color: rgba(250,250,250,0.3);
 }
 
+
+/* ------------------------------------------------------ User ------------------------------------------------------ */
+.user_img {
+	width: 100%;
+	border-radius: 50%;
+	border : 1px solid white;
+}
+
+.user_tabs {
+	width: 100%;
+}
+.nav_tabs_user {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.nav_tabs_user .active .btn-choice .inner_arrow{
+	opacity: 1;
+}
+.logout-btn:hover {
+	background-color: rgba(0,0,0,0.5) !important;
+}
+.border_white_right {
+	border-right: 1px dotted white;
+}
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 .footer

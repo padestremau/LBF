@@ -1,0 +1,55 @@
+{# src/LBF/UserBundle/Resources/User/indexUser.html.twig #}
+
+{% extends "LBFUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - {{ 'user.titles.profile' | trans }}
+{% endblock %}
+
+{% block LBF_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section0">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+		        		<div>
+							<a href="{{ path('lbf_admin_homepage') }}" class="btn btn-perso float-right">
+						    	{{ 'user.actions.back'|trans }}
+						     	<i class="fa fa-sign-in"></i>
+						    </a>
+						</div>
+
+						<!-- <div class="col-md-3">
+							<div class="photo_souvenir"
+								style="width: 100%; background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%;"
+								onClick="showPhoto('{{ photo.id }}')"
+								>
+								<script type="text/javascript">
+									var cw = $('.photo_souvenir').width();
+									$('.photo_souvenir').css({'height':cw+'px'});
+								</script>
+							</div>
+						</div> -->
+		        	{% endif %}
+
+			</div>
+
+			<!-- BEGIN FOOTER -->
+              {% include 'includes/footer.html.twig' %}
+            <!-- END FOOTER -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+	<!-- BEGIN rightbar -->
+      {% include 'includes/footer.html.twig' %}
+    <!-- END rightbar -->
+
+{% endblock LBF_User_body %}

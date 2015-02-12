@@ -7,7 +7,32 @@
     <div class="row"  id="header_buttons">
       <div class="button_anchors float-left">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          Connecté !!!
+          <a href="{{ path('lbf_user_homepage') }}" class="no_style_a user_access_button">
+            <div class="inline_div">
+              {% if app.user.webPath|length > 0 %}
+                <div class="user_img_header" style="width: 100%; background-image: url('{{ asset( app.user.webPath) }}'); background-size: cover; background-position: 50%;">
+                  <!-- onClick="showPhoto('{{ app.user.id }}')" -->
+                  <script type="text/javascript">
+                    var cw = $('.user_img_header').width();
+                    $('.user_img_header').css({'height':cw+'px'});
+                  </script>
+                </div>
+              {% else %}
+                <img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="Default" class="user_img_header"/>
+                  <script type="text/javascript">
+                    var cw = $('.user_img_header').width();
+                    $('.user_img_header').css({'height':cw+'px'});
+                  </script>
+              {% endif %}
+            </div>
+            <div class="inline_div user_info_header">
+              {% if app.user.firstName|length > 0 %}
+                {{ app.user.firstName }}
+              {% else %}
+                {{ app.user.username }}
+              {% endif %}
+            </div>
+          </a>
         {% else %}
           <div id="login_name_status">
             <a href="{{ path('fos_user_security_login') }}" class="no_style_a">
