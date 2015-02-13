@@ -1,0 +1,186 @@
+{# src/LBF/MainBundle/Resources/Main/order.html.twig #}
+
+{% extends "LBFMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block LBF_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+			{% set fail = app.session.get('fail') %}
+			{% if fail %}
+				<!-- Flash message -->
+				<div class="alert alert-danger alert-dismissible fade in" role="alert">\
+			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+			      <strong>Careful!</strong> You\'ve reached the maximum availability.\
+			    </div>';
+			    <script type="text/javascript">
+				    setTimeout(function() {
+				    	$('.alert').fadeOut('fast');
+				    	document.getElementById("sessionFlash").style.display = "none";
+				    },4000);
+			    </script>
+			   {% endif %}
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section6">
+				<br/><br/>
+
+	            <div id="breadcrumb" class="center">
+			        <div class="row">
+		              	<h2>
+		                  	{{ 'header.titles.myCart' | trans }}
+		              	</h2>
+		            </div>
+		            <div class="row">
+	                  	<div class="inline_div">
+	                  		<a href="javascript:loadContentCart('{{ path('lbf_main_cart') }}')" class="no_style_a">
+		                    	1. Content
+	                  		</a>
+	                  	</div>
+	                  	<div class="inline_div breadcrumb_active">
+	                    	2. Order
+	                  	</div>
+	                  	<div class="inline_div">
+	                    	3. Confirm
+	                  	</div>
+		            </div>
+              	</div>
+
+				<div id="sectionContentAjax">
+
+					<div id="sessionFlash" class="sessionFlash">
+						{% set fail = app.session.get('fail') %}
+						{% if fail %}
+							<!-- Flash message -->
+							<div class="alert alert-danger alert-dismissible fade in" role="alert">\
+						      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+						      <strong>Careful!</strong> You\'ve reached the maximum availability.\
+						    </div>';
+						    <script type="text/javascript">
+							    setTimeout(function() {
+							    	$('.alert').fadeOut('fast');
+							    	document.getElementById("sessionFlash").style.display = "none";
+							    },4000);
+						    </script>
+						   {% endif %}
+					</div>
+
+			        <div class="row80 left">
+		        		Dear {% if app.user.firstName|length > 0 %}{{ app.user.firstName }}{% else %}{{ app.user.email }}{% endif %}, <br/>
+		        		{% set cart = app.session.get('cart') %}
+	                	{% if cart|length > 0 %}
+	                		<div class="row">
+					        	<div class="col-md-6">
+					        		You're about to finalize your order of :
+					        		<ul>
+					        			{% set total_price_general = 0 %}
+					        			{% for item_array in cart %}
+			                            	{% set item = item_array['item'] %}
+			                            	{% set qty = item_array['qty'] %}
+			                            	<li>
+			                            		{{ qty }} {{ item.name }},
+			                            	</li>
+					                    	{% set total_price_general = total_price_general + qty * item.price  %}
+					        			{% endfor %}
+					        		</ul>
+					        	</div>
+					        	<div class="col-md-6">
+				                    of a total of <strong>S/. {{ total_price_general }}</strong>
+					        	</div>
+	                		</div>
+	                		<br/>
+		                    <div class="row">
+				        		Please be aware that this a pre-order that :
+				        		<ol>
+				        			<li>
+				        				The managers have to validate it for your order to get confirmed.
+				        			</li>
+				        			<li>
+				        				Once the order is confirmed and ready, you will have to come and collect your order at the following address: <br/>
+				        				<strong>
+					        				C-19, Calle de los Orquideas <br/>
+				        					08056 Cusco <br/>
+				        					Peru
+				        				</strong>
+				        			</li>
+				        		</ol>
+		                    </div>
+			        		<br/>
+			        		<div class="row">
+				        		<form method="post" {{ form_enctype(formNewOrder) }}>
+				        		{% if form_errors(formNewOrder) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewOrder) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="choose_date_order">
+									<div class="inline_div">
+						        		The minimum delay is 2 hours, but you can choose a date that best suits you : 
+									</div>
+									<div class="form-group inline_div">
+								        {% if form_errors(formNewOrder.deliveryAt) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewOrder.deliveryAt) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_deliveryAt = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'datetime', 'id':'deliveryAt', 'name':'_deliveryAt'}} %}
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewOrder.deliveryAt.time, opt_deliveryAt) }}
+								        		</div>
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewOrder.deliveryAt.date, opt_deliveryAt) }}
+								        		</div>
+								        </div>
+									</div>
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewOrder) }}
+
+									<div class="row80">
+					                	<a href="javascript:loadContentCart('{{ path('lbf_main_cart') }}')" class="no_style_a btn btn-modal float-left">
+								            Previous
+								        </a>
+								        <button type="submit" class="btn btn-modal float-right">
+								            <img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+								            {{ 'ourProducts.actions.order' | trans }}
+								        </button>
+					                </div>
+								</div>
+							</form>
+			        		</div>
+	                	{% else %}
+	                	{% endif %}
+		        	</div>
+	            </div>
+			</div>
+
+			<!-- BEGIN FOOTER -->
+              {% include 'includes/footer.html.twig' %}
+            <!-- END FOOTER -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Main_body %}

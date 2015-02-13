@@ -3,9 +3,11 @@
 /* -----------------------------------------------    MAIN STYLE   -------------------------------------------------- */
 
 html {
+	min-width: 1000px;
+	min-height: 700px;
 	width: 100%;
 	/*background-color: rgba(0,0,0,0.9); */
-	background-image: url('../img/system/defaults/background_default_light.png');
+	background-image: url('../img/system/defaults/background_default_medium.png');
 	/*background-image: url('../img/system/defaults/background_default_dark.png');*/
 }
 
@@ -13,7 +15,7 @@ body
 {	
 	width: 100%;
 	background-color: transparent;
-	font-family: 'existencelight';
+	font-family: 'existencelight';  /*sakkal_majallaregular*/
 	font-weight: 100;
 	color: white !important;
 }
@@ -275,6 +277,9 @@ strong {
 .opacity0 {
 	opacity: 0;
 }
+.opacity05 {
+	opacity: 0.5;
+}
 .opacity1 {
 	opacity: 1;
 }
@@ -505,7 +510,7 @@ strong {
 /* -----------------------------------------------    Content   -------------------------------------------------- */
 
 .page-container {
-	background-color: #541009 ;
+	background-color: rgba(120,30,20,0.99); /*#541009 ;*/
 	margin-top: 50px;
 	max-width: 1200px;
 	margin: auto;
@@ -837,12 +842,12 @@ a.captionOrange:hover
 
 /* ------------------------------------------------------ Login ------------------------------------------------------ */
 .login_background {
-	background-color: black !important;
+	background-color: inherit;
 }
 #login_section {
 	padding: 30px;
 	border: 1px solid white;
-	margin-top: 100px;
+	margin-top: 40px;
 }
 #login_content {
 	min-height: 100px;
@@ -937,6 +942,19 @@ a.captionOrange:hover
 .table > tbody > tr:hover {
 	background-color: rgba(250,250,250,0.3);
 }
+
+
+/* ------------------------------------------------------ Order chain ------------------------------------------------------ */
+#breadcrumb .inline_div {
+	border-bottom: 2px solid transparent;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.breadcrumb_active {
+	border-bottom: 2px solid white !important;
+}
+
 
 
 /* ------------------------------------------------------ User ------------------------------------------------------ */

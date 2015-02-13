@@ -1,0 +1,60 @@
+{# src/LBF/MainBundle/Resources/Main/confirm.html.twig #}
+
+{% extends "LBFMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block LBF_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section7">
+				<br/><br/>
+
+		        <div class="row center">
+	              	<h2 class="center">
+	                  	{{ 'header.titles.myCart' | trans }}
+	              	</h2>
+	            </div>
+	            <div id="breadcrumb" class="center">
+                  	<div class="inline_div">
+                    	1. Content
+                  	</div>
+                  	<div class="inline_div">
+                    	2. Order
+                  	</div>
+                  	<div class="inline_div breadcrumb_active">
+                    	3. Confirm
+                  	</div>
+              	</div>
+
+				<div id="sectionContentAjax">
+					<br/><br/><br/>
+					<script type="text/javascript">
+						emptySessionCart();
+						function emptySessionCart() {
+							var sessionCart = [];
+                  			$.cookie("sessionCart", sessionCart);
+			            }
+			        </script>
+		        	<p class="center">
+		        		Thank you for your order. You should receive an email very shortly.
+		        	</p>
+		    	</div>
+			</div>
+
+			<!-- BEGIN FOOTER -->
+              {% include 'includes/footer.html.twig' %}
+            <!-- END FOOTER -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Main_body %}

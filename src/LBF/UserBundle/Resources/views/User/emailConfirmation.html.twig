@@ -1,0 +1,177 @@
+{# src/LBF/UserBundle/Resources/views/User/emailConfirmation.html.twig #}
+
+{% block body_html %}
+{#
+    You can of course render the html directly here.
+    Including a template as done here allows keeping things DRY by using
+    the template inheritance in it
+#}
+
+<div style="
+color: rgb(50,50,50);
+width:100%;
+margin:2%;
+border:1px solid white;
+background-color: rgba(150,150,150, 0.1);">
+
+	<div style="text-align:center; ">
+		<img src="{{ asset('img/system/banniere.jpg') }}" style="width:10%; margin-left:5%;"/>
+		<h2 style="color:rgba(120,30,20,0.99);">
+			New order on hold
+		</h2>	
+		<hr/>
+	</div>
+
+	<div style="text-align:left; padding-left:30px; padding-right:30px; padding-top:5px; padding-bottom:10px;">
+		Hello ! 
+		<br/><br/>
+		{% if newOrder.elements|length > 0 %}
+			Thank you again for ordering the following elements : <br/><br/>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      Item
+                    </th>
+                    <th class="center">
+                      Quantity
+                    </th>
+                    <th class="center">
+                      Weight
+                    </th>
+                    <th class="center">
+                      Price
+                    </th>
+                    <th class="center">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% set total_weight_general = 0 %}
+                  {% set total_price_general = 0 %}
+                  {% for item_array in newOrder.elements %}
+                    {% set item = item_array['item'] %}
+                    {% set qty = item_array['qty'] %}
+                    <tr>
+                      <th>
+                        {{ item.name }}
+                      </th>
+                      <td class="center">
+                      	<div id="counter_value_{{ item.type }}">
+                            {{ qty }}
+						</div>
+                      </td>
+                      <td class="center">
+                      	<div id="weight_value_{{ item.type }}" style="opacity1">
+                            {% set total_weight = qty * item.weight %}
+                            {% set total_weight_general = total_weight_general + total_weight %}
+                            {% if total_weight > 999 %}
+                              {{ (total_weight / 1000) | number_format(1, '.', ',') }} kg
+                            {% else %}
+                              {{ total_weight }} g
+                            {% endif %}
+                      	</div>
+                      </td>
+                      <td class="center">
+                      	<div id="price_value_{{ item.type }}" style="opacity1">
+                            {% set total_price = qty * item.price %}
+                            {% set total_price_general = total_price_general + total_price %}
+                            S/. {{ total_price }}
+                    	</div>
+                      </td>
+                      <td class="center">
+                        <!-- <input onClick="addOneToCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="+" title="Add one more"/>
+                        <input onClick="deleteOneFromCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="-" title="Delete one"/> -->
+                        <input onClick="deleteTotalFromCart('{{ item.type }}')" class="delete_buttons_cart" type="button" value="Delete" title="Delete total"/>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-xs-4"></div>
+              <div class="col-md-4 col-xs-4 modal_price">
+                <div class="row">
+                  <div class="inline_div left col-md-4 col-xs-4">
+                    TOTAL:
+                  </div>
+                  <div class="inline_div center col-md-4 col-xs-4">
+                    {% if total_weight_general > 999 %}
+                      {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
+                    {% else %}
+                      {{ total_weight_general }} g
+                    {% endif %}
+                  </div>
+                  <div class="inline_div right col-md-4 col-xs-4">
+                    S/. {{ total_price_general }} 
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-xs-4"></div>
+            </div>
+
+
+            <br/><br/>
+
+            You should a receive an email shortly once the Managers have confirmed your order.
+
+            <br/><br/>
+
+            Please note that you asked the order to be ready for: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
+        {% else %}
+            <div class="row center">
+              Sorry, nothing here for now ... <br/>
+              Please <a href="mailto:contact@lebuffetfrances.com">contact the administration</a>.
+            </div>
+        {% endif %}
+		<br/><br/>
+		Best regards,<br/>
+		<strong>
+			<a href="mailto:contact@lebuffetfrances.com" style="text-decoration:none; color:rgba(120,30,20,0.99);">
+				Le Buffet Francés
+			</a>
+		</strong>
+
+	</div>
+	
+	<hr/>
+
+	<div style="text-align:center;">
+		<a href="http://www.grande-boucle-etudiante.fr" style="
+											font-size:12px;
+											text-decoration:none;
+											background-color: rgba(120,30,20,0.99);
+											border-radius: 0;
+											color: white;">
+			Access my profile
+		</a>
+	</div>			
+</div>
+
+<!-- <img src="{# asset('img/system/banniere.jpg') #}" style="width:90%; margin-left:5%;"/> -->
+
+{% endblock %}
+
+
+{# block subject %}
+{% autoescape false %}
+[LBF Administration] Message : 
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+
+Hello !
+
+De la part de l'administration:
+
+
+Cordialement,
+La Team de la Grande Boucle Etudiante
+
+{% endautoescape %}
+{% endblock #}

@@ -5,6 +5,11 @@ namespace LBF\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use LBF\UserBundle\Form\OrdersType;
+use LBF\UserBundle\Entity\Orders;
+use LBF\UserBundle\Entity\Email;
+use LBF\MainBundle\Entity\NewsletterEmail;
+
 class MainController extends Controller
 {
     public function indexAction()
@@ -59,6 +64,36 @@ class MainController extends Controller
         	'allCategories' => $allCategories,
 			'allSortedProducts' => $allSortedProducts
         	));
+    }
+
+    public function newsletterEmailAction($path)
+    {
+        $allMails = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('LBFMainBundle:NewsletterEmail')
+                                ->findAll();
+
+        $newsletterEmail = new NewsletterEmail;
+        $email = stripslashes($_POST['newsletterEmail']);
+        $newsletterEmail->setEmail($email);
+
+        $decision = 'YES';
+        for ($i=0; $i < sizeof($allMails); $i++) { 
+            if ($allMails[$i]->getEmail() == $email) {
+                $decision = 'NO';
+            }
+        }
+        if ($decision == 'YES') {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newsletterEmail);
+            $em->flush();
+        }
+
+        if (sizeof($path) > 0) {
+            return $this->redirect($this->generateUrl($path));
+        }
+
+        return $this->redirect($this->generateUrl('lbf_main_homepage'));
     }
 
     public function addToCartAction()
@@ -154,8 +189,14 @@ class MainController extends Controller
             $session->set('cart',array());
         }
 
+        $allProducts = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Element')
+                            ->findAll();
+
         return $this->render('LBFMainBundle:Main:cart.html.twig', array(
-            'cart' => $cart
+            'cart' => $cart,
+            'allProducts' => $allProducts
         ));
     }
 
@@ -168,5 +209,88 @@ class MainController extends Controller
         }
 
         return $this->redirect($this->generateUrl('lbf_main_homepage'));
+    }
+
+    public function orderAction() 
+    {
+
+        /* Current User */
+        $currentUser = $this->getUser();
+
+        // Système de session pour éviter de créer des comptes.
+        $session = $this->getRequest()->getSession();
+        $cart = $session->get('cart');
+
+        $newOrder = new Orders();
+        $newOrder->setUser($currentUser);
+        $newOrder->setElements($cart);
+        $newOrder->setDeliveryAt(new \DateTime());
+
+        // On utiliser le OrdersType
+        $formNewOrder = $this->createForm(new OrdersType(), $newOrder);
+
+        // On récupère la requête
+        $formNewOrder->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewOrder->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newOrder);
+
+            $message = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] New order on hold.')
+                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo($currentUser->getEmail())
+                ->setBody(
+                    $this->renderView('LBFUserBundle:User:emailConfirmation.html.twig',
+                        array(  'newOrder' => $newOrder,
+                                'member' => $currentUser)
+                    )
+                )
+            ;
+            $this->get('mailer')->send($message);
+
+            $message = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] Test.')
+                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo($currentUser->getEmail())
+                ->setBody(
+                    $this->renderView('LBFUserBundle:User:emailTest.html.twig')
+                )
+            ;
+            $this->get('mailer')->send($message);
+            
+            // $email = new Email();
+            // $email->setRecipientName($currentUser->getFirstName());
+            // $email->setRecipientEmail($currentUser->getEmail());
+            // $em = $this->getDoctrine()->getManager();
+            // $em->persist($email);
+            // $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_main_empty_special'));
+        }
+
+        return $this->render('LBFMainBundle:Main:order.html.twig', array(
+            'formNewOrder' => $formNewOrder->createView(),
+            'cart' => $cart
+        ));
+    }
+
+
+    public function emptySpecialAction()
+    {
+        // Système de session pour éviter de créer des comptes.
+        $session = $this->getRequest()->getSession();
+        $session->clear('cart');
+
+        return $this->redirect($this->generateUrl('lbf_main_confirm'));
+    }
+
+    public function confirmAction() {
+        
+        return $this->render('LBFMainBundle:Main:confirm.html.twig');
     }
 }

@@ -32,7 +32,7 @@ class UserController extends Controller
             $this->get('session')->getFlashBag()->add('info', 'Informations bien modifiées');
 
             // On redirige vers la page de visualisation de le document nouvellement créé
-            return $this->redirect($this->generateUrl('gbe_user_homepage'));
+            return $this->redirect($this->generateUrl('lbf_user_homepage'));
         }
 
         // On utiliser le EditAvatarType
@@ -44,9 +44,6 @@ class UserController extends Controller
         // On vérifie que les valeurs entrées sont correctes
         if ($formEditAvatar->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($avatar);
-            $currentUser->setAvatar($avatar);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($currentUser);
             $em->flush();
 
@@ -54,16 +51,30 @@ class UserController extends Controller
             $this->get('session')->getFlashBag()->add('info', 'Informations bien modifiées');
 
             // On redirige vers la page de visualisation de le document nouvellement créé
-            return $this->redirect($this->generateUrl('gbe_user_homepage'));
+            return $this->redirect($this->generateUrl('lbf_user_homepage'));
         }
 
+        $onHoldOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findSpecific($currentUser, 'onHold');
+
+        $currentOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findSpecific($currentUser, 'confirm');
+
+        $pastOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findSpecific($currentUser, 'complete');
+
         return $this->render('LBFUserBundle:User:indexUser.html.twig', array(
+            'onHoldOrders' => $onHoldOrders,
+            'currentOrders' => $currentOrders,
+            'pastOrders' => $pastOrders,
             'formEditUser' => $formEditUser->createView(),
             'formEditAvatar' => $formEditAvatar->createView()));
     }
 
-    public function editUserAction()
-    {
-        return $this->render('LBFUserBundle:User:editUser.html.twig');
-    }
 }

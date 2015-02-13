@@ -73,10 +73,7 @@
     font-style: normal;
 
 }
-
-
-
-
+ 
 @font-face {
     font-family: 'existencestencil_light';
     src: url('../font/existence-stencillight.eot');
@@ -90,9 +87,6 @@
 
 }
 
-
-
-
 @font-face {
     font-family: 'existencelight';
     src: url('../font/existence-light.eot');
@@ -101,6 +95,19 @@
          url('../font/existence-light.woff') format('woff'),
          url('../font/existence-light.ttf') format('truetype'),
          url('../font/existence-light.svg#existencelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'sakkal_majallaregular';
+    src: url('../font/majalla-webfont.eot');
+    src: url('../font/majalla-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/majalla-webfont.woff2') format('woff2'),
+         url('../font/majalla-webfont.woff') format('woff'),
+         url('../font/majalla-webfont.ttf') format('truetype'),
+         url('../font/majalla-webfont.svg#sakkal_majallaregular') format('svg');
     font-weight: normal;
     font-style: normal;
 

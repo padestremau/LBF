@@ -101,6 +101,13 @@ class User extends BaseUser
     /**
      * @var array
      *
+     * @ORM\Column(name="onHoldOrders", type="array", nullable=true)
+     */
+    private $onHoldOrders;
+
+    /**
+     * @var array
+     *
      * @ORM\Column(name="currentOrders", type="array", nullable=true)
      */
     private $currentOrders;
@@ -582,4 +589,27 @@ class User extends BaseUser
     }
 
     /*   *********   End  File  *************  */
+
+    /**
+     * Set onHoldOrders
+     *
+     * @param array $onHoldOrders
+     * @return User
+     */
+    public function setOnHoldOrders($onHoldOrders)
+    {
+        $this->onHoldOrders = $onHoldOrders;
+
+        return $this;
+    }
+
+    /**
+     * Get onHoldOrders
+     *
+     * @return array 
+     */
+    public function getOnHoldOrders()
+    {
+        return $this->onHoldOrders;
+    }
 }

@@ -10,6 +10,14 @@ lbf_main_cart:
     path:     /myCart
     defaults: { _controller: LBFMainBundle:Main:myCart }
 
+lbf_main_order:
+    path:     /order
+    defaults: { _controller: LBFMainBundle:Main:order }
+    
+lbf_main_confirm:
+    path:     /confirm
+    defaults: { _controller: LBFMainBundle:Main:confirm }
+
 lbf_main_delete_fromCart:
     path:     /deleteFromCart/{type}
     defaults: { _controller: LBFMainBundle:Main:deleteFromCart }
@@ -18,6 +26,10 @@ lbf_main_empty_cart:
     path:     /emptyCart
     defaults: { _controller: LBFMainBundle:Main:emptyCart }
 
-lbf_main_confirm:
-    path:     /confirm
-    defaults: { _controller: LBFMainBundle:Main:confirm }
+lbf_main_empty_special:
+    path:     /emptySpecial
+    defaults: { _controller: LBFMainBundle:Main:emptySpecial }
+
+lbf_main_newsletterEmail:
+    path:     /newsletterEmail/{path}
+    defaults: { _controller: LBFMainBundle:Main:newsletterEmail }
