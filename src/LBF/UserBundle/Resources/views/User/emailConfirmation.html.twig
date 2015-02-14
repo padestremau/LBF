@@ -7,151 +7,291 @@
     the template inheritance in it
 #}
 
-<div style="
-color: rgb(50,50,50);
-width:100%;
-margin:2%;
-border:1px solid white;
-background-color: rgba(150,150,150, 0.1);">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-	<div style="text-align:center; ">
-		<img src="{{ asset('img/system/banniere.jpg') }}" style="width:10%; margin-left:5%;"/>
-		<h2 style="color:rgba(120,30,20,0.99);">
-			New order on hold
-		</h2>	
-		<hr/>
-	</div>
+<html>
 
-	<div style="text-align:left; padding-left:30px; padding-right:30px; padding-top:5px; padding-bottom:10px;">
-		Hello ! 
-		<br/><br/>
-		{% if newOrder.elements|length > 0 %}
-			Thank you again for ordering the following elements : <br/><br/>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>
-                      Item
-                    </th>
-                    <th class="center">
-                      Quantity
-                    </th>
-                    <th class="center">
-                      Weight
-                    </th>
-                    <th class="center">
-                      Price
-                    </th>
-                    <th class="center">
-                      Action
-                    </th>
+  <head>
+
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      Le Buffet Francés - New order on hold
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body >
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+      <tr >
+        <td style="padding:0 0 20px 0; " bgcolor="#D4D5D1" >
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse; " >
+            <tr >
+              <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                <div style="width:100%; " class="" id="pre-header-text" >
+                  This is a letter from Le Buffet Francés.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="rgba(100,100,100,0.8)" width="600" valign="top" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #4d5259;">
+                <a href="#" target="_blank">
+                  <img src="http://localhost:8888/LBF/web/img/system/email/email_header.png" alt="Banière Le Buffet Francés" border="0" width="600" height="95" style="display:block;">
+                </a>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 40px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td width="100%" valign="top" >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
+                            <div style="width:100%; " class="" id="title_one_half" >
+                              THANK YOU FOR YOUR ORDER
+                            </div>
+                          </td>
+                        </tr>
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:14px; " >
+                            <div style="width:100%;">
+                                This is a confirmation email regarding your recent order on <strong><a href="www.lebuffetfrances.com" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. Your order is saved, and is <strong>on hold</strong> to be validated by a Manager for your order to be processed. You should receive an email once your order is ready.
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {% set total_weight_general = 0 %}
-                  {% set total_price_general = 0 %}
-                  {% for item_array in newOrder.elements %}
-                    {% set item = item_array['item'] %}
-                    {% set qty = item_array['qty'] %}
+                </table>
+              </td>
+            </tr>
+            <tr >
+              <td style="padding:0 15px 0 15px; " bgcolor="#FFFFFF" >
+                <table style="border-bottom-width:1px; border-bottom-style:solid; border-bottom-color:rgba(100,100,100,0.5); " border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
+                      <div style="width:100%; " class="" id="header_text_01" >
+                        ORDER CONTENT
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 40px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td width="100%" valign="top" >
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                              <tr >
+                                <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
+                                  <div style="width:100%; ">
+                                    Thank you again for ordering the following elements :
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr >
+                                <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300;" >
+                                  {% if newOrder.elements|length > 0 %}
+                                    <div style="width:100%; text-align:justify;">
+                                      <div>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:12px;">
+                                          <thead>
+                                            <tr>
+                                              <th>
+                                                Item
+                                              </th>
+                                              <th style="text-align:center;">
+                                                Quantity
+                                              </th>
+                                              <th style="text-align:center;">
+                                                Weight
+                                              </th>
+                                              <th style="text-align:center;">
+                                                Price
+                                              </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% set total_weight_general = 0 %}
+                                            {% set total_price_general = 0 %}
+                                            {% for item_array in newOrder.elements %}
+                                              {% set item = item_array['item'] %}
+                                              {% set qty = item_array['qty'] %}
+                                              <tr>
+                                                <th>
+                                                  {{ item.name }}
+                                                </th>
+                                                <td style="text-align:center;">
+                                                  <div id="counter_value_{{ item.type }}">
+                                                      {{ qty }}
+                                                    </div>
+                                                </td>
+                                                <td style="text-align:center;">
+                                                  <div id="weight_value_{{ item.type }}" style="opacity1">
+                                                      {% set total_weight = qty * item.weight %}
+                                                      {% set total_weight_general = total_weight_general + total_weight %}
+                                                      {% if total_weight > 999 %}
+                                                        {{ (total_weight / 1000) | number_format(1, '.', ',') }} kg
+                                                      {% else %}
+                                                        {{ total_weight }} g
+                                                      {% endif %}
+                                                  </div>
+                                                </td>
+                                                <td style="text-align:center;">
+                                                  <div id="price_value_{{ item.type }}" style="opacity1">
+                                                      {% set total_price = qty * item.price %}
+                                                      {% set total_price_general = total_price_general + total_price %}
+                                                      S/. {{ total_price }}
+                                                </div>
+                                                </td>
+                                              </tr>
+                                            {% endfor %}
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                      <br/>
+                                      <div style="width:100%; text-align:center; font-size:15px;">
+                                        <strong>
+                                          TOTAL: 
+                                        </strong>
+                                        {% if total_weight_general > 999 %}
+                                          {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
+                                        {% else %}
+                                          {{ total_weight_general }} g
+                                        {% endif %}
+                                        , 
+                                        <strong>
+                                          S/. {{ total_price_general }} 
+                                        </strong>
+                                      </div>
+
+                                      <br/>
+
+                                      You should a receive an email shortly once the Managers have confirmed your order.
+
+                                      <br/><br/>
+
+                                      Please note that you asked the order to be ready for: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
+
+                                      <br/><br/>
+
+                                      <div style="width: 100%; text-align:center;">
+                                        <a href="#" style="
+                                          padding: 6px 10px;
+                                          font-size:12px;
+                                          text-decoration:none;
+                                          background-color: rgba(120,30,20,0.99);
+                                          border-radius: 0;
+                                          color: white;">
+                                          Access my profile
+                                        </a>
+                                      </div>
+                                  </div>
+                                {% else %}
+                                    <div style="width:100%; text-align:justify;">
+                                      Sorry, nothing here for now ... <br/>
+                                      Please <a href="mailto:contact@lebuffetfrances.com">contact the administration</a>.
+                                    </div>
+                                {% endif %}
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table border="0" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
                     <tr>
-                      <th>
-                        {{ item.name }}
-                      </th>
-                      <td class="center">
-                      	<div id="counter_value_{{ item.type }}">
-                            {{ qty }}
-						</div>
-                      </td>
-                      <td class="center">
-                      	<div id="weight_value_{{ item.type }}" style="opacity1">
-                            {% set total_weight = qty * item.weight %}
-                            {% set total_weight_general = total_weight_general + total_weight %}
-                            {% if total_weight > 999 %}
-                              {{ (total_weight / 1000) | number_format(1, '.', ',') }} kg
-                            {% else %}
-                              {{ total_weight }} g
-                            {% endif %}
-                      	</div>
-                      </td>
-                      <td class="center">
-                      	<div id="price_value_{{ item.type }}" style="opacity1">
-                            {% set total_price = qty * item.price %}
-                            {% set total_price_general = total_price_general + total_price %}
-                            S/. {{ total_price }}
-                    	</div>
-                      </td>
-                      <td class="center">
-                        <!-- <input onClick="addOneToCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="+" title="Add one more"/>
-                        <input onClick="deleteOneFromCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="-" title="Delete one"/> -->
-                        <input onClick="deleteTotalFromCart('{{ item.type }}')" class="delete_buttons_cart" type="button" value="Delete" title="Delete total"/>
+                      <td>
+                        <table class="full-width" style="background-color: rgba(100,100,100,0.8); border-top: 2px solid rgba(120,30,20,0.99);" border="0" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 14px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
+                                <strong><a href="www.lebuffetfrances.com" style="color:rgba(120,30,20,0.99); text-decoration:none;">Le Buffet Francés</a></strong> is new shop in Cusco, selling Embutidos made with local meat but French technique.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                Keep in touch: 
+                                <a href="">
+                                  <img src="http://localhost:8888/LBF/web/img/system/email/fb.png" alt="FaceBook logo" border="0"  width="20" height="20" style="display:block;">
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                If someone sent you this newsletter and you'd like to join our mailing list, you can sign up 
+                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="#" target="_blank">
+                                  here
+                                </a>
+                                .
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                You're receiving this email as a result of downloading SketchUp Make or SketchUp Pro and opting-in to receive the SketchUpdate Newsletter. If you would like to unsubscribe from all emails from us, please 
+                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="#" target="_blank">
+                                  click here
+                                </a>
+                                .
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                <strong><a href="www.lebuffetfrances.com" style="color:rgba(120,30,20,0.99); text-decoration:none;">Le Buffet Francés</a></strong>
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                C-19, Calle de las Orquideas
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                08056 Cusco - Perú
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 20px; padding-left: 20px;" align="left">
+                                <a style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; font-size: 10px; color: rgba(120,30,20,0.99); text-decoration: none;" href="#" target="_blank">
+                                  www.lebuffetfrances.com
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </td>
                     </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-            <div class="row">
-              <div class="col-md-4 col-xs-4"></div>
-              <div class="col-md-4 col-xs-4 modal_price">
-                <div class="row">
-                  <div class="inline_div left col-md-4 col-xs-4">
-                    TOTAL:
-                  </div>
-                  <div class="inline_div center col-md-4 col-xs-4">
-                    {% if total_weight_general > 999 %}
-                      {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
-                    {% else %}
-                      {{ total_weight_general }} g
-                    {% endif %}
-                  </div>
-                  <div class="inline_div right col-md-4 col-xs-4">
-                    S/. {{ total_price_general }} 
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 col-xs-4"></div>
-            </div>
-
-
-            <br/><br/>
-
-            You should a receive an email shortly once the Managers have confirmed your order.
-
-            <br/><br/>
-
-            Please note that you asked the order to be ready for: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
-        {% else %}
-            <div class="row center">
-              Sorry, nothing here for now ... <br/>
-              Please <a href="mailto:contact@lebuffetfrances.com">contact the administration</a>.
-            </div>
-        {% endif %}
-		<br/><br/>
-		Best regards,<br/>
-		<strong>
-			<a href="mailto:contact@lebuffetfrances.com" style="text-decoration:none; color:rgba(120,30,20,0.99);">
-				Le Buffet Francés
-			</a>
-		</strong>
-
-	</div>
-	
-	<hr/>
-
-	<div style="text-align:center;">
-		<a href="http://www.grande-boucle-etudiante.fr" style="
-											font-size:12px;
-											text-decoration:none;
-											background-color: rgba(120,30,20,0.99);
-											border-radius: 0;
-											color: white;">
-			Access my profile
-		</a>
-	</div>			
-</div>
-
-<!-- <img src="{# asset('img/system/banniere.jpg') #}" style="width:90%; margin-left:5%;"/> -->
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    
+    <script type="text/javascript" src="/js/public/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/forwardemail.js"></script>
+    <link rel="stylesheet" href="/css/forwardemail.css" type="text/css" />
+  </body>
+</html>
 
 {% endblock %}
 

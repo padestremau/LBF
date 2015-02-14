@@ -249,17 +249,7 @@ class MainController extends Controller
                     )
                 )
             ;
-            $this->get('mailer')->send($message);
 
-            $message = \Swift_Message::newInstance()
-                ->setContentType('text/html')
-                ->setSubject('[Le Buffet Francés] Test.')
-                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
-                ->setTo($currentUser->getEmail())
-                ->setBody(
-                    $this->renderView('LBFUserBundle:User:emailTest.html.twig')
-                )
-            ;
             $this->get('mailer')->send($message);
             
             // $email = new Email();

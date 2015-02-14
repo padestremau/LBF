@@ -8,6 +8,6 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('LBFAdminBundle:Default:index.html.twig');
+        return $this->render('LBFAdminBundle:Admin:indexAdmin.html.twig');
     }
 }
