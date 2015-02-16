@@ -1,4 +1,4 @@
-{# src/LBF/UserBundle/Resources/views/User/emailConfirmation.html.twig #}
+{# src/LBF/UserBundle/Resources/views/User/emailAdmin.html.twig #}
 
 {% block body_html %}
 {#
@@ -18,7 +18,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-      Le Buffet Francés - New order on hold
+      Le Buffet Francés - Nouvelle commande client
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -31,7 +31,7 @@
             <tr >
               <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                 <div style="width:100%; " class="" id="pre-header-text" >
-                  This is a letter from Le Buffet Francés.
+                  Cet email provient de <strong>Le Buffet Francés.</strong>
                 </div>
               </td>
             </tr>
@@ -51,14 +51,22 @@
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
                             <div style="width:100%; " class="" id="title_one_half" >
-                              THANK YOU FOR YOUR ORDER
+                              NOUVELLE COMMANDE
                             </div>
                           </td>
                         </tr>
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:14px; " >
                             <div style="width:100%;">
-                                This is a confirmation email regarding your recent order on <strong><a href="www.lebuffetfrances.com" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. Your order is saved, and is <strong>on hold</strong> to be validated by a Manager for your order to be processed. You should receive an email once your order is ready.
+                                Cet email provient de <strong><a href="www.lebuffetfrances.com" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong> concernant un récent achat effectué en ligne par 
+                                <strong>
+                                  {% if member.firstName|length > 0 %}
+                                    {{ member.firstName }}
+                                  {% else %}
+                                    {{ member.email }}
+                                  {% endif %}
+                                </strong>. 
+                                La commande passée est enregistrée est en placée <strong>en attente</strong> pour le moment, en attendant que vous la validiez.
                             </div>
                           </td>
                         </tr>
@@ -74,7 +82,7 @@
                   <tr >
                     <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
                       <div style="width:100%; " class="" id="header_text_01" >
-                        ORDER CONTENT
+                        CONTENU DE LA COMMANDE 
                       </div>
                     </td>
                   </tr>
@@ -93,7 +101,19 @@
                               <tr >
                                 <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
                                   <div style="width:100%; ">
-                                    Thank you again for ordering the following elements :
+                                    Voici le contenu de la commande qui a récemment été passée par
+                                    {% if member.gender %}
+                                      {% if member.gender == true %}
+                                        M.
+                                      {% else %}
+                                        Mme.
+                                      {% endif %}
+                                    {% endif %}
+                                    {% if member.firstName|length > 0 %}
+                                      {{ member.firstName }}
+                                    {% else %}
+                                      {{ member.email }}
+                                    {% endif %}
                                   </div>
                                 </td>
                               </tr>
@@ -106,16 +126,16 @@
                                           <thead>
                                             <tr>
                                               <th>
-                                                Item
+                                                Elément
                                               </th>
                                               <th style="text-align:center;">
-                                                Quantity
+                                                Quantité
                                               </th>
                                               <th style="text-align:center;">
-                                                Weight
+                                                Poids
                                               </th>
                                               <th style="text-align:center;">
-                                                Price
+                                                Prix
                                               </th>
                                             </tr>
                                           </thead>
@@ -175,30 +195,30 @@
 
                                       <br/>
 
-                                      You should a receive an email shortly once the Managers have confirmed your order.
+                                      Le client est en attente de votre validation.
 
                                       <br/><br/>
 
-                                      Please note that you asked the order to be ready for: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
+                                      <strong>Remarque</strong> Le client a demandé à être livré à la date suivante: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
 
                                       <br/><br/>
 
                                       <div style="width: 100%; text-align:center;">
-                                        <a href="http://www.lebuffetfrances.com/user#current" style="
+                                        <a href="http://www.lebuffetfrances.com/admin" style="
                                           padding: 6px 10px;
                                           font-size:12px;
                                           text-decoration:none;
                                           background-color: rgba(120,30,20,0.99);
                                           border-radius: 0;
                                           color: white;">
-                                          Access my profile
+                                          Accéder au back-office
                                         </a>
                                       </div>
                                   </div>
                                 {% else %}
                                     <div style="width:100%; text-align:justify;">
-                                      Sorry, nothing here for now ... <br/>
-                                      Please <a href="mailto:contact@lebuffetfrances.com">contact the administration</a>.
+                                      Cete commande est vide ... <br/>
+                                      <a href="mailto:p.a.destremau@gmail.com">Contactez le webmaster</a> de ce site s'il vous plaît.
                                     </div>
                                 {% endif %}
                                 </td>
@@ -209,76 +229,6 @@
                       </table>
                     </td>
                   </tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <table border="0" cellspacing="0" cellpadding="0" width="600">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <table class="full-width" style="background-color: rgba(100,100,100,0.8); border-top: 2px solid rgba(120,30,20,0.99);" border="0" cellspacing="0" cellpadding="0" width="100%">
-                          <tbody>
-                            <tr>
-                              <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 14px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
-                                <strong><a href="www.lebuffetfrances.com" style="color:rgba(120,30,20,0.99); text-decoration:none;">Le Buffet Francés</a></strong> is new shop in Cusco, selling Embutidos made with local meat but French technique.
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                Keep in touch: 
-                                <a href="">
-                                  <img src="http://localhost:8888/LBF/web/img/system/email/fb.png" alt="FaceBook logo" border="0"  width="20" height="20" style="display:block;">
-                                </a>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                If someone sent you this newsletter and you'd like to join our mailing list, you can sign up 
-                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="#" target="_blank">
-                                  here
-                                </a>
-                                .
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                You're receiving this email as a result of downloading SketchUp Make or SketchUp Pro and opting-in to receive the SketchUpdate Newsletter. If you would like to unsubscribe from all emails from us, please 
-                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="#" target="_blank">
-                                  click here
-                                </a>
-                                .
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                <strong><a href="www.lebuffetfrances.com" style="color:rgba(120,30,20,0.99); text-decoration:none;">Le Buffet Francés</a></strong>
-                              </td>
-
-                            </tr>
-                            <tr>
-                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                C-19, Calle de las Orquideas
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                08056 Cusco - Perú
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 20px; padding-left: 20px;" align="left">
-                                <a style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; font-size: 10px; color: rgba(120,30,20,0.99); text-decoration: none;" href="#" target="_blank">
-                                  www.lebuffetfrances.com
-                                </a>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
                 </table>
               </td>
             </tr>

@@ -70,14 +70,6 @@
 						    </li>
 						    <br/>
 						    <li role="user_tabs" class="">
-						    	<a href="#onHold" aria-controls="onHold" role="tab" data-toggle="tab" class="btn btn-choice">
-						    		Orders on hold ({{ onHoldOrders|length }})
-						    		<div class="float-right inner_arrow">
-										<img src="{{ asset('img/system/defaults/onHoldOrders.png') }}" alt="" class="btn_right_arrow"/>
-									</div>
-						    	</a>
-						    </li>
-						    <li role="user_tabs" class="">
 						    	<a href="#current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Current orders ({{ currentOrders|length }})
 						    		<div class="float-right inner_arrow">
@@ -551,8 +543,8 @@
 								</div>
 							</form>
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="onHold">
-							{% if onHoldOrders|length > 0 %}
+				    	<div role="tabpanel" class="tab-pane" id="current">
+							{% if currentOrders|length > 0 %}
 								<div class="table-responsive">
 			                      <table class="table">
 			                        <thead>
@@ -575,7 +567,7 @@
 			                          </tr>
 			                        </thead>
 			                        <tbody>
-			                          {% for single_order in onHoldOrders %}
+			                          {% for single_order in currentOrders %}
 			                            <tr>
 			                              <th class="center">
 			                                {{ single_order.id }}
@@ -603,10 +595,13 @@
 			                              <td class="center">
 			                              	{% if single_order.status == 'onHold' %}
 			                              		On hold
+				                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
 			                              	{% elseif single_order.status == 'confirm' %}
 			                              		Confirmed
-			                              	{% elseif single_order.status == 'confirm' %}
-			                              		Completed
+			                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+			                              	{% elseif single_order.status == 'refused' %}
+			                              		Refused
+			                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
 			                              	{% endif %}
 			                              </td>
 			                            </tr>
@@ -617,20 +612,6 @@
 							{% else %}
 								<div class="center col-md-9">
 									Sorry, no orders to be confirmed. Please make sure you validated your order.
-									<br/><br/><br/>
-									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal" data-dismiss="modal">
-							            Go shopping 
-							        </a>
-								</div>
-								<div class="col-md-3"></div>
-							{% endif %}
-				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="current">
-							{% if currentOrders|length > 0 %}
-								{{ currentOrders }}
-							{% else %}
-								<div class="center col-md-9">
-									Sorry, no current orders in progress.
 									<br/><br/><br/>
 									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal" data-dismiss="modal">
 							            Go shopping 
@@ -669,9 +650,5 @@
 		</div>
 	</div>
 	<!-- END CONTENT -->
-
-	<!-- BEGIN rightbar -->
-      {% include 'includes/footer.html.twig' %}
-    <!-- END rightbar -->
 
 {% endblock LBF_User_body %}

@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use LBF\UserBundle\Form\OrdersType;
 use LBF\UserBundle\Entity\Orders;
-use LBF\UserBundle\Entity\Email;
 use LBF\MainBundle\Entity\NewsletterEmail;
 
 class MainController extends Controller
@@ -237,6 +236,7 @@ class MainController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($newOrder);
 
+            // Message for client
             $message = \Swift_Message::newInstance()
                 ->setContentType('text/html')
                 ->setSubject('[Le Buffet Francés] New order on hold.')
@@ -251,13 +251,23 @@ class MainController extends Controller
             ;
 
             $this->get('mailer')->send($message);
-            
-            // $email = new Email();
-            // $email->setRecipientName($currentUser->getFirstName());
-            // $email->setRecipientEmail($currentUser->getEmail());
-            // $em = $this->getDoctrine()->getManager();
-            // $em->persist($email);
-            // $em->flush();
+
+
+            // Message for manager/admin
+            $messageAdmin = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] Nouvelle commande.')
+                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo('p.a.destremau@gmail.com')
+                ->setBody(
+                    $this->renderView('LBFUserBundle:User:emailAdmin.html.twig',
+                        array(  'newOrder' => $newOrder,
+                                'member' => $currentUser)
+                    )
+                )
+            ;
+
+            $this->get('mailer')->send($messageAdmin);
 
             // On redirige vers la page de visualisation de le document nouvellement créé
             return $this->redirect($this->generateUrl('lbf_main_empty_special'));

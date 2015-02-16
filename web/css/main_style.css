@@ -574,7 +574,7 @@ strong {
 	position: absolute;
 	bottom : 10px;
 	text-align: center;
-
+	margin: auto;
 	display: none;
 	z-index: 99999;
 }
@@ -1012,6 +1012,13 @@ a.captionOrange:hover
 	border-bottom: 2px solid white !important;
 }
 
+.address_box {
+	text-align: center;
+	font-style: italic;
+	margin-left: 35%;
+	width: 30%;
+	border: 1px dotted white;
+}
 
 
 /* ------------------------------------------------------ User ------------------------------------------------------ */
@@ -1038,6 +1045,7 @@ a.captionOrange:hover
 .border_white_right {
 	border-right: 1px dotted white;
 }
+
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 .footer

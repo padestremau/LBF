@@ -19,7 +19,19 @@ class OrdersRepository extends EntityRepository
 						->setParameter('user', $user)
 					->andWhere ('o.status = :status')
 						->setParameter('status', $status)
-					// ->orderBy('o.createdAt', 'DSC')
+					->orderBy('o.createdAt', 'DESC')
+					->getQuery()
+					->getResult();
+	}
+
+	public function findSpecificNon ($user, $status)
+	{
+		return $this->createQueryBuilder('o')
+					->where ('o.user = :user')
+						->setParameter('user', $user)
+					->andWhere ('o.status != :status')
+						->setParameter('status', $status)
+					->orderBy('o.createdAt', 'DESC')
 					->getQuery()
 					->getResult();
 	}

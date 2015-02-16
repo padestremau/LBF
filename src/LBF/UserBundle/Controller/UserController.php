@@ -54,15 +54,10 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('lbf_user_homepage'));
         }
 
-        $onHoldOrders = $this ->getDoctrine()
-                            ->getManager()
-                            ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecific($currentUser, 'onHold');
-
         $currentOrders = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecific($currentUser, 'confirm');
+                            ->findSpecificNon($currentUser, 'complete');
 
         $pastOrders = $this ->getDoctrine()
                             ->getManager()
@@ -70,7 +65,6 @@ class UserController extends Controller
                             ->findSpecific($currentUser, 'complete');
 
         return $this->render('LBFUserBundle:User:indexUser.html.twig', array(
-            'onHoldOrders' => $onHoldOrders,
             'currentOrders' => $currentOrders,
             'pastOrders' => $pastOrders,
             'formEditUser' => $formEditUser->createView(),
