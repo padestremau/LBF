@@ -86,84 +86,84 @@
 					</div>
 
 					<div class="presentation_texte row">
-						<div class="row80">
-							<div class="center">
+						<div class="row center">
+							<div class="col-md-2 col-xs-2"></div>
+			        		<div class="col-md-8 col-xs-8">
 								<h2>
 									{{ 'main.titles.title_meat' | trans }}<br/>
 									<span>
 										{{ 'main.titles.title_meat_s' | trans }}
 									</span>
 								</h2>
+			        		</div>
+							<div class="col-md-2 col-xs-2 white" >
+								<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+						          	<button class="btn btn-log uppercase">
+						          		<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+										{{ 'main.actions.buy' | trans }}
+						          	</button>
+						        </a>
 							</div>
 						</div>
 						<br/>
-						<div class="row80">
+						<div class="row">
 
-							<script type="text/javascript">
-								var panel_info_open = 'NO';
-								function revealPanelOne() {
-									if (panel_info_open == 'NO') {
-										$('#info_panel_two').animate({'left' : '50%'}, {duration : 500});
-										$('#info_panel_three').animate({'left' : '50%'}, {duration : 500});
-										// document.getElementById(info_panel_details_one).style.display = 'inline-block';
-										panel_info_open = 'YES';
-									}
-									else {
-										$('#info_panel_two').animate({'right' : '50%'}, {duration : 500});
-										$('#info_panel_three').animate({'right' : '50%'}, {duration : 500});
-										panel_info_open = 'NO';
-									}
-
-									return false;
-								}
-							</script>
-
-							<div class="inline_div col-md-4 col-xs-4 center" id="info_panel_one">
+							<div class="col-md-3 col-xs-3 center">
 								<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
 								<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
 								<p class="center">
 									{{ 'main.content.variatyOfChoice' | trans }}
 									<br/>
 									<br/>
-									<button class="no_style_button" onClick="revealPanelOne()">
-										<a href="javascript:void(0)" class="read-more">
-											{{ 'main.actions.learnMore' | trans }} &nbsp;
-										</a>
-									</button>
+
+									<!-- Button trigger modal -->
+									<button type="button" class="read-more no_style_button" data-toggle="modal" data-target="#choiceModal">
+										{{ 'main.actions.learnMore' | trans }}
+									</button> >
 								</p>
 							</div>
-							<div class="inline_div info_panel_details" style="display:none;" id="info_panel_details_one">
-								Coucou c'est moi le test
-							</div>
-							<div class="inline_div col-md-4 col-xs-4 center" id="info_panel_two">
+							<div class="col-md-3 col-xs-3 center">
 								<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
 								<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
 								<p class="center">
 									{{ 'main.content.qualityProduct' | trans }}
 									<br/>
 									<br/>
-									<a class="read-more" href="#">
-										{{ 'main.actions.learnMore' | trans }} &nbsp;
-									</a> >
+
+									<!-- Button trigger modal -->
+									<button type="button" class="read-more no_style_button" data-toggle="modal" data-target="#qualityModal">
+										{{ 'main.actions.learnMore' | trans }}
+									</button> >
 								</p>
 							</div>
-							<div class="inline_div info_panel_details" style="display:none;" id="info_panel_details_two">
-								Coucou c'est moi le test
-							</div>
-							<div class="inline_div col-md-4 col-xs-4 center" id="info_panel_three">
+							<div class="col-md-3 col-xs-3 center">
 								<img alt="Security" src="{{ asset('img/system/icons/security.png') }}" class="icon_presentation"/>
 								<h3> {{ 'main.titles.securedPayment' | trans }} </h3>
 								<p class="center">
 									{{ 'main.content.securedPayment' | trans }}
 									<br/>
 									<br/>
-									<a class="read-more" href="#">
-										{{ 'main.actions.learnMore' | trans }} &nbsp;
-									</a> >
+
+									<!-- Button trigger modal -->
+									<button type="button" class="read-more no_style_button" data-toggle="modal" data-target="#securityModal">
+										{{ 'main.actions.learnMore' | trans }}
+									</button> >
 								</p>
 							</div>
-							<div class="inline_div info_panel_details" style="display:none;" id="info_panel_details_three">
-								Coucou c'est moi le test
+							<div class="col-md-3 col-xs-3 center">
+								<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
+								<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
+								<p class="center">
+									{{ 'main.content.ourProducts' | trans }}
+									<br/>
+									<br/>
+
+							        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+							          	<button class="read-more no_style_button">
+											{{ 'main.actions.discover' | trans }}
+							          	</button>
+							        </a> >
+								</p>
 							</div>
 						</div>
 					</div>
@@ -375,7 +375,10 @@
 									document.getElementById("sessionFlash").innerHTML = '\
 									<div class="alert alert-success alert-dismissible fade in" role="alert">\
 								      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-								      <strong>Congratulations!</strong> This element was added to your cart. \
+								      <strong>\
+								      	{{ 'alert.title.congratulations' | trans }}\
+								      </strong>\ 
+								      {{ 'alert.content.congratulations' | trans }}\
 								      <button  type="button" data-toggle="modal" data-target="#cartModal" id="button_cart_a"  class="no_style_button">\
 								      	<a><strong>\
 								      		{{ "header.titles.myCart" | trans }}\
@@ -450,7 +453,7 @@
 																<br/>
 																<div class="center">
 																	<strong>
-																		Weight:
+																		{{ 'ourProducts.details.weight' | trans }}
 																	</strong>
 																	{{ product.weight }} g
 																</div>
@@ -466,13 +469,13 @@
 																</div> -->
 																<div class="center">
 																	<strong>
-																		Price:
+																		{{ 'ourProducts.details.price' | trans }}
 																	</strong>
 																	S/. {{ product.price }} 
 																	{% if product.category == 'Jamones' %}
-																		for 10 pieces
+																		{{ 'ourProducts.details.for10pieces' | trans }}
 																	{% else %}
-																		/piece
+																		{{ 'ourProducts.details.perPiece' | trans }}
 																	{% endif %}
 																</div>
 															</div>
@@ -491,7 +494,7 @@
 																<div class="row">
 																	{% if naturalProductDef == true %}
 																		<div class="row small_quote">
-																			* Productos naturales sin colorantes ni preservantes
+																			* {{ 'ourProducts.details.naturalProducts' | trans }}
 																		</div>
 																	{% endif %} 
 																</div>
@@ -510,7 +513,7 @@
 																	</div>
 																</div>
 																<div class="inline_div counter_info_divs margin_right_10">
-																	pieces,
+																	{{ 'ourProducts.details.pieces' | trans }}
 																</div>
 															</div>
 															<div class="inline_div col-md-2 col-xs-2">
@@ -556,7 +559,7 @@
 					<!-- Otherwise .... -->
 					{% else %}
 						<p class="center">
-							This page is empty. Contact the web-master.
+							{{ 'ourProducts.warning.message' | trans }}
 						</p>
 					{% endif %}
 
@@ -568,8 +571,12 @@
 					<div class="row center">
 		        		<div class="col-md-2 col-xs-2"></div>
 		        		<div class="col-md-8 col-xs-8">
-							<h2>A propos. <br/>
-								<span>Histoire et anecdotes. </span>
+							<h2>
+								{{ 'aboutUs.titles.title_aboutUs' | trans }}
+								<br/>
+								<span>
+									{{ 'aboutUs.titles.title_aboutUs_s' | trans }}
+								</span>
 							</h2>
 		        		</div>
 						<div class="col-md-2 col-xs-2">

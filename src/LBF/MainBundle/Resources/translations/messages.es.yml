@@ -22,12 +22,16 @@ main:
         variatyOfChoice: 		Variedad de juicio
         qualityProduct: 		Qualitad de producto
         securedPayment: 		Pagamento securo
+        ourProducts:            Productos
     content:
         variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
         qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
+        ourProducts:            "Para llenar vuestro carro de la compra, seleccionad las quantidades de cada producto."
     actions:
         learnMore: 				Mas ínfo
+        discover:               Descubrir
+        buy:                    Comprar
 
 # Products
 
@@ -37,7 +41,22 @@ ourProducts:
         title_ourProducts_s: 	A elegir con amor.
     actions: 
         order: 					ORDENER
+    details:
+        weight:                 "Peso:"
+        price:                  "Precio:"
+        for10pieces:            "para 10 pedazos"
+        perPiece:               "/pedazo"
+        naturalProducts:        "Productos naturales sin colorantes ni preservantes"
+        pieces:                 "pedazos,"
+    warning:
+        message:                "Esat pagina esta en blanco. Contactad el administratorio del sitio web por favor."
 
+# Alerts
+alert:
+    title:
+        congratulations:        Felicitationes!
+    content: 
+        congratulations:        "El emento fue correctamente añadido a su carro de compra."
 
 # About us
 

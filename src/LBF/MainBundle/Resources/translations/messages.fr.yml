@@ -22,12 +22,16 @@ main:
         variatyOfChoice: 		Variété de choix
         qualityProduct: 		Produit de qualité
         securedPayment: 		Paiment sécurisé
+        ourProducts:            Nos produits
     content:
         variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
         qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
+        ourProducts:            "Pour remplir votre panier, veuillez choisir la quantité d'éléments à y ajouter dans la section 'Nos Produits'."
     actions:
         learnMore: 				En savoir plus
+        discover:               Découvrir
+        buy:                    Acheter
 
 # Products
 
@@ -37,7 +41,22 @@ ourProducts:
         title_ourProducts_s: 	A choisir avec amour.
     actions: 
         order: 					COMMANDER
+    details:
+        weight:                 "Poids :"
+        price:                  "Prix :"
+        for10pieces:            "pour 10 pièces"
+        perPiece:               "/pièce"
+        naturalProducts:        "Produits naturels sans colorants ni conservateurs"
+        pieces:                 "pièces,"
+    warning:
+        message:                "Cette page est vide. Contactez l'administrateur de ce site web s'il vous plait."
 
+# Alerts
+alert:
+    title:
+        congratulations:        Félicitations !
+    content: 
+        congratulations:        "Cet élément a bien été ajouté à votre panier."
 
 # About us
 

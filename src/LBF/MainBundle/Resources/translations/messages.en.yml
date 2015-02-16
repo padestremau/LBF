@@ -22,12 +22,16 @@ main:
         variatyOfChoice: 		Variaty of choices
         qualityProduct: 		Quality products
         securedPayment: 		Secured payment
+        ourProducts:            Our products
     content:
         variatyOfChoice: 		"A whole lot of meat to choose meticulosely to fit everyone's tastes and happiness."
         qualityProduct: 		"Quality meat with sole purpose of satisfying the gastronomical curisoty of all."
         securedPayment: 		"100% secured online payment with our 3D-secure system, either with yourcredit card or your Paypal account."
+        ourProducts:            "In order to fill your cart, select the quantity of elements you want of each product."
     actions:
         learnMore: 				Learn more
+        discover:               Discover
+        buy:                    Buy
 
 # Products
 
@@ -37,7 +41,22 @@ ourProducts:
         title_ourProducts_s: 	To choose with love.
     actions: 
         order: 					ORDER
+    details:
+        weight:                 "Weight:"
+        price:                  "Price:"
+        for10pieces:            "for 10 pieces"
+        perPiece:               "/piece"
+        naturalProducts:        "Natural products without colorants or preservants"
+        pieces:                 "pieces,"
+    warning:
+        message:                "This page is empty. Contact the web-master."
 
+# Alerts
+alert:
+    title:
+        congratulations:        Congratulations!
+    content: 
+        congratulations:        "This element was added to your cart."
 
 # About us
 
