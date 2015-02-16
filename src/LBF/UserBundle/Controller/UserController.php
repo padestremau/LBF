@@ -57,12 +57,12 @@ class UserController extends Controller
         $currentOrders = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecificNon($currentUser, 'complete');
+                            ->findSpecificNon($currentUser, 'complete', 10);
 
         $pastOrders = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecific($currentUser, 'complete');
+                            ->findSpecific($currentUser, 'complete', 10);
 
         return $this->render('LBFUserBundle:User:indexUser.html.twig', array(
             'currentOrders' => $currentOrders,

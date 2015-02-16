@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class OrdersRepository extends EntityRepository
 {
-	public function findSpecific ($user, $status)
+	public function findSpecific ($user, $status, $qty)
 	{
 		return $this->createQueryBuilder('o')
 					->where ('o.user = :user')
@@ -20,11 +20,12 @@ class OrdersRepository extends EntityRepository
 					->andWhere ('o.status = :status')
 						->setParameter('status', $status)
 					->orderBy('o.createdAt', 'DESC')
+					->setMaxResults($qty)
 					->getQuery()
 					->getResult();
 	}
 
-	public function findSpecificNon ($user, $status)
+	public function findSpecificNon ($user, $status, $qty)
 	{
 		return $this->createQueryBuilder('o')
 					->where ('o.user = :user')
@@ -32,8 +33,33 @@ class OrdersRepository extends EntityRepository
 					->andWhere ('o.status != :status')
 						->setParameter('status', $status)
 					->orderBy('o.createdAt', 'DESC')
+					->setMaxResults($qty)
 					->getQuery()
 					->getResult();
 	}
+
+	public function findSpecificAdmin ($status, $qty)
+	{
+		return $this->createQueryBuilder('o')
+					->where ('o.status = :status')
+						->setParameter('status', $status)
+					->orderBy('o.createdAt', 'DESC')
+					->setMaxResults($qty)
+					->getQuery()
+					->getResult();
+	}
+
+	public function findSpecificAdminNon ($status, $qty)
+	{
+		return $this->createQueryBuilder('o')
+					->where ('o.status != :status')
+						->setParameter('status', $status)
+					->orderBy('o.createdAt', 'DESC')
+					->setMaxResults($qty)
+					->getQuery()
+					->getResult();
+	}
+
+	
 
 }

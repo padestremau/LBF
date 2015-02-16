@@ -568,7 +568,10 @@
 			                        </thead>
 			                        <tbody>
 			                          {% for single_order in currentOrders %}
-			                            <tr>
+			                            <tr class="
+			                            	{% if single_order.status == 'confirm' %}
+			                            		hover_popup
+			                            	{% endif %}">
 			                              <th class="center">
 			                                {{ single_order.id }}
 			                              </th>
@@ -597,8 +600,11 @@
 			                              		On hold
 				                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
 			                              	{% elseif single_order.status == 'confirm' %}
-			                              		Confirmed
+				                              	Confirmed
 			                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+			                              		<span>
+			                              			You may come and pick it up
+			                              		</span>
 			                              	{% elseif single_order.status == 'refused' %}
 			                              		Refused
 			                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
@@ -622,7 +628,61 @@
 				    	</div>
 				    	<div role="tabpanel" class="tab-pane" id="past">
 				    		{% if pastOrders|length > 0 %}
-								{{ pastOrders }}
+								<div class="table-responsive">
+			                      <table class="table">
+			                        <thead>
+			                          <tr>
+			                            <th class="center">
+			                              Order n°
+			                            </th>
+			                            <th class="left">
+			                              Elements
+			                            </th>
+			                            <th class="center">
+			                              Created
+			                            </th>
+			                            <th class="center">
+			                              Delivery asked for
+			                            </th>
+			                            <th class="center">
+			                              Status
+			                            </th>
+			                          </tr>
+			                        </thead>
+			                        <tbody>
+			                          {% for single_order in pastOrders %}
+			                            <tr>
+			                              <th class="center">
+			                                {{ single_order.id }}
+			                              </th>
+			                              <td class="left">
+			                              	{% if single_order.elements|length > 0 %}
+			                              		<ul class="list_no_style_li">
+			                              			{% for single_element in single_order.elements %}
+			                              				{% set item = single_element['item'] %}
+		                            					{% set qty = single_element['qty'] %}
+			                              				<li>
+			                              					{{ item.name }} (x{{ qty }})
+			                              				</li>
+			                              			{% endfor %}
+			                              		</ul>
+			                              	{% else %}
+			                              	{% endif %}
+			                              </td>
+			                              <td class="center">
+			                              	{{ single_order.createdAt }}
+			                              </td>
+			                              <td class="center">
+			                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
+			                              </td>
+			                              <td class="center">
+			                              	Completed
+			                              </td>
+			                            </tr>
+			                          {% endfor %}
+			                        </tbody>
+			                      </table>
+			                    </div>
 							{% else %}
 								<div class="center col-md-9">
 									Sorry, no past orders in progress.

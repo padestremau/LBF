@@ -1046,6 +1046,31 @@ a.captionOrange:hover
 	border-right: 1px dotted white;
 }
 
+.hover_popup {
+
+}
+.hover_popup:focus{
+    background:rgba(0,0,0,0.3);
+    box-shadow:0 1px 0 rgba(255,255,255,.4);
+}
+.hover_popup span {
+    position:absolute;
+    margin-top:30px;
+    margin-left:-135px;
+    color: white;
+    background: rgba(0,0,0,0.88);
+    padding: 5px 10px;
+    /*border-radius:3px;*/
+    border: 5px solid white,
+    transform:scale(0) rotate(-12deg);
+    transition:all .25s;
+    opacity:0;
+    z-index: 10000;
+}
+.hover_popup:hover span, .hover_popup:focus span {
+    transform:scale(1) rotate(0);
+    opacity:1;
+}
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 .footer

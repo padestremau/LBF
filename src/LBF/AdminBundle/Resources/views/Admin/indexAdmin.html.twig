@@ -1,6 +1,6 @@
-{# src/LBF/UserBundle/Resources/User/indexUser.html.twig #}
+{# src/LBF/AdminBundle/Resources/User/indexAdmin.html.twig #}
 
-{% extends "LBFUserBundle::user_general.html.twig" %}
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
 
 {% block title %}
   {{ parent() }} - {{ 'user.titles.profile' | trans }}
@@ -15,28 +15,343 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section0">
+			<div class="section" id="section9">
+				<br/><br/>
+				
+				<div class="row">
+					<div class="col-md-4"></div>
+
+					<div class="col-md-4">
+						<h2 class="center">
+							Administration du site
+						</h2>
+					</div>
+
+					<div class="col-md-4"></div>
+				</div>
+				<hr/>
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
-		        		<div>
-							<a href="{{ path('lbf_admin_homepage') }}" class="btn btn-perso float-right">
-						    	{{ 'user.actions.back'|trans }}
-						     	<i class="fa fa-sign-in"></i>
-						    </a>
-						</div>
+		        		<div role="tabpanel">
 
-						<!-- <div class="col-md-3">
-							<div class="photo_souvenir"
-								style="width: 100%; background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%;"
-								onClick="showPhoto('{{ photo.id }}')"
-								>
-								<script type="text/javascript">
-									var cw = $('.photo_souvenir').width();
-									$('.photo_souvenir').css({'height':cw+'px'});
-								</script>
-							</div>
-						</div> -->
+							  <!-- Nav tabs -->
+							  <div class="col-md-3 border_white_right">
+								  <ul class="nav_tabs_user list_no_style_li" role="tablist">
+								    <li role="user_tabs" class="active">
+								    	<a href="#users" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+								    		Users ({{ users|length }})
+								    		<div class="float-right inner_arrow">
+												<img src="{{ asset('img/system/defaults/users.png') }}" alt="" class="btn_right_arrow"/>
+											</div>
+								    	</a>
+								    </li>
+								    <li role="user_tabs" class="">
+								    	<a href="#emails" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+								    		Newsletter emails ({{ newsletterEmails|length }})
+								    		<div class="float-right inner_arrow">
+												<img src="{{ asset('img/system/defaults/emails.png') }}" alt="" class="btn_right_arrow"/>
+											</div>
+								    	</a>
+								    </li>
+								    <li role="user_tabs" class="">
+								    	<a href="#current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+								    		Current orders ({{ currentOrders|length }})
+								    		<div class="float-right inner_arrow">
+												<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
+											</div>
+								    	</a>
+								    </li>
+								    <li role="user_tabs" class="">
+								    	<a href="#past" aria-controls="past" role="tab" data-toggle="tab" class="btn btn-choice">
+								    		Past orders ({{ pastOrders|length }})
+								    		<div class="float-right inner_arrow">
+												<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
+											</div>
+								    	</a>
+								    </li>
+								    <br/>
+								    <li role="user_tabs" class="">
+								    	<a href="{{ path('fos_user_security_logout') }}" class="btn btn-choice logout-btn">
+								    		Logout
+								    		<div class="float-right inner_arrow">
+												<img src="{{ asset('img/system/defaults/logout.png') }}" alt="" class="btn_right_arrow"/>
+											</div>
+								    	</a>
+								    </li>
+								  </ul>
+							  </div>
+
+						  	<!-- Tab panes -->
+						  	<div class="col-md-9 tab-content">
+						  		<div role="tabpanel" class="tab-pane nav active" id="users">
+						    		{% if users|length > 0 %}
+										<div class="table-responsive">
+					                      <table class="table">
+					                        <thead>
+					                          <tr>
+					                            <th class="center">
+					                              Id
+					                            </th>
+					                            <th class="left">
+					                              Prénom
+					                            </th>
+					                            <th class="center">
+					                              Nom
+					                            </th>
+					                            <th class="center">
+					                              Email
+					                            </th>
+					                            <th class="center">
+					                              Login
+					                            </th>
+					                          </tr>
+					                        </thead>
+					                        <tbody>
+					                          {% for user in users %}
+					                            <tr>
+					                              <th class="center">
+					                                {{ user.id }}
+					                              </th>
+					                              <td class="left">
+					                              	{% if user.firstName|length > 0 %}
+					                              		{{ user.firstName }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                              </td>
+					                              <td class="center">
+					                              	{% if user.lastName|length > 0 %}
+					                              		{{ user.lastName }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                              </td>
+					                              <td class="center">
+					                              	{{ user.email }}
+					                              </td>
+					                              <td class="center">
+					                              	{{ user.lastLogin|date("H:i d/M/Y") }}
+					                              </td>
+					                            </tr>
+					                          {% endfor %}
+					                        </tbody>
+					                      </table>
+					                    </div>
+									{% else %}
+										<div class="center col-md-9">
+											Sorry, no users.
+										</div>
+										<div class="col-md-3"></div>
+									{% endif %}
+						    	</div>
+						    	<div role="tabpanel" class="tab-pane" id="emails">
+						    		<div class="row">
+							    		<div class="float-right">
+							    			<button class="btn btn-log">
+							    				Ecire une newsletter
+							    			</button>
+							    		</div>
+						    		</div>
+						    		{% if newsletterEmails|length > 0 %}
+										<div class="table-responsive">
+					                      <table class="table">
+					                        <thead>
+					                          <tr>
+					                            <th class="center">
+					                              Id
+					                            </th>
+					                            <th class="left">
+					                              Email
+					                            </th>
+					                            <th class="center">
+					                              Inscrit le
+					                            </th>
+					                          </tr>
+					                        </thead>
+					                        <tbody>
+					                          {% for email in newsletterEmails %}
+					                            <tr>
+					                              <th class="center">
+					                                {{ email.id }}
+					                              </th>
+					                              <td class="left">
+					                              	{{ email.email }}
+					                              </td>
+					                              <td class="center">
+					                              	{{ email.createdAt|date("H:i d/M/Y") }}
+					                              </td>
+					                            </tr>
+					                          {% endfor %}
+					                        </tbody>
+					                      </table>
+					                    </div>
+									{% else %}
+										<div class="center col-md-9">
+											Sorry, no Emails.
+										</div>
+										<div class="col-md-3"></div>
+									{% endif %}
+						    	</div>
+						    	<div role="tabpanel" class="tab-pane" id="current">
+									{% if currentOrders|length > 0 %}
+										<div class="table-responsive">
+					                      <table class="table">
+					                        <thead>
+					                          <tr>
+					                            <th class="center">
+					                              Ordre n°
+					                            </th>
+					                            <th class="left">
+					                              Eléments
+					                            </th>
+					                            <th class="center">
+					                              Créé le
+					                            </th>
+					                            <th class="center">
+					                              Livraison le
+					                            </th>
+					                            <th class="center">
+					                              Statut
+					                            </th>
+					                            <th class="center">
+					                            	Action
+					                            </th>
+					                          </tr>
+					                        </thead>
+					                        <tbody>
+					                          {% for single_order in currentOrders %}
+					                            <tr>
+					                              <th class="center">
+					                                {{ single_order.id }}
+					                              </th>
+					                              <td class="left">
+					                              	{% if single_order.elements|length > 0 %}
+					                              		<ul class="list_no_style_li">
+					                              			{% for single_element in single_order.elements %}
+					                              				{% set item = single_element['item'] %}
+				                            					{% set qty = single_element['qty'] %}
+					                              				<li>
+					                              					{{ item.name }} (x{{ qty }})
+					                              				</li>
+					                              			{% endfor %}
+					                              		</ul>
+					                              	{% else %}
+					                              	{% endif %}
+					                              </td>
+					                              <td class="center">
+					                              	{{ single_order.createdAt }}
+					                              </td>
+					                              <td class="center">
+					                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
+					                              </td>
+					                              <td class="center">
+					                              	{% if single_order.status == 'onHold' %}
+					                              		En attente
+						                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
+					                              	{% elseif single_order.status == 'confirm' %}
+					                              		Confirmé
+					                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+					                              	{% elseif single_order.status == 'refused' %}
+					                              		Refusé
+					                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
+					                              	{% endif %}
+					                              </td>
+					                              <td>
+					                              	<a href="#">
+						                              	<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+					                              	</a>
+					                              	<a href="#">
+						                              	<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
+					                              	</a>
+					                              </td>
+					                            </tr>
+					                          {% endfor %}
+					                        </tbody>
+					                      </table>
+					                    </div>
+									{% else %}
+										<div class="center col-md-9">
+											Aucun ordre pour l'instant.
+										</div>
+										<div class="col-md-3"></div>
+									{% endif %}
+						    	</div>
+						    	<div role="tabpanel" class="tab-pane" id="past">
+						    		{% if pastOrders|length > 0 %}
+										<div class="table-responsive">
+					                      <table class="table">
+					                        <thead>
+					                          <tr>
+					                            <th class="center">
+					                              Ordre n°
+					                            </th>
+					                            <th class="left">
+					                              Eléments
+					                            </th>
+					                            <th class="center">
+					                              Créé le
+					                            </th>
+					                            <th class="center">
+					                              Livraison le
+					                            </th>
+					                            <th class="center">
+					                              Statut
+					                            </th>
+					                          </tr>
+					                        </thead>
+					                        <tbody>
+					                          {% for single_order in pastOrders %}
+					                            <tr>
+					                              <th class="center">
+					                                {{ single_order.id }}
+					                              </th>
+					                              <td class="left">
+					                              	{% if single_order.elements|length > 0 %}
+					                              		<ul class="list_no_style_li">
+					                              			{% for single_element in single_order.elements %}
+					                              				{% set item = single_element['item'] %}
+				                            					{% set qty = single_element['qty'] %}
+					                              				<li>
+					                              					{{ item.name }} (x{{ qty }})
+					                              				</li>
+					                              			{% endfor %}
+					                              		</ul>
+					                              	{% else %}
+					                              	{% endif %}
+					                              </td>
+					                              <td class="center">
+					                              	{{ single_order.createdAt }}
+					                              </td>
+					                              <td class="center">
+					                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
+					                              </td>
+					                              <td class="center">
+					                              	Livré
+					                              </td>
+					                            </tr>
+					                          {% endfor %}
+					                        </tbody>
+					                      </table>
+					                    </div>
+									{% else %}
+										<div class="center col-md-9">
+											Aucun ordre pour l'instant.
+										</div>
+										<div class="col-md-3"></div>
+									{% endif %}
+						    	</div>
+						    	<div role="tabpanel" class="tab-pane" id="logout">
+									
+						    	</div>
+						    	
+						  	</div>
+
+						</div>
+		        	{% else %}
+		        		<div>
+		        			Vous n'etes pas autorisé à etre sur cette partie du site.
+		        		</div>
 		        	{% endif %}
 
 			</div>
