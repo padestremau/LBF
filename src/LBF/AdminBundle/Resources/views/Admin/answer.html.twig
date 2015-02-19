@@ -1,0 +1,283 @@
+{# src/LBF/AdminBundle/Resources/User/indexAdmin.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Administration
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section9">
+				<br/><br/>
+				
+				<div class="row">
+					<div class="col-md-4"></div>
+
+					<div class="col-md-4">
+						<h2 class="center">
+							Administration du site
+						</h2>
+					</div>
+
+					<div class="col-md-4"></div>
+				</div>
+				<hr/>
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+		        		<div class="row">
+		        			<div class="row center">
+		        				Commane effectuée par {% if order.user.firstName|length > 0 %} {{ order.user.firstName }} {% else %} {{ order.user.email }} {% endif %}, le {{ order.createdAt|date('d/M/Y') }} à {{ order.createdAt|date('H:i') }} : <br/><br/>
+		        			</div>
+		        			<div class="row80">
+		        				
+			        			{% if order.elements|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Ordre n°
+				                            </th>
+				                            <th class="left">
+				                              Eléments
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Livraison le
+				                            </th>
+				                            <th class="center">
+				                              Statut actuel
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                            <tr>
+				                              <th class="center">
+				                                {{ order.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{% if order.elements|length > 0 %}
+				                              		<ul class="list_no_style_li item_list">
+				                              			{% for single_element in order.elements %}
+				                              				{% set item = single_element['item'] %}
+			                            					{% set qty = single_element['qty'] %}
+				                              				<li>
+				                              					{{ item.name }} (x{{ qty }})
+				                              				</li>
+				                              			{% endfor %}
+				                              		</ul>
+				                              	{% else %}
+				                              		(Commande vide)
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{{ order.createdAt|date("H:i d/M/Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ order.deliveryAt|date("H:i d/M/Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{% if order.status == 'onHold' %}
+				                              		En attente
+					                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% elseif order.status == 'confirm' %}
+				                              		Confirmé
+				                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% elseif order.status == 'refused' %}
+				                              		Refusé
+				                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% endif %}
+				                              </td>
+				                            </tr>
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center row">
+										Cette commande est vide. Si c'est une erreur, contactez le client : <br/><br/>
+
+										<a href="mailto:{{ order.user.email }}">
+											{{ order.user.email }}
+										</a>
+
+									</div>
+								{% endif %}
+
+								<hr/>
+		        			</div>
+		        			<div class="row80 center">
+		        				<script type="text/javascript">
+								function goToPathActionForm(path) {
+									pathToGo = "{{ path('lbf_admin_answer_confirm', {'orderId':order.id, 'status':'STATUSTOREPLACE'}) }}";
+									document.getElementById('form_admin').action = pathToGo.replace('STATUSTOREPLACE',path);
+								}
+
+								</script>
+		        				<form action="#" id="form_admin">
+			        				<div class="row">
+				        				<div class="col-md-6">
+					        				Elements dans la commande : <br/><br/>
+
+					        				<div class="row60">
+					        					<script type="text/javascript">
+												// Listen for click on toggle checkbox
+												$( '#all_elements' ).click( function () {
+												    $( '#checkboxes_elements input[type="checkbox"]' ).prop('checked', this.checked);
+												})
+
+												</script>
+						        				<div id="checkboxes_elements">
+							        				{% if order.elements|length > 0 %}
+							        					<!-- <input type="checkbox" name="_all_elements" id="all_elements"/>
+							        					<label for="_all_elements">Tout sélectionner</label>
+							        					<div class="sep_order_admin"></div> -->
+					                              		<ul class="list_no_style_li item_list left">
+					                              			{% for single_element in order.elements %}
+					                              				{% set item = single_element['item'] %}
+					                        					{% set qty = single_element['qty'] %}
+					                        					<input type="checkbox" name="_{{ item.type }}" id="checkbox-{{ item.type }}" value="YES" checked/>
+					                        					<label for="_{{ item.type }}">{{ item.name }} (x{{ qty }})</label> <br/>
+					                              			{% endfor %}
+					                              		</ul>
+					                              	{% else %}
+					                              		(Commande vide)
+					                              	{% endif %}
+						        				</div>
+					        				</div>
+				        				</div>
+				        				<div class="col-md-6">
+					        				Livraison le <strong>{{ order.deliveryAt|date("d/M/Y") }}</strong> à <strong>{{ order.deliveryAt|date("H:i") }}</strong>. Cela vous convient-il ? <br/><br/>
+
+					        				<input type="radio" name="delivery" value="yes_delivery" id="yes_delivery" onClick="showDateSelect()" checked/>
+					        				<label for="yes_delivery">Oui</label>
+					        				<input type="radio" name="delivery" value="no_delivery" id="no_delivery" onClick="showDateSelect()"/>
+					        				<label for="no_delivery">Non</label>
+
+					        				<br/>
+
+					        				<script type="text/javascript">
+												function showDateSelect() {
+												    if (document.getElementById('no_delivery').checked) {
+												        document.getElementById('date_select').style.display = 'block';
+												    }
+												    else {
+												        document.getElementById('date_select').style.display = 'none';
+											    	}
+											    }
+											</script>
+
+					        				<div style="display:none;" id="date_select">
+					        					<span class="italic">
+							        				Si non, choisissez l'heure qui vous convient le mieux :
+						        				</span>
+						        				<br/>
+					        					<div class="input-icon">
+					        						{{ order.deliveryAt|date("d/M/Y H:i") }}
+										        	<div class="inline_div">
+										        		<div class="form-control placeholder-no-fix" type="datetime" id="deliveryAt" name="_deliveryAt">
+										        			<select id="deliveryAt_time_hour" name="deliveryAt_time_hour">
+										        				{% for int in 10..19 %}
+										        					<option value="{{int}}" {% if order.deliveryAt|date("H") == int %}selected{% endif %}>{{int}}</option>
+										        				{% endfor %}
+										        			</select>
+										        			:
+										        			<select id="deliveryAt_time_minute" name="deliveryAt_time_minute">
+										        				{% set minutes = ['00', 15, 30, 45] %}
+										        				{% for int in minutes %}
+										        					<option value="{{int|raw}}" {% if order.deliveryAt|date("i") == int|raw %}selected{% endif %}>{{int|raw}}</option>
+										        				{% endfor %}
+										        			</select>
+										        		</div>
+										        	</div>
+										        	<div class="inline_div">
+												        <div class="form-control placeholder-no-fix" type="datetime" id="deliveryAt" name="_deliveryAt">
+												        	<select id="deliveryAt_date_day" name="deliveryAt_date_day">
+										        				{% for int in 1..31 %}
+										        					<option value="{{int}}" {% if order.deliveryAt|date("d") == int %}selected{% endif %}>{{int}}</option>
+										        				{% endfor %}
+										        			</select>
+										        			<select id="deliveryAt_date_month" name="deliveryAt_date_month">
+										        				{% for int in 1..12 %}
+										        					<option value="{{int}}" {% if order.deliveryAt|date("M") == int %}selected{% endif %}>{{int}}</option>
+										        				{% endfor %}
+										        			</select>
+										        			<select id="deliveryAt_date_year" name="deliveryAt_date_year">
+										        				{% for int in 2015..2050 %}
+										        					<option value="{{int}}" {% if order.deliveryAt|date("Y") == int %}selected{% endif %}>{{int}}</option>
+										        				{% endfor %}
+										        			</select>
+													    </div>
+										        	</div>
+										        </div>
+											</div>
+				        				</div>
+			        				</div>
+
+			        				<br/>
+
+			        				<div class="row60">
+
+				        				<div class="form-group">
+											<div class="input-icon">
+						        				<textarea class="form-control select2" type="textarea" name="_email_confirmation_content" id="_email_confirmation_content" placeholder="Message (optionel) : "></textarea>
+									        </div>
+										</div>		        					
+			        				</div>
+
+			        				<br/>
+
+			        				<div class="row">
+			        					<div class="col-md-2"></div>
+		        						{% if order.status != 'confirm' %}
+				        					<div class="col-md-4 center">
+			                              		<button class="btn btn-admin" onClick="goToPathActionForm('confirm')" type="submit">
+				                              		Confirmer
+				                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+			                              		</button>
+				        					</div>
+		                              	{% endif %}
+		                              	{% if order.status != 'onHold' %}
+				        					<div class="col-md-4 center">
+			                              		<button class="btn btn-admin" onClick="goToPathActionForm('onHold')" type="submit">
+				                              		Mettre en attente
+				                              		<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
+			                              		</button>
+				        					</div>
+		                              	{% endif %}
+		                              	{% if order.status != 'refused' %}
+				        					<div class="col-md-4 center">
+			                              		<button class="btn btn-admin" onClick="goToPathActionForm('refused')" type="submit">
+				                              		Refuser
+				                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
+			                              		</button>
+				        					</div>
+		                              	{% endif %}
+		                              	<div class="col-md-2"></div>
+			        				</div>
+		        				</form>
+		        			</div>
+		        		</div>
+		        	{% else %}
+		        		<div>
+		        			Vous n'etes pas autorisé à etre sur cette partie du site.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

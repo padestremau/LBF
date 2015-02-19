@@ -92,27 +92,6 @@ class User extends BaseUser
     private $addressCountry;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="pastOrders", type="array", nullable=true)
-     */
-    private $pastOrders;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="onHoldOrders", type="array", nullable=true)
-     */
-    private $onHoldOrders;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="currentOrders", type="array", nullable=true)
-     */
-    private $currentOrders;
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="gender", type="boolean", nullable=true)
@@ -380,52 +359,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set pastOrders
-     *
-     * @param array $pastOrders
-     * @return User
-     */
-    public function setPastOrders($pastOrders)
-    {
-        $this->pastOrders = $pastOrders;
-
-        return $this;
-    }
-
-    /**
-     * Get pastOrders
-     *
-     * @return array 
-     */
-    public function getPastOrders()
-    {
-        return $this->pastOrders;
-    }
-
-    /**
-     * Set currentOrders
-     *
-     * @param array $currentOrders
-     * @return User
-     */
-    public function setCurrentOrders($currentOrders)
-    {
-        $this->currentOrders = $currentOrders;
-
-        return $this;
-    }
-
-    /**
-     * Get currentOrders
-     *
-     * @return array 
-     */
-    public function getCurrentOrders()
-    {
-        return $this->currentOrders;
-    }
-
-    /**
      * Set gender
      *
      * @param boolean $gender
@@ -589,27 +522,4 @@ class User extends BaseUser
     }
 
     /*   *********   End  File  *************  */
-
-    /**
-     * Set onHoldOrders
-     *
-     * @param array $onHoldOrders
-     * @return User
-     */
-    public function setOnHoldOrders($onHoldOrders)
-    {
-        $this->onHoldOrders = $onHoldOrders;
-
-        return $this;
-    }
-
-    /**
-     * Get onHoldOrders
-     *
-     * @return array 
-     */
-    public function getOnHoldOrders()
-    {
-        return $this->onHoldOrders;
-    }
 }

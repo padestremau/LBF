@@ -235,6 +235,7 @@ class MainController extends Controller
         if ($formNewOrder->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($newOrder);
+            $em->flush();
 
             // Message for client
             $message = \Swift_Message::newInstance()
@@ -268,6 +269,7 @@ class MainController extends Controller
             ;
 
             $this->get('mailer')->send($messageAdmin);
+            
 
             // On redirige vers la page de visualisation de le document nouvellement créé
             return $this->redirect($this->generateUrl('lbf_main_empty_special'));

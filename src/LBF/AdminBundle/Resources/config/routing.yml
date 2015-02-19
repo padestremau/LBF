@@ -1,3 +1,21 @@
 lbf_admin_homepage:
     path:     /
     defaults: { _controller: LBFAdminBundle:Admin:index }
+
+lbf_admin_answer:
+    path:     /answer/{orderId}
+    defaults: { _controller: LBFAdminBundle:Admin:answer }
+    requirements:
+        routesId: \d+
+
+lbf_admin_answer_edit:
+    path:     /answer/edit/{orderId}
+    defaults: { _controller: LBFAdminBundle:Admin:answer }
+    requirements:
+        routesId: \d+
+
+lbf_admin_answer_confirm:
+    path:     /answer/confirm/{status}/{orderId}
+    defaults: { _controller: LBFAdminBundle:Admin:confirm }
+    requirements:
+        routesId: \d+
