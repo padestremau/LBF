@@ -54,9 +54,84 @@ ourProducts:
 # Alerts
 alert:
     title:
-        congratulations:        Congratulations!
+        congratulations:        "Congratulations!"
+        careful:                "Careful!"
     content: 
         congratulations:        "This element was added to your cart."
+        pleaseRefresh:          "Please refresh your cart."
+        elementDeleted:         "Element deleted."
+        cartEmptied:            "Cart was successfully emptied."
+        noChangeMade:           "No change to your cart were made."
+
+# Cart
+cart:
+    titles:
+        content:                Content
+        order:                  Order
+        confirm:                Confirm
+        total:                  "TOTAL:"
+        thankYou:               "Thank you for your order. You should receive an email very shortly."
+    tableTitles:
+        item:                   Item
+        quantity:               Quantity
+        weight:                 Weight
+        price:                  Price
+        action:                 Action
+    actions:
+        emptyCart:              Empty cart
+        refreshCart:            Refresh cart
+        continueShopping:       "Continue shopping..."
+        delete:                 Delete
+        previous:               Previous
+    actionTitles:
+        deleteElement:          Delete element
+    errors:
+        nothingHere:            "Sorry, nothing here for now..."
+    orderContent:
+        dear:                   Dear
+        finalize:               "You're about to finalize your order of:"
+        ofaTotal:               "TOTAL: "
+        requisites:             "Please be aware that this a pre-order that:"
+        conditions1:            "The managers have to validate it for your order to get confirmed."
+        conditions2:            "Once the order is confirmed and ready, you will have to come to pay and to collect your order at the following address: "
+        shopOpen:               "The shop is open between 10am and 7pm, from Monday to Saturday."
+        minimumOpen:            "The minimum delay is 2 hours, but you can choose a date that best suits you:"
+
+# Email summary
+emailSummary:
+    notes: 
+        topSentence:            "This is a letter from "
+    titles:
+        general:                New order on hold
+        thankYouForYourOrder:   THANK YOU FOR YOUR ORDER
+        orderContent:           ORDER CONTENT
+    content:
+        summaryEmailRegarding:  "This is a summary email regarding your recent order on "
+        orderIs:                "Your order is saved, and is"
+        onHold:                 "on hold"
+        shouldReceive:          "waiting to be validated by a Manager for your order to be processed. You should receive a confirmation email once your order is taken into account, very shortly."
+        thankYouAgain:          "Thank you again for ordering the following elements:"
+        shouldReceiveShortly:   "You should a receive an email shortly once the Managers have confirmed your order."
+    tableTitles:
+        item:                   Item
+        quantity:               Quantity
+        weight:                 Weight
+        price:                  Price
+        total:                  "TOTAL: "
+    actions:
+        accessProfile:          Access my profile
+    errors:
+        nothingHere:            "Sorry, nothing here for now..."
+        please:                 Please
+        contactAdministration:  "contact the administration"
+    footer:
+        anecdote:               "is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way."
+        keepInTouch:            "Keep in touch: "
+        ifWantToJoin:           "If someone sent you this email and you'd like to join our mailing list, you can sign up "
+        here:                   "here"
+        quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
+        clickHere:              click here
+
 
 # About us
 

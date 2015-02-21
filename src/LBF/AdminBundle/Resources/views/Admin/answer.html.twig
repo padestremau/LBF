@@ -1,4 +1,4 @@
-{# src/LBF/AdminBundle/Resources/User/indexAdmin.html.twig #}
+{# src/LBF/AdminBundle/Resources/User/answer.html.twig #}
 
 {% extends "LBFAdminBundle::admin_general.html.twig" %}
 
@@ -82,10 +82,10 @@
 				                              	{% endif %}
 				                              </td>
 				                              <td class="center">
-				                              	{{ order.createdAt|date("H:i d/M/Y") }}
+				                              	{{ order.createdAt|date("H:i d M Y") }}
 				                              </td>
 				                              <td class="center">
-				                              	{{ order.deliveryAt|date("H:i d/M/Y") }}
+				                              	{{ order.deliveryAt|date("H:i d M Y") }}
 				                              </td>
 				                              <td class="center">
 				                              	{% if order.status == 'onHold' %}
@@ -117,14 +117,7 @@
 								<hr/>
 		        			</div>
 		        			<div class="row80 center">
-		        				<script type="text/javascript">
-								function goToPathActionForm(path) {
-									pathToGo = "{{ path('lbf_admin_answer_confirm', {'orderId':order.id, 'status':'STATUSTOREPLACE'}) }}";
-									document.getElementById('form_admin').action = pathToGo.replace('STATUSTOREPLACE',path);
-								}
-
-								</script>
-		        				<form action="#" id="form_admin">
+		        				<form id="form_admin" method="post" {{ form_enctype(formConfirmOrder) }}>
 			        				<div class="row">
 				        				<div class="col-md-6">
 					        				Elements dans la commande : <br/><br/>
@@ -146,8 +139,8 @@
 					                              			{% for single_element in order.elements %}
 					                              				{% set item = single_element['item'] %}
 					                        					{% set qty = single_element['qty'] %}
-					                        					<input type="checkbox" name="_{{ item.type }}" id="checkbox-{{ item.type }}" value="YES" checked/>
-					                        					<label for="_{{ item.type }}">{{ item.name }} (x{{ qty }})</label> <br/>
+					                        					<input type="checkbox" name="{{ item.type }}" id="checkbox-{{ item.type }}" value="YES" checked/>
+					                        					<label for="{{ item.type }}">{{ item.name }} (x{{ qty }})</label> <br/>
 					                              			{% endfor %}
 					                              		</ul>
 					                              	{% else %}
@@ -157,7 +150,7 @@
 					        				</div>
 				        				</div>
 				        				<div class="col-md-6">
-					        				Livraison le <strong>{{ order.deliveryAt|date("d/M/Y") }}</strong> à <strong>{{ order.deliveryAt|date("H:i") }}</strong>. Cela vous convient-il ? <br/><br/>
+					        				Livraison le <strong>{{ order.deliveryAt|date("d M Y") }}</strong> à <strong>{{ order.deliveryAt|date("H:i") }}</strong>. Cela vous convient-il ? <br/><br/>
 
 					        				<input type="radio" name="delivery" value="yes_delivery" id="yes_delivery" onClick="showDateSelect()" checked/>
 					        				<label for="yes_delivery">Oui</label>
@@ -182,44 +175,31 @@
 							        				Si non, choisissez l'heure qui vous convient le mieux :
 						        				</span>
 						        				<br/>
-					        					<div class="input-icon">
-					        						{{ order.deliveryAt|date("d/M/Y H:i") }}
-										        	<div class="inline_div">
-										        		<div class="form-control placeholder-no-fix" type="datetime" id="deliveryAt" name="_deliveryAt">
-										        			<select id="deliveryAt_time_hour" name="deliveryAt_time_hour">
-										        				{% for int in 10..19 %}
-										        					<option value="{{int}}" {% if order.deliveryAt|date("H") == int %}selected{% endif %}>{{int}}</option>
-										        				{% endfor %}
-										        			</select>
-										        			:
-										        			<select id="deliveryAt_time_minute" name="deliveryAt_time_minute">
-										        				{% set minutes = ['00', 15, 30, 45] %}
-										        				{% for int in minutes %}
-										        					<option value="{{int|raw}}" {% if order.deliveryAt|date("i") == int|raw %}selected{% endif %}>{{int|raw}}</option>
-										        				{% endfor %}
-										        			</select>
-										        		</div>
-										        	</div>
-										        	<div class="inline_div">
-												        <div class="form-control placeholder-no-fix" type="datetime" id="deliveryAt" name="_deliveryAt">
-												        	<select id="deliveryAt_date_day" name="deliveryAt_date_day">
-										        				{% for int in 1..31 %}
-										        					<option value="{{int}}" {% if order.deliveryAt|date("d") == int %}selected{% endif %}>{{int}}</option>
-										        				{% endfor %}
-										        			</select>
-										        			<select id="deliveryAt_date_month" name="deliveryAt_date_month">
-										        				{% for int in 1..12 %}
-										        					<option value="{{int}}" {% if order.deliveryAt|date("M") == int %}selected{% endif %}>{{int}}</option>
-										        				{% endfor %}
-										        			</select>
-										        			<select id="deliveryAt_date_year" name="deliveryAt_date_year">
-										        				{% for int in 2015..2050 %}
-										        					<option value="{{int}}" {% if order.deliveryAt|date("Y") == int %}selected{% endif %}>{{int}}</option>
-										        				{% endfor %}
-										        			</select>
-													    </div>
-										        	</div>
-										        </div>
+					        					<div class="form-group inline_div">
+											        {% if form_errors(formConfirmOrder.deliveryAt) %}
+									                    <div class="error_message">
+									                      	<span class="warning_word">
+									                        	{{ 'user.warning.warning'|trans }}
+									                      	</span>
+									                      	<span class="warning_message">
+									                        	{{ form_errors(formConfirmOrder.deliveryAt) }}
+									                      	</span>
+									                    </div>
+									                    <br/>
+									                {% endif %}
+													<div class="input-icon">
+											        	<i class="fa fa-user"></i>
+											        	{% set opt_deliveryAt = {'attr': {'class': 'form-control placeholder-no-fix',
+											        		'type':'datetime', 'id':'deliveryAt', 'name':'_deliveryAt'}} %}
+											        		<div class="inline_div">
+													        	{{ form_widget(formConfirmOrder.deliveryAt.time, opt_deliveryAt) }}
+											        		</div>
+											        		<div class="inline_div">
+													        	{{ form_widget(formConfirmOrder.deliveryAt.date, opt_deliveryAt) }}
+											        		</div>
+											        </div>
+												</div>
+												
 											</div>
 				        				</div>
 			        				</div>
@@ -228,42 +208,70 @@
 
 			        				<div class="row60">
 
-				        				<div class="form-group">
+			        					<div class="form-group">
+									        {{ form_label(formConfirmOrder.message, 'Contenu', 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formConfirmOrder.message) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formConfirmOrder.message) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
 											<div class="input-icon">
-						        				<textarea class="form-control select2" type="textarea" name="_email_confirmation_content" id="_email_confirmation_content" placeholder="Message (optionel) : "></textarea>
+									        	<i class="fa fa-user"></i>
+									        	{% set opt_message = {'attr': { 'class': 'form-control select2',
+									        		'placeholder':"Message (optionel) : ", 'id':'_message', 
+									        		'name':'_message'}} %}
+									        	{{ form_widget(formConfirmOrder.message, opt_message) }}
 									        </div>
-										</div>		        					
+
+										</div>
+
 			        				</div>
 
 			        				<br/>
 
+			        				Statut de la commande :
+
+			        				<br/>	
+
 			        				<div class="row">
-			        					<div class="col-md-2"></div>
-		        						{% if order.status != 'confirm' %}
-				        					<div class="col-md-4 center">
-			                              		<button class="btn btn-admin" onClick="goToPathActionForm('confirm')" type="submit">
-				                              		Confirmer
-				                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
-			                              		</button>
-				        					</div>
-		                              	{% endif %}
-		                              	{% if order.status != 'onHold' %}
-				        					<div class="col-md-4 center">
-			                              		<button class="btn btn-admin" onClick="goToPathActionForm('onHold')" type="submit">
-				                              		Mettre en attente
-				                              		<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
-			                              		</button>
-				        					</div>
-		                              	{% endif %}
-		                              	{% if order.status != 'refused' %}
-				        					<div class="col-md-4 center">
-			                              		<button class="btn btn-admin" onClick="goToPathActionForm('refused')" type="submit">
-				                              		Refuser
-				                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
-			                              		</button>
-				        					</div>
-		                              	{% endif %}
-		                              	<div class="col-md-2"></div>
+			        					<div class="col-md-4"></div>
+			        					<div class="col-md-4">
+					        				<div class="form-group">
+												{% if form_errors(formConfirmOrder.status) %}
+								                    <div class="error_message">
+								                      	<span class="warning_word">
+								                        	{{ 'user.warning.warning'|trans }}
+								                      	</span>
+								                      	<span class="warning_message">
+								                        	{{ form_errors(formConfirmOrder.status) }}
+								                      	</span>
+								                    </div>
+								                    <br/>
+								                {% endif %}
+												<div class="input-icon">
+													{% set opt_status = {'attr': {'class': 'form-control select2',
+										        		'type':'text', 'id':'status', 'name':'_status' }} %}
+										        	{{ form_widget(formConfirmOrder.status, opt_status) }}
+												</div>
+											</div>
+			        					</div>
+			        					<div class="col-md-4"></div>
+			        				</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formConfirmOrder) }}
+
+			        				<div class="row center">
+	                              		<button class="btn btn-admin" type="submit">
+		                              		Enregistrer
+	                              		</button>
 			        				</div>
 		        				</form>
 		        			</div>

@@ -18,7 +18,7 @@
 			<div class="section" id="section5">
 				<br/><br/>
 
-		        <div id="breadcrumb" class="center">
+		        <div id="breadcrumb" class="center row80">
 			        <div class="row">
 		              	<h2>
 		                  	{{ 'header.titles.myCart' | trans }}
@@ -26,18 +26,23 @@
 		            </div>
 		            <div class="row">
 	                  	<div class="inline_div breadcrumb_active">
-	                    	1. Content
+	                    	1. {{ 'cart.titles.content' | trans }}
 	                  	</div>
 	                  	<div class="inline_div ">
-	                    	2. Order
+	                    	2. {{ 'cart.titles.order' | trans }}
 	                  	</div>
 	                  	<div class="inline_div">
-	                    	3. Confirm
+	                    	3. {{ 'cart.titles.confirm' | trans }}
 	                  	</div>
 		            </div>
+	              	<hr/>
               	</div>
+              	
 
 				<div id="sectionContentAjax">
+
+					<div id="sessionFlash" class="sessionFlash">
+					</div>
 					
 		        	<!-- Varying numbers -->
 					<script type="text/javascript">
@@ -104,7 +109,7 @@
 							document.getElementById("sessionFlash").innerHTML = '\
 							<div class="alert alert-warning alert-dismissible fade in" role="alert">\
 						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-						      	<strong>Careful!</strong> Please refresh your cart. \
+						      	<strong>{{ "alert.titles.careful" | trans }}</strong> {{ "alert.content.pleaseRefresh" | trans }} \
 						    </div>';
 						    setTimeout(function() {
 						    	$('.alert').fadeOut('fast');
@@ -143,7 +148,7 @@
 							document.getElementById("sessionFlash").innerHTML = '\
 							<div class="alert alert-warning alert-dismissible fade in" role="alert">\
 						      	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-						      	<strong>Careful!</strong> Please refresh your cart. \
+						      	<strong>{{ "alert.titles.careful" | trans }}</strong> {{ "alert.content.pleaseRefresh" | trans }} \
 						    </div>';
 						    setTimeout(function() {
 						    	$('.alert').fadeOut('fast');
@@ -174,7 +179,7 @@
 			                document.getElementById("sessionFlash").innerHTML = '\
 			                <div class="alert alert-warning alert-dismissible fade in" role="alert">\
 			                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-			                  Element deleted.\
+			                  {{ "alert.content.elementDeleted" | trans }}\
 			                </div>';
 			                setTimeout(function() {
 			                  $('.alert').fadeOut('fast');
@@ -191,7 +196,7 @@
 			                document.getElementById("sessionFlash").innerHTML = '\
 			                <div class="alert alert-success alert-dismissible fade in" role="alert">\
 			                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-			                  Cart was successfully emptied.\
+			                  {{ "alert.content.cartEmptied" | trans }}\
 			                </div>';
 			                setTimeout(function() {
 			                  $('.alert').fadeOut('fast');
@@ -225,7 +230,7 @@
 			                	document.getElementById("sessionFlash").innerHTML = '\
 			                	<div class="alert alert-warning alert-dismissible fade in" role="alert">\
 			                  		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-			                  		<strong>Careful!</strong> No change to your cart were made.\
+			                  		<strong>{{ "alert.titles.careful" | trans }}</strong> {{ "alert.content.noChangeMade" | trans }}\
 			                	</div>';
 			                	setTimeout(function() {
 			                  		$('.alert').fadeOut('fast');
@@ -242,7 +247,7 @@
 			        <div class="row80">
 			        	<div class="col-md-4">
 					        <button onClick="emptyCart()" class="no_style_button float-left delete_buttons_cart" type="button" value="Empty cart">
-					            Empty cart
+					            {{ 'cart.actions.emptyCart' | trans }}
 					        </button>
 			        	</div>
 			        	<div class="col-md-4">
@@ -250,7 +255,7 @@
 			        	<div class="col-md-4">
 			        		<div id="refresh_button" style="display:none;">
 				        		<button onClick="refreshCart()" class="no_style_button float-right delete_buttons_cart" type="button" value="Refresh cart">
-						            Refresh cart
+				        			{{ 'cart.actions.refreshCart' | trans }}
 						        </button>
 			        		</div>
 			        	</div>
@@ -264,19 +269,19 @@
 		                        <thead>
 		                          <tr>
 		                            <th>
-		                              Item
+		                            	{{ 'cart.tableTitles.item' | trans }}
 		                            </th>
 		                            <th class="center">
-		                              Quantity
+		                            	{{ 'cart.tableTitles.quantity' | trans }}
 		                            </th>
 		                            <th class="center">
-		                              Weight
+		                            	{{ 'cart.tableTitles.weight' | trans }}
 		                            </th>
 		                            <th class="center">
-		                              Price
+		                            	{{ 'cart.tableTitles.price' | trans }}
 		                            </th>
 		                            <th class="center">
-		                              Action
+		                            	{{ 'cart.tableTitles.action' | trans }}
 		                            </th>
 		                          </tr>
 		                        </thead>
@@ -316,7 +321,7 @@
 		                              <td class="center">
 		                                <!-- <input onClick="addOneToCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="+" title="Add one more"/>
 		                                <input onClick="deleteOneFromCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="-" title="Delete one"/> -->
-		                                <input onClick="deleteTotalFromCart('{{ item.type }}')" class="delete_buttons_cart" type="button" value="Delete" title="Delete total"/>
+		                                <input onClick="deleteTotalFromCart('{{ item.type }}')" class="delete_buttons_cart" type="button" value="{{ 'cart.actions.delete' | trans }}" title="{{ 'cart.actionTitles.deleteElement' | trans }}"/>
 		                              </td>
 		                            </tr>
 		                          {% endfor %}
@@ -328,7 +333,7 @@
 		                      <div class="col-md-4 col-xs-4 modal_price">
 		                        <div class="row">
 		                          <div class="inline_div left col-md-4 col-xs-4">
-		                            TOTAL:
+		                          	{{ 'cart.titles.total' | trans }}
 		                          </div>
 		                          <div class="inline_div center col-md-4 col-xs-4">
 		                            {% if total_weight_general > 999 %}
@@ -346,14 +351,15 @@
 		                    </div>
 		                {% else %}
 		                    <div class="row center">
-		                      Sorry, nothing here for now ...
+		                    	{{ 'cart.errors.nothingHere' | trans }}
 		                    </div>
 		                {% endif %}
 
 		                <br/><br/>
 			        
 	                	<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a btn btn-modal float-left">
-				            Continue shopping ...
+	                		<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_right_arrow"/>
+	                		{{ 'cart.actions.continueShopping' | trans }}
 				        </a>
 				        <button type="button" class="btn btn-modal float-right" onClick="
 				        	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

@@ -1,0 +1,177 @@
+{# src/LBF/AdminBundle/Resources/views/User/emailConfirmClient.html.twig #}
+
+{% block body_html %}
+{#
+    You can of course render the html directly here.
+    Including a template as done here allows keeping things DRY by using
+    the template inheritance in it
+#}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+  <head>
+
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      Le Buffet Francés - Your order is now completed
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body >
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+      <tr >
+        <td style="padding:0 0 20px 0; " bgcolor="#D4D5D1" >
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse; " >
+            <tr >
+              <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                <div style="width:100%; " class="" id="pre-header-text" >
+                  This is a letter from Le Buffet Francés.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="rgba(100,100,100,0.8)" width="600" valign="top" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #4d5259;">
+                <a href="http://www.lebuffetfrances.com" target="_blank">
+                  <img src="{{ asset('img/system/email/email_header.png') }}" alt="Banière Le Buffet Francés" border="0" width="600" height="95" style="display:block; color: white; text-align:center;"/>
+                </a>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td width="100%" valign="top" >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
+                            <div style="width:100%; " class="" id="title_one_half" >
+                              YOUR ORDER IS NOW COMPLETED
+                            </div>
+                          </td>
+                        </tr>
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                            <div style="width:100%; text-align:justify;">
+                                Thank you again for ordering on <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. Your order is now <strong>completed</strong>. 
+                                <br/>
+                                As a reminder, you order n° <strong>{{ order.id }}</strong> of 
+                                {% set total_price_general = 0 %}
+                                {% for item_array in order.elements %}
+                                  {% set item = item_array['item'] %}
+                                  {% set qty = item_array['qty'] %}
+                                          {% set total_price = qty * item.price %}
+                                          {% set total_price_general = total_price_general + total_price %}
+                                {% endfor %}
+                                <strong>S/. {{ total_price_general }}</strong>.
+                                <br/>
+                                You asked to come and pick it up the <strong>{{ order.deliveryAt|date('d M Y') }}</strong> at <strong>{{ order.deliveryAt|date('H:i') }}</strong> and did so.
+
+                                <br/>
+                                We hope to see you soon !
+                                <br/>
+                                Enjoy your meal !
+                                <br/>
+                                <br/>
+                                <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table border="0" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table class="full-width" style="background-color: rgba(100,100,100,0.68); border-top: 2px solid rgba(120,30,20,0.99);" border="0" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
+                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong> is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way.
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                <div style="display:inline-block; margin-right : 10px;">
+                                  Keep in touch: 
+                                </div>
+                                <div style="display:inline-block;">
+                                  <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" style="position:relative; top:4px;">
+                                    <img src="{{ asset('img/system/email/fb.png')}}" alt="FB" border="0"  width="16" height="16" style="display:block; font-size:8px; color:white;">
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                If someone sent you this newsletter and you'd like to join our mailing list, you can sign up 
+                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com#footerSection" target="_blank">
+                                  here
+                                </a>
+                                .
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                You're receiving this email as a result of downloading SketchUp Make or SketchUp Pro and opting-in to receive the SketchUpdate Newsletter. If you would like to unsubscribe from all emails from us, please 
+                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/newsletterEmailUndo/{{ order.user.email }}" target="_blank">
+                                  click here
+                                </a>
+                                .
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none;">Le Buffet Francés</a></strong>
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                Calle las Sauces
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                Larapa, San Sebastian, Cusco - Perú
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 20px; padding-left: 20px;" align="left">
+                                <a style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; font-size: 10px; color: rgba(120,30,20,0.99); text-decoration: none;" href="http://www.lebuffetfrances.com" target="_blank">
+                                  www.lebuffetfrances.com
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    
+    <script type="text/javascript" src="/js/public/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/forwardemail.js"></script>
+    <link rel="stylesheet" href="/css/forwardemail.css" type="text/css" />
+  </body>
+</html>
+
+{% endblock %}

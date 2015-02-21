@@ -18,34 +18,40 @@
 			<div class="section" id="section7">
 				<br/><br/>
 
-		        <div class="row center">
-	              	<h2 class="center">
-	                  	{{ 'header.titles.myCart' | trans }}
-	              	</h2>
-	            </div>
-	            <div id="breadcrumb" class="center">
-                  	<div class="inline_div">
-                    	1. Content
-                  	</div>
-                  	<div class="inline_div">
-                    	2. Order
-                  	</div>
-                  	<div class="inline_div breadcrumb_active">
-                    	3. Confirm
-                  	</div>
+		        <div id="breadcrumb" class="center row80">
+			        <div class="row">
+		              	<h2>
+		                  	{{ 'header.titles.myCart' | trans }}
+		              	</h2>
+		            </div>
+		            <div class="row">
+	                  	<div class="inline_div">
+	                    	1. {{ 'cart.titles.content' | trans }}
+	                  	</div>
+	                  	<div class="inline_div ">
+	                    	2. {{ 'cart.titles.order' | trans }}
+	                  	</div>
+	                  	<div class="inline_div breadcrumb_active">
+	                    	3. {{ 'cart.titles.confirm' | trans }}
+	                  	</div>
+		            </div>
+	              	<hr/>
               	</div>
 
-				<div id="sectionContentAjax">
+
+				<div id="sectionContentAjax" onLoad="emptySessionCart()">
+
+					<div id="sessionFlash" class="sessionFlash">
+					</div>
+
 					<br/><br/><br/>
 					<script type="text/javascript">
-						emptySessionCart();
 						function emptySessionCart() {
-							var sessionCart = [];
-                  			$.cookie("sessionCart", sessionCart);
+							$.cookie("sessionCart", null);
 			            }
 			        </script>
 		        	<p class="center">
-		        		Thank you for your order. You should receive an email very shortly.
+		        		{{ 'cart.titles.thankYou' | trans }}
 		        	</p>
 		    	</div>
 			</div>

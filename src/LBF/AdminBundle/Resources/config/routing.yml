@@ -6,16 +6,20 @@ lbf_admin_answer:
     path:     /answer/{orderId}
     defaults: { _controller: LBFAdminBundle:Admin:answer }
     requirements:
-        routesId: \d+
+        orderId: \d+
 
-lbf_admin_answer_edit:
-    path:     /answer/edit/{orderId}
-    defaults: { _controller: LBFAdminBundle:Admin:answer }
+lbf_admin_delete:
+    path:     /delete/{orderId}
+    defaults: { _controller: LBFAdminBundle:Admin:delete }
     requirements:
-        routesId: \d+
+        orderId: \d+
 
-lbf_admin_answer_confirm:
-    path:     /answer/confirm/{status}/{orderId}
-    defaults: { _controller: LBFAdminBundle:Admin:confirm }
+lbf_admin_complete:
+    path:     /complete/{orderId}
+    defaults: { _controller: LBFAdminBundle:Admin:complete }
     requirements:
-        routesId: \d+
+        orderId: \d+
+
+lbf_admin_newsletterEmails:
+    path:     /newsletterEmails
+    defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }

@@ -62,6 +62,13 @@ class Orders
      */
     private $status;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=true)
+     */
+    private $message;
+
     /*   *********      construct  *************  */
 
     public function __construct()
@@ -221,5 +228,28 @@ class Orders
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Orders
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }

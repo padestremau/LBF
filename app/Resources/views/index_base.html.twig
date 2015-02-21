@@ -51,7 +51,13 @@
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-  <body onLoad="onLoadData()">
+  <body onLoad="
+      {% if route == 'lbf_main_confirm' %}
+        onLoadDataSpecial()
+      {% else %}
+        onLoadData()
+      {% endif %}
+      ">
         <!-- BEGIN header -->
           {% include 'includes/header.html.twig' %}
         <!-- END header -->
@@ -65,7 +71,18 @@
         <!-- END header -->
         
         <!-- BEGIN CONTAINER -->
-        <div id="page_container_gen" class="page-container row margin0">
+        <div id="page_container_gen" class="
+          {% if route != 'lbf_admin_homepage' 
+            and route != 'lbf_admin_homepage'
+            and route != 'lbf_admin_answer'
+            and route != 'lbf_admin_delete'
+            and route != 'lbf_admin_complete'
+            and route != 'lbf_admin_newsletterEmails' %}
+            page-container 
+          {% else %}
+            page-container-admin
+          {% endif %}
+          row margin0">
             {% block body %}
             {% endblock body %}  
             <script type="text/javascript">
@@ -136,6 +153,14 @@
 
                 // Top button
                 document.getElementById("button_to_top").className = "opacity0";
+              }
+
+              function onLoadDataSpecial() {
+                // Cookies
+                $.cookie.json = true;
+                var sessionCart = [];
+                $.cookie("sessionCart", sessionCart);
+                updateNotifNumber();
               }
             </script>
         </div>

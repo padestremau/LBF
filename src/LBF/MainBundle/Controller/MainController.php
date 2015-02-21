@@ -95,6 +95,30 @@ class MainController extends Controller
         return $this->redirect($this->generateUrl('lbf_main_homepage'));
     }
 
+    public function newsletterEmailUndoAction($email)
+    {
+        $allMails = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('LBFMainBundle:NewsletterEmail')
+                                ->findAll();
+
+        $newsletterEmail = new NewsletterEmail;
+        for ($i=0; $i < sizeof($allMails); $i++) { 
+            if ($allMails[$i]->getEmail() == $email) {
+                $newsletterEmail = $allMails[$i];
+                break;
+            }
+        }
+
+        if ($newsletterEmail->getEmail()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($newsletterEmail);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('lbf_main_homepage'));
+    }
+
     public function addToCartAction()
     {
 

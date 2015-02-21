@@ -1,11 +1,4 @@
-{# src/LBF/UserBundle/Resources/views/User/emailConfirmation.html.twig #}
-
-{# block subject %}
-{% autoescape false %}
-{{ "emailSummary.titles.general" | trans }}.
-{% endautoescape %}
-{% endblock #}
-
+{# src/LBF/AdminBundle/Resources/views/User/emailConfirmClient.html.twig #}
 
 {% block body_html %}
 {#
@@ -25,7 +18,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-      Le Buffet Francés - {{ 'emailSummary.titles.general' | trans }}
+      Le Buffet Francés - Your order is now confirmed
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -38,7 +31,7 @@
             <tr >
               <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                 <div style="width:100%; " class="" id="pre-header-text" >
-                  {{ 'emailSummary.notes.topSentence' | trans }} <strong> Le Buffet Francés.</strong>
+                  This is a letter from Le Buffet Francés.
                 </div>
               </td>
             </tr>
@@ -58,17 +51,14 @@
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
                             <div style="width:100%; " class="" id="title_one_half" >
-                              {{ 'emailSummary.titles.thankYouForYourOrder' | trans }}
+                              YOUR ORDER IS BEING PROCESSED
                             </div>
                           </td>
                         </tr>
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                             <div style="width:100%; text-align:justify;">
-                              {{ 'emailSummary.content.summaryEmailRegarding' | trans }} <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. 
-                              <br/>
-                              {{ 'emailSummary.content.orderIs' | trans }} <strong>{{ 'emailSummary.content.onHold' | trans }}</strong>
-                              {{ 'emailSummary.content.shouldReceive' | trans }}
+                                This is a confirmation email regarding your recent order on <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. Your order is now <strong>confirmed</strong> by a Manager and is being processed. 
                             </div>
                           </td>
                         </tr>
@@ -84,7 +74,7 @@
                   <tr >
                     <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
                       <div style="width:100%; " class="" id="header_text_01" >
-                        {{ 'emailSummary.titles.orderContent' | trans }}
+                        ORDER CONTENT
                       </div>
                     </td>
                   </tr>
@@ -103,36 +93,36 @@
                               <tr >
                                 <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
                                   <div style="width:100%; ">
-                                    {{ 'emailSummary.content.thankYouAgain' | trans }}
+                                    As a reminder, you ordered the following elements :
                                   </div>
                                 </td>
                               </tr>
                               <tr >
                                 <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300;" >
-                                  {% if newOrder.elements|length > 0 %}
+                                  {% if order.elements|length > 0 %}
                                     <div style="width:100%; text-align:justify;">
                                       <div>
                                         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:12px;">
                                           <thead>
                                             <tr>
                                               <th>
-                                                {{ 'emailSummary.tableTitles.item' | trans }}
+                                                Item
                                               </th>
                                               <th style="text-align:center;">
-                                                {{ 'emailSummary.tableTitles.quantity' | trans }}
+                                                Quantity
                                               </th>
                                               <th style="text-align:center;">
-                                                {{ 'emailSummary.tableTitles.weight' | trans }}
+                                                Weight
                                               </th>
                                               <th style="text-align:center;">
-                                                {{ 'emailSummary.tableTitles.price' | trans }}
+                                                Price
                                               </th>
                                             </tr>
                                           </thead>
                                           <tbody>
                                             {% set total_weight_general = 0 %}
                                             {% set total_price_general = 0 %}
-                                            {% for item_array in newOrder.elements %}
+                                            {% for item_array in order.elements %}
                                               {% set item = item_array['item'] %}
                                               {% set qty = item_array['qty'] %}
                                               <tr>
@@ -170,7 +160,7 @@
                                       <br/>
                                       <div style="width:100%; text-align:center; font-size:15px;">
                                         <strong>
-                                          {{ 'emailSummary.tableTitles.total' | trans }}
+                                          TOTAL: 
                                         </strong>
                                         {% if total_weight_general > 999 %}
                                           {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
@@ -183,11 +173,9 @@
                                         </strong>
                                       </div>
 
-                                      <br/>
-                                      {{ 'emailSummary.content.shouldReceiveShortly' | trans }}
                                       <br/><br/>
 
-                                      Please note that you asked the order to be ready for the <strong> {{ newOrder.deliveryAt|date("d M Y") }} </strong> at <strong> {{ newOrder.deliveryAt|date("H:i") }} </strong>.
+                                      Please note that the order will be ready to be picked up for the <strong> {{ order.deliveryAt|date("d M Y") }} </strong> at <strong> {{ order.deliveryAt|date("H:i") }} </strong>.
 
                                       <br/><br/>
 
@@ -199,18 +187,14 @@
                                           background-color: rgba(120,30,20,0.99);
                                           border-radius: 0;
                                           color: white;">
-                                          {{ 'emailSummary.actions.accessProfile' | trans }}
+                                          Access my profile
                                         </a>
                                       </div>
                                   </div>
                                 {% else %}
                                     <div style="width:100%; text-align:justify;">
-                                      {{ 'emailSummary.errors.nothingHere' | trans }}
-                                      <br/>
-                                      {{ 'emailSummary.errors.please' | trans }}
-                                      <a href="mailto:webmaster@lebuffetfrances.com">
-                                        {{ 'emailSummary.errors.contactAdministration' | trans }}
-                                      </a>.
+                                      Sorry, nothing here for now ... <br/>
+                                      Please <a href="mailto:contact@lebuffetfrances.com">contact the administration</a>.
                                     </div>
                                 {% endif %}
                                 </td>
@@ -224,6 +208,53 @@
                 </table>
               </td>
             </tr>
+
+            {% if messageAdminContent|length > 0 %}
+              <tr >
+                <td style="padding:0 15px 0 15px; " bgcolor="#FFFFFF" >
+                  <table style="border-bottom-width:1px; border-bottom-style:solid; border-bottom-color:rgba(100,100,100,0.5); " border="0" cellpadding="0" cellspacing="0" width="100%" >
+                    <tr >
+                      <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
+                        <div style="width:100%; " class="" id="header_text_01" >
+                          MESSAGE FROM MANAGER
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr >
+                <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                    <tr >
+                      <td >
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                          <tr >
+                            <td width="100%" valign="top" >
+                              <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                                <tr >
+                                  <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
+                                    <div style="width:100%; ">
+                                      A manager added this message to your order confirmation process :
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr >
+                                  <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300;" >
+                                    {{ messageAdminContent|raw|nl2br }}
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            {% endif %}
+
             <tr>
               <td>
                 <table border="0" cellspacing="0" cellpadding="0" width="600">
@@ -234,14 +265,13 @@
                           <tbody>
                             <tr>
                               <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
-                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong> 
-                                {{ 'emailSummary.footer.anecdote' | trans }}
+                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong> is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way.
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
                                 <div style="display:inline-block; margin-right : 10px;">
-                                  {{ 'emailSummary.footer.keepInTouch' | trans }}
+                                  Keep in touch: 
                                 </div>
                                 <div style="display:inline-block;">
                                   <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" style="position:relative; top:4px;">
@@ -252,18 +282,18 @@
                             </tr>
                             <tr>
                               <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                {{ 'emailSummary.footer.ifWantToJoin' | trans }}
+                                If someone sent you this newsletter and you'd like to join our mailing list, you can sign up 
                                 <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com#footerSection" target="_blank">
-                                  {{ 'emailSummary.footer.here' | trans }}
+                                  here
                                 </a>
                                 .
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                {{ 'emailSummary.footer.quitSubscription' | trans }}
-                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/newsletterEmailUndo/{{ newOrder.user.email }}" target="_blank">
-                                  {{ 'emailSummary.footer.clickHere' | trans }}
+                                You're receiving this email as a result of downloading SketchUp Make or SketchUp Pro and opting-in to receive the SketchUpdate Newsletter. If you would like to unsubscribe from all emails from us, please 
+                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/newsletterEmailUndo/{{ order.user.email }}" target="_blank">
+                                  click here
                                 </a>
                                 .
                               </td>

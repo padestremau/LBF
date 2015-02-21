@@ -37,13 +37,13 @@
             </tr>
             <tr>
               <td bgcolor="rgba(100,100,100,0.8)" width="600" valign="top" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #4d5259;">
-                <a href="#" target="_blank">
-                  <img src="http://localhost:8888/LBF/web/img/system/email/email_header.png" alt="Banière Le Buffet Francés" border="0" width="600" height="95" style="display:block;">
+                <a href="http://www.lebuffetfrances.com" target="_blank">
+                  <img src="{{ asset('img/system/email/email_header.png') }}" alt="Banière Le Buffet Francés" border="0" width="600" height="95" style="display:block; color: white; text-align:center;"/>
                 </a>
               </td>
             </tr>
             <tr >
-              <td bgcolor="#FFFFFF" style="padding:20px 15px 40px 15px; " >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" >
                   <tr >
                     <td width="100%" valign="top" >
@@ -56,10 +56,10 @@
                           </td>
                         </tr>
                         <tr >
-                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:14px; " >
-                            <div style="width:100%;">
-                                Cet email provient de <strong><a href="www.lebuffetfrances.com" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong> concernant un récent achat effectué en ligne par 
-                                <strong>
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                            <div style="width:100%; text-align:justify;">
+                                Cet email provient de <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong> concernant un récent achat effectué en ligne par 
+                                <strong style="text-decoration:underline;">
                                   {% if member.firstName|length > 0 %}
                                     {{ member.firstName }}
                                   {% else %}
@@ -90,7 +90,7 @@
               </td>
             </tr>
             <tr >
-              <td bgcolor="#FFFFFF" style="padding:20px 15px 40px 15px; " >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" >
                   <tr >
                     <td >
@@ -146,9 +146,9 @@
                                               {% set item = item_array['item'] %}
                                               {% set qty = item_array['qty'] %}
                                               <tr>
-                                                <th>
+                                                <td>
                                                   {{ item.name }}
-                                                </th>
+                                                </td>
                                                 <td style="text-align:center;">
                                                   <div id="counter_value_{{ item.type }}">
                                                       {{ qty }}
@@ -199,7 +199,7 @@
 
                                       <br/><br/>
 
-                                      <strong>Remarque</strong> Le client a demandé à être livré à la date suivante: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
+                                      <strong>Remarque :</strong> Le client a demandé à être livré à la date suivante: <strong> {{ newOrder.deliveryAt|date("H:i d M Y") }} </strong>
 
                                       <br/><br/>
 
@@ -211,7 +211,7 @@
                                           background-color: rgba(120,30,20,0.99);
                                           border-radius: 0;
                                           color: white;">
-                                          Accéder au back-office
+                                          Accéder à la commande
                                         </a>
                                       </div>
                                   </div>

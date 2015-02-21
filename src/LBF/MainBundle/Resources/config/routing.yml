@@ -33,3 +33,7 @@ lbf_main_empty_special:
 lbf_main_newsletterEmail:
     path:     /newsletterEmail/{path}
     defaults: { _controller: LBFMainBundle:Main:newsletterEmail }
+
+lbf_main_newsletterEmail_undo:
+    path:     /newsletterEmailUndo/{email}
+    defaults: { _controller: LBFMainBundle:Main:newsletterEmailUndo }

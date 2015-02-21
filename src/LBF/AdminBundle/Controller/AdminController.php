@@ -4,6 +4,8 @@ namespace LBF\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use LBF\UserBundle\Form\AdminConfirmOrdersType;
+
 class AdminController extends Controller
 {
     public function indexAction()
@@ -37,7 +39,6 @@ class AdminController extends Controller
 
     public function answerAction($orderId)
     {
-
         $allElements = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
@@ -48,59 +49,157 @@ class AdminController extends Controller
                                 ->getRepository('LBFUserBundle:Orders')
                                 ->find($orderId);
 
+        // On utiliser le OrdersType
+        $formConfirmOrder = $this->createForm(new AdminConfirmOrdersType(), $order);
+
+        // On récupère la requête
+        $formConfirmOrder->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formConfirmOrder->isValid()) {
+
+            // Gérer la liste
+            $newElements = array();
+            $currentElements = $order->getElements();
+            for ($i=0; $i < sizeof($currentElements); $i++) { 
+                $element = $currentElements[$i]['item'];
+                $qty = $currentElements[$i]['qty'];
+                $string = $element->getType();
+                if (isset($_POST[$string]) and $_POST[$string] == 'YES') {
+                    $newElements[] = ['item'=> $element, 'qty' => $qty];
+                }
+            }
+            
+            $order->setElements($newElements);
+
+            $status = $order->getStatus();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+            $em->flush();
+            
+            $messageAdminContent = stripslashes($formConfirmOrder->get('message')->getData());
+
+            // Message for client
+            $message = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] Your order is now confirmed.')
+                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo($order->getUser()->getEmail())
+                ->setBody(
+                    $this->renderView('LBFAdminBundle:Admin:emailConfirmClient.html.twig',
+                        array(  'order' => $order,
+                                'status' => $status,
+                                'messageAdminContent' => $messageAdminContent
+                            )
+                    )
+                )
+            ;
+
+            $this->get('mailer')->send($message);
+
+            // Message for manager/admin
+            $messageAdmin = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] Commande confirmée.')
+                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo('p.a.destremau@gmail.com')
+                ->setBody(
+                    $this->renderView('LBFAdminBundle:Admin:emailConfirmAdmin.html.twig',
+                        array(  'order' => $order,
+                                'status' => $status,
+                                'messageAdminContent' => $messageAdminContent
+                                )
+                    )
+                )
+            ;
+
+            $this->get('mailer')->send($messageAdmin);
+
+            return $this->redirect($this->generateUrl('lbf_admin_homepage'));
+            
+
+        }
         return $this->render('LBFAdminBundle:Admin:answer.html.twig', array(
             'allElements' => $allElements,
-            'order' => $order
+            'order' => $order,
+            'formConfirmOrder' => $formConfirmOrder->createView()
             ));
     }
 
-
-    public function confirmAction($orderId, $status)
+    public function completeAction($orderId)
     {
-        $confirmedOrder = $this ->getDoctrine()
-                                ->getManager()
-                                ->getRepository('LBFUserBundle:Orders')
-                                ->find($orderId);
+        $order = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFUserBundle:Orders')
+                        ->find($orderId);
 
-        // Gérer la liste
-        $newElements = array();
-        $currentElements = $confirmedOrder->getElements();
-        for ($i=0; $i < sizeof($currentElements); $i++) { 
-            $element = $currentElements[$i]['item'];
-            $string = "'".$element->getType()."'";
-            if ($_POST[$string] == 'YES') {
-                $newElements[] = $element;
-            }
-        }
-        $confirmedOrder->setElements($newElements);
-
-        // Gérer la date de livraison
-        $date = $post['deliveryAt_date_year'].'-'.$post['deliveryAt_date_month'].'-'.$post['deliveryAt_date_day'].' '.$post['deliveryAt_time_hour'].':'.$post['deliveryAt_time_minute'].':00';
-        $newDate = \Datetime::createFromFormat('yyyy-mm-dd hh:mm:ss', $date);
-        $confirmedOrder->setDeliveryAt($newDate);
-
-        // Gérer le statut
-        $confirmedOrder->setStatus($status);
+        $order->setStatus('complete');
         $em = $this->getDoctrine()->getManager();
-        $em->persist($confirmedOrder);
+        $em->persist($order);
         $em->flush();
 
         // Message for client
         $message = \Swift_Message::newInstance()
             ->setContentType('text/html')
-            ->setSubject('[Le Buffet Francés] Your order is now confirmed.')
+            ->setSubject('[Le Buffet Francés] Your order is now complete.')
             ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
-            ->setTo($confirmedOrder->getUser()->getEmail())
+            ->setTo($order->getUser()->getEmail())
             ->setBody(
-                $this->renderView('LBFUserBundle:User:emailAdmin.html.twig',
-                    array(  'confirmedOrder' => $confirmedOrder)
+                $this->renderView('LBFAdminBundle:Admin:emailCompleteClient.html.twig',
+                    array(  'order' => $order
+                            )
                 )
             )
         ;
 
         $this->get('mailer')->send($message);
 
-        // On redirige vers la page de visualisation de le document nouvellement créé
+        // Message for manager/admin
+        $messageAdmin = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Le Buffet Francés] Commande terminée.')
+            ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+            ->setTo('p.a.destremau@gmail.com')
+            ->setBody(
+                $this->renderView('LBFAdminBundle:Admin:emailCompleteAdmin.html.twig',
+                    array(  'order' => $order
+                            )
+                )
+            )
+        ;
+
+        $this->get('mailer')->send($messageAdmin);
+
         return $this->redirect($this->generateUrl('lbf_admin_homepage'));
     }
+
+    public function deleteAction($orderId)
+    {
+        $order = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFUserBundle:Orders')
+                        ->find($orderId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($order);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_homepage'));
+    }
+
+    public function newsletterEmailsAction()
+    {
+        $newsletterEmails = $this ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('LBFMainBundle:NewsletterEmail')
+                                    ->findAll();
+
+
+        return $this->render('LBFAdminBundle:Admin:newsletterEmails.html.twig', array(
+            'newsletterEmails' => $newsletterEmails
+            ));
+    }
+
+    
 }

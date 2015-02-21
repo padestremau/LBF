@@ -28,9 +28,6 @@ class UserController extends Controller
             $em->persist($currentUser);
             $em->flush();
 
-            // On définit un message flash
-            $this->get('session')->getFlashBag()->add('info', 'Informations bien modifiées');
-
             // On redirige vers la page de visualisation de le document nouvellement créé
             return $this->redirect($this->generateUrl('lbf_user_homepage'));
         }
@@ -46,9 +43,6 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($currentUser);
             $em->flush();
-
-            // On définit un message flash
-            $this->get('session')->getFlashBag()->add('info', 'Informations bien modifiées');
 
             // On redirige vers la page de visualisation de le document nouvellement créé
             return $this->redirect($this->generateUrl('lbf_user_homepage'));

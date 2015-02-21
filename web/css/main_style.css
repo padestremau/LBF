@@ -745,8 +745,8 @@ a.captionOrange:hover
 /*.modal-backdrop {
   z-index: -1;
 }*/
-/*.modal_price {
-	color: #541009;
+.modal_price {
+	color: white;
 	font-weight: 900;
 	font-size: 1.2em;
 	background-color: rgba(120,30,20,0.7);
@@ -755,7 +755,7 @@ a.captionOrange:hover
 	border: 1px solid white;
 	margin: 10px;
 	min-height: 30px;
-}*/
+}
 .btn-modal {
 	margin-top: 10px;
 	margin-left: 10px;
@@ -991,9 +991,9 @@ a.captionOrange:hover
 	top: 0px;
 }
 .delete_buttons_cart:hover, .delete_buttons_cart:active {
-	color: black;
-	background-color: red;
-	border : 1px solid red;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+	border : 1px solid rgba(0,0,0,0.8);
 }
 
 .table > tbody > tr:hover {
@@ -1014,10 +1014,17 @@ a.captionOrange:hover
 
 .address_box {
 	text-align: center;
-	font-style: italic;
 	margin-left: 35%;
 	width: 30%;
 	border: 1px dotted white;
+}
+
+.border_white {
+	border: 1px solid white;
+	padding: 5px;
+	margin: 0;
+	width: 30%;
+	text-align: center;
 }
 
 
@@ -1077,9 +1084,30 @@ a.captionOrange:hover
 	margin: 0;
 }
 
+#user_panel_parent {
+	padding-right: 10px;
+}
+
+#user_panel {
+	padding: 10px;
+	border: 1px dotted rgba(250,250,250,0.2);
+	max-height: 600px;
+	overflow-y: scroll !important;
+}
 
 
 /* ------------------------------------------------------ Admin ------------------------------------------------------ */
+#page_content_admin {
+	padding-left: 30px; 
+	padding-right: 30px;
+}
+.page-container-admin {
+	background-color: rgba(50,50,50,0.98);
+	margin-top: 50px;
+	width: 100%;
+	margin: auto;
+}
+
 .btn-admin, .btn-admin:focus {
 	margin:0;
 	color: white;
@@ -1088,6 +1116,7 @@ a.captionOrange:hover
 	border-radius: 0;
 	border-bottom: 1.5px solid transparent;
 	font-size: 1.1em;
+	padding: 2px;
 }
 .btn-admin:hover {
 	/*background-color: rgba(0,0,0,0.5);*/

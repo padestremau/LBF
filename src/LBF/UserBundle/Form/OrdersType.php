@@ -18,13 +18,13 @@ class OrdersType extends AbstractType
         $hours = $currentdate->format('H');
         $hours = $hours + 2;
         $minutes = $currentdate->format('i');
-        if ($minutes < 15) {
+        if ($minutes = 0 or (0 < $minutes and $minutes < 15)) {
             $minutes = 15;
         }
-        else if ($minutes < 30) {
+        elseif ($minutes = 15 or (15 < $minutes and $minutes < 30)) {
             $minutes = 30;
         }
-        else if ($minutes < 45) {
+        elseif ($minutes = 30 or (30 < $minutes and $minutes < 45)) {
             $minutes = 45;
         }
         else {
@@ -39,7 +39,7 @@ class OrdersType extends AbstractType
             $hours = 10;
             $minutes = '00';
         }
-        else if ($hours > 19) {
+        elseif ($hours > 19) {
             $hours = 10;
             $minutes = '00';
             $day = $day + 1;
@@ -55,6 +55,9 @@ class OrdersType extends AbstractType
 
         }
 
+        // New date with the previous constraints
+        $newDate = new \DateTime($year.'-'.$month.'-'.$day.' '.$hours.':'.$minutes.':00');
+
         $builder
             ->add('deliveryAt', 'datetime', array(
                                             'input'  => 'datetime',
@@ -63,7 +66,7 @@ class OrdersType extends AbstractType
                                             'hours' => range(10,19,1),
                                             'minutes' => range(0,45,15),
                                             'years' => range(2015,2050,1),
-                                            'data' => new \DateTime()
+                                            'data' => $newDate
                                             // 'placeholder' => array('year' => $year, 'month' => $month, 'day' => $day, 'minute' => $minutes, 'hour' => $hours)
                                         ))
             ;

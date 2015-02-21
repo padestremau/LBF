@@ -31,10 +31,10 @@
 				</div>
 				<hr/>
 
-				<div role="tabpanel">
+				<div role="tabpanel" id="user_panel_parent">
 
 					  <!-- Nav tabs -->
-					  <div class="col-md-3 border_white_right">
+					  <div class="col-md-3 "> <!-- border_white_right -->
 						  <ul class="nav_tabs_user list_no_style_li" role="tablist">
 						    <li role="user_tabs" class="active">
 						    	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="btn btn-choice">
@@ -98,7 +98,7 @@
 					  </div>
 
 				  	<!-- Tab panes -->
-				  	<div class="col-md-9 tab-content">
+				  	<div class="col-md-9 tab-content" id="user_panel">
 				    	<div role="tabpanel" class="tab-pane nav active" id="profile">
 				    		<div class="col-md-9">
 								<div class="row">
@@ -225,13 +225,16 @@
 				    	<div role="tabpanel" class="tab-pane" id="password">
 				    		Your current password was edited the ... of ... 20.. : <br/>
 				    		To change password, click here :
-							<a href="{{ path('fos_user_change_password') }}" class="">
-						    	{{ 'user.actions.changePassword'|trans }}
-						     	<i class="fa fa-sign-in"></i>
-						    </a>
+				    		<br/><br/><br/>
+				    		<div class="center">
+								<a href="{{ path('fos_user_change_password') }}" class="">
+							    	{{ 'user.actions.changePassword'|trans }}
+							     	<i class="fa fa-sign-in"></i>
+							    </a>
+				    		</div>
 				    	</div>
 				    	<div role="tabpanel" class="tab-pane" id="avatar">
-							<form method="post" action="{{ path('fos_user_change_password') }}" {{ form_enctype(formEditAvatar) }}>
+							<form method="post" {{ form_enctype(formEditAvatar) }}>
 								<div class="edit_profile">
 									<div class="form-group row">
 										{% set name_title = 'user.details.changeAvatar' | trans %}
@@ -262,7 +265,7 @@
 										<br/><br/>
 									</div>
 
-									<input type="submit" class="btn btn-perso  float-right validate_button"  
+									<input type="submit" class="btn btn-log float-right validate_button"  
 										value="{{'user.actions.save' | trans }}"/>
 								</div>
 
@@ -532,10 +535,6 @@
 										</div>
 									</div>
 
-									<div>
-										<br/><br/>
-									</div>
-
 									<!-- Et pour le reste du formulaire ... ;) -->
 									{{ form_widget(formEditUser) }}
 									<input type="submit" class="btn btn-log  float-right"
@@ -590,7 +589,7 @@
 			                              	{% endif %}
 			                              </td>
 			                              <td class="center">
-			                              	{{ single_order.createdAt }}
+			                              	{{ single_order.createdAt|date("H:i d/M/Y") }}
 			                              </td>
 			                              <td class="center">
 			                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
@@ -670,7 +669,7 @@
 			                              	{% endif %}
 			                              </td>
 			                              <td class="center">
-			                              	{{ single_order.createdAt }}
+			                              	{{ single_order.createdAt|date("H:i d/M/Y") }}
 			                              </td>
 			                              <td class="center">
 			                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
@@ -704,9 +703,11 @@
 
 			</div>
 
-			<!-- BEGIN FOOTER -->
-              {% include 'includes/footer.html.twig' %}
-            <!-- END FOOTER -->
+			<script type="text/javascript">
+				var wh = window.innerHeight * 0.8;
+				$('#user_panel').css({'max-height':wh+'px'});
+			</script>
+
 		</div>
 	</div>
 	<!-- END CONTENT -->
