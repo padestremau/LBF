@@ -19,7 +19,7 @@
           {% else %}
             <a href="{{ path('lbf_user_homepage') }}" class="no_style_a user_access_button">
               <div class="inline_div">
-                {% if app.user.webPath|length > 0 %}
+                {% if app.user.alt|length > 0  and app.user.url|length > 0 %}
                   <div class="user_img_header" style="width: 100%; background-image: url('{{ asset( app.user.webPath) }}'); background-size: cover; background-position: 50%;">
                     <!-- onClick="showPhoto('{{ app.user.id }}')" -->
                     <script type="text/javascript">
@@ -143,7 +143,13 @@
 
     <!-- BEGIN CART -->
     <div class="cart_button">
-      <button id="button_cart_a"  class="btn btn-log float-right" onClick="addToSessionCart()" disabled>
+      <button id="button_cart_a"  class="btn btn-log 
+          {% if route == 'lbf_main_cart'
+              or route == 'lbf_main_order'
+              or route == 'lbf_main_confirm' %}
+            btn-log-active
+          {% endif %}
+          float-right" onClick="addToSessionCart()" disabled>
         <div class="cart_label">
           {{ 'header.titles.myCart' | trans }}
         </div>

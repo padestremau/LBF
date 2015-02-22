@@ -16,19 +16,12 @@
 
 		<div id="fullpage">
 			<div class="section" id="section0">
-				
-				<div class="presentation_photos row">
-					<div class="col-md-4 col-xs-4">
-					</div>
-					<div class="col-md-4 col-xs-4">
 						<div class="welcome_page">
 					      <div class="logo_welcome">
 					        <img src="{{ asset('img/system/logo/LeBuffetFrances_Final_Small.png') }}" alt="Logo" class="logo_welcome_img"/>
 					      </div>
 					    </div>
-					</div>
-				    <div class="col-md-4 col-xs-4">
-					</div>
+				<div class="presentation_photos row">
 
 					<div class="content_presentation row">
 						
@@ -37,7 +30,7 @@
 					            var options = {
 
 					                $AutoPlay: true,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
-					                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+					                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 					            };
 
 					            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
@@ -67,20 +60,39 @@
 					            overflow: hidden;">
 					            <div>
 					                <img u=image src="{{ asset('img/presentation/1.jpg') }}" />
-					                <div u="thumb">Une viande de qualité,</div>
+					                <!-- <div u="thumb">Une viande de qualité,</div> -->
 					            </div>
 					            <div>
 					                <img u=image src="{{ asset('img/presentation/2.jpg') }}" />
-					                <div u="thumb">Une fidélisation à un produit,</div>
+					                <!-- <div u="thumb">Une fidélisation à un produit,</div> -->
 					            </div>
 					            <div>
 					                <img u=image src="{{ asset('img/presentation/3.jpg') }}" />
-					                <div u="thumb">Une saveur comme jamais ailleurs,</div>
+					                <!-- <div u="thumb">Une saveur comme jamais ailleurs,</div> -->
 					            </div>
 					            <div>
 					                <img u=image src="{{ asset('img/presentation/4.jpg') }}" />
-					                <div u="thumb"> ... telle est notre devise !</div>
+					                <!-- <div u="thumb"> ... telle est notre devise !</div> -->
 					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/5.jpg') }}" />
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/6.jpg') }}" />
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/7.jpg') }}" />
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/8.jpg') }}" />
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/9.jpg') }}" />
+					            </div>
+					            <div>
+					                <img u=image src="{{ asset('img/presentation/10.jpg') }}" />
+					            </div>
+
 					        </div>
 					    </div>
 					</div>
@@ -585,51 +597,60 @@
 					<br/>
 					<br/>
 					<div class="row">
-						<div class="row80">
-							<div class="col-md-2 col-xs-2">
-								<div class="product_img_div">
-									<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
-								</div>
-							</div>
-							<div class="col-md-10 col-xs-10">
-								<div class="row">
-									<h4>Aude de Penfentenyo </h4>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nemo illum incidunt tempora, libero repellendus deleniti consequatur. Commodi non saepe recusandae repellat adipisci numquam ducimus odit. Eligendi, veniam dolorum voluptas!
-								</div>
-							</div>
+						
+						<!-- <div class="col-md-2 col-xs-2 right">
+							<img src="{{ asset('img/creators/frise.png') }}" alt="Frise" class="frise_history"/>
 						</div>
-					</div>
-					<div class="sep_dotted"></div>
-					<div class="row">
-						<div class="row80">
-							<div class="col-md-10 col-xs-10">
-								<div class="row">
-									<h4>Antoine de Penfentenyo </h4>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nemo illum incidunt tempora, libero repellendus deleniti consequatur. Commodi non saepe recusandae repellat adipisci numquam ducimus odit. Eligendi, veniam dolorum voluptas!
+						<div class="col-md-10 col-xs-10"> -->
+							<div class="row">
+								<div class="row80">
+									<div class="col-md-2 col-xs-2">
+										<div class="product_img_div">
+											<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="product_img"/>
+										</div>
+									</div>
+									<div class="col-md-10 col-xs-10">
+										<div class="row">
+											<h4>Antoine de Penfentenyo </h4>
+											Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco!
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col-md-2 col-xs-2">
-								<div class="product_img_div">
-									<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+							<div class="sep_dotted"></div>
+							<div class="row">
+								<div class="row80">
+									<div class="col-md-10 col-xs-10">
+										<div class="row">
+											<h4>Aude de Penfentenyo </h4>
+											Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco !
+										</div>
+									</div>
+									<div class="col-md-2 col-xs-2">
+										<div class="product_img_div">
+											<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="product_img"/>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="sep_dotted"></div>
-					<div class="row">
-						<div class="row80">
-							<div class="col-md-2 col-xs-2">
-								<div class="product_img_div">
-									<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+							<div class="sep_dotted"></div>
+							<div class="row">
+								<div class="row80">
+									<div class="col-md-2 col-xs-2">
+										<div class="product_img_div">
+											<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="product_img"/>
+										</div>
+									</div>
+									<div class="col-md-10 col-xs-10">
+										<div class="row">
+											<h4>Pierre-Arnaud Destremau</h4>
+											Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents!
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col-md-10 col-xs-10">
-								<div class="row">
-									<h4>Pierre-Arnaud Destremau</h4>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore nemo illum incidunt tempora, libero repellendus deleniti consequatur. Commodi non saepe recusandae repellat adipisci numquam ducimus odit. Eligendi, veniam dolorum voluptas!
-								</div>
-							</div>
-						</div>
+							
+						<!-- </div> -->
 					</div>
 				</div>
 			</div>

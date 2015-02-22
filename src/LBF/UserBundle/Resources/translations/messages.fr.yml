@@ -39,7 +39,7 @@ user:
 # Register and forgotten password
 registerUser:
     titles:
-        signUp:             "S'inscrire"
+        signUp:             Inscription
         enterDetails:       Saisissez vos informations :
         username:           "Nom d'utilisateur"
         password:           Mot de passe
@@ -89,25 +89,19 @@ check:
 # Login
 login:
     titles:
-        loginTitle:     Se connecter à son compte
+        loginTitle:     Connexion
+        or:             "- ou -"
         enterUsernameAndPassword:   Enter a username and a password. 
         email:          Email
         username:       "Nom d'utilisateur"
         password:       Mot de passe
-        orLoginWith:    Ou se connecter avec
         forgetPassword: Mot de passe oublié ?
-        noWorriesClick: cliquez
-        here:           ici
-        toResetPassword: pour réinitialiser votre mot de passe.
-        noAccount:      "Toujours pas de compte ?"
     actions:
         login:          CONNEXION
         remember_me:    Se souvenir de moi
         createAccount:  Créer un compte
+        back:           Retour
     connected:
         titleAlreadyConnected:  Vous êtes déjà connecté
         accessAccount:  Accédez rapidement à votre compte
-    comments:
-        anyComments:    Des commentaires à propos de SWYCA ?
-        feelFreeTo:     "N'hésitez pas à nous"
-        tellUs:         en faire part
+    

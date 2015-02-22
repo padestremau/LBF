@@ -2,7 +2,7 @@
 
 function loadContentLogin(path_chosen)
 {
-	$('div#login_content').hide('slow',loadContent);
+	$('div#login_content').fadeOut('slow',loadContent);
 
 	function loadContent() {
 		var toLoad = path_chosen +' #login_content';
@@ -11,10 +11,10 @@ function loadContentLogin(path_chosen)
 		$('#login_name_status').load(headerChange,'',showNewHeaderStatus())
 	}
 	function showNewContent() {
-		$('#login_content').show('slow');
+		$('#login_content').fadeIn('slow');
 	}
 	function showNewHeaderStatus() {
-		$('#login_name_status').show('slow');
+		$('#login_name_status').fadeIn('slow');
 	}
 
 	//to change the browser URL to 'path_chosen'

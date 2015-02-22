@@ -89,7 +89,8 @@ check:
 # Login
 login:
     titles:
-        loginTitle:     Login to your account
+        loginTitle:     Login
+        or:             "- or -"
         enterUsernameAndPassword:   Enter a username and a password. 
         username:       Username
         email:          Email
@@ -103,11 +104,7 @@ login:
     actions:
         login:          LOGIN
         remember_me:    Remember me
-        createAccount:  Create an account
+        back:           Back
     connected:
         titleAlreadyConnected:  "You're already connected"
         accessAccount:  Access your account
-    comments:
-        anyComments:    Any comments about SWYCA you would like to share?
-        feelFreeTo:     Feel free to 
-        tellUs:         tell us

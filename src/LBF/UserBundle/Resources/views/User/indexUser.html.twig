@@ -205,7 +205,7 @@
 
 							</div>
 							<div class="col-md-3">
-								{% if app.user.webPath|length > 0 %}
+								{% if app.user.alt|length > 0  and app.user.url|length > 0 %}
 									<div class="user_img" style="width: 100%; background-image: url('{{ asset( app.user.webPath) }}'); background-size: cover; background-position: 50%;">
 										<!-- onClick="showPhoto('{{ app.user.id }}')" -->
 										<script type="text/javascript">

@@ -25,24 +25,35 @@
             <div id="login_content">    <!-- Element loading -->
 
                 <!-- Begin Top Buttons -->
-                  <a href="{{ path('lbf_main_homepage') }}" class="btn btn-log float-right top_button">
+                  <!-- <a href="{{ path('lbf_main_homepage') }}" class="btn btn-log float-right top_button">
                     {{ 'user.actions.home'|trans }}
                     <i class="fa fa-sign-in"></i>
-                  </a>
-                {% if (route != 'fos_user_security_login') %}
+                  </a> -->
+                {# if (route != 'fos_user_security_login') %}
                   <button onClick="loadContentLogin('{{ path('fos_user_security_login') }}')" class="btn btn-log float-right top_button">
                     {{ 'header.titles.login' | trans }}
                     <i class="fa fa-sign-in"></i>
                   </button>
-                {% endif %}
+                {% endif #}
                 <!-- End Top Buttons -->
 
                 {% if (route == 'fos_user_resetting_request') 
                     or (route == 'fos_user_resetting_reset') %}
 
-                  <h2>
-                    {{ 'forgotPassword.titles.forgotPassword'|trans }}
-                  </h2>
+                  <div class="row">
+                    <div class="col-md-9 col-xs-9">
+                      <h2>
+                        {{ 'forgotPassword.titles.forgotPassword'|trans }}
+                      </h2>
+                    </div>
+                    <div class="col-md-3 col-xs-3 right">
+                      <a href="javascript:loadContentLogin('{{ path('fos_user_security_login') }}')" style="no_style_a">
+                        <button class="btn btn-log">
+                          {{ 'login.actions.back' | trans }}
+                        </button>
+                      </a>
+                    </div>
+                  </div>
                   <hr/>
 
                   <div>
@@ -52,9 +63,20 @@
 
                 {% elseif (route == 'fos_user_change_password') %}
 
-                  <h2>
-                    {{ 'resetPassword.titles.resetPassword'|trans }}
-                  </h2>
+                  <div class="row">
+                    <div class="col-md-9 col-xs-9">
+                      <h2>
+                        {{ 'resetPassword.titles.resetPassword'|trans }}
+                      </h2>
+                    </div>
+                    <div class="col-md-3 col-xs-3 right">
+                      <a href="javascript:loadContentLogin('{{ path('fos_user_security_login') }}')" style="no_style_a">
+                        <button class="btn btn-log">
+                          {{ 'login.actions.back' | trans }}
+                        </button>
+                      </a>
+                    </div>
+                  </div>
                   <hr/>
 
                   <div>
@@ -140,10 +162,25 @@
 
               {% elseif (route == 'fos_user_registration_register') %}
 
-                <h2>
-                  {{ 'registerUser.titles.signUp'|trans }}
-                </h2>
-                <hr/>
+                <div class="row">
+                  <div class="col-md-4 col-xs-4 center login_titles login_title_other">
+                    <a href="javascript:loadContentLogin('{{ path('fos_user_security_login') }}')" class="no_style_a">
+                      <h2>
+                        {{ 'login.titles.loginTitle'|trans }}
+                      </h2>
+                    </a>
+                  </div>
+                  <div class="col-md-4 col-xs-4 center login_titles">
+                      <h2>
+                      {{ 'login.titles.or'|trans }}
+                      </h2>
+                  </div>
+                  <div class="col-md-4 col-xs-4 center login_titles login_title_active">
+                      <h2>
+                        {{ 'registerUser.titles.signUp'|trans }}
+                      </h2>
+                  </div>
+                </div>
 
                 <div>
                   <!-- BEGIN REGISTRATION FORM -->
@@ -284,10 +321,25 @@
                 </div>
 
               {% elseif route == 'fos_user_security_login' %}
-                <h2>
-                  {{ 'login.titles.loginTitle'|trans }}
-                </h2>
-                <hr/>
+                <div class="row">
+                  <div class="col-md-4 col-xs-4 center login_titles login_title_active">
+                      <h2>
+                        {{ 'login.titles.loginTitle'|trans }}
+                      </h2>
+                  </div>
+                  <div class="col-md-4 col-xs-4 center login_titles">
+                      <h2>
+                        {{ 'login.titles.or'|trans }}
+                      </h2>
+                  </div>
+                  <div class="col-md-4 col-xs-4 center login_titles login_title_other">
+                    <a href="javascript:loadContentLogin('{{ path('fos_user_registration_register') }}')" class="no_style_a">
+                      <h2>
+                        {{ 'registerUser.titles.signUp'|trans }}
+                      </h2>
+                    </a>
+                  </div>
+                </div>
 
                 <div>
                   <!-- BEGIN LOGIN FORM -->
@@ -341,34 +393,11 @@
                       </div>
 
                       <br/><br/>
-                      <hr/>
                       
-                      <div class="forget-password">
-                        <h4>
+                      <div class="forget-password center">
+                        <a href="javascript:loadContentLogin('{{ path('fos_user_resetting_request') }}')">
                           {{ 'login.titles.forgetPassword'|trans }}
-                        </h4>
-                        <p>
-                          {{ 'login.titles.noWorriesClick'|trans }}
-                          <a href="javascript:loadContentLogin('{{ path('fos_user_resetting_request') }}')">
-                            <strong>
-                              {{ 'login.titles.here'|trans }} 
-                            </strong>
-                          </a> 
-                          {{ 'login.titles.toResetPassword'|trans }} 
-                        </p>
-                      </div>
-
-                      <hr/>
-
-                      <div class="create-account">
-                        <p>
-                          {{ 'login.titles.noAccount'|trans }}
-                          <a href="javascript:loadContentLogin('{{ path('fos_user_registration_register') }}')">
-                            <strong>
-                              {{ 'login.actions.createAccount'|trans }} 
-                            </strong>
-                          </a>
-                        </p>
+                        </a>
                       </div>
                     </form>
                 </div>
@@ -376,50 +405,50 @@
 
               {% elseif route == 'fos_user_registration_check_email' %}
                 <h2>
-                  {{ 'check.actions.checkEmail'|trans }}
+                  Check your emails
                 </h2>
                 <hr/>
 
                 <br/><br/><br/><br/><br/><br/><br/>
 
                 <div class="center">
-                  {{ 'check.titles.welcome'|trans }}
+                  Thank you for joining us. Please check your emails to confirm your email before using the website.
                   <br/>
                   <strong>
-                    {{ 'team.signature.team'|trans }}
+                    Le Buffet Francés
                   </strong>
                 </div>
 
               {% elseif route == 'fos_user_registration_confirm' %}
                 <h2>
-                  {{ 'check.actions.pleaseConfirm'|trans }}
+                  Please confirm
                 </h2>
                 <hr/>
 
                 <br/><br/><br/><br/><br/><br/><br/>
 
                 <div class="center">
-                  {{ 'check.titles.confirm'|trans }}
+                  Can you please confirm ?
                   <br/>
                   <strong>
-                    {{ 'team.signature.team'|trans }}
+                    Le Buffet Francés
                   </strong>
                 </div>
 
               {% elseif route == 'fos_user_resetting_send_email' 
                       or route == 'fos_user_resetting_check_email' %}
                 <h2>
-                  {{ 'check.actions.checkEmail'|trans }}
+                  Check your emails
                 </h2>
                 <hr/>
 
                 <br/><br/><br/><br/><br/><br/><br/>
 
                 <div class="center">
-                  {{ 'check.titles.confirmEmailForPassword'|trans }}
+                  Please check your emails to confirm your email before renewing your password. 
                   <br/>
                   <strong>
-                    {{ 'team.signature.team'|trans }}
+                    Le Buffet Francés
                   </strong>
                 </div>
 
@@ -432,41 +461,39 @@
                 <br/><br/><br/><br/><br/><br/><br/>
 
                 <div class="center">
-                  {{ 'check.titles.allGood'|trans }}
-                  <br/>
-                  {{ 'check.titles.participate'|trans }}
+                  All good ! Thank you for your that. 
                   <strong>
-                    {{ 'team.signature.team'|trans }}
+                    Le Buffet Francés
                   </strong>
                   <br/><br/>
-                  <a href="{{ path('lbf_presentation_route') }}" class="center btn-log no_style_a">
-                    {{ 'check.link.route'|trans }}
+                  <a href="{{ path('lbf_main_homepage') }}" class="center btn-log no_style_a">
+                    Home
                   </a>
                 </div>
 
               {% else %}
                 <h2>
-                  {{ 'check.actions.done'|trans }}
+                  Done !
                 </h2>
                 <hr/>
 
                 <br/><br/><br/><br/><br/>
 
                 <div class="center">
-                  {{ 'check.titles.allGood'|trans }}
+                  All good ! Thank you for your that. 
                   <br/>
                   <strong>
-                    {{ 'team.signature.team'|trans }}
+                    Le Buffet Francés
                   </strong>
                 </div>
 
                 <br/><br/>
 
                 <div class="center italic">
-                  {{ 'check.titles.anyProblem'|trans }}
+                  If you have any problem, please contact our administrations.
                   <br/><br/>
-                  <a href="{{ path('lbf_presentation_contact') }}" class="center btn-log no_style_a">
-                    {{ 'check.link.contact'|trans }}
+                  <a href="{{ path('lbf_presentation_contact') }}#footerSection" class="center btn-log no_style_a">
+                    Contact the administration
                   </a>
                 </div>
               {% endif %}
@@ -478,9 +505,6 @@
 
       </div>
 
-      <!-- BEGIN FOOTER -->
-        {% include 'includes/footer.html.twig' %}
-      <!-- END FOOTER -->
     </div>
     <!-- END CONTENT -->
   </div>

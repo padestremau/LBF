@@ -2,11 +2,11 @@
 
 header:
     titles:
-        login:                  CONNECCION
+        login:                  SESIÓN
         reset:                  RESET
         request:                REQUESTA
         changePassword:         CONTRASEÑA
-        register:               INSCRIPCIÓN
+        register:               REGISTRACIÓN
         aboutUs: 				A PROPUESTO
         ourProducts: 			PRODUCTOS
         myCart: 				MIS PEDIDOS
