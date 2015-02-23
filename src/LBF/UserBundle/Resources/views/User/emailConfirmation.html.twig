@@ -67,7 +67,7 @@
                             <div style="width:100%; text-align:justify;">
                               {{ 'emailSummary.content.summaryEmailRegarding' | trans }} <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. 
                               <br/>
-                              {{ 'emailSummary.content.orderIs' | trans }} <strong>{{ 'emailSummary.content.onHold' | trans }}</strong>
+                              {{ 'emailSummary.content.orderIs' | trans }} <strong> {{ 'emailSummary.content.onHold' | trans }} </strong>
                               {{ 'emailSummary.content.shouldReceive' | trans }}
                             </div>
                           </td>
@@ -187,7 +187,7 @@
                                       {{ 'emailSummary.content.shouldReceiveShortly' | trans }}
                                       <br/><br/>
 
-                                      Please note that you asked the order to be ready for the <strong> {{ newOrder.deliveryAt|date("d M Y") }} </strong> at <strong> {{ newOrder.deliveryAt|date("H:i") }} </strong>.
+                                      {{ 'emailSummary.content.delivery' | trans }} <strong> {{ newOrder.deliveryAt|date("d M Y") }} </strong> {{ 'emailSummary.content.at' | trans }} <strong> {{ newOrder.deliveryAt|date("H:i") }} </strong>.
 
                                       <br/><br/>
 

@@ -1,4 +1,4 @@
-{# src/LBF/AdminBundle/Resources/views/User/emailConfirmClient.html.twig #}
+{# src/LBF/AdminBundle/Resources/views/Admin/emailConfirmClient.html.twig #}
 
 {% block body_html %}
 {#
@@ -18,7 +18,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-      Le Buffet Francés - Your order is now confirmed
+      Le Buffet Francés - {{ 'emailConfirm.titles.general' | trans }}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -31,7 +31,7 @@
             <tr >
               <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                 <div style="width:100%; " class="" id="pre-header-text" >
-                  This is a letter from Le Buffet Francés.
+                  {{ 'emailConfirm.notes.topSentence' | trans }} <strong> Le Buffet Francés.</strong>
                 </div>
               </td>
             </tr>
@@ -51,14 +51,14 @@
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
                             <div style="width:100%; " class="" id="title_one_half" >
-                              YOUR ORDER IS BEING PROCESSED
+                              {{ 'emailConfirm.titles.orderBeingProcessed' | trans }}
                             </div>
                           </td>
                         </tr>
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                             <div style="width:100%; text-align:justify;">
-                                This is a confirmation email regarding your recent order on <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. Your order is now <strong>confirmed</strong> by a Manager and is being processed. 
+                                {{ 'emailConfirm.content.emailRegarding' | trans }} <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. {{ 'emailConfirm.content.orderIs' | trans }} <strong> {{ 'emailConfirm.content.confirmed' | trans }} </strong> {{ 'emailConfirm.content.beingProcessed' | trans }}
                             </div>
                           </td>
                         </tr>
@@ -74,7 +74,7 @@
                   <tr >
                     <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
                       <div style="width:100%; " class="" id="header_text_01" >
-                        ORDER CONTENT
+                        {{ 'emailConfirm.titles.orderContent' | trans }}
                       </div>
                     </td>
                   </tr>
@@ -93,7 +93,7 @@
                               <tr >
                                 <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
                                   <div style="width:100%; ">
-                                    As a reminder, you ordered the following elements :
+                                    {{ 'emailConfirm.content.asReminder' | trans }}
                                   </div>
                                 </td>
                               </tr>
@@ -106,16 +106,16 @@
                                           <thead>
                                             <tr>
                                               <th>
-                                                Item
+                                                {{ 'emailConfirm.tableTitles.item' | trans }}
                                               </th>
                                               <th style="text-align:center;">
-                                                Quantity
+                                                {{ 'emailConfirm.tableTitles.quantity' | trans }}
                                               </th>
                                               <th style="text-align:center;">
-                                                Weight
+                                                {{ 'emailConfirm.tableTitles.weight' | trans }}
                                               </th>
                                               <th style="text-align:center;">
-                                                Price
+                                                {{ 'emailConfirm.tableTitles.price' | trans }}
                                               </th>
                                             </tr>
                                           </thead>
@@ -160,7 +160,7 @@
                                       <br/>
                                       <div style="width:100%; text-align:center; font-size:15px;">
                                         <strong>
-                                          TOTAL: 
+                                          {{ 'emailConfirm.tableTitles.total' | trans }}
                                         </strong>
                                         {% if total_weight_general > 999 %}
                                           {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
@@ -175,7 +175,7 @@
 
                                       <br/><br/>
 
-                                      Please note that the order will be ready to be picked up for the <strong> {{ order.deliveryAt|date("d M Y") }} </strong> at <strong> {{ order.deliveryAt|date("H:i") }} </strong>.
+                                      {{ 'emailConfirm.content.pleaseNoteDelivery' | trans }} <strong> {{ order.deliveryAt|date("d M Y") }} </strong>  {{ 'emailConfirm.content.at' | trans }} <strong> {{ order.deliveryAt|date("H:i") }} </strong>.
 
                                       <br/><br/>
 
@@ -187,14 +187,18 @@
                                           background-color: rgba(120,30,20,0.99);
                                           border-radius: 0;
                                           color: white;">
-                                          Access my profile
+                                          {{ 'emailConfirm.actions.accessProfile' | trans }}
                                         </a>
                                       </div>
                                   </div>
                                 {% else %}
                                     <div style="width:100%; text-align:justify;">
-                                      Sorry, nothing here for now ... <br/>
-                                      Please <a href="mailto:contact@lebuffetfrances.com">contact the administration</a>.
+                                      {{ 'emailConfirm.errors.nothingHere' | trans }}
+                                      <br/>
+                                      {{ 'emailConfirm.errors.please' | trans }}
+                                      <a href="mailto:webmaster@lebuffetfrances.com">
+                                        {{ 'emailConfirm.errors.contactAdministration' | trans }}
+                                      </a>.
                                     </div>
                                 {% endif %}
                                 </td>
@@ -216,7 +220,7 @@
                     <tr >
                       <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
                         <div style="width:100%; " class="" id="header_text_01" >
-                          MESSAGE FROM MANAGER
+                          {{ 'emailConfirm.titles.messageFromManager' | trans }}
                         </div>
                       </td>
                     </tr>
@@ -235,7 +239,7 @@
                                 <tr >
                                   <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
                                     <div style="width:100%; ">
-                                      A manager added this message to your order confirmation process :
+                                      {{ 'emailConfirm.content.messageFromManager' | trans }}
                                     </div>
                                   </td>
                                 </tr>
@@ -265,13 +269,14 @@
                           <tbody>
                             <tr>
                               <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
-                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong> is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way.
+                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong>
+                                {{ 'emailConfirm.footer.anecdote' | trans }}
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
                                 <div style="display:inline-block; margin-right : 10px;">
-                                  Keep in touch: 
+                                  {{ 'emailConfirm.footer.keepInTouch' | trans }}
                                 </div>
                                 <div style="display:inline-block;">
                                   <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" style="position:relative; top:4px;">
@@ -282,18 +287,18 @@
                             </tr>
                             <tr>
                               <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                If someone sent you this newsletter and you'd like to join our mailing list, you can sign up 
+                                {{ 'emailConfirm.footer.ifWantToJoin' | trans }}
                                 <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com#footerSection" target="_blank">
-                                  here
+                                  {{ 'emailConfirm.footer.here' | trans }}
                                 </a>
                                 .
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                You're receiving this email as a result of downloading SketchUp Make or SketchUp Pro and opting-in to receive the SketchUpdate Newsletter. If you would like to unsubscribe from all emails from us, please 
+                                {{ 'emailConfirm.footer.quitSubscription' | trans }}
                                 <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/newsletterEmailUndo/{{ order.user.email }}" target="_blank">
-                                  click here
+                                  {{ 'emailConfirm.footer.clickHere' | trans }}
                                 </a>
                                 .
                               </td>

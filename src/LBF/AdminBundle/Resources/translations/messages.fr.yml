@@ -1,0 +1,65 @@
+# Email confirm
+emailConfirm:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                Votre commande est à présent confirmée
+        orderBeingProcessed:   	VOTRE COMMANDE EST EN COURS DE PRÉPARATION
+        messageFromManager: 	MESSAGE D'UN DES GÉRANTS
+    content:
+        emailRegarding:  		"Ceci est un email de confirmation concernant votre récente commande sur "
+        orderIs:                "Votre commande est à présent "
+        confirmed:              "confirmée"
+        beingProcessed:         "par un gérant et est en cours de préparation. "
+        asReminder:          	"Nous vous rappelons que vous avez commandé les éléments suivants :"
+        pleaseNoteDelivery: 	"Notez s'il vous plaît que votre commande sera prête pour être récupérée le "
+        at: 					" à "
+        messageFromManager:   	"Un des gérants a ajouté le message suivant au processus de confirmation de votre commande :"
+    tableTitles:
+        item:                   Elément
+        quantity:               Quantité
+        weight:                 Poids
+        price:                  Prix
+        total:                  "TOTAL:"
+    actions:
+        accessProfile:          Accéder à mon profil
+    errors:
+        nothingHere:            "Désolé, votre commande est vide ..."
+        please:                 "S'il vous plaît,"
+        contactAdministration:  "contactez l'administration"
+    footer:
+        anecdote:               "est un nouveau magasin de charcuterie à Cusco, qui vend des produits faits avec la viande locale mais coupée et cuisinée selon les méthodes et techniques françaises. La start-up a ouvert le 1er Mars 2015 au Perou, avec leur premier atelier. D'autres suivront."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
+
+
+# Email complete
+emailComplete:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                Votre commande est à présent terminée
+        orderComplete:   		VOTRE COMMANDE EST À PRÉSENT TERMINÉE
+        orderContent:           CONTENU DE LA COMMANDE
+    content:
+        thankYouAgain:          "Merci encore pour votre commande sur "
+        orderIs:                "Votre commmande est à présent "
+        completed:              "terminée"
+        asReminder:          	"Simple rappel: commande n° "
+        of: 					" de "
+        deliveredAt:   			"Vous avez demandé de pouvoir récupérer votre commande le "
+        at: 					" à "
+        didSo: 					" et l'avez fait"
+        seeYouSoon: 			"Merci de votre fidélité. Nous espérons vous revoir bien vite !"
+        enjoy: 					"Bon appétit !"
+    footer:
+        anecdote:               "est un nouveau magasin de charcuterie à Cusco, qui vend des produits faits avec la viande locale mais coupée et cuisinée selon les méthodes et techniques françaises. La start-up a ouvert le 1er Mars 2015 au Perou, avec leur premier atelier. D'autres suivront."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
+

@@ -99,42 +99,6 @@ cart:
         minimumOpen:            "El minimum de preparación de su pedido es 2 horas, pero si quiere, usted puede cambiar la fecha que más le conviene :"
 
 
-# Email summary
-emailSummary:
-    notes: 
-        topSentence:            "Esto es un mensaje de "
-    titles:
-        general:                Nuevo pedido pendiente de validación
-        thankYouForYourOrder:   GRACIAS POR SU PEDIDO
-        orderContent:           CONTENIDO DEL PEDIDO
-    content:
-        summaryEmailRegarding:  "Esto es un recapitulativo de su pedido realizado sobre "
-        orderIs:                "Su pedido esta grabado, y "
-        onHold:                 "pendiente"
-        shouldReceive:          "de estar validado por uno de los gerentes para que se prepare. Usted debería recebir un email de confirmación cuando le estamos preparando su pedido."
-        thankYouAgain:          "Gracias de nuevo por su pedido de los artículos siguientes :"
-        shouldReceiveShortly:   "Usted debería recebir un email rapidament, cuando uno de los gerentes haya validado su pedido."
-    tableTitles:
-        item:                   Artículo
-        quantity:               Quantitad
-        weight:                 Peso
-        price:                  Precio
-        total:                  "TOTAL : "
-    actions:
-        accessProfile:          Acceder a su perfil
-    errors:
-        nothingHere:            "Lo siento, su pedido esta vacío..."
-        please:                 "Por favor,"
-        contactAdministration:  "contacte la administración"
-    footer:
-        anecdote:               "es una nueva tienda de charcuteria en Cusco, que viende productos de carne local, pero cortada y cocinada según los metodos y tecnicas francéses. La start-up ha abierta el 1ero de Marso de 2015 en Perú, con su primera fabrica. Otras seguiron."
-        keepInTouch:            "Mantener el contacto : "
-        ifWantToJoin:           "Si alguien le ha mandado este email y usted quiere sumarse a la lista de distribución de las newsletters, usted puede añadir su email "
-        here:                   "aquí"
-        quitSubscription:       "Usted recibe este email siguiendo o un pedido sobre nuestro sitio web, o su abono a nuestras newsletters. Para deshuesarse de la newsletter, por favor haga "
-        clickHere:              clic aquí
-
-
 # About us
 
 aboutUs:

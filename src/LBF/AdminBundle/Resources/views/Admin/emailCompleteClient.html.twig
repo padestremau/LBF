@@ -1,4 +1,4 @@
-{# src/LBF/AdminBundle/Resources/views/User/emailConfirmClient.html.twig #}
+{# src/LBF/AdminBundle/Resources/views/Admin/emailCompleteClient.html.twig #}
 
 {% block body_html %}
 {#
@@ -18,7 +18,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-      Le Buffet Francés - Your order is now completed
+      Le Buffet Francés - {{ 'emailComplete.titles.general' | trans }}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -31,7 +31,7 @@
             <tr >
               <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                 <div style="width:100%; " class="" id="pre-header-text" >
-                  This is a letter from Le Buffet Francés.
+                  {{ 'emailComplete.notes.topSentence' | trans }} <strong> Le Buffet Francés.</strong>
                 </div>
               </td>
             </tr>
@@ -51,16 +51,17 @@
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
                             <div style="width:100%; " class="" id="title_one_half" >
-                              YOUR ORDER IS NOW COMPLETED
+                              {{ 'emailComplete.titles.orderComplete' | trans }}
                             </div>
                           </td>
                         </tr>
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                             <div style="width:100%; text-align:justify;">
-                                Thank you again for ordering on <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. Your order is now <strong>completed</strong>. 
+                                {{ 'emailComplete.content.thankYouAgain' | trans }} <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. 
+                                {{ 'emailComplete.content.orderIs' | trans }} <strong> {{ 'emailComplete.content.completed' | trans }} </strong>. 
                                 <br/>
-                                As a reminder, you order n° <strong>{{ order.id }}</strong> of 
+                                {{ 'emailComplete.content.asReminder' | trans }} <strong>{{ order.id }}</strong> {{ 'emailComplete.content.of' | trans }} 
                                 {% set total_price_general = 0 %}
                                 {% for item_array in order.elements %}
                                   {% set item = item_array['item'] %}
@@ -70,12 +71,12 @@
                                 {% endfor %}
                                 <strong>S/. {{ total_price_general }}</strong>.
                                 <br/>
-                                You asked to come and pick it up the <strong>{{ order.deliveryAt|date('d M Y') }}</strong> at <strong>{{ order.deliveryAt|date('H:i') }}</strong> and did so.
+                                {{ 'emailComplete.content.deliveredAt' | trans }} <strong>{{ order.deliveryAt|date('d M Y') }}</strong> {{ 'emailComplete.content.at' | trans }} <strong>{{ order.deliveryAt|date('H:i') }}</strong> {{ 'emailComplete.content.didSo' | trans }}.
 
                                 <br/>
-                                We hope to see you soon !
+                                {{ 'emailComplete.content.seeYouSoon' | trans }} 
                                 <br/>
-                                Enjoy your meal !
+                                {{ 'emailComplete.content.enjoy' | trans }} 
                                 <br/>
                                 <br/>
                                 <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>
@@ -99,7 +100,8 @@
                           <tbody>
                             <tr>
                               <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
-                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong> is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way.
+                                <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong>
+                                {{ 'emailComplete.footer.anecdote' | trans }}
                               </td>
                             </tr>
                             <tr>
@@ -116,18 +118,18 @@
                             </tr>
                             <tr>
                               <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                If someone sent you this newsletter and you'd like to join our mailing list, you can sign up 
+                                {{ 'emailComplete.footer.ifWantToJoin' | trans }}
                                 <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com#footerSection" target="_blank">
-                                  here
+                                  {{ 'emailComplete.footer.here' | trans }}
                                 </a>
                                 .
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                You're receiving this email as a result of downloading SketchUp Make or SketchUp Pro and opting-in to receive the SketchUpdate Newsletter. If you would like to unsubscribe from all emails from us, please 
+                                {{ 'emailComplete.footer.quitSubscription' | trans }}
                                 <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/newsletterEmailUndo/{{ order.user.email }}" target="_blank">
-                                  click here
+                                  {{ 'emailComplete.footer.clickHere' | trans }}
                                 </a>
                                 .
                               </td>

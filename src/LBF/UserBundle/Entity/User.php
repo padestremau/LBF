@@ -29,6 +29,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="type", type="boolean")
+     */
+    private $type;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
@@ -41,6 +48,13 @@ class User extends BaseUser
      * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
      */
     private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="companyName", type="string", length=255, nullable=true)
+     */
+    private $companyName;
 
     /**
      * @var string
@@ -92,6 +106,13 @@ class User extends BaseUser
     private $addressCountry;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="RUCnumber", type="string", length=255, nullable=true)
+     */
+    private $RUCnumber;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="gender", type="boolean", nullable=true)
@@ -125,6 +146,8 @@ class User extends BaseUser
         parent::__construct();
         $username = $this->getEmail();
         $usernameCanonical = $this->getEmailCanonical();
+
+
     }
 
 
@@ -138,6 +161,8 @@ class User extends BaseUser
     {
         $this->username = $this->email;
         $this->usernameCanonical = $this->emailCanonical;
+
+        $this->type  =   true;
     }
 
 
@@ -522,4 +547,73 @@ class User extends BaseUser
     }
 
     /*   *********   End  File  *************  */
+
+    /**
+     * Set companyName
+     *
+     * @param string $companyName
+     * @return User
+     */
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    /**
+     * Get companyName
+     *
+     * @return string 
+     */
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * Set RUCnumber
+     *
+     * @param string $rUCnumber
+     * @return User
+     */
+    public function setRUCnumber($rUCnumber)
+    {
+        $this->RUCnumber = $rUCnumber;
+
+        return $this;
+    }
+
+    /**
+     * Get RUCnumber
+     *
+     * @return string 
+     */
+    public function getRUCnumber()
+    {
+        return $this->RUCnumber;
+    }
+
+    /**
+     * Set type
+     *
+     * @param boolean $type
+     * @return User
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return boolean 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 }

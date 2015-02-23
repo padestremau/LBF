@@ -1,0 +1,65 @@
+# Email confirm
+emailConfirm:
+    notes: 
+        topSentence:            "This is a letter from "
+    titles:
+        general:                Your order is now confirmed
+        orderBeingProcessed:   	YOUR ORDER IS BEING PROCESSED
+        messageFromManager: 	MESSAGE FROM MANAGER
+    content:
+        emailRegarding:  		"This is a confirmation email regarding your recent order on "
+        orderIs:                "Your order is now "
+        confirmed:              "confirmed"
+        beingProcessed:          "by a Manager and is being processed. "
+        asReminder:          	"As a reminder, you ordered the following elements:"
+        pleaseNoteDelivery: 	"Please note that the order will be ready to be picked up for the "
+        at: 					" at "
+        messageFromManager:   	"A manager added this message to your order confirmation process:"
+    tableTitles:
+        item:                   Item
+        quantity:               Quantity
+        weight:                 Weight
+        price:                  Price
+        total:                  "TOTAL: "
+    actions:
+        accessProfile:          Access my profile
+    errors:
+        nothingHere:            "Sorry, nothing here for now..."
+        please:                 Please
+        contactAdministration:  "contact the administration"
+    footer:
+        anecdote:               "is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way."
+        keepInTouch:            "Keep in touch: "
+        ifWantToJoin:           "If someone sent you this email and you'd like to join our mailing list, you can sign up "
+        here:                   "here"
+        quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
+        clickHere:              click here
+
+
+# Email complete
+emailComplete:
+    notes: 
+        topSentence:            "This is a letter from "
+    titles:
+        general:                Your order is now completed
+        orderComplete:   		YOUR ORDER IS NOW COMPLETED
+        orderContent:           ORDER CONTENT
+    content:
+        thankYouAgain:          "Thank you again for ordering on "
+        orderIs:                "Your order is now "
+        completed:              "completed"
+        asReminder:          	"As a reminder, you order n° "
+        of: 					" of "
+        deliveredAt:   			"You asked to come and pick it up the "
+        at: 					" at "
+        didSo: 					" and did so"
+        seeYouSoon: 			"We hope to see you soon!"
+        enjoy: 					"Enjoy your meal!"
+    footer:
+        anecdote:               "is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way."
+        keepInTouch:            "Keep in touch: "
+        ifWantToJoin:           "If someone sent you this email and you'd like to join our mailing list, you can sign up "
+        here:                   "here"
+        quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
+        clickHere:              click here
+

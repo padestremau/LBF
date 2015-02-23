@@ -105,3 +105,39 @@ login:
         titleAlreadyConnected:  Vous êtes déjà connecté
         accessAccount:  Accédez rapidement à votre compte
     
+# Email summary
+emailSummary:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                Nouvelle commande en attente de validation
+        thankYouForYourOrder:   MERCI POUR VOTRE COMMANDE
+        orderContent:           CONTENU DE LA COMMANDE
+    content:
+        summaryEmailRegarding:  "Ceci est un récapitulatif de votre commande effectuée sur "
+        orderIs:                "Votre commande est enregistrée, et "
+        onHold:                 "en attente"
+        shouldReceive:          "d'être validée par un des gérants, pour être préparée. Vous devriez recevoir très rapidement un email de confirmation une fois que votre commande est prise en compte."
+        thankYouAgain:          "Encore merci d'avoir choisi les élements suivants :"
+        shouldReceiveShortly:   "Vous devirez recevoir un email d'ici peu, une fois qu'un des gérants aura confirmé votre commande."
+        delivery:               "Notez s'il vous plaît que vous avez demandé à ce que votre commande soit prête le "
+        at:                     " à "
+    tableTitles:
+        item:                   Elément
+        quantity:               Quantité
+        weight:                 Poids
+        price:                  Prix
+        total:                  "TOTAL:"
+    actions:
+        accessProfile:          Accéder à mon profil
+    errors:
+        nothingHere:            "Désolé, votre commande est vide ..."
+        please:                 "S'il vous plaît,"
+        contactAdministration:  "contactez l'administration"
+    footer:
+        anecdote:               "est un nouveau magasin de charcuterie à Cusco, qui vend des produits faits avec la viande locale mais coupée et cuisinée selon les méthodes et techniques françaises. La start-up a ouvert le 1er Mars 2015 au Perou, avec leur premier atelier. D'autres suivront."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
