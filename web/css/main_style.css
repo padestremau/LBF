@@ -992,6 +992,10 @@ a.captionOrange:hover
 	border-right: 1px dotted white;
 }
 
+.border_bottom_white_dotted {
+	border-bottom: 1px dotted white;
+}
+
 .remember_me_box {
 	margin-left: 40%;
 }

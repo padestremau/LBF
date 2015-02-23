@@ -183,12 +183,19 @@
                 </div>
 
                 <div>
-                  <div class="row center">
-                    You are:
-                    <input type="radio" name="register_form" value="user_type" id="user_type" onClick="showRegisterSelect()"/>
-                    <label for="user_type">User</label>
-                    <input type="radio" name="register_form" value="company_type" id="company_type" onClick="showRegisterSelect()"/>
-                    <label for="company_type">Company</label>
+                  <div class="row">
+                    <div class="col-md-4 col-xs-4"></div>
+                    <div class="col-md-4 col-xs-4 left border_bottom_white_dotted">
+                      You are:
+                      <br/>
+                      <input type="radio" name="register_form" value="user_type" id="user_type" onClick="showRegisterSelect()"/>
+                      <label for="user_type">User</label>
+                      <br/>
+                      <input type="radio" name="register_form" value="company_type" id="company_type" onClick="showRegisterSelect()"/>
+                      <label for="company_type">Company</label>
+
+                    </div>
+                    <div class="col-md-4 col-xs-4"></div>
                   </div>
                     
                     <script type="text/javascript">
@@ -204,7 +211,6 @@
                         }
                     </script>
 
-                    <div style="display:none;" id="user_type_form">
 
                       <!-- BEGIN REGISTRATION FORM -->
                       <form class="register-form" action="{{ path('fos_user_registration_register') }}" method="post" {{ form_enctype(form) }} >
@@ -221,117 +227,115 @@
                             <br/>
                           {% endif %}
 
+                        <div style="display:none;" id="user_type_form">
 
-                        <div class="form-group">
-                          
-                          {{ form_label(form.username) }}
-                          <div class="input-icon">
-                            <i class="fa fa-user"></i>
-                            {% set opt_username_input = {'attr': {'class': 'form-control placeholder-no-fix',
-                              'type':'hidden', 'value': 'nothing', 'id':'username', 'name':'username'}} %}
-                            {{ form_widget(form.username, opt_username_input) }}
-                          </div>
-                          <!-- <input type="hidden" value="nothing" name="username" id="username"> -->
-                        </div>
-
-                        <div class="form-group">
-                          {% set email_input = 'registerUser.titles.email' | trans %}
-                          {% if form_errors(form.email) %}
-                            <div class="error_message">
-                              <span class="warning_word">
-                                {{ 'user.warning.warning'|trans }}
-                              </span>
-                              <span class="warning_message">
-                                {{ form_errors(form.email) }}
-                              </span>
+                            <div class="form-group">
+                              <div class="input-icon">
+                                {{ form_widget(form.username, {'type':'hidden', 'value':'nothing'}) }}
+                              </div>
+                              <!-- <input type="hidden" value="nothing" name="username" id="username"> -->
                             </div>
-                            <br/>
-                          {% endif %}
-                          {{ email_input }}
-                          <div class="input-icon">
-                            <i class="fa fa-envelope"></i>
-                            {% set opt_email_input = {'attr': {'class': 'form-control placeholder-no-fix',
-                              'type':'text', 'placeholder': email_input, 'id':'email',
-                              'name':'email', 'required':'required', 'autofocus':''}} %}
-                            {{ form_widget(form.email, opt_email_input) }}
-                          </div>
-                        </div>
 
-                         <div class="form-group">
-                          {% set password_input = 'registerUser.titles.password' | trans %}
-                          {% if form_errors(form.plainPassword.first) %}
-                            <div class="error_message">
-                              <span class="warning_word">
-                                {{ 'user.warning.warning'|trans }}
-                              </span>
-                              <span class="warning_message">
-                                {{ form_errors(form.plainPassword.first) }}
-                              </span>
+                            <div class="form-group">
+                              {% set email_input = 'registerUser.titles.email' | trans %}
+                              {% if form_errors(form.email) %}
+                                <div class="error_message">
+                                  <span class="warning_word">
+                                    {{ 'user.warning.warning'|trans }}
+                                  </span>
+                                  <span class="warning_message">
+                                    {{ form_errors(form.email) }}
+                                  </span>
+                                </div>
+                                <br/>
+                              {% endif %}
+                              {{ email_input }}
+                              <div class="input-icon">
+                                <i class="fa fa-envelope"></i>
+                                {% set opt_email_input = {'attr': {'class': 'form-control placeholder-no-fix',
+                                  'type':'text', 'placeholder': email_input, 'id':'email',
+                                  'name':'email', 'required':'required', 'autofocus':''}} %}
+                                {{ form_widget(form.email, opt_email_input) }}
+                              </div>
                             </div>
-                            <br/>
-                          {% endif %}
-                          {{ password_input }}
-                          <div class="input-icon">
-                            <i class="fa fa-lock"></i>
-                            {% set opt_password_input = {'attr': {'class': 'form-control placeholder-no-fix',
-                              'type':'password', 'placeholder': password_input, 'id':'password', 'autocomplete':'off',
-                              'name':'password', 'required':'required'}} %}
-                            {{ form_widget(form.plainPassword.first, opt_password_input) }}
-                          </div>
-                        </div>
 
-                        <div class="form-group">
-                          {% set rePassword_input = 'registerUser.titles.rePassword' | trans %}
-                          {% if form_errors(form.plainPassword.second) %}
-                            <div class="error_message">
-                              <span class="warning_word">
-                                {{ 'user.warning.warning'|trans }}
-                              </span>
-                              <span class="warning_message">
-                                {{ form_errors(form.plainPassword.second) }}
-                              </span>
+                             <div class="form-group">
+                              {% set password_input = 'registerUser.titles.password' | trans %}
+                              {% if form_errors(form.plainPassword.first) %}
+                                <div class="error_message">
+                                  <span class="warning_word">
+                                    {{ 'user.warning.warning'|trans }}
+                                  </span>
+                                  <span class="warning_message">
+                                    {{ form_errors(form.plainPassword.first) }}
+                                  </span>
+                                </div>
+                                <br/>
+                              {% endif %}
+                              {{ password_input }}
+                              <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                {% set opt_password_input = {'attr': {'class': 'form-control placeholder-no-fix',
+                                  'type':'password', 'placeholder': password_input, 'id':'password', 'autocomplete':'off',
+                                  'name':'password', 'required':'required'}} %}
+                                {{ form_widget(form.plainPassword.first, opt_password_input) }}
+                              </div>
                             </div>
-                            <br/>
-                          {% endif %}
-                          {{ rePassword_input }}
-                          <div class="input-icon">
-                            <i class="fa fa-lock"></i>
-                            {% set opt_rePassword_input = {'attr': {'class': 'form-control placeholder-no-fix',
-                              'type':'password', 'placeholder': rePassword_input, 'id':'rpassword', 'autocomplete':'off',
-                              'name':'rpassword', 'required':'required'}} %}
-                            {{ form_widget(form.plainPassword.second, opt_rePassword_input) }}
+
+                            <div class="form-group">
+                              {% set rePassword_input = 'registerUser.titles.rePassword' | trans %}
+                              {% if form_errors(form.plainPassword.second) %}
+                                <div class="error_message">
+                                  <span class="warning_word">
+                                    {{ 'user.warning.warning'|trans }}
+                                  </span>
+                                  <span class="warning_message">
+                                    {{ form_errors(form.plainPassword.second) }}
+                                  </span>
+                                </div>
+                                <br/>
+                              {% endif %}
+                              {{ rePassword_input }}
+                              <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                {% set opt_rePassword_input = {'attr': {'class': 'form-control placeholder-no-fix',
+                                  'type':'password', 'placeholder': rePassword_input, 'id':'rpassword', 'autocomplete':'off',
+                                  'name':'rpassword', 'required':'required'}} %}
+                                {{ form_widget(form.plainPassword.second, opt_rePassword_input) }}
+                              </div>
+                            </div>
+
+                            <div class="form-group web_conditions_box">
+                              <label for="conditions" class="checkbox">
+                                <div class="checker">
+                                  <span>
+                                    <input type="checkbox" id="conditions" name="_conditions" value="on" required="required"/>
+                                  </span>
+                                </div> 
+                                {{ 'registerUser.titles.iAgreeToThe'|trans }}
+                                <a href="#">
+                                  {{ 'registerUser.titles.TermsOfService'|trans }}
+                                </a>
+                                {{ 'registerUser.titles.and'|trans }}
+                                <a href="#">
+                                  {{ 'registerUser.titles.PrivacyPolicy'|trans }}
+                                </a>
+                              </label>
+                            </div>
+                            <div class="form-actions center">
+                              <button type="submit" id="register-submit-btn" class="btn btn-log">
+                                {{ 'registerUser.actions.signUp'|trans }}
+                                <i class="m-icon-swapright m-icon-white"></i>
+                              </button>
+                            </div>
+
+                            <!-- Ce qu'il reste du formulaire ... ;) -->
+                            {{ form_widget(form) }}
+
                           </div>
-                        </div>
-
-                        <div class="form-group web_conditions_box">
-                          <label for="conditions" class="checkbox">
-                            <div class="checker">
-                              <span>
-                                <input type="checkbox" id="conditions" name="_conditions" value="on" required="required"/>
-                              </span>
-                            </div> 
-                            {{ 'registerUser.titles.iAgreeToThe'|trans }}
-                            <a href="#">
-                              {{ 'registerUser.titles.TermsOfService'|trans }}
-                            </a>
-                            {{ 'registerUser.titles.and'|trans }}
-                            <a href="#">
-                              {{ 'registerUser.titles.PrivacyPolicy'|trans }}
-                            </a>
-                          </label>
-                        </div>
-                        <div class="form-actions center">
-                          <button type="submit" id="register-submit-btn" class="btn btn-log">
-                            {{ 'registerUser.actions.signUp'|trans }}
-                            <i class="m-icon-swapright m-icon-white"></i>
-                          </button>
-                        </div>
-
-                        <!-- Ce qu'il reste du formulaire ... ;) -->
-                        {{ form_widget(form) }}
+                      
                       </form>
                       <!-- END REGISTRATION FORM -->
-                    </div>
 
                     <div style="display:none;" id="company_type_form">
                       <!-- BEGIN COMPANY FORM -->
@@ -350,29 +354,14 @@
                           {% endif %}
 
 
+                        
                         <div class="form-group">
-                          {% set username_input = 'registerUser.titles.username' | trans %}
-                          {% if form_errors(form.username) %}
-                            <div class="error_message">
-                              <span class="warning_word">
-                                {{ 'user.warning.warning'|trans }}
-                              </span>
-                              <span class="warning_message">
-                                {{ form_errors(form.username) }}
-                              </span>
-                            </div>
-                            <br/>
-                          {% endif %}
-                          {{ form_label(form.username) }}
                           <div class="input-icon">
-                            <i class="fa fa-user"></i>
-                            {% set opt_username_input = {'attr': {'class': 'form-control placeholder-no-fix',
-                              'type':'text', 'placeholder': username_input, 'id':'username', 
-                              'name':'username', 'required':'required', 'autofocus':''}} %}
-                            {{ form_widget(form.username, opt_username_input) }}
+                            {{ form_widget(form.username, {'type':'hidden', 'value':'nothing'}) }}
                           </div>
+                          <!-- <input type="hidden" value="nothing" name="username" id="username"> -->
                         </div>
-
+                        
                         <div class="form-group">
                           {% set email_input = 'registerUser.titles.email' | trans %}
                           {% if form_errors(form.email) %}

@@ -146,8 +146,6 @@ class User extends BaseUser
         parent::__construct();
         $username = $this->getEmail();
         $usernameCanonical = $this->getEmailCanonical();
-
-
     }
 
 
