@@ -12,20 +12,6 @@
 	<div id="page_content" class="row">
 
 		<div id="sessionFlash" class="sessionFlash">
-			{% set fail = app.session.get('fail') %}
-			{% if fail %}
-				<!-- Flash message -->
-				<div class="alert alert-danger alert-dismissible fade in" role="alert">\
-			      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-			      <strong>Careful!</strong> You\'ve reached the maximum availability.\
-			    </div>';
-			    <script type="text/javascript">
-				    setTimeout(function() {
-				    	$('.alert').fadeOut('fast');
-				    	document.getElementById("sessionFlash").style.display = "none";
-				    },4000);
-			    </script>
-			   {% endif %}
 		</div>
 
 		<div id="fullpage">
@@ -34,9 +20,9 @@
 
 	            <div id="breadcrumb" class="center row80">
 			        <div class="row">
-		              	<h2>
+		              	<h3>
 		                  	{{ 'header.titles.myCart' | trans }}
-		              	</h2>
+		              	</h3>
 		            </div>
 		            <div class="row">
 	                  	<div class="inline_div">
@@ -60,7 +46,7 @@
 					<div id="sessionFlash" class="sessionFlash">
 					</div>
 
-			        <div class="row80 left">
+			        <div class="row80 left cart_content">
 			        	{{ 'cart.orderContent.dear' | trans }} {% if app.user.firstName|length > 0 %}{{ app.user.firstName }}{% else %}{{ app.user.email }}{% endif %}, <br/>
 		        		{% set cart = app.session.get('cart') %}
 	                	{% if cart|length > 0 %}
@@ -157,11 +143,11 @@
 									{{ form_widget(formNewOrder) }}
 
 									<div class="row80">
-					                	<a href="javascript:loadContentCart('{{ path('lbf_main_cart') }}')" class="no_style_a btn btn-modal float-left">
+					                	<a href="javascript:loadContentCart('{{ path('lbf_main_cart') }}')" class="no_style_a btn btn-login float-left">
 					                		<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_right_arrow"/>
 					                		{{ 'cart.actions.previous' | trans }}
 								        </a>
-								        <button type="submit" class="btn btn-modal float-right">
+								        <button type="submit" class="btn btn-login float-right">
 								            {{ 'ourProducts.actions.order' | trans }}
 								            <img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								        </button>
@@ -171,6 +157,8 @@
 			        		</div>
 	                	{% else %}
 	                	{% endif %}
+
+	                	<br/><br/><br/><br/>
 		        	</div>
 	            </div>
 			</div>

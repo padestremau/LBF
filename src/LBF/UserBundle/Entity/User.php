@@ -2,13 +2,14 @@
 
 namespace LBF\UserBundle\Entity;
 
+use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ExecutionContextInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * User
@@ -22,8 +23,8 @@ class User extends BaseUser
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -31,9 +32,10 @@ class User extends BaseUser
     /**
      * @var boolean
      *
+     * @Assert\NotBlank(message="Please select your type.", groups={"Registration", "Profile"})
      * @ORM\Column(name="type", type="boolean")
      */
-    private $type;
+    protected $type;
 
     /**
      * @var string
@@ -52,9 +54,10 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
      * @ORM\Column(name="companyName", type="string", length=255, nullable=true)
      */
-    private $companyName;
+    protected $companyName;
 
     /**
      * @var string
@@ -75,42 +78,43 @@ class User extends BaseUser
      *
      * @ORM\Column(name="address_number", type="string", length=255, nullable=true)
      */
-    private $addressNumber;
+    protected $addressNumber;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address_street", type="string", length=255, nullable=true)
      */
-    private $addressStreet;
+    protected $addressStreet;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address_postCode", type="string", length=255, nullable=true)
      */
-    private $addressPostCode;
+    protected $addressPostCode;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address_city", type="string", length=255, nullable=true)
      */
-    private $addressCity;
+    protected $addressCity;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address_country", type="string", length=255, nullable=true)
      */
-    private $addressCountry;
+    protected $addressCountry;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="RUCnumber", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Please enter your RUC number.", groups={"Registration", "Profile"})
+     * @ORM\Column(name="RUCnumber", type="string", length=11, nullable=true)
      */
-    private $RUCnumber;
+    protected $RUCnumber;
 
     /**
      * @var boolean

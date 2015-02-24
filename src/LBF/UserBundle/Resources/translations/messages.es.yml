@@ -45,10 +45,17 @@ registerUser:
         password:           Contraseña
         rePassword:         Reescribir su contraseña
         email:              Email
+        companyName:        "Nombre de la empresa"
+        RUC:                Numero RUC
+        address:            "Dirección de la empresa"
         iAgreeToThe:        Estoy de acuerdo con las 
         TermsOfService:     Condiciones de uso
         and:                y la
         PrivacyPolicy:      Política de confidencialidad
+    content:
+        youAre:             "Usted es:"
+        user:               Usuario
+        company:            Empresa
     actions: 
         back:               Atrás
         signUp:             REGISTRACIÓN
@@ -70,20 +77,26 @@ resetPassword:
         back:               Atrás
         changePassword:     Cambiar de contraseña
 check:
-    titles: 
-        welcome:            "Thank you for joining us. Please check your emails to confirm your email before using the website."
-        confirm:            Can you please confirm ?
-        confirmEmailForPassword:    Please check your emails to confirm your email before renewing your password. 
-        allGood:            All good ! Thank you for your that. 
-        participate:        Feel free to check what route you wish to participate on:
-        anyProblem:         "If you have any problem, please contact our administrations."
+    registration: 
+        checkEmail:         "Comprobe sus emails"
+        checkEmailFirst:    "Gracias por su registración. Comprobe sus emails por favor antes de usar el sitio web."
+        thankYou:           "Gracias por su registración!"
+        allGood:            Todo bien! Su registración esta terminada. Gracias para eso. 
+        access:             Usted puede acceder su perfil para completar los elementos vacíos.
+        confirm:            "Confirme por favor"
+        canYou:             "Usted puede confirmar por favor?"
+    passwordNew: 
+        checkEmail:         "Comprobe sus emails"
+        checkEmailFirst:    "Comprobe sus emails por favor para confirmar su email antes de renovar su contraseña."
     actions:
-        checkEmail:         Check your emails
-        pleaseConfirm:      Please confirm
-        done:
-    link: 
-        route:              See the routes
-        contact:            Contact the administration
+        home:               Inicio
+        order:              Pedir
+    general:
+        thankYou:           Ya esta! Gracias
+        allGood:            "Todo bien! Gracias para eso."
+    problem: 
+        ifAny:              "Se teneis algun problema, contacte por favor la administracion."
+        contact:            "Contactar la administracion"
 
 
 # Login

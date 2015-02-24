@@ -22,11 +22,13 @@ main:
         variatyOfChoice: 		Variedad de juicio
         qualityProduct: 		Qualitad de producto
         securedPayment: 		Pagamento securo
+        reservation:            Reservacion facil
         ourProducts:            Productos
     content:
-        variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
-        qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
+        variatyOfChoice: 		"Carnes a elegir con attencion, para los gustos de cada uno y la felicidad de todos."
+        qualityProduct: 		"Carne de qualitad, con unico objetivo de satisfacer la curiosidad gastronmica de todos."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
+        reservation:            "Elige ahora sus artículos. Selectiona le fecha que mas le conviene y pasa recoger su pedido."
         ourProducts:            "Para llenar vuestro carro de la compra, seleccionad las quantidades de cada producto."
     actions:
         learnMore: 				Mas ínfo
@@ -86,6 +88,9 @@ cart:
         previous:               Atrás
     actionTitles:
         deleteElement:          Borrar el artículo
+    alert:
+        sureDelete:             "Usted esta seguro que quiere borrar este artículo?"
+        sureDeleteAll:          "Usted esta seguro que quiere vaciar su carro de compra? Todo su pedido sera borrado."
     errors:
         nothingHere:            "Lo siento, su carro de compra esta vacío ..."
     orderContent:

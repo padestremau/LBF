@@ -33,7 +33,7 @@
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
-		        		<div class="row">
+		        		<div class="row" id="admin_content">
 		        			<div class="row center">
 		        				Commane effectuée par {% if order.user.firstName|length > 0 %} {{ order.user.firstName }} {% else %} {{ order.user.email }} {% endif %}, le {{ order.createdAt|date('d/M/Y') }} à {{ order.createdAt|date('H:i') }} : <br/><br/>
 		        			</div>
@@ -119,7 +119,7 @@
 		        			<div class="row80 center">
 		        				<form id="form_admin" method="post" {{ form_enctype(formConfirmOrder) }}>
 			        				<div class="row">
-				        				<div class="col-md-6">
+				        				<div class="col-md-6 left">
 					        				Elements dans la commande : <br/><br/>
 
 					        				<div class="row60">

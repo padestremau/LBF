@@ -18,11 +18,36 @@
 			<div class="section" id="section5">
 				<br/><br/>
 
+				<script type="text/javascript">
+					// script for the login - Loaded in advance to avoid ajax problems
+                  function showRegisterSelect() {
+                      if (document.getElementById('user_type').checked) {
+                          document.getElementById('register_company').style.display = 'none';
+                          document.getElementById('register_user').style.display = 'block';
+                          document.getElementById('register_conditions_sumit').style.display = 'block';
+                          document.getElementById('register_type_company_input').value = 1;
+                      }
+                      else {
+                          document.getElementById('register_company').style.display = 'block';
+                          document.getElementById('register_user').style.display = 'block';
+                          document.getElementById('register_conditions_sumit').style.display = 'block';
+                          document.getElementById('register_type_company_input').value = 0;
+                          document.getElementById('companyName_input').required = "required";
+                          document.getElementById('RUC_input').required = "required";
+                          document.getElementById('addressNumber_input').required = "required";
+                          document.getElementById('addressStreet_input').required = "required";
+                          document.getElementById('addressPostCode_input').required = "required";
+                          document.getElementById('addressCity_input').required = "required";
+                          document.getElementById('country_input').required = "required";
+                      }
+                    }
+                </script>
+
 		        <div id="breadcrumb" class="center row80">
 			        <div class="row">
-		              	<h2>
+		              	<h3>
 		                  	{{ 'header.titles.myCart' | trans }}
-		              	</h2>
+		              	</h3>
 		            </div>
 		            <div class="row">
 	                  	<div class="inline_div breadcrumb_active">
@@ -157,7 +182,7 @@
 			            }
 
 			            function deleteTotalFromCart(type_c) {
-			              if (confirm("Are you sure you want to delete ?")) {
+			              if (confirm("{{ 'cart.alert.sureDelete' | trans }}")) {
 			              	var sessionCart = $.cookie("sessionCart");
 			              	// var sessionCart = JSON.parse($.cookie("sessionCart"));
 		              		for (var i = 0; i < sessionCart.length; i++) {
@@ -189,7 +214,7 @@
 			            }
 
 			            function emptyCart() {
-			              if (confirm('Are you sure you want to empty your cart ? All orders will be lost.')) {
+			              if (confirm("{{ 'cart.alert.sureDeleteAll' | trans }}")) {
 			                $.cookie("sessionCart", null);
 			                // Flash message
 			                document.getElementById("sessionFlash").style.display = "block";
@@ -244,10 +269,11 @@
 
 			        <br/>
 
-			        <div class="row80">
+			        <div class="row80 cart_content">
 			        	<div class="col-md-4">
 					        <button onClick="emptyCart()" class="no_style_button float-left delete_buttons_cart" type="button" value="Empty cart">
 					            {{ 'cart.actions.emptyCart' | trans }}
+					            <span class="glyphicon glyphicon-trash bin_icon" aria-hidden="true"></span>
 					        </button>
 			        	</div>
 			        	<div class="col-md-4">
@@ -330,7 +356,7 @@
 		                    </div>
 		                    <div class="row">
 		                      <div class="col-md-4 col-xs-4"></div>
-		                      <div class="col-md-4 col-xs-4 modal_price">
+		                      <div class="col-md-4 col-xs-4 cart_price">
 		                        <div class="row">
 		                          <div class="inline_div left col-md-4 col-xs-4">
 		                          	{{ 'cart.titles.total' | trans }}
@@ -357,20 +383,22 @@
 
 		                <br/><br/>
 			        
-	                	<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a btn btn-modal float-left">
-	                		<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_right_arrow"/>
+	                	<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a btn btn-login float-left">
+	                		<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_right_arrow"/> 
 	                		{{ 'cart.actions.continueShopping' | trans }}
 				        </a>
-				        <button type="button" class="btn btn-modal float-right" onClick="
+				        <button type="button" class="btn btn-login float-right" onClick="
 				        	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 								javascript:loadContentCart('{{ path('lbf_main_order') }}')
 							{% else %}
 				        		javascript:loadContentCart('{{ path('fos_user_security_login') }}')
 							{% endif %}
 			        		">
+				            {{ 'ourProducts.actions.order' | trans }} 
 				            <img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-				            {{ 'ourProducts.actions.order' | trans }}
 				        </button>
+
+				        <br/><br/><br/><br/>
 	                </div>
 				</div>
 			</div>

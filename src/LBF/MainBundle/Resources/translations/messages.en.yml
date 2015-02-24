@@ -22,11 +22,13 @@ main:
         variatyOfChoice: 		Variaty of choices
         qualityProduct: 		Quality products
         securedPayment: 		Secured payment
+        reservation:            Easy reservation
         ourProducts:            Our products
     content:
         variatyOfChoice: 		"A whole lot of meat to choose meticulosely to fit everyone's tastes and happiness."
         qualityProduct: 		"Quality meat with sole purpose of satisfying the gastronomical curisoty of all."
         securedPayment: 		"100% secured online payment with our 3D-secure system, either with yourcredit card or your Paypal account."
+        reservation:            "Choose now your products and your delivery date, and come and pick it up! Easy."
         ourProducts:            "In order to fill your cart, select the quantity of elements you want of each product."
     actions:
         learnMore: 				Learn more
@@ -85,6 +87,9 @@ cart:
         previous:               Previous
     actionTitles:
         deleteElement:          Delete element
+    alert:
+        sureDelete:             "Are you sure you want to delete this element?"
+        sureDeleteAll:          "Are you sure you want to empty your cart ? All orders will be lost."
     errors:
         nothingHere:            "Sorry, nothing here for now..."
     orderContent:

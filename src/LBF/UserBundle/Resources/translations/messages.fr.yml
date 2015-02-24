@@ -45,10 +45,17 @@ registerUser:
         password:           Mot de passe
         rePassword:         Saisissez à nouveau votre mot de passe
         email:              Email
+        companyName:        "Nom de l'enreprise"
+        RUC:                Numéro RUC
+        address:            "Adresse de l'entreprise"
         iAgreeToThe:        J'accepte les 
         TermsOfService:     "Conditions d'utilisation"
         and:                et les
         PrivacyPolicy:      Mentions légales
+    content:
+        youAre:             "Vous êtes:"
+        user:               Personne
+        company:            Compagnie
     actions: 
         back:               Retour
         signUp:             INSCRIPTION
@@ -70,19 +77,25 @@ resetPassword:
         back:               Retour
         changePassword:     Changer le mot de passe
 check:
-    titles: 
-        welcome:            "Merci de nous avoir rejoint(e). Peux-tu vérifier tes emails pour nous confirmer que c'est ton adresse s'il te plaît ?"
-        confirm:            Peux-tu vérifier s'il te plaît ?
-        confirmEmailForPassword:    Peux-tu nous confirmer que c'est bien toi avant de renouveler ton mot de passe ?
-        allGood:            Parfait ! Merci encore et à bientôt.
-        participate:        N'hésite pas à aller voir quelle parcours tu préfères effectuer :
-        anyProblem:         "Si tu as un quelconque problème, n'hésite pas à contacter l'administration."
+    registration: 
+        checkEmail:         "Vérification de l'email"
+        checkEmailFirst:    "Merci et bienvenu(e) parmi nous. Pouvez-vous vérifier votre email avant d'accéder au restant du site web s'il vous plaît ?"
+        thankYou:           "Merci pour votre inscription !"
+        allGood:            "Parfait! Votre inscription est maintenant terminée. Merci !"
+        access:             "Vous pouvez à présent accéder à votre profil pour remplir les quelques éléments manquants."
+        confirm:            "Pouvez-vous confirmer s'il vous plaît ?"
+        canYou:             "Pouvez-vous confirmer s'il vous plaît ?"
+    passwordNew: 
+        checkEmail:         "Vérification de l'email"
+        checkEmailFirst:    "Comprobe sus emails por favor para confirmar su email antes de renovar su contraseña."
     actions:
-        checkEmail:         Vérifier vos emails
-        pleaseConfirm:      A vérifier
-        done:               Bravo !
-    link: 
-        route:              Voir les parcours
+        home:               Accueil
+        order:              Commander
+    general:
+        thankYou:           Parfait! Merci
+        allGood:            "Parfait! Merci."
+    problem: 
+        ifAny:              "Si vous rencontrez un quelconque problème, contactez l'adiminstration."
         contact:            Contacter l'administration
 
 

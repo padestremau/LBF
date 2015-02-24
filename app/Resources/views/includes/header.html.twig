@@ -142,14 +142,13 @@
 
 
     <!-- BEGIN CART -->
-    <div class="cart_button">
-      <button id="button_cart_a"  class="btn btn-log 
+    <div class="cart_button" id="button_cart_div">
+      <button id="button_cart_a"  class="btn btn-log float-right 
           {% if route == 'lbf_main_cart'
               or route == 'lbf_main_order'
               or route == 'lbf_main_confirm' %}
             btn-log-active
-          {% endif %}
-          float-right" onClick="addToSessionCart()" disabled>
+          {% endif %}" onClick="addToSessionCart()" disabled>
         <div class="cart_label">
           {{ 'header.titles.myCart' | trans }}
         </div>

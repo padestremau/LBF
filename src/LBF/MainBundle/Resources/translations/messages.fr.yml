@@ -22,11 +22,13 @@ main:
         variatyOfChoice: 		Variété de choix
         qualityProduct: 		Produit de qualité
         securedPayment: 		Paiment sécurisé
+        reservation:            Réservations faciles
         ourProducts:            Nos produits
     content:
         variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
         qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
+        reservation:            "Réserver dès maintenant. Choisissez la date que vous désirez et venez la récupérer !"
         ourProducts:            "Pour remplir votre panier, veuillez choisir la quantité d'éléments à y ajouter dans la section 'Nos Produits'."
     actions:
         learnMore: 				En savoir plus
@@ -85,6 +87,9 @@ cart:
         previous:               Précédent
     actionTitles:
         deleteElement:          "Supprimer l'article"
+    alert:
+        sureDelete:             "Êtes-vous sûr de vouloir supprimer cet élément de votre panier ?"
+        sureDeleteAll:          "Êtes-vous sûr de vouloir vider votre panier ? Toute votre commande sera supprimée."
     errors:
         nothingHere:            "Désolé, votre panier est vide ..."
     orderContent:

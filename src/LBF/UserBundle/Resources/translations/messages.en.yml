@@ -45,10 +45,17 @@ registerUser:
         password:           Password
         rePassword:         Re-Type your password
         email:              Email
+        companyName:        Company name
+        RUC:                RUC number
+        address:            Company address
         iAgreeToThe:        I agree to the
         TermsOfService:     Terms of Service
         and:                and
         PrivacyPolicy:      Privacy Policy
+    content:
+        youAre:             "You are:"
+        user:               User
+        company:            Company
     actions: 
         back:               Back
         signUp:             SIGN UP
@@ -70,21 +77,26 @@ resetPassword:
         back:               Back
         changePassword:     Change password
 check:
-    titles: 
-        welcome:            "Thank you for joining us. Please check your emails to confirm your email before using the website."
-        confirm:            Can you please confirm ?
-        confirmEmailForPassword:    Please check your emails to confirm your email before renewing your password. 
-        allGood:            All good ! Thank you for your that. 
-        participate:        Feel free to check what route you wish to participate on:
-        anyProblem:         "If you have any problem, please contact our administrations."
+    registration: 
+        checkEmail:         "Check your emails"
+        checkEmailFirst:    "Thank you for joining us. Please check your emails to confirm your email before using the website."
+        thankYou:           "Thank you for joining us!"
+        allGood:            All good! Your registration is now complete. Thank you for your that. 
+        access:             You may go to your profile to fill-in the missing pieces.
+        confirm:            "Please confirm"
+        canYou:             "Can you please confirm ?"
+    passwordNew: 
+        checkEmail:         "Check your emails"
+        checkEmailFirst:    "Please check your emails to confirm your email before renewing your password. "
     actions:
-        checkEmail:         Check your emails
-        pleaseConfirm:      Please confirm
-        done:
-    link: 
-        route:              See the routes
-        contact:            Contact the administration
-
+        home:               Home
+        order:              Order
+    general:
+        thankYou:           Done! Thank you
+        allGood:            "All good! Thank you for your that."
+    problem: 
+        ifAny:              "If you have any problem, please contact our administrations."
+        contact:            "Contact the administration"
 
 # Login
 login:

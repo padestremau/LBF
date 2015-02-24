@@ -74,18 +74,18 @@ swiftmailer:
 
 # FOS User
 fos_user:
-    db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
-    firewall_name: main                       # Le nom du firewall derrière lequel on utilisera ces utilisateurs
-    user_class:    LBF\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
-    # registration:
+    db_driver:      orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name:  main                       # Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:     LBF\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    registration:
+        form:
+            type:   lbf_user_registration
     #     confirmation:  # Email confirmation required
     #         enabled:    true
     #         from_email:
     #             address:        noreply@lebuffetfrances.com
     #             sender_name:    LBF Team
     #         template:           LBFUserBundle:Register:registration.email.html.twig
-    #     # form:
-    #     #     type: LBF_userbundle_user
     service:
         mailer: fos_user.mailer.twig_swift
     resetting:
