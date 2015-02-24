@@ -1323,3 +1323,6 @@ a.captionOrange:hover
 .footer_bottom {
 	text-transform : uppercase;
 }
+.form_footer {
+	margin-bottom: 30px !important;
+}

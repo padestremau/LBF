@@ -7,48 +7,89 @@
 		</h3>
 
 		<form id="contact_form" method="post">
-	        <div id="" class="">
+	        <div id="" class="row">
 	        	<div class="form-group">
 	        		<div class="col-md-2">
-		            	<label class="control-label" for="emailContact">Email</label>
+		            	<label class="control-label" for="senderContact">
+		            		Expéditeur
+		            	</label>
 	        		</div>
-					<div class="input-icon col-md-10">
+					<div class="input-icon col-md-4">
+						<input type="sender" name="senderContact" id="senderContact" placeholder="John Diggle" class="form-control placeholder-no-fix"/>
+			        </div>
+			        <div class="col-md-2">
+		            	<label class="control-label" for="emailContact">
+		            		Email
+		            	</label>
+	        		</div>
+					<div class="input-icon col-md-4">
 						<input type="email" name="emailContact" id="emailContact" placeholder="john.diggle@gmail.com" class="form-control placeholder-no-fix"/>
 			        </div>
 				</div>
-				<br/><br/><br/>
+				<br/>
 	            <div class="form-group">
+	            	<script type="text/javascript">
+	                  function showOrderNumber() {
+	                      if (document.getElementById('SM0').selected || document.getElementById('SM1').selected || document.getElementById('SM2').selected) { 
+	                        document.getElementById('corpsOrder_label').style.display = 'block';
+	                        document.getElementById('corpsOrder_input').style.display = 'block';
+	                      }
+	                      else {
+	                      	document.getElementById('corpsOrder_label').style.display = 'none';
+	                        document.getElementById('corpsOrder_input').style.display = 'none';
+	                      }
+	                    }
+	                </script>
 	            	<div class="col-md-2">
 		                <label class="control-label" for="sujetMail">Objet</label>
 	            	</div>
-	            	<div class="input-icon col-md-10">
-		                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix">
-		                    <option value="" selected="selected">Sélectionner l'objet de votre demande</option>
-		                    <option value="SM0">Changer mes coordonnées bancaires</option>
-							<option value="SM1">Changer mon adresse de facturation</option>
-							<option value="SM2">Résilier mon offre</option>
-							<option value="SM3">Activer votre nouvelle carte sim</option>
-							<option value="SM4">Paramétrer ou résoudre une panne de mon mobile</option>
-							<option value="SM5">Résoudre une panne de ma Bbox</option>
-							<option value="SM6">Comprendre ma facture</option>
-							<option value="SM7">Comprendre mes paiements</option>
-							<option value="SM8">Les forfaits B&amp;You</option>
-							<option value="SM9">Autre demande</option>
+	            	<div class="input-icon col-md-4">
+		                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix" onClick="showOrderNumber()">
+		                    <option value="" selected>
+		                    	Sélectionner l'objet de votre demande
+		                    </option>
+		                    <option value="SM0" id="SM0">
+		                    	Commande non validée
+		                    </option>
+							<option value="SM1" id="SM1">
+								Commande vide
+							</option>
+							<option value="SM2" id="SM2">
+								Commande refusée
+							</option>
+							<option value="SM3">
+								Compte utilisateur défaillant
+							</option>
+							<option value="SM4">
+								Erreur de site web
+							</option>
+							<option value="SM5">
+								Demande de renseignements
+							</option>
+							<option value="SM6">
+								Nouveaux produits
+							</option>
 						</select>
 	            	</div>
+					<div class="col-md-2"  style="display:none;" id="corpsOrder_label">
+		                <label class="control-label" for="corpsOrder">Commande n°</label>
+	            	</div>
+	                <div class="input-icon col-md-4"  style="display:none;" id="corpsOrder_input">
+	                	<input type="integer" name="corpsOrder" id="corpsOrder" placeholder="5603" class="form-control placeholder-no-fix"/>
+	                </div>
 	          	</div> 	
-				<br/><br/>
+				<br/>
 	            <div class="form-group">
 	            	<div class="col-md-2">
-		                <label class="control-label" for="corpsMail">Demande</label>
+		                <label class="control-label" for="corpsMail">Message</label>
 	            	</div>
 	                <div class="input-icon col-md-10">
 	                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="Message"></textarea>
 	                </div>
 	            </div>
 	        </div>
-	        <br/><br/><br/>
-	         <input type="submit" value="Envoyer" class="btn btn-log" title="Envoyer">
+            <br/>
+	        <input type="submit" value="Envoyer" class="btn btn-log" title="Envoyer">
 	    </form>
 	</div>
 	<br/>
@@ -63,7 +104,7 @@
 			<form method="post" action="{{ path('lbf_main_newsletterEmail', {'path': app.request.attributes.get( '_route' )}) }}">
 				<div class="row">
 				    <div class="input-group">
-				      <input id="newsletterEmail" name="newsletterEmail" type="text" class="form-control" placeholder="{{ 'footer.actions.enterEmail' | trans }}">
+				      <input id="newsletterEmail" name="newsletterEmail" type="text" class="form-control" placeholder="{{ 'footer.actions.enterEmail' | trans }}"/>
 				      <span class="input-group-btn">
 				        <button type="submit" class="btn btn-default" type="button">
 				        	{{ 'footer.actions.send' | trans }}
