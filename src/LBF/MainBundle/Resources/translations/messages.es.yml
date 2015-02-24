@@ -17,8 +17,8 @@ header:
 
 main:
     titles:
-        title_meat: 			Nuevos sabores sobre tu mesa.
-        title_meat_s: 			En tres clicks.
+        title_meat: 			Nuevos sabores sobre tu mesa
+        title_meat_s: 			En tres clicks
         variatyOfChoice: 		Variedad de juicio
         qualityProduct: 		Qualitad de producto
         securedPayment: 		Pagamento securo
@@ -39,8 +39,8 @@ main:
 
 ourProducts:
     titles:
-        title_ourProducts: 		Nuestros productos.
-        title_ourProducts_s: 	A elegir con amor.
+        title_ourProducts: 		Nuestros productos
+        title_ourProducts_s: 	A elegir con amor
     actions: 
         order: 					PEDIR
     details:
@@ -108,8 +108,8 @@ cart:
 
 aboutUs:
     titles:
-        title_aboutUs: 			A propuesto.
-        title_aboutUs_s: 		Historias y anecdotas.
+        title_aboutUs: 			A propuesto
+        title_aboutUs_s: 		Historias y anecdotas
 
 
 
