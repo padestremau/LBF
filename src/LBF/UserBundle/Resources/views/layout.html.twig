@@ -46,6 +46,12 @@
                           document.getElementById('country_input').required = "required";
                       }
                     }
+
+                  var login_max_height = window.innerHeight * 0.82;
+                  var login_margin_top = window.innerHeight * 0.05;
+                  $('#login_section').css({'max-height':login_max_height+'px'});
+                  $('#login_section').css({'margin-top':login_margin_top+'px'});
+                  $('#login_section').css({'overflow':'scroll !important'});
                 </script>
 
                 <!-- Begin Top Buttons -->
@@ -210,22 +216,28 @@
 
                 <div class="login_content_font_size">
                   <div class="row">
-                    <div class="col-md-4 col-xs-4"></div>
-                    <div class="col-md-4 col-xs-4 left border_bottom_white_dotted">
-                      {{ 'registerUser.content.youAre'|trans }}
-                      <br/>
-                      <input type="radio" name="register_form" value="user_type" id="user_type" onClick="showRegisterSelect()"/>
-                      <label for="user_type">
-                        {{ 'registerUser.content.user'|trans }}
-                      </label>
-                      <br/>
-                      <input type="radio" name="register_form" value="company_type" id="company_type" onClick="showRegisterSelect()"/>
-                      <label for="company_type">
-                        {{ 'registerUser.content.company'|trans }}
-                      </label>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 left border_bottom_white_dotted">
+                      <div class="row">
+                        <div class="col-md-4">
+                          {{ 'registerUser.content.youAre'|trans }}
+                        </div>
+                        <div class="col-md-4">
+                          <input type="radio" name="register_form" value="user_type" id="user_type" onClick="showRegisterSelect()"/>
+                          <label for="user_type">
+                            {{ 'registerUser.content.user'|trans }}
+                          </label>
+                        </div>
+                        <div class="col-md-4">
+                          <input type="radio" name="register_form" value="company_type" id="company_type" onClick="showRegisterSelect()"/>
+                          <label for="company_type">
+                            {{ 'registerUser.content.company'|trans }}
+                          </label>
+                        </div>
+                      </div>
 
                     </div>
-                    <div class="col-md-4 col-xs-4"></div>
+                    <div class="col-md-2"></div>
                   </div>
 
                       <!-- BEGIN REGISTRATION FORM -->

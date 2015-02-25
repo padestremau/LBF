@@ -1,6 +1,6 @@
 <!-- BEGIN FOOTER -->
 <div class="footer center section" id="section3">
-	<br/><br/>
+	<br/>
 	<div class="row80">
 		<h3>
 			Contact
@@ -8,7 +8,7 @@
 
 		<form id="contact_form" method="post">
 	        <div id="" class="row">
-	        	<div class="form-group">
+	        	<div class="form-group row">
 	        		<div class="col-md-2">
 		            	<label class="control-label" for="senderContact">
 		            		Expéditeur
@@ -27,7 +27,7 @@
 			        </div>
 				</div>
 				<br/>
-	            <div class="form-group">
+	            <div class="form-group row">
 	            	<script type="text/javascript">
 	                  function showOrderNumber() {
 	                      if (document.getElementById('SM0').selected || document.getElementById('SM1').selected || document.getElementById('SM2').selected) { 
@@ -79,7 +79,7 @@
 	                </div>
 	          	</div> 	
 				<br/>
-	            <div class="form-group">
+	            <div class="form-group row">
 	            	<div class="col-md-2">
 		                <label class="control-label" for="corpsMail">Message</label>
 	            	</div>
@@ -121,7 +121,7 @@
 		 	</h4>
 		 	{{ 'footer.content.witnesses' | trans }}
 		 	<div class="center">
-			 	<img alt="Comment" src="{{ asset('img/system/icons/comment.png') }}" class="icon_presentation_2"/>
+			 	<img alt="Comment" src="{{ asset('img/system/icons/comment.png') }}" class="icon_presentation_footer"/>
 		 	</div>
 		 	</a>
 		</div>
@@ -135,69 +135,106 @@
 		 		+51 4 50 30 40 30
 		 	</a>
 		 	<div class="center">
-			 	<img alt="Payment" src="{{ asset('img/system/icons/payment.png') }}" class="icon_presentation_2"/>
+			 	<img alt="Payment" src="{{ asset('img/system/icons/payment.png') }}" class="icon_presentation_footer"/>
 		 	</div>
 		</div>
 	</div>
-	<div class="row left border_white_top multiple_lists footer_part footer_bottom">
-		 <div class="col-md-3 col-xs-3">
-			 <h4>
+	<div class="row left border_white_top multiple_list footer_part footer_bottom">
+		<div class="col-md-3 col-xs-3">
+			<h4>
 			 	{{ 'footer.titles.aboutUs' | trans }}
-			 </h4>
-				<a href="/contact">
-					{{ 'footer.content.contact' | trans }}
-				</a><br />
-				<a href="/remerciements">
-					{{ 'footer.content.thanks' | trans }}
-				</a><br />
-				<a href="/mentions-legales">
-					{{ 'footer.content.legalMentions' | trans }}
-				</a><br />
-		 </div>
-		 <div class="col-md-3 col-xs-3"> 
-			 <h4>
+			</h4>
+			<ul>
+				<li>
+					<a href="/contact">
+						{{ 'footer.content.contact' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/remerciements">
+						{{ 'footer.content.thanks' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/mentions-legales">
+						{{ 'footer.content.legalMentions' | trans }}
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-3 col-xs-3"> 
+			<h4>
 			 	{{ 'footer.titles.needHelp' | trans }}
-			 </h4>
-				<a href="/">
-					{{ 'footer.content.moreInfo' | trans }}
-				</a><br />
-				<a href="/">
-					{{ 'footer.content.delivery' | trans }}
-				</a><br />
-				<a href="/">
-					{{ 'footer.content.ourWork' | trans }}
-				</a><br />
-				<a href="/">
-					{{ 'footer.content.questions' | trans }}
-				</a><br />
-		 </div>
-		  <div class="col-md-3 col-xs-3">
-		  <h4>
-		  	{{ 'footer.titles.meatPanel' | trans }}
-		  </h4>
-			<a href="/">Saucissons</a><br />
-			<a href="/">Patés</a><br />
-			<a href="/">Chorizo</a><br />
-			<a href="/">Merguez</a><br />
-			<a href="/">Chippolata</a>
-		 </div>
-		 <div class="col-md-3 col-xs-3">
-		  <h4>
-		  	{{ 'footer.titles.blog' | trans }}
-		  </h4>
-			<a href="/">
-				{{ 'footer.content.entireBlog' | trans }}
-			</a><br />
-			<a href="/">
-				{{ 'footer.content.cookingRecipe' | trans }}
-			</a><br />
-			<a href="/">
-				{{ 'footer.content.news' | trans }}
-			</a>
+			</h4>
+			<ul>
+				<li>
+					<a href="/">
+						{{ 'footer.content.moreInfo' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						{{ 'footer.content.delivery' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						{{ 'footer.content.ourWork' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						{{ 'footer.content.questions' | trans }}
+					</a>
+				</li> 	
+			</ul>
+		</div>
+		<div class="col-md-3 col-xs-3">
+		  	<h4>
+		  		{{ 'footer.titles.meatPanel' | trans }}
+		  	</h4>
+		  	<ul>
+				<li>
+					<a href="/">Saucissons</a>
+				</li>
+				<li>
+					<a href="/">Patés</a>
+				</li>
+				<li>
+					<a href="/">Chorizo</a>
+				</li>
+				<li>
+					<a href="/">Merguez</a>
+				</li>
+				<li>
+					<a href="/">Chippolata</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-3 col-xs-3">
+		  	<h4>
+		  		{{ 'footer.titles.blog' | trans }}
+		  	</h4>
+		  	<ul>
+				<li>
+					<a href="/">
+						{{ 'footer.content.entireBlog' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						{{ 'footer.content.cookingRecipe' | trans }}
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						{{ 'footer.content.news' | trans }}
+					</a>
+				</li>
+		  	</ul>
 		 </div>
 	</div>
 	<div class="row center margin_top_10 margin_right_30 font10">
-		<br/><br/>
 		Le Buffet Francés - {{ 'footer.bottom.allRightsReserved' | trans }} © 2015
 	</div>
 </div>

@@ -18,7 +18,7 @@
 			<div class="section" id="section0">
 						<div class="welcome_page">
 					      <div class="logo_welcome">
-					        <img src="{{ asset('img/system/logo/Final.png') }}" alt="Logo" class="logo_welcome_img"/>
+					        <img src="{{ asset('img/system/logo/final_site.png') }}" alt="Logo" class="logo_welcome_img"/>
 					      </div>
 					    </div>
 				<div class="presentation_photos row">
@@ -27,13 +27,26 @@
 						
 					    <script>
 					        jQuery(document).ready(function ($) {
-					            var options = {
+					        	var _SlideshowTransitions = [
+					            //Fade
+					            { $Duration: 1400, $Opacity: 2 }
+					            ];
 
-					                $AutoPlay: true,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+					            var options = {
+					                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 					                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+					                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+					                $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+					                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
+					                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
+					                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
+					                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
+					                    $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
+					                }
 					            };
 
 					            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+								
 								//responsive code begin
 								//you can remove responsive code if you don't want the slider scales while window resizes
 								function ScaleSlider() {
@@ -54,19 +67,20 @@
 					    <!-- Jssor Slider Begin -->
 					    <!-- You can move inline styles to css file or css block. -->
 						<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 1200px;
-					        height: 400px; margin:auto; overflow: hidden !important;">
+					        height: 400px; margin:auto; overflow: hidden !important; z-index: -10;">
 					        <!-- Slides Container -->
 					        <div id="slider1_container_content" u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 400px; overflow: hidden;">
 
 					            <script type="text/javascript">
-									var slider_height = $('#slider1_container').width() * 0.2;
-									var window_height = window.innerHeight  * 0.3;
-									if (window_height > slider_height) {
-										$('#slider1_container').css({'height':window_height+'px'});
-									}
-									else {
-										$('#slider1_container').css({'height':slider_height+'px'});
-									}
+									var slider_height = $('#slider1_container').width() * 0.22;
+									$('#slider1_container').css({'height':slider_height+'px'});
+									// var window_height = window.innerHeight  * 0.3;
+									// if (window_height > slider_height) {
+									// 	$('#slider1_container').css({'height':window_height+'px'});
+									// }
+									// else {
+									// 	$('#slider1_container').css({'height':slider_height+'px'});
+									// }
 								</script>
 								<div>
 									<!-- <div u=image style="width: 100%; background-image: url("{{ asset('img/presentation/1.jpg') }}"); background-size: cover; background-position: 50%;">
