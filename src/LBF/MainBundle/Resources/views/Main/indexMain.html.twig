@@ -72,15 +72,8 @@
 					        <div id="slider1_container_content" u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 400px; overflow: hidden;">
 
 					            <script type="text/javascript">
-									var slider_height = $('#slider1_container').width() * 0.22;
+									var slider_height = window.innerHeight * 0.47;
 									$('#slider1_container').css({'height':slider_height+'px'});
-									// var window_height = window.innerHeight  * 0.3;
-									// if (window_height > slider_height) {
-									// 	$('#slider1_container').css({'height':window_height+'px'});
-									// }
-									// else {
-									// 	$('#slider1_container').css({'height':slider_height+'px'});
-									// }
 								</script>
 								<div>
 									<!-- <div u=image style="width: 100%; background-image: url("{{ asset('img/presentation/1.jpg') }}"); background-size: cover; background-position: 50%;">
@@ -124,13 +117,13 @@
 
 					<div class="presentation_texte row">
 						<div class="row center title_div">
-							<div class="col-md-2 col-xs-2"></div>
-			        		<div class="col-md-8 col-xs-8">
+							<div class="col-md-3 col-sm-3 col-xs-12"></div>
+			        		<div class="col-md-6 col-sm-6 col-xs-12">
 								<h2>
 									{{ 'main.titles.title_meat' | trans }}
 								</h2>
 			        		</div>
-							<div class="col-md-2 col-xs-2 white" >
+							<div class="col-md-3 col-sm-3 col-xs-12 right" >
 								<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 						          	<button class="btn btn-login uppercase">
 										{{ 'main.actions.buy' | trans }}
@@ -139,67 +132,70 @@
 						        </a>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-3 col-xs-3 center">
-								<button type="button" class="no_style_button" data-toggle="modal" data-target="#choiceModal">
-									<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
-									<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
-									<p class="center">
-										{{ 'main.content.variatyOfChoice' | trans }}
-										<br/>
-										<br/>
 
-										<!-- Button trigger modal -->
-										<a class="read-more no_style_a" >
-											{{ 'main.actions.learnMore' | trans }}
-										</a> >
-									</p>
+						<div class="row">
+							<div class="col-md-3 col-sm-3 col-xs-12 center">
+								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#choiceModal">
+									<div class="col-sm-12 col-xs-5">
+										<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
+									</div>
+									<div class="col-sm-12 col-xs-7">
+										<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
+										<p>
+											{{ 'main.content.variatyOfChoice' | trans }}
+
+											<!-- Button trigger modal -->
+										</p>
+										<p class="center">
+											<a class="read-more no_style_a" >
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
 								</button>
 							</div>
-							<div class="col-md-3 col-xs-3 center">
+							<div class="col-md-3 col-sm-3 col-xs-12 center">
 								<button class="no_style_button" type="button" data-toggle="modal" data-target="#qualityModal">
 									<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
 									<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
-									<p class="center">
+									<p>
 										{{ 'main.content.qualityProduct' | trans }}
-										<br/>
-										<br/>
 
 										<!-- Button trigger modal -->
+									</p>
+									<p class="center">
 										<a class="read-more no_style_a" >
 											{{ 'main.actions.learnMore' | trans }}
 										</a> >
 									</p>
 								</button>
 							</div>
-							<div class="col-md-3 col-xs-3 center">
+							<div class="col-md-3 col-sm-3 col-xs-12 center">
 								<button type="button" class="no_style_button" data-toggle="modal" data-target="#securityModal">
 									<img alt="Security" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
 									<h3> {{ 'main.titles.reservation' | trans }} </h3>
-									<p class="center">
+									<p>
 										{{ 'main.content.reservation' | trans }}
-										<br/>
-										<br/>
-
 										<!-- Button trigger modal -->
+									</p>
+									<p class="center">
 										<a class="read-more no_style_a" >
 											{{ 'main.actions.learnMore' | trans }}
 										</a> >
 									</p>
 								</button>
 							</div>
-							<div class="col-md-3 col-xs-3 center">
+							<div class="col-md-3 col-sm-3 col-xs-12 center">
 						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 									<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
 									<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
-									<p class="center">
+									<p>
 										{{ 'main.content.ourProducts' | trans }}
-										<br/>
-										<br/>
-
-								          	<button class="read-more no_style_button">
-												{{ 'main.actions.discover' | trans }}
-								          	</button> >
+									</p>
+									<p class="center">
+							          	<button class="read-more no_style_button">
+											{{ 'main.actions.discover' | trans }}
+							          	</button> >
 									</p>
 						        </a>
 							</div>
@@ -535,8 +531,14 @@
 														<br/>
 														<div class="row right">
 															<div class="col-md-2 col-xs-2 inline_div margin_right_10">
-																<input onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="+" title="Add one more"/>
-																<input onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="-" title="Delete one"/>
+																<div class="row">
+																	<div class="col-xs-6">
+																		<input onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="+" title="Add one more"/>
+																	</div>
+																	<div class="col-xs-6">
+																		<input onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="-" title="Delete one"/>
+																	</div>
+																</div>
 															</div>
 															<div class="inline_div col-md-3 col-xs-3">
 																<div class="inline_div counter_info_divs">

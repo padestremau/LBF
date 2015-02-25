@@ -105,7 +105,7 @@
             {% endblock body %}  
             <script type="text/javascript">
               $(document).ready(function() {
-                var header_height = $('#header').height() + 5;
+                var header_height = $('#header').height() + 2 ;
                 $('#fullpage').fullpage({
                   anchors: ['mainSection', 'ourProducts', 'aboutUs', 'footerSection'],
                   // menu: '#menu',
@@ -113,10 +113,12 @@
                   verticalCentered: false,
                   navigation: true,
                   navigationPosition: 'right',
-                  responsive: 900,
+                  responsive: 1200,
+                  'resize': false,
                   // scrollingSpeed: 1000,  // Other
                   // scrollOverflow: true,
-                  // allowScrolling: true,
+                  allowScrolling: true,
+                  animateAnchor: false,
                   // autoScrolling: true,
                   // controlArrows: true,
                   // css3: true,
