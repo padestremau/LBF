@@ -155,48 +155,60 @@
 								</button>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-12 center">
-								<button class="no_style_button" type="button" data-toggle="modal" data-target="#qualityModal">
-									<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
-									<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
-									<p>
-										{{ 'main.content.qualityProduct' | trans }}
+								<button class="no_style_button row" type="button" data-toggle="modal" data-target="#qualityModal">
+									<div class="col-sm-12 col-xs-5">
+										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
+									</div>
+									<div class="col-sm-12 col-xs-7">
+										<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
+										<p>
+											{{ 'main.content.qualityProduct' | trans }}
 
-										<!-- Button trigger modal -->
-									</p>
-									<p class="center">
-										<a class="read-more no_style_a" >
-											{{ 'main.actions.learnMore' | trans }}
-										</a> >
-									</p>
+											<!-- Button trigger modal -->
+										</p>
+										<p class="center">
+											<a class="read-more no_style_a" >
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
 								</button>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-12 center">
-								<button type="button" class="no_style_button" data-toggle="modal" data-target="#securityModal">
-									<img alt="Security" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
-									<h3> {{ 'main.titles.reservation' | trans }} </h3>
-									<p>
-										{{ 'main.content.reservation' | trans }}
-										<!-- Button trigger modal -->
-									</p>
-									<p class="center">
-										<a class="read-more no_style_a" >
-											{{ 'main.actions.learnMore' | trans }}
-										</a> >
-									</p>
+								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#securityModal">
+									<div class="col-sm-12 col-xs-5">
+										<img alt="Security" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
+									</div>
+									<div class="col-sm-12 col-xs-7">
+										<h3> {{ 'main.titles.reservation' | trans }} </h3>
+										<p>
+											{{ 'main.content.reservation' | trans }}
+											<!-- Button trigger modal -->
+										</p>
+										<p class="center">
+											<a class="read-more no_style_a" >
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
 								</button>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-12 center">
-						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
-									<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
-									<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
-									<p>
-										{{ 'main.content.ourProducts' | trans }}
-									</p>
-									<p class="center">
-							          	<button class="read-more no_style_button">
-											{{ 'main.actions.discover' | trans }}
-							          	</button> >
-									</p>
+						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a row">
+						        	<div class="col-sm-12 col-xs-5">
+										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
+						        	</div>
+						        	<div class="col-sm-12 col-xs-7">
+										<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
+										<p>
+											{{ 'main.content.ourProducts' | trans }}
+										</p>
+										<p class="center">
+								          	<button class="read-more no_style_button">
+												{{ 'main.actions.discover' | trans }}
+								          	</button> >
+										</p>
+						        	</div>
 						        </a>
 							</div>
 						</div>
@@ -208,13 +220,13 @@
 			<div class="section" id="section1">
 				<div class="presentation_texte row">
 		        	<div class="row center">
-		        		<div class="col-md-2 col-xs-2"></div>
-		        		<div class="col-md-8 col-xs-8">
+		        		<div class="col-md-2 col-xs-12"></div>
+		        		<div class="col-md-8 col-xs-12">
 							<h2>
 								{{ 'ourProducts.titles.title_ourProducts' | trans }}
 							</h2>
 		        		</div>
-						<div class="col-md-2 col-xs-2 white">
+						<div class="col-md-2 col-xs-12 white">
 							<button class="btn btn-login" onClick="addToSessionCart()">
 								{{ 'header.titles.myCart' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -436,7 +448,7 @@
 								<div class="tab-pane fade 
 									{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
 									<div class="row">
-										<div class="col-md-4 col-xs-4">
+										<div class="col-md-4 col-xs-12">
 											<ul class="ver-inline-menu tabbable list_no_style_li">
 											{% set index_category = 1 %}
 											{% for product in productsArray %}
@@ -452,7 +464,7 @@
 											{% endfor %}
 											</ul>
 										</div>
-										<div class="col-md-8 col-xs-8">
+										<div class="col-md-8 col-xs-12">
 											<div class="tab-content">
 												{% set index_category = 1 %}
 												{% set naturalProductDef = false %}
@@ -460,7 +472,7 @@
 													<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane 
 														{% if index_category == 1 %} active {% endif %}">
 														<div class="row">
-															<div class="col-md-4 col-xs-4">
+															<div class="col-md-4 col-xs-12">
 																<div class="product_img_div">
 																{% if product.webPath|length > 0 %}
 																	<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
@@ -507,7 +519,7 @@
 																	{% endif %}
 																</div>
 															</div>
-															<div class="col-md-8 col-xs-8">
+															<div class="col-md-8 col-xs-12">
 																<div class="row">
 																	<h4>
 																		{{ product.name }}. 
