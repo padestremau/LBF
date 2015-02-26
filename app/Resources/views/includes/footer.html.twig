@@ -9,21 +9,11 @@
 		<form id="contact_form" method="post">
 	        <div id="" class="row">
 	        	<div class="form-group row">
-	        		<div class="col-md-2">
-		            	<label class="control-label" for="senderContact">
-		            		Expéditeur
-		            	</label>
-	        		</div>
-					<div class="input-icon col-md-4">
-						<input type="sender" name="senderContact" id="senderContact" placeholder="John Diggle" class="form-control placeholder-no-fix"/>
+					<div class="input-icon col-md-6">
+						<input type="sender" name="senderContact" id="senderContact" placeholder="Expéditeur" class="form-control placeholder-no-fix"/>
 			        </div>
-			        <div class="col-md-2">
-		            	<label class="control-label" for="emailContact">
-		            		Email
-		            	</label>
-	        		</div>
-					<div class="input-icon col-md-4">
-						<input type="email" name="emailContact" id="emailContact" placeholder="john.diggle@gmail.com" class="form-control placeholder-no-fix"/>
+					<div class="input-icon col-md-6">
+						<input type="email" name="emailContact" id="emailContact" placeholder="Email" class="form-control placeholder-no-fix"/>
 			        </div>
 				</div>
 				<br/>
@@ -31,19 +21,14 @@
 	            	<script type="text/javascript">
 	                  function showOrderNumber() {
 	                      if (document.getElementById('SM0').selected || document.getElementById('SM1').selected || document.getElementById('SM2').selected) { 
-	                        document.getElementById('corpsOrder_label').style.display = 'block';
 	                        document.getElementById('corpsOrder_input').style.display = 'block';
 	                      }
 	                      else {
-	                      	document.getElementById('corpsOrder_label').style.display = 'none';
 	                        document.getElementById('corpsOrder_input').style.display = 'none';
 	                      }
 	                    }
 	                </script>
-	            	<div class="col-md-2">
-		                <label class="control-label" for="sujetMail">Objet</label>
-	            	</div>
-	            	<div class="input-icon col-md-4">
+	            	<div class="input-icon col-md-6">
 		                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix" onClick="showOrderNumber()">
 		                    <option value="" selected>
 		                    	Sélectionner l'objet de votre demande
@@ -71,19 +56,13 @@
 							</option>
 						</select>
 	            	</div>
-					<div class="col-md-2"  style="display:none;" id="corpsOrder_label">
-		                <label class="control-label" for="corpsOrder">Commande n°</label>
-	            	</div>
-	                <div class="input-icon col-md-4"  style="display:none;" id="corpsOrder_input">
-	                	<input type="integer" name="corpsOrder" id="corpsOrder" placeholder="5603" class="form-control placeholder-no-fix"/>
+	                <div class="input-icon col-md-6"  style="display:none;" id="corpsOrder_input">
+	                	<input type="integer" name="corpsOrder" id="corpsOrder" placeholder="Commande n°" class="form-control placeholder-no-fix"/>
 	                </div>
 	          	</div> 	
 				<br/>
 	            <div class="form-group row">
-	            	<div class="col-md-2">
-		                <label class="control-label" for="corpsMail">Message</label>
-	            	</div>
-	                <div class="input-icon col-md-100">
+	                <div class="input-icon col-md-12">
 	                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="Message"></textarea>
 	                </div>
 	            </div>
@@ -94,7 +73,7 @@
 	</div>
 	<br/>
 	<div class="row border_white_top multiple_lists footer_part">
-		<div class="col-md-4">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 			<h4>
 				{{ 'footer.titles.receiveOurNewsletter' | trans }}
 			</h4>
@@ -114,7 +93,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-md-4">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 	 		<a href="/temoignages">
 		 	<h4>
 		 		{{ 'footer.titles.witnesses' | trans }}
@@ -125,7 +104,7 @@
 		 	</div>
 		 	</a>
 		</div>
-		<div class="col-md-4">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 		 	<h4>
 		 		{{ 'footer.titles.clientService' | trans }}
 		 	</h4>
@@ -144,7 +123,7 @@
 			<h4>
 			 	{{ 'footer.titles.aboutUs' | trans }}
 			</h4>
-			<ul>
+			<ul class="list_no_style_li">
 				<li>
 					<a href="/contact">
 						{{ 'footer.content.contact' | trans }}
@@ -166,7 +145,7 @@
 			<h4>
 			 	{{ 'footer.titles.needHelp' | trans }}
 			</h4>
-			<ul>
+			<ul class="list_no_style_li">
 				<li>
 					<a href="/">
 						{{ 'footer.content.moreInfo' | trans }}
@@ -193,7 +172,7 @@
 		  	<h4>
 		  		{{ 'footer.titles.meatPanel' | trans }}
 		  	</h4>
-		  	<ul>
+		  	<ul class="list_no_style_li">
 				<li>
 					<a href="/">Saucissons</a>
 				</li>
@@ -215,7 +194,7 @@
 		  	<h4>
 		  		{{ 'footer.titles.blog' | trans }}
 		  	</h4>
-		  	<ul>
+		  	<ul class="list_no_style_li">
 				<li>
 					<a href="/">
 						{{ 'footer.content.entireBlog' | trans }}

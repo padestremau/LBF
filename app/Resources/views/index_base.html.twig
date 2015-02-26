@@ -105,7 +105,7 @@
             {% endblock body %}  
             <script type="text/javascript">
               $(document).ready(function() {
-                var header_height = $('#header').height() + 2 ;
+                var header_height = $('#header').height() + 6 ;
                 $('#fullpage').fullpage({
                   anchors: ['mainSection', 'ourProducts', 'aboutUs', 'footerSection'],
                   // menu: '#menu',
@@ -183,6 +183,10 @@
                 $.cookie("sessionCart", sessionCart);
                 updateNotifNumber();
               }
+
+              $(window).resize(function() {
+                // window.location.reload();
+              });
             </script>
         </div>
         <!-- END CONTAINER -->

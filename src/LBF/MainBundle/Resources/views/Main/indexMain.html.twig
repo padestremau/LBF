@@ -16,11 +16,12 @@
 
 		<div id="fullpage">
 			<div class="section" id="section0">
-						<div class="welcome_page">
-					      <div class="logo_welcome">
-					        <img src="{{ asset('img/system/logo/final_site.png') }}" alt="Logo" class="logo_welcome_img"/>
-					      </div>
-					    </div>
+				<div class="welcome_page hidden-xs">
+			      <div class="logo_welcome">
+			        <img src="{{ asset('img/system/logo/final_site.png') }}" alt="Logo" class="logo_welcome_img"/>
+			      </div>
+			    </div>
+
 				<div class="presentation_photos row">
 
 					<div class="content_presentation row">
@@ -117,13 +118,21 @@
 
 					<div class="presentation_texte row">
 						<div class="row center title_div">
-							<div class="col-md-3 col-sm-3 col-xs-12"></div>
-			        		<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
+			        		<div class="col-lg-6 col-md-6 col-sm-9 col-xs-12">
 								<h2>
 									{{ 'main.titles.title_meat' | trans }}
 								</h2>
 			        		</div>
-							<div class="col-md-3 col-sm-3 col-xs-12 right" >
+							<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs right" >
+								<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+						          	<button class="btn btn-login uppercase">
+										{{ 'main.actions.buy' | trans }}
+						          		<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+						          	</button>
+						        </a>
+							</div>
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 center" >
 								<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 						          	<button class="btn btn-login uppercase">
 										{{ 'main.actions.buy' | trans }}
@@ -134,39 +143,19 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-3 col-sm-3 col-xs-12 center">
-								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#choiceModal">
-									<div class="col-sm-12 col-xs-5">
-										<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
-									</div>
-									<div class="col-sm-12 col-xs-7">
-										<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
-										<p>
-											{{ 'main.content.variatyOfChoice' | trans }}
-
-											<!-- Button trigger modal -->
-										</p>
-										<p class="center">
-											<a class="read-more no_style_a" >
-												{{ 'main.actions.learnMore' | trans }}
-											</a> >
-										</p>
-									</div>
-								</button>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-12 center">
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
 								<button class="no_style_button row" type="button" data-toggle="modal" data-target="#qualityModal">
-									<div class="col-sm-12 col-xs-5">
+									<div class="col-sm-12 col-xs-4">
 										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
 									</div>
-									<div class="col-sm-12 col-xs-7">
+									<div class="col-sm-12 col-xs-8">
 										<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
 										<p>
 											{{ 'main.content.qualityProduct' | trans }}
 
 											<!-- Button trigger modal -->
-										</p>
-										<p class="center">
+										<br class="hidden-xs"/>
 											<a class="read-more no_style_a" >
 												{{ 'main.actions.learnMore' | trans }}
 											</a> >
@@ -174,42 +163,65 @@
 									</div>
 								</button>
 							</div>
-							<div class="col-md-3 col-sm-3 col-xs-12 center">
-								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#securityModal">
-									<div class="col-sm-12 col-xs-5">
-										<img alt="Security" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
-									</div>
-									<div class="col-sm-12 col-xs-7">
-										<h3> {{ 'main.titles.reservation' | trans }} </h3>
-										<p>
-											{{ 'main.content.reservation' | trans }}
-											<!-- Button trigger modal -->
-										</p>
-										<p class="center">
-											<a class="read-more no_style_a" >
-												{{ 'main.actions.learnMore' | trans }}
-											</a> >
-										</p>
-									</div>
-								</button>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-12 center">
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
 						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a row">
-						        	<div class="col-sm-12 col-xs-5">
+						        	<div class="col-sm-12 col-xs-4">
 										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
 						        	</div>
-						        	<div class="col-sm-12 col-xs-7">
+						        	<div class="col-sm-12 col-xs-8">
 										<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
 										<p>
 											{{ 'main.content.ourProducts' | trans }}
-										</p>
-										<p class="center">
+
+
+										<br class="hidden-xs"/>
 								          	<button class="read-more no_style_button">
 												{{ 'main.actions.discover' | trans }}
 								          	</button> >
 										</p>
 						        	</div>
 						        </a>
+							</div>
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
+								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#choiceModal">
+									<div class="col-sm-12 col-xs-4">
+										<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
+									</div>
+									<div class="col-sm-12 col-xs-8">
+										<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
+										<p>
+											{{ 'main.content.variatyOfChoice' | trans }}
+
+											<!-- Button trigger modal -->
+										<br class="hidden-xs"/>
+											<a class="read-more no_style_a" >
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
+								</button>
+							</div>
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
+								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#securityModal">
+									<div class="col-sm-12 col-xs-4">
+										<img alt="Security" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
+									</div>
+									<div class="col-sm-12 col-xs-8">
+										<h3> {{ 'main.titles.reservation' | trans }} </h3>
+										<p>
+											{{ 'main.content.reservation' | trans }}
+
+											<!-- Button trigger modal -->
+										<br class="hidden-xs"/>
+											<a class="read-more no_style_a" >
+												{{ 'main.actions.learnMore' | trans }}
+											</a> >
+										</p>
+									</div>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -220,13 +232,13 @@
 			<div class="section" id="section1">
 				<div class="presentation_texte row">
 		        	<div class="row center">
-		        		<div class="col-md-2 col-xs-12"></div>
-		        		<div class="col-md-8 col-xs-12">
+		        		<div class="col-lg-2 col-md-2 col-xs-12"></div>
+		        		<div class="col-lg-8 col-md-8 col-xs-12">
 							<h2>
 								{{ 'ourProducts.titles.title_ourProducts' | trans }}
 							</h2>
 		        		</div>
-						<div class="col-md-2 col-xs-12 white">
+						<div class="col-lg-2 col-md-2 col-xs-12 white">
 							<button class="btn btn-login" onClick="addToSessionCart()">
 								{{ 'header.titles.myCart' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -448,7 +460,7 @@
 								<div class="tab-pane fade 
 									{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
 									<div class="row">
-										<div class="col-md-4 col-xs-12">
+										<div class="col-lg-4 col-md-4 col-xs-12">
 											<ul class="ver-inline-menu tabbable list_no_style_li">
 											{% set index_category = 1 %}
 											{% for product in productsArray %}
@@ -464,7 +476,7 @@
 											{% endfor %}
 											</ul>
 										</div>
-										<div class="col-md-8 col-xs-12">
+										<div class="col-lg-8 col-md-8 col-xs-12">
 											<div class="tab-content">
 												{% set index_category = 1 %}
 												{% set naturalProductDef = false %}
@@ -472,7 +484,7 @@
 													<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane 
 														{% if index_category == 1 %} active {% endif %}">
 														<div class="row">
-															<div class="col-md-4 col-xs-12">
+															<div class="col-lg-4 col-md-4 col-xs-12">
 																<div class="product_img_div">
 																{% if product.webPath|length > 0 %}
 																	<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
@@ -519,7 +531,7 @@
 																	{% endif %}
 																</div>
 															</div>
-															<div class="col-md-8 col-xs-12">
+															<div class="col-lg-8 col-md-8 col-xs-12">
 																<div class="row">
 																	<h4>
 																		{{ product.name }}. 
@@ -542,7 +554,7 @@
 														</div>
 														<br/>
 														<div class="row right">
-															<div class="col-md-2 col-xs-2 inline_div margin_right_10">
+															<div class="col-lg-2 col-md-2 col-xs-2 inline_div margin_right_10">
 																<div class="row">
 																	<div class="col-xs-6">
 																		<input onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="+" title="Add one more"/>
@@ -552,7 +564,7 @@
 																	</div>
 																</div>
 															</div>
-															<div class="inline_div col-md-3 col-xs-3">
+															<div class="inline_div col-lg-3 col-md-3 col-xs-3">
 																<div class="inline_div counter_info_divs">
 																	<div id="counter_value_{{ product.type }}">
 																		0
@@ -562,7 +574,7 @@
 																	{{ 'ourProducts.details.pieces' | trans }}
 																</div>
 															</div>
-															<div class="inline_div col-md-2 col-xs-2">
+															<div class="inline_div col-lg-2 col-md-2 col-xs-2">
 																<div class="inline_div counter_info_divs">
 																	<div id="weight_value_{{ product.type }}">
 																		0
@@ -572,7 +584,7 @@
 																	g,
 																</div>
 															</div>
-															<div class="inline_div col-md-2 col-xs-2 counter_price_divs">
+															<div class="inline_div col-lg-2 col-md-2 col-xs-2 counter_price_divs">
 																<div class="inline_div float-left">
 																	S/.
 																</div>
@@ -582,7 +594,7 @@
 																	</div>
 																</div>
 															</div>
-															<div class="inline_div col-md-2 col-xs-2">
+															<div class="inline_div col-lg-2 col-md-2 col-xs-2">
 																<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
 																onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
 																</button>
@@ -615,8 +627,8 @@
 			<div class="section" id="section2">
 				<div class="presentation_texte">
 					<div class="row center">
-		        		<div class="col-md-2 col-xs-2"></div>
-		        		<div class="col-md-8 col-xs-8">
+		        		<div class="col-lg-2 col-md-2 col-xs-2"></div>
+		        		<div class="col-lg-8 col-md-8 col-xs-8">
 							<h2>
 								{{ 'aboutUs.titles.title_aboutUs' | trans }}
 								<br/>
@@ -625,26 +637,26 @@
 								</span>
 							</h2>
 		        		</div>
-						<div class="col-md-2 col-xs-2">
+						<div class="col-lg-2 col-md-2 col-xs-2">
 						</div>
 					</div>
 					<br/>
 					<div class="row bio">
 						<div class="row90">
-							<div class="col-md-4 col-xs-4 sep_dotted">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep_dotted">
 								<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="creator_img"/>
 								<h4>Aude de Penfentenyo </h4>
-								Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco !
+								Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
 							</div>
-							<div class="col-md-4 col-xs-4 sep_dotted">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep_dotted">
 								<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="creator_img"/>
 								<h4>Antoine de Penfentenyo </h4>
-								Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco !
+								Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
 							</div>
-							<div class="col-md-4 col-xs-4">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 								<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="creator_img"/>
 								<h4>Pierre-Arnaud Destremau</h4>
-								Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents !
+								Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents.
 							</div>
 						</div>
 					</div>
