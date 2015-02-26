@@ -3,39 +3,46 @@
 
 <div id="header" class="row">
 
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header hidden-lg hidden-md hidden-sm navbar-inverse">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="white icon-bar"></span>
-        <span class="white icon-bar"></span>
-        <span class="white icon-bar"></span>
-      </button>
-      
-      <a href="{{ path('lbf_main_homepage') }}#mainSection" class="no_style_a navbar-brand">
-        <img src="{{ asset('img/system/logo/final_site.png') }}" alt="Logo" class="logo_header_sm_img"/>
-      </a>
+  <!-- MOBILE DISPLAY MENU -->
+  <div class="navbar-header hidden-lg hidden-md hidden-sm navbar-inverse">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mobile_nav">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="white icon-bar"></span>
+      <span class="white icon-bar"></span>
+      <span class="white icon-bar"></span>
+    </button>
+    
+    <a href="{{ path('lbf_main_homepage') }}#mainSection" class="no_style_a navbar-brand">
+      <img src="{{ asset('img/system/logo/final_site.png') }}" alt="Logo" class="logo_header_sm_img"/>
+    </a>
+
+    <div class="float-right">
+      <div  class="number_notif_XS_bis" id="number_in_number_notif_XS_bis"  style="display:none;">
+        0
+      </div>
     </div>
 
+  </div>
 
 
 
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    
-    <div class="nav navbar-nav col-lg-4 col-md-4 col-sm-4 hidden-xs">
-      <div class="row"  id="header_buttons">
-        <div class="button_anchors float-left">
-          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
-            {% if is_granted("ROLE_ADMIN") %}
-              <div id="login_name_status">
-                <a href="{{ path('lbf_admin_homepage') }}" class="no_style_a">
-                  <button id="button_login_a" class="btn btn-log">
-                    ADMIN
-                  </button>
-                </a>
-              </div>
-            {% else %}
+
+
+  <!-- ORDINARY MENU for mobile -->
+
+  <div class="hidden-xs">
+    <ul class="col-lg-4 col-md-4 col-sm-4"  id="header_buttons">  
+      <li class="button_anchors float-left">
+        <div id="login_name_status">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+          {% if is_granted("ROLE_ADMIN") %}
+              <a href="{{ path('lbf_admin_homepage') }}" class="no_style_a">
+                <button id="button_login_a" class="btn btn-log">
+                  ADMIN
+                </button>
+              </a>
+          {% else %}
               <a href="{{ path('lbf_user_homepage') }}" class="no_style_a user_access_button">
                 <div class="inline_div">
                   {% if app.user.alt|length > 0  and app.user.url|length > 0 %}
@@ -62,57 +69,54 @@
                   {% endif %}
                 </div>
               </a>
-            {% endif %}
-          {% else %}
-            <div id="login_name_status">
-              <a href="{{ path('fos_user_security_login') }}" class="no_style_a">
-                <button id="button_login_a" class="btn btn-log
-                {% if (route == 'fos_user_security_login')
-                    or (route == 'fos_user_resetting_reset')
-                    or (route == 'fos_user_resetting_request')
-                    or (route == 'fos_user_change_password')
-                    or (route == 'fos_user_registration_register') %}
-                btn-log-active
-                {% endif %}
-                ">
-                  {% if (route == 'fos_user_resetting_reset') %}
-                    {{ 'header.titles.reset' | trans }}
-                  {% elseif (route == 'fos_user_resetting_request') %}
-                    {{ 'header.titles.request' | trans }}
-                  {% elseif (route == 'fos_user_change_password') %}
-                    {{ 'header.titles.changePassword' | trans }}
-                  {% elseif (route == 'fos_user_registration_register') %}
-                    {{ 'header.titles.register' | trans }}
-                  {% else %}
-                    {{ 'header.titles.login' | trans }}
-                  {% endif %}
-                </button>
-              </a>
-            </div>
           {% endif %}
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}" class="no_style_a">
+              <button id="button_login_a" class="btn btn-log
+              {% if (route == 'fos_user_security_login')
+                  or (route == 'fos_user_resetting_reset')
+                  or (route == 'fos_user_resetting_request')
+                  or (route == 'fos_user_change_password')
+                  or (route == 'fos_user_registration_register') %}
+              btn-log-active
+              {% endif %}
+              ">
+                {% if (route == 'fos_user_resetting_reset') %}
+                  {{ 'header.titles.reset' | trans }}
+                {% elseif (route == 'fos_user_resetting_request') %}
+                  {{ 'header.titles.request' | trans }}
+                {% elseif (route == 'fos_user_change_password') %}
+                  {{ 'header.titles.changePassword' | trans }}
+                {% elseif (route == 'fos_user_registration_register') %}
+                  {{ 'header.titles.register' | trans }}
+                {% else %}
+                  {{ 'header.titles.login' | trans }}
+                {% endif %}
+              </button>
+            </a>
+        {% endif %}
         </div>
-        
-        <div class="button_anchors float-right" data-menuanchor="aboutUs">
-          <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a">
-            <button class="btn btn-log" id="btn_section1">
-              {{ 'header.titles.aboutUs' | trans }}
-            </button>
-          </a>
-        </div>
+      </li>
+      
+      <li class="button_anchors float-right hidden-xs" data-menuanchor="aboutUs">
+        <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a">
+          <button class="btn btn-log " id="btn_section1">
+            {{ 'header.titles.aboutUs' | trans }}
+          </button>
+        </a>
+      </li>
 
-        <div class="button_anchors float-right" data-menuanchor="ourProducts">
-          <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
-            <button class="btn btn-log"  id="btn_section2">
-              {{ 'header.titles.ourProducts' | trans }}
-            </button>
-          </a>
-        </div>
+      <li class="button_anchors float-right hidden-xs" data-menuanchor="ourProducts">
+        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+          <button class="btn btn-log"  id="btn_section2">
+            {{ 'header.titles.ourProducts' | trans }}
+          </button>
+        </a>
+      </li>
 
-      </div>
+    </ul>
 
-    </div>
-
-    <div class="nav navbar-nav col-lg-4 col-md-4 col-sm-4 hidden-xs">
+    <div class="col-lg-4 col-md-4 col-sm-4">   <!-- nav navbar-nav  -->
       <!-- Main title -->
       <a href="{{ path('lbf_main_homepage') }}#mainSection" class="no_style_a">
         <h1>
@@ -121,7 +125,7 @@
       </a>
     </div>
 
-    <div class="nav navbar-nav col-lg-4 col-md-4 col-sm-4 hidden-xs" id="language_selection">
+    <ul class="col-lg-4 col-md-4 col-sm-4">  
 
       <!-- BEGIN LANGUAGE SELECTION DROPDOWN -->
       <div class="language_box float-left">
@@ -172,7 +176,7 @@
             {{ 'header.titles.myCart' | trans }}
           </div>
           <div id="number_notif">
-            <div  class="number_notif" id="number_in_number_notif" style="display:none;">
+            <div  class="number_notif hidden-xs" id="number_in_number_notif" style="display:none;">
             </div>
             <script type="text/javascript">
               function updateNotifNumber() {
@@ -228,10 +232,284 @@
         </button>
       </div>
       <!-- END CART -->
-
-      
-    </div>
+    </ul>
 
   </div>
+
+  
+
+
+
+
+
+
+
+  <!-- COLLAPSE MENU for mobile -->
+
+  <div class="hidden-lg hidden-md hidden-sm">
+    
+    <div class="collapse navbar-collapse" id="mobile_nav">
+      <ul class="col-xs-12"  id="header_buttons">  
+        <li class="">
+          <div id="login_name_status_XS">
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('lbf_admin_homepage') }}" class="no_style_a">
+                  <button id="button_login_a" class="btn btn-log-xs">
+                    ADMIN
+                  </button>
+                </a>
+            {% else %}
+                <a href="{{ path('lbf_user_homepage') }}" class="no_style_a user_access_button">
+                  <div class="inline_div">
+                    {% if app.user.alt|length > 0  and app.user.url|length > 0 %}
+                      <div class="user_img_header" style="width: 100%; background-image: url('{{ asset( app.user.webPath) }}'); background-size: cover; background-position: 50%;">
+                        <!-- onClick="showPhoto('{{ app.user.id }}')" -->
+                        <script type="text/javascript">
+                          var cw = $('.user_img_header').width();
+                          $('.user_img_header').css({'height':cw+'px'});
+                        </script>
+                      </div>
+                    {% else %}
+                      <img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="Default" class="user_img_header"/>
+                        <script type="text/javascript">
+                          var cw = $('.user_img_header').width();
+                          $('.user_img_header').css({'height':cw+'px'});
+                        </script>
+                    {% endif %}
+                  </div>
+                  <div class="inline_div user_info_header">
+                    {% if app.user.firstName|length > 0 %}
+                      {{ app.user.firstName }}
+                    {% else %}
+                      {{ app.user.username }}
+                    {% endif %}
+                  </div>
+                </a>
+            {% endif %}
+          {% else %}
+              <a href="{{ path('fos_user_security_login') }}" class="no_style_a">
+                <button id="button_login_a" class="btn btn-log-xs
+                {% if (route == 'fos_user_security_login')
+                    or (route == 'fos_user_resetting_reset')
+                    or (route == 'fos_user_resetting_request')
+                    or (route == 'fos_user_change_password')
+                    or (route == 'fos_user_registration_register') %}
+                btn-log-active
+                {% endif %}
+                ">
+                  {% if (route == 'fos_user_resetting_reset') %}
+                    {{ 'header.titles.reset' | trans }}
+                  {% elseif (route == 'fos_user_resetting_request') %}
+                    {{ 'header.titles.request' | trans }}
+                  {% elseif (route == 'fos_user_change_password') %}
+                    {{ 'header.titles.changePassword' | trans }}
+                  {% elseif (route == 'fos_user_registration_register') %}
+                    {{ 'header.titles.register' | trans }}
+                  {% else %}
+                    {{ 'header.titles.login' | trans }}
+                  {% endif %}
+                </button>
+              </a>
+          {% endif %}
+          </div>
+        </li>
+
+        <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
+
+        <li class="col-xs-12"  data-toggle="collapse" data-target="#mobile_nav" data-menuanchor="ourProducts">
+          <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+            <button class="btn btn-log-xs"  id="btn_section2">
+              {{ 'header.titles.ourProducts' | trans }}
+            </button>
+          </a>
+        </li>
+
+        <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
+        
+        <li class="col-xs-12"  data-toggle="collapse" data-target="#mobile_nav" data-menuanchor="aboutUs">
+          <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a">
+            <button class="btn btn-log-xs " id="btn_section1">
+              {{ 'header.titles.aboutUs' | trans }}
+            </button>
+          </a>
+        </li>
+
+
+        <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
+
+        <li class="col-xs-12">
+          <ul class="social_list_xs">
+            <li class="social_item_xs">
+              <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" target="_blank">
+                <div class="social_icon_xs social_fb"></div>
+              </a>
+            </li>
+            <li class="social_item_xs">
+              <a href="https://twitter.com/" target="_blank">
+                <div class="social_icon_xs social_tw"></div>
+              </a>
+            </li>
+            <li class="social_item_spe_xs" data-menuanchor="footerSection">
+              <a href="{{ path('lbf_main_homepage') }}#footerSection">
+                <div class="social_icon_xs social_mail"></div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+        <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
+
+        <!-- BEGIN LANGUAGE SELECTION DROPDOWN -->
+        <li class="language_box_xs center col-xs-12">
+          {% set current_language = '' %}
+          {% if (app.request.get('_route_params')) != null %}
+            {% if (app.request.get('_route_params')._locale == 'fr') %}
+              {% set current_language = 'fr' %}
+            {% elseif (app.request.get('_route_params')._locale == 'en') %}
+              {% set current_language = 'en' %}
+            {% else %}
+              {% set current_language = 'es' %}
+            {% endif %}
+          {% endif %}
+          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection_xs no_style_a
+          {% if current_language == 'es' %}
+            language_active_xs
+          {% endif %}
+          ">
+            <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag_xs"/>
+          </a>
+          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection_xs no_style_a
+          {% if current_language == 'fr' %}
+            language_active_xs
+          {% endif %}
+          ">
+            <img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag_xs"/>
+          </a>
+          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection_xs no_style_a
+          {% if current_language == 'en' %}
+            language_active_xs
+          {% endif %}
+          ">
+            <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag_xs"/>
+          </a>
+        </li>
+        <!-- END LANGUAGE SELECTION DROPDOWN -->
+
+        <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
+
+        <!-- BEGIN CART XS -->
+        <li class="cart_button center" id="button_cart_div">
+          <button id="button_cart_a"  class="btn btn-log-xs-spe
+              {% if route == 'lbf_main_cart'
+                  or route == 'lbf_main_order'
+                  or route == 'lbf_main_confirm' %}
+                btn-log-active
+              {% endif %}" onClick="addToSessionCartXS()">
+            <div class="cart_label">
+              {{ 'header.titles.myCart' | trans }}
+            </div>
+            <div id="number_notif_XS">
+              <div  class="number_notif_XS" id="number_in_number_notif_XS"  style="display:none;">
+                0
+              </div>
+              <script type="text/javascript">
+                function updateNotifNumberXS() {
+                  // To empty cart manually
+                  // $.cookie("sessionCart", null);
+
+                  var sessionCart = $.cookie("sessionCart");
+                  if (sessionCart) {
+                    var cart_length = sessionCart.length;
+                    if (cart_length > 0) {
+                      document.getElementById("number_in_number_notif_XS").style.display = "block";
+                      document.getElementById("number_in_number_notif_XS").innerHTML = cart_length;
+                      document.getElementById("number_in_number_notif_XS_bis").style.display = "block";
+                      document.getElementById("number_in_number_notif_XS_bis").innerHTML = cart_length;
+
+                      document.getElementById("button_cart_a").disabled = false;
+                    }
+                  }
+
+                  return false;
+                }
+
+                function addToSessionCartXS() {
+                  var sessionCart = $.cookie("sessionCart"); 
+                  // var sessionCart = JSON.parse($.cookie("sessionCart"));
+                  if (sessionCart.length > 0) {
+                    window.location = '{{ path('lbf_main_add_to_cart') }}';
+                  }
+                  else {
+                    // Flash message
+                    document.getElementById("sessionFlash").style.display = "block";
+                    document.getElementById("sessionFlash").innerHTML = '\
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">\
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+                      <strong>Careful!</strong> Your cart is curently empty.\
+                    </div>';
+                    setTimeout(function() {
+                      $('.alert').fadeOut('fast');
+                      document.getElementById("sessionFlash").style.display = "none";
+                    },4000);
+                  }
+                  return false;
+                }
+              </script>
+
+
+              <!-- Old version -->
+              {# set cart = app.session.get('cart') %}
+              {% if cart|length > 0 %}
+                <div class="number_notif">
+                  {{ cart|length }}
+                </div>
+              {% endif #}
+            </div>
+          </button>
+        </li>
+        <!-- END CART XS -->
+
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+  <!-- Social section  -->
+  <div id="social_media" class="hidden-xs">
+    <ul class="social_list">
+      <li class="social_item">
+        <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" target="_blank">
+          <div class="social_label">FACEBOOK</div>
+          <div class="social_icon social_fb"></div>
+        </a>
+      </li>
+      <li class="social_item">
+        <a href="https://twitter.com/" target="_blank">
+          <div class="social_label">TWITTER</div>
+          <div class="social_icon social_tw"></div>
+        </a>
+      </li>
+      <li class="social_item_spe" data-menuanchor="footerSection">
+        <a href="{{ path('lbf_main_homepage') }}#footerSection">
+          <div class="social_label">CONTACT</div>
+          <div class="social_icon social_mail"></div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+
+
 
 </div>

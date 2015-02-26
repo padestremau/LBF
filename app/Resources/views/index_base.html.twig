@@ -14,45 +14,27 @@
       {% endblock %}
     </title>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicon/apple-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicon/apple-icon-60x60.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicon/apple-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('favicon/apple-icon-76x76.png') }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('favicon/apple-icon-114x114.png') }}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('favicon/apple-icon-120x120.png') }}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('favicon/apple-icon-144x144.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('favicon/apple-icon-152x152.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicon/android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
     <link rel="icon" type="image/ico" href="{{ asset('favicon.ico') }}" />
-    <link rel="manifest" href="{{ asset('favicon/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
-
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
+    <meta content="Website for the Le Buffet Francés shop" name="description"/>
+    <meta content="Pierre-Arnaud Destremau" name="author"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-    {% stylesheets
-      
-      'css/bootstrap.css'
-      'css/bootstrap.min.css'
-      'css/bootstrap-responsive.css'
-      'css/bootstrap-responsive.min.css'
-      'css/bootstrap-theme.css.map'
-      'css/bootstrap.css.map'
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-      'bootstrap/css/bootstrap-theme.css'
-      'bootstrap/css/bootstrap-theme.min.css'
-      'bootstrap/css/bootstrap.min.css'
-      'bootstrap/css/bootstrap.css'
+    {% stylesheets
 
       'css/font.css'
       'css/main_style.css'
@@ -81,7 +63,7 @@
         <!-- END header -->
 
         <!-- BEGIN header -->
-          {% include 'includes/social.html.twig' %}
+          {% include 'includes/modals.html.twig' %}
         <!-- END header -->
 
         <!-- BEGIN header -->
@@ -104,6 +86,7 @@
             {% block body %}
             {% endblock body %}  
             <script type="text/javascript">
+            
               $(document).ready(function() {
                 var header_height = $('#header').height() + 6 ;
                 $('#fullpage').fullpage({
@@ -171,6 +154,7 @@
                   $.cookie("sessionCart", sessionCart);
                 }
                 updateNotifNumber();
+                updateNotifNumberXS();
 
                 // Top button
                 document.getElementById("button_to_top").className = "opacity0";
@@ -182,11 +166,35 @@
                 var sessionCart = [];
                 $.cookie("sessionCart", sessionCart);
                 updateNotifNumber();
+                updateNotifNumberXS();
               }
 
               $(window).resize(function() {
                 // window.location.reload();
               });
+
+              $(function() {
+                //  changes mouse cursor when highlighting loawer right of box
+                $("textarea").mousemove(function(e) {
+                    var myPos = $(this).offset();
+                    myPos.bottom = $(this).offset().top + $(this).outerHeight();
+                    myPos.right = $(this).offset().left + $(this).outerWidth();
+                    
+                    if (myPos.bottom > e.pageY && e.pageY > myPos.bottom - 16 && myPos.right > e.pageX && e.pageX > myPos.right - 16) {
+                        $(this).css({ cursor: "nw-resize" });
+                    }
+                    else {
+                        $(this).css({ cursor: "" });
+                    }
+                })
+                //  the following simple make the textbox "Auto-Expand" as it is typed in
+                .keyup(function(e) {
+                    //  the following will help the text expand as typing takes place
+                    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+                        $(this).height($(this).height()+1);
+                    };
+                });
+            });
             </script>
         </div>
         <!-- END CONTAINER -->
@@ -195,10 +203,6 @@
         <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
         {% javascripts 
-          'bootstrap/js/bootstrap.js'
-          'bootstrap/js/bootstrap.min.js'
-          'js/bootstrap.js'
-          'js/bootstrap.min.js'
 
           'js/ajax_load.js'
           
@@ -211,6 +215,7 @@
           'js/jquery.slimscroll.min.js'
 
           'js/jquery-cookie/jquery.cookie.js'
+          
           %}
           <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

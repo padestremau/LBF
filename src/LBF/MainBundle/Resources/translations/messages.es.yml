@@ -18,14 +18,14 @@ header:
 main:
     titles:
         title_meat: 			Nuevos sabores sobre tu mesa
-        title_meat_s: 			En tres clicks
-        variatyOfChoice: 		Variedad de juicio
+        title_meat_s: 			Buen viaje en nuestro universo culinario francés. 
+        recipes: 		        Recetas apetitosas
         qualityProduct: 		Qualitad de producto
         securedPayment: 		Pagamento securo
         reservation:            Reservacion facil
         ourProducts:            Productos
     content:
-        variatyOfChoice: 		"Carnes a elegir con attencion, para los gustos de cada uno y la felicidad de todos."
+        recipes: 		        "Recetas a seguir para disfrutir de gustosos platos a compartir con su familia y amigos."
         qualityProduct: 		"Carne de qualitad, con unico objetivo de satisfacer la curiosidad gastronmica de todos."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
         reservation:            "Elige ahora sus artículos. Selectiona le fecha que mas le conviene y pasa recoger su pedido."
@@ -145,7 +145,7 @@ footer:
     content:
         receiveOurNewsletter: 	Restez abonnés à nos offres et recettes !
         witnesses: 				Ya han probado nuestra carne.
-        clientService: 			A vuestro servicio desde las 10 hasta media noche !
+        clientService: 			A vuestro servicio desde las 10 hasta las 19 !
         contact: 				Contacto
         thanks: 				Remerciements
         legalMentions: 			Mentiones legales/ CGV

@@ -17,16 +17,16 @@ header:
 
 main:
     titles:
-        title_meat: 			De nouvelles saveurs sur votre table.
-        title_meat_s: 			En trois clics. 
-        variatyOfChoice: 		Variété de choix
+        title_meat: 			De nouvelles saveurs sur votre table
+        title_meat_s: 			Bon voyage dans notre univers culinaire français
+        recipes: 		        Nos recettes
         qualityProduct: 		Produit de qualité
         securedPayment: 		Paiment sécurisé
         reservation:            Réservations faciles
         ourProducts:            Nos produits
     content:
-        variatyOfChoice: 		"Un ensemble de viandes à choisir méticuleusement, aux goûts de chacun et aux bonheurs de tous."
-        qualityProduct: 		"De la viande de qualité, avec comme unique objectif, satisfaire la curiosité gastronomique de tous."
+        recipes: 		        "Un ensemble de recettes à suivre méticuleusement, aux goûts de chacun et aux bonheurs de tous."
+        qualityProduct: 		"Notre particularité est de concevoir des produits sains et de qualité sans colorant ni conservateur."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
         reservation:            "Réserver dès maintenant. Choisissez la date que vous désirez et venez la récupérer !"
         ourProducts:            "Pour remplir votre panier, veuillez choisir la quantité d'éléments à y ajouter dans la section 'Nos Produits'."
@@ -143,7 +143,7 @@ footer:
     content:
         receiveOurNewsletter: 	Restez abonnés à nos offres et recettes !
         witnesses: 				Ils ont déjà gouté à notre viande.
-        clientService: 			A votre écoute de 10h à 2h00 !
+        clientService: 			A votre écoute de 10h à 19h00 !
         contact: 				Contact
         thanks: 				Remerciements
         legalMentions: 			Mentions légales/ CGV

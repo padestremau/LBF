@@ -21,7 +21,7 @@
       <div class="section" id="section4">
 
         <div id="sectionContentAjax">
-          <div class="row60" id="login_section">
+          <div id="login_section">
             <div id="login_content">    <!-- Element loading -->
 
                 <script type="text/javascript">
@@ -86,7 +86,7 @@
                   </div>
                   <hr/>
 
-                  <div class="login_content_font_size">
+                  <div class="">
                     {% block fos_user_content %}
                     {% endblock fos_user_content %}
                   </div>
@@ -109,7 +109,7 @@
                   </div>
                   <hr/>
 
-                  <div class="login_content_font_size">
+                  <div class="">
                     <!-- BEGIN RESETTNG PASSWORD FORM -->
                     <form action="{{ path('fos_user_change_password') }}" {{ form_enctype(form) }} method="POST" class="fos_user_change_password login-form">
                       
@@ -214,7 +214,7 @@
                   </div>
                 </div>
 
-                <div class="login_content_font_size">
+                <div class="">
                   <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8 left border_bottom_white_dotted">
@@ -576,7 +576,7 @@
                   </div>
                 </div>
 
-                <div class="row login_content_font_size">
+                <div class="row ">
                   <!-- BEGIN LOGIN FORM -->
                     <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -646,7 +646,7 @@
 
                 <br/><br/><br/><br/>
 
-                <div class="row center login_content_font_size">
+                <div class="row center ">
                   {{ 'check.registration.checkEmailFirst' | trans }}
                   <br/>
                   <strong>
@@ -662,7 +662,7 @@
 
                 <br/><br/><br/><br/>
 
-                <div class="row center login_content_font_size">
+                <div class="row center ">
                   {{ 'check.registration.canYou' | trans }}
                   <br/>
                   <strong>
@@ -679,7 +679,7 @@
 
                 <br/><br/><br/><br/>
 
-                <div class="row center login_content_font_size">
+                <div class="row center ">
                   {{ 'check.passwordNew.checkEmailFirst' | trans }}
                   <br/>
                   <strong>
@@ -695,7 +695,7 @@
 
                 <br/><br/><br/><br/>
 
-                <div class="row center login_content_font_size">
+                <div class="row center ">
                   {{ 'check.registration.allGood' | trans }}
                   <br/><br/>
                   {{ 'check.registration.access' | trans }}
@@ -724,7 +724,7 @@
 
                 <br/><br/><br/><br/>
 
-                <div class="row center login_content_font_size">
+                <div class="row center ">
                   {{ 'check.general.allGood' | trans }}
                   <br/>
                   <strong>

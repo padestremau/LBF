@@ -29,8 +29,8 @@ class ElementFixtures implements FixtureInterface
         '10'=>'Rillettes de porc',
         
         // Jamones
-        '11'=>'Jamón frances',
-        '12'=>'Jamón serano',
+        '11'=>'Jambon de Paris',
+        '12'=>'Lardons',
 
         // Epicerie fine
         '13'=>'Marmelada Limón',
@@ -48,22 +48,22 @@ class ElementFixtures implements FixtureInterface
         
     $descriptions_Element = array(
         // Embutidos
-        '1'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
-        '2'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
+        '1'=>'Différentes parties du cochon relevées par un savant mélange d’épices. Tous les ingrédients utilisés sont frais.',
+        '2'=>'Différentes parties du cochon auxquelles sont ajouté un mélange de légumes, blettes et épinards. Tous les ingrédients utilisés sont frais.',
         '3'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
         '4'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
         '5'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
         '6'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
         
         // Patés
-        '7'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
-        '8'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
+        '7'=>'Foie de volaille cuisinés au vin blanc et relevé au Pisco. Tous les ingrédients utilisés sont frais.',
+        '8'=>'Différentes viandes (bœuf et porc) cuisinées avec un savant mélange d’épices et relevé au Pisco. Tous les ingrédients utilisés sont frais.',
         '9'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
-        '10'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
+        '10'=>'Poitrine de porc cuisinée selon un processus long et délicat. Tous les ingrédients utilisés sont frais.',
         
         // Jamones
-        '11'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
-        '12'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
+        '11'=>'Jambe de porc sélectionné salé en saumure parfumée et cuit en moule au four. Tous les ingrédients utilisés sont frais.',
+        '12'=>'Poitrine de porc salée et saumurée coupée à la française. Tous les ingrédients utilisés sont frais.',
 
         // Epicerie fine
         '13'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum quo assumenda distinctio eos voluptas laudantium est non dolor porro aspernatur. Voluptate dignissimos, error laborum aliquam nisi sunt vel rem corporis.',
@@ -281,14 +281,14 @@ class ElementFixtures implements FixtureInterface
         '6'=> true,
         
         // Pates
-        '7'=> false,
-        '8'=> false,
+        '7'=> true,
+        '8'=> true,
         '9'=> false,
-        '10'=> false,
+        '10'=> true,
         
         // Jamones
-        '11'=> false,
-        '12'=> false,
+        '11'=> true,
+        '12'=> true,
 
         // Epicerie_fine
         '13'=> false,

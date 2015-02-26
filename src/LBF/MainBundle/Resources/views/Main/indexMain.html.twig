@@ -73,7 +73,7 @@
 					        <div id="slider1_container_content" u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 400px; overflow: hidden;">
 
 					            <script type="text/javascript">
-									var slider_height = window.innerHeight * 0.47;
+				            		var slider_height = window.innerHeight * 0.45;
 									$('#slider1_container').css({'height':slider_height+'px'});
 								</script>
 								<div>
@@ -117,11 +117,16 @@
 					</div>
 
 					<div class="presentation_texte row">
+
 						<div class="row center title_div">
 							<div class="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
 			        		<div class="col-lg-6 col-md-6 col-sm-9 col-xs-12">
 								<h2>
 									{{ 'main.titles.title_meat' | trans }}
+									<br/>
+									<span>
+										{{ 'main.titles.title_meat_s' | trans }}
+									</span>
 								</h2>
 			        		</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs right" >
@@ -143,19 +148,19 @@
 						</div>
 
 						<div class="row">
+
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 								<button class="no_style_button row" type="button" data-toggle="modal" data-target="#qualityModal">
-									<div class="col-sm-12 col-xs-4">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
 									</div>
-									<div class="col-sm-12 col-xs-8">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
 										<p>
 											{{ 'main.content.qualityProduct' | trans }}
 
 											<!-- Button trigger modal -->
-										<br class="hidden-xs"/>
 											<a class="read-more no_style_a" >
 												{{ 'main.actions.learnMore' | trans }}
 											</a> >
@@ -163,39 +168,35 @@
 									</div>
 								</button>
 							</div>
-							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a row">
-						        	<div class="col-sm-12 col-xs-4">
+						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
 						        	</div>
-						        	<div class="col-sm-12 col-xs-8">
+						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
 										<p>
 											{{ 'main.content.ourProducts' | trans }}
 
-
-										<br class="hidden-xs"/>
-								          	<button class="read-more no_style_button">
+								          	<a class="read-more no_style_a">
 												{{ 'main.actions.discover' | trans }}
-								          	</button> >
+								          	</a> >
 										</p>
 						        	</div>
 						        </a>
 							</div>
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
-								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#choiceModal">
-									<div class="col-sm-12 col-xs-4">
-										<img alt="Choice" src="{{ asset('img/system/icons/choice.png') }}" class="icon_presentation"/>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
+								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#recipeModal">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<img alt="Recipe" src="{{ asset('img/system/icons/recipe.png') }}" class="icon_presentation"/>
 									</div>
-									<div class="col-sm-12 col-xs-8">
-										<h3> {{ 'main.titles.variatyOfChoice' | trans }} </h3>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<h3> {{ 'main.titles.recipes' | trans }} </h3>
 										<p>
-											{{ 'main.content.variatyOfChoice' | trans }}
+											{{ 'main.content.recipes' | trans }}
 
 											<!-- Button trigger modal -->
-										<br class="hidden-xs"/>
 											<a class="read-more no_style_a" >
 												{{ 'main.actions.learnMore' | trans }}
 											</a> >
@@ -203,19 +204,17 @@
 									</div>
 								</button>
 							</div>
-							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center">
-								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#securityModal">
-									<div class="col-sm-12 col-xs-4">
-										<img alt="Security" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
+								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#reservationModal">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<img alt="Reservation" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
 									</div>
-									<div class="col-sm-12 col-xs-8">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<h3> {{ 'main.titles.reservation' | trans }} </h3>
 										<p>
 											{{ 'main.content.reservation' | trans }}
 
 											<!-- Button trigger modal -->
-										<br class="hidden-xs"/>
 											<a class="read-more no_style_a" >
 												{{ 'main.actions.learnMore' | trans }}
 											</a> >
@@ -232,14 +231,14 @@
 			<div class="section" id="section1">
 				<div class="presentation_texte row">
 		        	<div class="row center">
-		        		<div class="col-lg-2 col-md-2 col-xs-12"></div>
-		        		<div class="col-lg-8 col-md-8 col-xs-12">
+		        		<div class="col-lg-2 col-md-2 hidden-sm hidden-xs"></div>
+		        		<div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
 							<h2>
 								{{ 'ourProducts.titles.title_ourProducts' | trans }}
 							</h2>
 		        		</div>
-						<div class="col-lg-2 col-md-2 col-xs-12 white">
-							<button class="btn btn-login" onClick="addToSessionCart()">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 white">
+							<button class="btn btn-login" onClick="addToSessionCart(); addToSessionCartXS();">
 								{{ 'header.titles.myCart' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 							</button>
@@ -249,13 +248,14 @@
 
 					<!-- Product content -->
 					{% if allProducts|length > 0 %}
-						<ul class="nav nav-tabs row80">
+						<ul class="nav nav-tabs row90">
 							{% set index_general = 1 %}
 							{% for category in allCategories %}
 								{% set productsArray = allSortedProducts[index_general] %}
 								<li class="{% if index_general == 1 %} active {% endif %}">
 									<a href="#tab_{{ index_general }}" data-toggle="tab">
-										{{ category }} ({{ productsArray|length }})
+										{{ category }} <span class="hidden-xs">({{ productsArray|length }})</span>
+										<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
 									</a>
 								</li>
 								{% set index_general = index_general + 1 %}
@@ -413,6 +413,7 @@
 						            // To put button again normal, and update number_notif
 									document.getElementById(input_id).className = "btn-add-to-cart";
 									updateNotifNumber();
+									updateNotifNumberXS();
 
 									// Remise à zéro des compteurs pour cet élément
 									div_counter_values[pos] = 0;
@@ -452,7 +453,7 @@
 
 						</script>
 
-						<div class="tab-content white row80" id="product_content">
+						<div class="tab-content row" id="product_content">
 							{% set index_general = 1 %}
 							{% for category in allCategories %}
 								{% set productsArray = allSortedProducts[index_general] %}
@@ -460,31 +461,34 @@
 								<div class="tab-pane fade 
 									{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
 									<div class="row">
-										<div class="col-lg-4 col-md-4 col-xs-12">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 											<ul class="ver-inline-menu tabbable list_no_style_li">
 											{% set index_category = 1 %}
 											{% for product in productsArray %}
 												<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-													<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
+													<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
 														{{ product.name }}
 														<div class="float-right inner_arrow">
 															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 														</div>
+													</a>
+													<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+														{{ product.name }}
 													</a>
 												</li>
 												{% set index_category = index_category + 1 %}
 											{% endfor %}
 											</ul>
 										</div>
-										<div class="col-lg-8 col-md-8 col-xs-12">
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 											<div class="tab-content">
 												{% set index_category = 1 %}
 												{% set naturalProductDef = false %}
 												{% for product in productsArray %}
-													<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane 
-														{% if index_category == 1 %} active {% endif %}">
-														<div class="row">
-															<div class="col-lg-4 col-md-4 col-xs-12">
+													<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
+														{% if index_category == 1 %} active in {% endif %}">
+														<div class="row product_info_xs">
+															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 																<div class="product_img_div">
 																{% if product.webPath|length > 0 %}
 																	<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
@@ -502,7 +506,7 @@
 																		</script>
 																{% endif %}
 																</div>
-																<br/>
+																<br class="hidden-xs"/>
 																<div class="center">
 																	<strong>
 																		{{ 'ourProducts.details.weight' | trans }}
@@ -531,7 +535,7 @@
 																	{% endif %}
 																</div>
 															</div>
-															<div class="col-lg-8 col-md-8 col-xs-12">
+															<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 																<div class="row">
 																	<h4>
 																		{{ product.name }}. 
@@ -554,47 +558,51 @@
 														</div>
 														<br/>
 														<div class="row right">
-															<div class="col-lg-2 col-md-2 col-xs-2 inline_div margin_right_10">
-																<div class="row">
-																	<div class="col-xs-6">
-																		<input onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="+" title="Add one more"/>
-																	</div>
-																	<div class="col-xs-6">
-																		<input onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons" type="button" value="-" title="Delete one"/>
-																	</div>
+															<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 inline_div margin_right_10">
+																<div class="row hidden-xs">
+																	<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																	<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+
+																</div>
+																<div class="row hidden-lg hidden-md hidden-sm">
+
+																	<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																	<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
 																</div>
 															</div>
-															<div class="inline_div col-lg-3 col-md-3 col-xs-3">
+															<div class="inline_div col-lg-3 col-md-3 col-sm-3 col-xs-3">
 																<div class="inline_div counter_info_divs">
 																	<div id="counter_value_{{ product.type }}">
 																		0
 																	</div>
 																</div>
-																<div class="inline_div counter_info_divs margin_right_10">
+																<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
 																	{{ 'ourProducts.details.pieces' | trans }}
 																</div>
 															</div>
-															<div class="inline_div col-lg-2 col-md-2 col-xs-2">
+															<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs">
 																<div class="inline_div counter_info_divs">
 																	<div id="weight_value_{{ product.type }}">
 																		0
 																	</div>
 																</div>
-																<div class="inline_div counter_info_divs margin_right_10">
+																<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
 																	g,
 																</div>
 															</div>
-															<div class="inline_div col-lg-2 col-md-2 col-xs-2 counter_price_divs">
+															<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs counter_price_divs">
 																<div class="inline_div float-left">
 																	S/.
 																</div>
-																<div class="inline_div margin_right_10">
+																<div class="inline_div margin_right_10 hidden-xs">
 																	<div id="price_value_{{ product.type }}">
 																		0
 																	</div>
 																</div>
 															</div>
-															<div class="inline_div col-lg-2 col-md-2 col-xs-2">
+															<div class="inline_div col-lg-2 col-md-2 col-sm-2 col-xs-3">
 																<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
 																onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
 																</button>
@@ -642,21 +650,51 @@
 					</div>
 					<br/>
 					<div class="row bio">
-						<div class="row90">
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep_dotted">
+						<div class="row90 hidden-xs">
+							<div class="col-lg-4 col-md-4 col-sm-4 sep_dotted_right">
 								<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="creator_img"/>
 								<h4>Aude de Penfentenyo </h4>
 								Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
 							</div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 sep_dotted">
+							<div class="col-lg-4 col-md-4 col-sm-4 sep_dotted_right">
 								<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="creator_img"/>
 								<h4>Antoine de Penfentenyo </h4>
 								Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
 							</div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							<div class="col-lg-4 col-md-4 col-sm-4">
 								<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="creator_img"/>
 								<h4>Pierre-Arnaud Destremau</h4>
 								Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents.
+							</div>
+						</div>
+
+						<div class="row bio hidden-lg hidden-md hidden-sm ">
+							<div class="col-xs-12 creator_padding sep_dotted_bottom">
+								<div class="col-xs-3">
+									<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="creator_img_xs"/>
+								</div>
+								<div class="col-xs-9">
+									<h4>Aude de Penfentenyo </h4>
+									Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
+								</div>
+							</div>
+							<div class="col-xs-12 creator_padding sep_dotted_bottom">
+								<div class="col-xs-3">
+									<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="creator_img_xs"/>
+								</div>
+								<div class="col-xs-9">
+									<h4>Antoine de Penfentenyo </h4>
+									Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
+								</div>
+							</div>
+							<div class="col-xs-12 creator_padding">
+								<div class="col-xs-3">
+									<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="creator_img_xs"/>
+								</div>
+								<div class="col-xs-9">
+									<h4>Pierre-Arnaud Destremau</h4>
+									Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents.
+								</div>
 							</div>
 						</div>
 					</div>

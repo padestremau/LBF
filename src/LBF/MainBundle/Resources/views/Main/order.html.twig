@@ -46,12 +46,12 @@
 					<div id="sessionFlash" class="sessionFlash">
 					</div>
 
-			        <div class="row80 left cart_content">
+			        <div class="row left cart_content">
 			        	{{ 'cart.orderContent.dear' | trans }} {% if app.user.firstName|length > 0 %}{{ app.user.firstName }}{% else %}{{ app.user.email }}{% endif %}, <br/>
 		        		{% set cart = app.session.get('cart') %}
 	                	{% if cart|length > 0 %}
 	                		<div class="row">
-					        	<div class="col-md-6">
+					        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-7">
 					        		{{ 'cart.orderContent.finalize' | trans }}
 					        		<ul>
 					        			{% set total_price_general = 0 %}
@@ -65,8 +65,11 @@
 					        			{% endfor %}
 					        		</ul>
 					        	</div>
-					        	<div class="col-md-6">
-					        		<div class="border_white">
+					        	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-5 right">
+					        		<div class="border_white hidden-xs">
+						        		{{ 'cart.orderContent.ofaTotal' | trans }} <strong>S/. {{ total_price_general }}</strong>
+					        		</div>
+					        		<div class="border_white_xs hidden-lg hidden-md hidden-sm">
 						        		{{ 'cart.orderContent.ofaTotal' | trans }} <strong>S/. {{ total_price_general }}</strong>
 					        		</div>
 					        	</div>
@@ -80,7 +83,8 @@
 				        			</li>
 				        			<li>
 				        				{{ 'cart.orderContent.conditions2' | trans }}
-				        				<br/><br/>
+				        				<br/>
+				        				<br/>
 				        				<div class="address_box">
 				        					<span style="font-size:1.2em;">
 					        					<strong>Le Buffet Francés</strong> 

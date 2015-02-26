@@ -2,17 +2,16 @@
 <div class="footer center section" id="section3">
 	<br/>
 	<div class="row80">
-		<h3>
+		<h2 class="h2_footer">
 			Contact
-		</h3>
-
+		</h2>
 		<form id="contact_form" method="post">
 	        <div id="" class="row">
 	        	<div class="form-group row">
-					<div class="input-icon col-md-6">
+					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<input type="sender" name="senderContact" id="senderContact" placeholder="Expéditeur" class="form-control placeholder-no-fix"/>
 			        </div>
-					<div class="input-icon col-md-6">
+					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<input type="email" name="emailContact" id="emailContact" placeholder="Email" class="form-control placeholder-no-fix"/>
 			        </div>
 				</div>
@@ -28,7 +27,7 @@
 	                      }
 	                    }
 	                </script>
-	            	<div class="input-icon col-md-6">
+	            	<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix" onClick="showOrderNumber()">
 		                    <option value="" selected>
 		                    	Sélectionner l'objet de votre demande
@@ -56,7 +55,7 @@
 							</option>
 						</select>
 	            	</div>
-	                <div class="input-icon col-md-6"  style="display:none;" id="corpsOrder_input">
+	                <div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="display:none;" id="corpsOrder_input">
 	                	<input type="integer" name="corpsOrder" id="corpsOrder" placeholder="Commande n°" class="form-control placeholder-no-fix"/>
 	                </div>
 	          	</div> 	
@@ -67,18 +66,15 @@
 	                </div>
 	            </div>
 	        </div>
-            <br/>
-	        <input type="submit" value="Envoyer" class="btn btn-log" title="Envoyer">
+	        <input type="submit" value="ENVOYER" class="btn btn-log submit_send_footer" title="Envoyer le message">
 	    </form>
 	</div>
-	<br/>
-	<div class="row border_white_top multiple_lists footer_part">
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+	<div class="row border_white_top footer_part hidden-xs">
+		<div class="col-lg-4 col-md-4 col-sm-4">
 			<h4>
 				{{ 'footer.titles.receiveOurNewsletter' | trans }}
 			</h4>
 			{{ 'footer.content.receiveOurNewsletter' | trans }}
-			<br/>
 			<br/>
 			<form method="post" action="{{ path('lbf_main_newsletterEmail', {'path': app.request.attributes.get( '_route' )}) }}">
 				<div class="row">
@@ -93,7 +89,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+		<div class="col-lg-4 col-md-4 col-sm-4">
 	 		<a href="/temoignages">
 		 	<h4>
 		 		{{ 'footer.titles.witnesses' | trans }}
@@ -104,7 +100,7 @@
 		 	</div>
 		 	</a>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+		<div class="col-lg-4 col-md-4 col-sm-4">
 		 	<h4>
 		 		{{ 'footer.titles.clientService' | trans }}
 		 	</h4>
@@ -119,102 +115,83 @@
 		</div>
 	</div>
 	<div class="row left border_white_top multiple_list footer_part footer_bottom">
-		<div class="col-md-3">
-			<h4>
-			 	{{ 'footer.titles.aboutUs' | trans }}
-			</h4>
-			<ul class="list_no_style_li">
-				<li>
-					<a href="/contact">
-						{{ 'footer.content.contact' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/remerciements">
-						{{ 'footer.content.thanks' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/mentions-legales">
-						{{ 'footer.content.legalMentions' | trans }}
-					</a>
-				</li>
-			</ul>
+		<div class="row">
+			
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+				<h4>
+				 	{{ 'footer.titles.aboutUs' | trans }}
+				</h4>
+				<ul class="list_no_style_li">
+					<li>
+						<a href="/contact">
+							{{ 'footer.content.contact' | trans }}
+						</a>
+					</li>
+					<li>
+						<a href="/remerciements">
+							{{ 'footer.content.thanks' | trans }}
+						</a>
+					</li>
+					<li>
+						<a href="/mentions-legales">
+							{{ 'footer.content.legalMentions' | trans }}
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"> 
+				<h4>
+				 	{{ 'footer.titles.needHelp' | trans }}
+				</h4>
+				<ul class="list_no_style_li">
+					<li>
+						<a href="/">
+							{{ 'footer.content.moreInfo' | trans }}
+						</a>
+					</li>
+					<li>
+						<a href="/">
+							{{ 'footer.content.delivery' | trans }}
+						</a>
+					</li>
+					<li>
+						<a href="/">
+							{{ 'footer.content.ourWork' | trans }}
+						</a>
+					</li>
+					<li>
+						<a href="/">
+							{{ 'footer.content.questions' | trans }}
+						</a>
+					</li> 	
+				</ul>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+			  	<h4>
+			  		{{ 'footer.titles.meatPanel' | trans }}
+			  	</h4>
+			  	<ul class="list_no_style_li">
+					<li>
+						<a href="/">Saucissons</a>
+					</li>
+					<li>
+						<a href="/">Patés</a>
+					</li>
+					<li>
+						<a href="/">Chorizo</a>
+					</li>
+					<li>
+						<a href="/">Merguez</a>
+					</li>
+					<li>
+						<a href="/">Chippolata</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div class="col-md-3"> 
-			<h4>
-			 	{{ 'footer.titles.needHelp' | trans }}
-			</h4>
-			<ul class="list_no_style_li">
-				<li>
-					<a href="/">
-						{{ 'footer.content.moreInfo' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/">
-						{{ 'footer.content.delivery' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/">
-						{{ 'footer.content.ourWork' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/">
-						{{ 'footer.content.questions' | trans }}
-					</a>
-				</li> 	
-			</ul>
+		<div class="row center">
+			Le Buffet Francés - {{ 'footer.bottom.allRightsReserved' | trans }} © 2015
 		</div>
-		<div class="col-md-3">
-		  	<h4>
-		  		{{ 'footer.titles.meatPanel' | trans }}
-		  	</h4>
-		  	<ul class="list_no_style_li">
-				<li>
-					<a href="/">Saucissons</a>
-				</li>
-				<li>
-					<a href="/">Patés</a>
-				</li>
-				<li>
-					<a href="/">Chorizo</a>
-				</li>
-				<li>
-					<a href="/">Merguez</a>
-				</li>
-				<li>
-					<a href="/">Chippolata</a>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-3">
-		  	<h4>
-		  		{{ 'footer.titles.blog' | trans }}
-		  	</h4>
-		  	<ul class="list_no_style_li">
-				<li>
-					<a href="/">
-						{{ 'footer.content.entireBlog' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/">
-						{{ 'footer.content.cookingRecipe' | trans }}
-					</a>
-				</li>
-				<li>
-					<a href="/">
-						{{ 'footer.content.news' | trans }}
-					</a>
-				</li>
-		  	</ul>
-		 </div>
-	</div>
-	<div class="row center margin_top_10 margin_right_30 font10">
-		Le Buffet Francés - {{ 'footer.bottom.allRightsReserved' | trans }} © 2015
 	</div>
 </div>
 <!-- END FOOTER -->

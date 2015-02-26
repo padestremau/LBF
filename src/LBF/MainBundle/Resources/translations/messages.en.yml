@@ -18,14 +18,14 @@ header:
 main:
     titles:
         title_meat: 			New flavors son your table.
-        title_meat_s: 			Three clicks away. 
-        variatyOfChoice: 		Variaty of choices
+        title_meat_s: 			Safe trip in our French culinary univers 
+        recipes: 		        Our appetizing recipes
         qualityProduct: 		Quality products
         securedPayment: 		Secured payment
         reservation:            Easy reservation
         ourProducts:            Our products
     content:
-        variatyOfChoice: 		"A whole lot of meat to choose meticulosely to fit everyone's tastes and happiness."
+        recipes: 		        "Recipes to follow for extra gourmet meals to share with your relatives and friends."
         qualityProduct: 		"Quality meat with sole purpose of satisfying the gastronomical curisoty of all."
         securedPayment: 		"100% secured online payment with our 3D-secure system, either with yourcredit card or your Paypal account."
         reservation:            "Choose now your products and your delivery date, and come and pick it up! Easy."
@@ -143,7 +143,7 @@ footer:
     content:
         receiveOurNewsletter: 	Stay tuned to all our offers and recipes!
         witnesses: 				They already tried our meat.
-        clientService: 			At your service from 10am to 2am !
+        clientService: 			At your service from 10am to 7pm!
         contact: 				Contact
         thanks: 				Greetings
         legalMentions: 			Legal mentions/ CGV

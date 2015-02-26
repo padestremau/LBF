@@ -269,7 +269,7 @@
 
 			        <br/>
 
-			        <div class="row80 cart_content">
+			        <div class="row cart_content">
 			        	<div class="col-md-4">
 					        <button onClick="emptyCart()" class="no_style_button float-left delete_buttons_cart" type="button" value="Empty cart">
 					            {{ 'cart.actions.emptyCart' | trans }}
@@ -355,22 +355,20 @@
 		                      </table>
 		                    </div>
 		                    <div class="row">
-		                      <div class="cart_price">
-		                        <div class="row">
-		                          <div class="inline_div left col-md-4 col-xs-4">
-		                          	{{ 'cart.titles.total' | trans }}
-		                          </div>
-		                          <div class="inline_div center col-md-4 col-xs-4">
-		                            {% if total_weight_general > 999 %}
-		                              {{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
-		                            {% else %}
-		                              {{ total_weight_general }} g
-		                            {% endif %}
-		                          </div>
-		                          <div class="inline_div right col-md-4 col-xs-4">
-		                            S/. {{ total_price_general }} 
-		                          </div>
-		                        </div>
+		                      	<div class="cart_price">
+		                          	<div class="inline_div left col-lg-4  col-md-4 col-sm-4 col-xs-4">
+		                          		{{ 'cart.titles.total' | trans }}
+		                          	</div>
+		                          	<div class="inline_div center col-lg-4  col-md-4 col-sm-4 col-xs-4">
+		                            	{% if total_weight_general > 999 %}
+		                              		{{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
+		                            	{% else %}
+		                              		{{ total_weight_general }} g
+		                            	{% endif %}
+		                          	</div>
+		                          	<div class="inline_div right col-lg-4  col-md-4 col-sm-4 col-xs-4">
+			                            S/. {{ total_price_general }} 
+		                          	</div>
 		                      </div>
 		                    </div>
 		                {% else %}
