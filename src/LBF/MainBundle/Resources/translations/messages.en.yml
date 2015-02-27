@@ -39,19 +39,35 @@ main:
 
 ourProducts:
     titles:
-        title_ourProducts: 		Our products.
-        title_ourProducts_s: 	To choose with love.
+        title_ourProducts: 		Our products
+        title_ourProducts_s: 	To choose with love
+        recipes:                RECIPES
+        jams:                   Jams
+        biscuits:               Biscuits
     actions: 
         order: 					ORDER
+        seeRecipes:             Discover the recipes
     details:
         weight:                 "Weight:"
         price:                  "Price:"
-        for10pieces:            "for 10 pieces"
-        perPiece:               "/piece"
+        for10pieces:            "for "
+        perPiece:               " piece(s)"
         naturalProducts:        "Natural products without colorants or preservants"
         pieces:                 "pieces,"
     warning:
         message:                "This page is empty. Contact the web-master."
+
+# Recipes
+
+ourRecipes:
+    titles:
+        title_ourRecipes:       Our recipes
+        title_ourRecipes_s:     A new way to cook
+        products:               PRODUCTS
+    warning:
+        message:                "This page is empty. Contact the web-master."
+
+
 
 # Alerts
 alert:
@@ -106,8 +122,9 @@ cart:
 
 aboutUs:
     titles:
-        title_aboutUs: 			About us.
-        title_aboutUs_s: 		Histoires et anecdotes.
+        title_aboutUs: 			About us
+        title_aboutUs_s: 		Histoires et anecdotes
+        contact:                CONTACT US
 
 
 

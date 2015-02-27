@@ -63,9 +63,9 @@
                 </div>
                 <div class="inline_div user_info_header">
                   {% if app.user.firstName|length > 0 %}
-                    {{ app.user.firstName }}
+                    {{ app.user.firstName | truncate(15, false, '...') }}
                   {% else %}
-                    {{ app.user.username }}
+                    {{ app.user.username | truncate(15, false, '...') }}
                   {% endif %}
                 </div>
               </a>

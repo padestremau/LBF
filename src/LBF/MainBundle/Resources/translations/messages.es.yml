@@ -41,17 +41,33 @@ ourProducts:
     titles:
         title_ourProducts: 		Nuestros productos
         title_ourProducts_s: 	A elegir con amor
+        recipes:                RECETAS
+        jams:                   Marmeladas
+        biscuits:               Biscuitos
     actions: 
         order: 					PEDIR
+        seeRecipes:             Ver las recetas
     details:
         weight:                 "Peso:"
         price:                  "Precio:"
-        for10pieces:            "para 10 pedazos"
-        perPiece:               "/pedazo"
+        for10pieces:            "para "
+        perPiece:               " pedazo(s)"
         naturalProducts:        "Productos naturales sin colorantes ni preservantes"
         pieces:                 "pedazos,"
     warning:
-        message:                "Esat pagina esta en blanco. Contactad el administratorio del sitio web por favor."
+        message:                "Esta pagina esta en blanco. Contactad el administratorio del sitio web por favor."
+
+
+# Recipes
+
+ourRecipes:
+    titles:
+        title_ourRecipes:       Nuestras recetas
+        title_ourRecipes_s:     Un nuevo modo de cocinar
+        products:               PRODUCTOS
+    warning:
+        message:                "Esta pagina esta en blanco. Contactad el administratorio del sitio web por favor."
+    
 
 # Alerts
 alert:
@@ -110,6 +126,7 @@ aboutUs:
     titles:
         title_aboutUs: 			A propuesto
         title_aboutUs_s: 		Historias y anecdotas
+        contact:                ESCRÍBENOS
 
 
 

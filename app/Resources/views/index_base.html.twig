@@ -90,14 +90,14 @@
               $(document).ready(function() {
                 var header_height = $('#header').height() + 6 ;
                 $('#fullpage').fullpage({
-                  anchors: ['mainSection', 'ourProducts', 'aboutUs', 'footerSection'],
+                  anchors: ['mainSection', 'ourProducts', 'ourRecipes', 'aboutUs', 'footerSection'],
                   // menu: '#menu',
                   paddingTop: header_height+'px',
                   verticalCentered: false,
                   navigation: true,
                   navigationPosition: 'right',
                   responsive: 1200,
-                  'resize': false,
+                  resize: false,
                   // scrollingSpeed: 1000,  // Other
                   // scrollOverflow: true,
                   allowScrolling: true,
@@ -111,7 +111,7 @@
                   // slideSelector: '.slide',
                   afterLoad: function(anchorLink, index){
                     // Top button
-                    if (anchorLink == 'aboutUs' || anchorLink == 'ourProducts' || anchorLink == 'footerSection') {
+                    if (anchorLink == 'aboutUs' || anchorLink == 'ourProducts' || anchorLink == 'ourRecipes' || anchorLink == 'footerSection') {
                       document.getElementById("button_to_top").className = "opacity1";
                     }
                     else {

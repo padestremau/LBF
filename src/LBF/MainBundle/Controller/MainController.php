@@ -21,7 +21,11 @@ class MainController extends Controller
         $allEmbutidos = array();
         $allPates = array();
         $allJamones = array();
-        $allEpicerieFine = array();
+        $otherEpicerie = array();
+        $jamEpicerie = array();
+        $biscuitEpicerie = array();
+        $allEpicerieFine = array('otherEpicerie' => $otherEpicerie, 'jamEpicerie' => $jamEpicerie, 'biscuitEpicerie' => $biscuitEpicerie);
+        $allTraiteur = array();
         for ($i=0; $i < sizeof($allProducts); $i++) { 
         	$product = $allProducts[$i];
         	if ($product->getCategory() == 'Embutidos') {
@@ -37,22 +41,89 @@ class MainController extends Controller
         	}
 
         	else if ($product->getCategory() == 'Epicerie fine') {
-        		$allEpicerieFine[] = $product;
+                $otherEpicerie = $allEpicerieFine['otherEpicerie'];
+                $jamEpicerie = $allEpicerieFine['jamEpicerie'];
+                $biscuitEpicerie = $allEpicerieFine['biscuitEpicerie'];
+                if (strlen($product->getFlavour()) > 0) {
+                    $jamEpicerie[] = $product;
+                } 
+                else if (strlen($product->getBiscuit()) > 0) {
+                    $biscuitEpicerie[] = $product;
+                }
+                else {
+                    $otherEpicerie[] = $product;
+                }
+                $allEpicerieFine = array('otherEpicerie' => $otherEpicerie, 'jamEpicerie' => $jamEpicerie, 'biscuitEpicerie' => $biscuitEpicerie);
         	}
 
+            else if ($product->getCategory() == 'Traiteur') {
+                $allTraiteur[] = $product;
+            }
+
         }
+        $otherEpicerie = $allEpicerieFine['otherEpicerie'];
+        $jamEpicerie = $allEpicerieFine['jamEpicerie'];
+        $biscuitEpicerie = $allEpicerieFine['biscuitEpicerie'];
+        $allEpicerieFine = array_merge($otherEpicerie, $jamEpicerie, $biscuitEpicerie);
+
+
+        $allRecipes = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Recipe')
+                            ->findAll();
+
+        $recipesEmbutidos = array();
+        $recipesPates = array();
+        $recipesJamones = array();
+        $recipesEpicerieFine = array();
+        $recipesTraiteur = array();
+        for ($i=0; $i < sizeof($allRecipes); $i++) { 
+            $recipe = $recipesProducts[$i];
+            if ($recipe->getCategory() == 'Embutidos') {
+                $recipesEmbutidos[] = $recipe;
+            }
+
+            else if ($recipe->getCategory() == 'Pates') {
+                $recipesPates[] = $recipe;
+            }
+
+            else if ($recipe->getCategory() == 'Jamones') {
+                $recipesJamones[] = $recipe;
+            }
+
+            else if ($recipe->getCategory() == 'Epicerie fine') {
+                $recipesEpicerieFine[] = $recipe;
+            }
+
+            else if ($recipe->getCategory() == 'Traiteur') {
+                $recipesTraiteur[] = $recipe;
+            }
+
+        }
+
+
         $allCategories = array(
         	'1' => 'Embutidos', 
         	'2' => 'Pates',
         	'3' => 'Jamones',
-        	'4' => 'Epicerie fine'
+        	'4' => 'Epicerie fine',
+            '5' => 'Traiteur'
         );
         $allSortedProducts = array(
         	'1' => $allEmbutidos,
         	'2' => $allPates,
 			'3' => $allJamones,
-			'4' => $allEpicerieFine
+			'4' => $allEpicerieFine,
+            '5' => $allTraiteur
         	);
+
+        $allSortedRecipes = array(
+            '1' => $recipesEmbutidos,
+            '2' => $recipesPates,
+            '3' => $recipesJamones,
+            '4' => $recipesEpicerieFine,
+            '5' => $recipesTraiteur
+            );
 
         return $this->render('LBFMainBundle:Main:indexMain.html.twig', array(
         	'allEmbutidos' => $allEmbutidos,
@@ -61,7 +132,16 @@ class MainController extends Controller
 			'allEpicerieFine' => $allEpicerieFine,
         	'allProducts' => $allProducts,
         	'allCategories' => $allCategories,
-			'allSortedProducts' => $allSortedProducts
+            'allTraiteur' => $allTraiteur,
+            'allProducts' => $allProducts,
+            'allSortedProducts' => $allSortedProducts,
+            'recipesEmbutidos' => $recipesEmbutidos,
+            'recipesPates' => $recipesPates,
+            'recipesJamones' => $recipesJamones,
+            'recipesEpicerieFine' => $recipesEpicerieFine,
+            'recipesTraiteur' => $recipesTraiteur,
+            'allRecipes' => $allRecipes,
+			'allSortedRecipes' => $allSortedRecipes
         	));
     }
 

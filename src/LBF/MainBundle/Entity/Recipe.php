@@ -2,21 +2,15 @@
 
 namespace LBF\MainBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContextInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Element
+ * Recipe
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="LBF\MainBundle\Entity\ElementRepository")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="LBF\MainBundle\Entity\RecipeRepository")
  */
-class Element
+class Recipe
 {
     /**
      * @var integer
@@ -28,95 +22,81 @@ class Element
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="LBF\MainBundle\Entity\Element")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $name;
+    private $element;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duration", type="integer")
+     */
+    private $duration;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="forHowMany", type="integer")
+     */
+    private $forHowMany;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cooking", type="integer")
+     */
+    private $cooking;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origin", type="string", length=255)
+     */
+    private $origin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ingredients", type="text")
+     */
+    private $ingredients;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="preparation", type="text")
+     */
+    private $preparation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=true)
+     * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updatedAt", type="datetime")
      */
     private $updatedAt;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="price", type="integer")
-     */
-    private $price;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="quantity", type="integer", nullable=true)
-     */
-    private $quantity;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="unit", type="integer", nullable=true)
-     */
-    private $unit;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="weight", type="integer", nullable=true)
-     */
-    private $weight;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="flavour", type="string", length=255, nullable=true)
-     */
-    private $flavour;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="biscuit", type="string", length=255, nullable=true)
-     */
-    private $biscuit;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
-     */
-    private $category;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="naturalProduct", type="boolean", nullable=true)
-     */
-    private $naturalProduct;
 
     /**
      * @var string
@@ -143,7 +123,6 @@ class Element
     {
         // $this->createdAt        = new \Datetime;
         // $this->updatedAt        = new \Datetime;
-        $this->unit        =  1;
     }
 
 
@@ -161,33 +140,171 @@ class Element
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
-     * @return Element
+     * @param string $title
+     * @return Recipe
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param integer $duration
+     * @return Recipe
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return integer 
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set forHowMany
+     *
+     * @param integer $forHowMany
+     * @return Recipe
+     */
+    public function setForHowMany($forHowMany)
+    {
+        $this->forHowMany = $forHowMany;
+
+        return $this;
+    }
+
+    /**
+     * Get forHowMany
+     *
+     * @return integer 
+     */
+    public function getForHowMany()
+    {
+        return $this->forHowMany;
+    }
+
+    /**
+     * Set cooking
+     *
+     * @param integer $cooking
+     * @return Recipe
+     */
+    public function setCooking($cooking)
+    {
+        $this->cooking = $cooking;
+
+        return $this;
+    }
+
+    /**
+     * Get cooking
+     *
+     * @return integer 
+     */
+    public function getCooking()
+    {
+        return $this->cooking;
+    }
+
+    /**
+     * Set origin
+     *
+     * @param string $origin
+     * @return Recipe
+     */
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Get origin
+     *
+     * @return string 
+     */
+    public function getOrigin()
+    {
+        return $this->origin;
+    }
+
+    /**
+     * Set ingredients
+     *
+     * @param string $ingredients
+     * @return Recipe
+     */
+    public function setIngredients($ingredients)
+    {
+        $this->ingredients = $ingredients;
+
+        return $this;
+    }
+
+    /**
+     * Get ingredients
+     *
+     * @return string 
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * Set preparation
+     *
+     * @param string $preparation
+     * @return Recipe
+     */
+    public function setPreparation($preparation)
+    {
+        $this->preparation = $preparation;
+
+        return $this;
+    }
+
+    /**
+     * Get preparation
+     *
+     * @return string 
+     */
+    public function getPreparation()
+    {
+        return $this->preparation;
     }
 
     /**
      * Set description
      *
      * @param string $description
-     * @return Element
+     * @return Recipe
      */
     public function setDescription($description)
     {
@@ -210,7 +327,7 @@ class Element
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Element
+     * @return Recipe
      */
     public function setCreatedAt($createdAt)
     {
@@ -233,7 +350,7 @@ class Element
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return Element
+     * @return Recipe
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -251,214 +368,6 @@ class Element
     {
         return $this->updatedAt;
     }
-
-    /**
-     * Set price
-     *
-     * @param integer $price
-     * @return Element
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return integer 
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set quantity
-     *
-     * @param integer $quantity
-     * @return Element
-     */
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return integer 
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
-     * Set unit
-     *
-     * @param integer $unit
-     * @return Element
-     */
-    public function setUnit($unit)
-    {
-        $this->unit = $unit;
-
-        return $this;
-    }
-
-    /**
-     * Get unit
-     *
-     * @return integer 
-     */
-    public function getUnit()
-    {
-        return $this->unit;
-    }
-
-    /**
-     * Set weight
-     *
-     * @param integer $weight
-     * @return Element
-     */
-    public function setWeight($weight)
-    {
-        $this->weight = $weight;
-
-        return $this;
-    }
-
-    /**
-     * Get weight
-     *
-     * @return integer 
-     */
-    public function getWeight()
-    {
-        return $this->weight;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     * @return Element
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set category
-     *
-     * @param string $category
-     * @return Element
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set flavour
-     *
-     * @param string $flavour
-     * @return Element
-     */
-    public function setFlavour($flavour)
-    {
-        $this->flavour = $flavour;
-
-        return $this;
-    }
-
-    /**
-     * Get flavour
-     *
-     * @return string 
-     */
-    public function getFlavour()
-    {
-        return $this->flavour;
-    }
-
-    /**
-     * Set biscuit
-     *
-     * @param string $biscuit
-     * @return Element
-     */
-    public function setBiscuit($biscuit)
-    {
-        $this->biscuit = $biscuit;
-
-        return $this;
-    }
-
-    /**
-     * Get biscuit
-     *
-     * @return string 
-     */
-    public function getBiscuit()
-    {
-        return $this->biscuit;
-    }
-
-    /**
-     * Set naturalProduct
-     *
-     * @param boolean $naturalProduct
-     * @return Element
-     */
-    public function setNaturalProduct($naturalProduct)
-    {
-        $this->naturalProduct = $naturalProduct;
-
-        return $this;
-    }
-
-    /**
-     * Get naturalProduct
-     *
-     * @return boolean 
-     */
-    public function getNaturalProduct()
-    {
-        return $this->naturalProduct;
-    }
-
 
     /*   *********     File  *************  */
 
@@ -530,7 +439,7 @@ class Element
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'img/products';
+        return 'img/recipes';
     }
 
     protected function getUploadRootDir()
@@ -602,5 +511,27 @@ class Element
 
     /*   *********   End  File  *************  */
 
-    
+
+    /**
+     * Set element
+     *
+     * @param \LBF\MainBundle\Entity\Element $element
+     * @return Recipe
+     */
+    public function setElement(\LBF\MainBundle\Entity\Element $element = null)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \LBF\MainBundle\Entity\Element 
+     */
+    public function getElement()
+    {
+        return $this->element;
+    }
 }

@@ -39,19 +39,35 @@ main:
 
 ourProducts:
     titles:
-        title_ourProducts: 		Nos produits.
-        title_ourProducts_s: 	A choisir avec amour.
+        title_ourProducts: 		Nos produits
+        title_ourProducts_s: 	A choisir avec amour
+        recipes:                RECETTES
+        jams:                   Confitures
+        biscuits:               Biscuits
     actions: 
         order: 					COMMANDER
+        seeRecipes:             Voir les recettes
     details:
         weight:                 "Poids :"
         price:                  "Prix :"
-        for10pieces:            "pour 10 pièces"
-        perPiece:               "/pièce"
+        for10pieces:            "pour "
+        perPiece:               " pièce(s)"
         naturalProducts:        "Produits naturels sans colorants ni conservateurs"
         pieces:                 "pièces,"
     warning:
         message:                "Cette page est vide. Contactez l'administrateur de ce site web s'il vous plait."
+
+# Recipes
+
+ourRecipes:
+    titles:
+        title_ourRecipes:       Nos recettes
+        title_ourRecipes_s:     Une nouvelle façon de cuisiner
+        products:               PRODUITS
+    warning:
+        message:                "Cette page est vide. Contactez l'administrateur de ce site web s'il vous plait."
+    
+
 
 # Alerts
 alert:
@@ -106,8 +122,9 @@ cart:
 
 aboutUs:
     titles:
-        title_aboutUs: 			A propos.
-        title_aboutUs_s: 		Histoires et anecdotes.
+        title_aboutUs: 			A propos
+        title_aboutUs_s: 		Histoires et anecdotes
+        contact:                ECRIVEZ-NOUS
 
 
 

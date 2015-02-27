@@ -151,7 +151,7 @@
 
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-								<button class="no_style_button row" type="button" data-toggle="modal" data-target="#qualityModal">
+								<button class="no_style_button" type="button" data-toggle="modal" data-target="#qualityModal">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
 									</div>
@@ -169,7 +169,7 @@
 								</button>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a row">
+						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
 						        	</div>
@@ -187,7 +187,7 @@
 							</div>
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#recipeModal">
+								<a href="{{ path('lbf_main_homepage') }}#ourRecipes" class="no_style_a">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Recipe" src="{{ asset('img/system/icons/recipe.png') }}" class="icon_presentation"/>
 									</div>
@@ -198,11 +198,11 @@
 
 											<!-- Button trigger modal -->
 											<a class="read-more no_style_a" >
-												{{ 'main.actions.learnMore' | trans }}
+												{{ 'main.actions.discover' | trans }}
 											</a> >
 										</p>
 									</div>
-								</button>
+								</a>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#reservationModal">
@@ -231,13 +231,18 @@
 			<div class="section" id="section1">
 				<div class="presentation_texte row">
 		        	<div class="row center">
-		        		<div class="col-lg-2 col-md-2 hidden-sm hidden-xs"></div>
-		        		<div class="col-lg-8 col-md-8 col-sm-9 col-xs-12">
+		        		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+		        			<a href="{{ path('lbf_main_homepage') }}#ourRecipes" class="btn btn-login">
+								<img src="{{ asset('img/system/defaults/down_arrow.png') }}" alt="" class="btn_right_arrow"/>
+								{{ 'ourProducts.titles.recipes' | trans }}
+							</a>
+		        		</div>
+		        		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 							<h2>
 								{{ 'ourProducts.titles.title_ourProducts' | trans }}
 							</h2>
 		        		</div>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 white">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 							<button class="btn btn-login" onClick="addToSessionCart(); addToSessionCartXS();">
 								{{ 'header.titles.myCart' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -246,61 +251,113 @@
 					</div>
 					<br/>
 
-					<!-- Product content -->
-					{% if allProducts|length > 0 %}
-						<ul class="nav nav-tabs row90">
-							{% set index_general = 1 %}
-							{% for category in allCategories %}
-								{% set productsArray = allSortedProducts[index_general] %}
-								<li class="{% if index_general == 1 %} active {% endif %}">
-									<a href="#tab_{{ index_general }}" data-toggle="tab">
-										{{ category }} <span class="hidden-xs">({{ productsArray|length }})</span>
-										<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
-									</a>
-								</li>
-								{% set index_general = index_general + 1 %}
-							{% endfor %}
-						</ul>
-						<br/>
+					<div class="row90">
+						
+						<!-- Product content -->
+						{% if allProducts|length > 0 %}
+							<ul class="nav nav-tabs nav-justified row">
+								{% set index_general = 1 %}
+								{% for category in allCategories %}
+									{% set productsArray = allSortedProducts[index_general] %}
+									<li class="{% if index_general == 1 %} active {% endif %}">
+										<a href="#tab_{{ index_general }}" data-toggle="tab">
+											{{ category }} 
+											<span class="hidden-xs">
+												({{ productsArray|length }})
+											</span>
+											<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
+										</a>
+									</li>
+									{% set index_general = index_general + 1 %}
+								{% endfor %}
+							</ul>
+							<br/>
 
-						<!-- Varying numbers -->
-						<script type="text/javascript">
-							var div_types = [];
-							// var div_maxs = [];
-							var div_counter_values = [];
-							var div_weights_values = [];
-							var div_finalWeight = [];
-							var div_prices_values = [];
-							var div_cart_values = [];
-						</script>
-						{% for product in allProducts %}
+							<!-- Varying numbers -->
 							<script type="text/javascript">
-								div_types[div_types.length] = "{{ product.type }}";
-								// div_maxs[div_maxs.length] = eval('{{ product.quantity }}');
-								div_counter_values[div_counter_values.length] = 0;
-								div_weights_values[div_weights_values.length] = eval('{{ product.weight }}');
-								div_finalWeight[div_finalWeight.length] = 0;
-								div_prices_values[div_prices_values.length] = eval('{{ product.price }}');
-								div_cart_values[div_cart_values.length] = 0;
+								var div_types = [];
+								// var div_maxs = [];
+								var div_counter_values = [];
+								var div_weights_values = [];
+								var div_finalWeight = [];
+								var div_prices_values = [];
+								var div_cart_values = [];
 							</script>
-						{% endfor %}
-						<script type="text/javascript">
-							function addOne(type_c, div_counter, div_weight, div_price) {
-								var pos = 0;
-								for (var i = 0; i < div_types.length; i++) {
-									pos = i;
-									if (div_types[i] == type_c) {
-										break;
+							{% for product in allProducts %}
+								<script type="text/javascript">
+									div_types[div_types.length] = "{{ product.type }}";
+									// div_maxs[div_maxs.length] = eval('{{ product.quantity }}');
+									div_counter_values[div_counter_values.length] = 0;
+									div_weights_values[div_weights_values.length] = eval('{{ product.weight }}');
+									div_finalWeight[div_finalWeight.length] = 0;
+									div_prices_values[div_prices_values.length] = eval('{{ product.price }}');
+									div_cart_values[div_cart_values.length] = 0;
+								</script>
+							{% endfor %}
+							<script type="text/javascript">
+								function addOne(type_c, div_counter, div_weight, div_price) {
+									var pos = 0;
+									for (var i = 0; i < div_types.length; i++) {
+										pos = i;
+										if (div_types[i] == type_c) {
+											break;
+										}
 									}
+									var counter_j = div_counter_values[pos];
+									var weight_j = div_weights_values[pos];
+									var weight_final_j = div_finalWeight[pos];
+									var price_j = div_prices_values[pos];
+									var cart_to_add_j = div_cart_values[pos];
+									// if (counter_j < div_maxs[pos]) {
+										counter_j = counter_j + 1;
+										div_counter_values[pos] = counter_j ;
+										weight_final_j = counter_j * weight_j;
+										div_finalWeight[pos] = weight_final_j ;
+										cart_to_add_j = counter_j * price_j;
+										div_cart_values[pos] = cart_to_add_j ;
+
+										document.getElementById(div_counter).innerHTML = counter_j;
+										document.getElementById(div_weight).innerHTML = weight_final_j;
+										document.getElementById(div_price).innerHTML = cart_to_add_j;
+
+									// }
+									// else {
+									// 	// Flash message
+									// 	document.getElementById("sessionFlash").style.display = "block";
+									// 	document.getElementById("sessionFlash").innerHTML = '\
+									// 	<div class="alert alert-danger alert-dismissible fade in" role="alert">\
+									//       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+									//       <strong>Careful!</strong> You\'ve reached the maximum availability.\
+									//     </div>';
+									//     setTimeout(function() {
+									//     	$('.alert').fadeOut('fast');
+									//     	document.getElementById("sessionFlash").style.display = "none";
+									//     },5000);
+									// }
+
+									return false;
 								}
-								var counter_j = div_counter_values[pos];
-								var weight_j = div_weights_values[pos];
-								var weight_final_j = div_finalWeight[pos];
-								var price_j = div_prices_values[pos];
-								var cart_to_add_j = div_cart_values[pos];
-								// if (counter_j < div_maxs[pos]) {
-									counter_j = counter_j + 1;
-									div_counter_values[pos] = counter_j ;
+								function deleteOne(type_c, div_counter, div_weight, div_price) {
+									var pos = 0;
+									for (var i = 0; i < div_types.length; i++) {
+										pos = i;
+										if (div_types[i] == type_c) {
+											break;
+										}
+									}
+									var counter_j = div_counter_values[pos];
+									var weight_j = div_weights_values[pos];
+									var weight_final_j = div_finalWeight[pos];
+									var price_j = div_prices_values[pos];
+									var cart_to_add_j = div_cart_values[pos];
+									if (counter_j > 0) {
+										counter_j = counter_j - 1;
+										div_counter_values[pos] = counter_j ;
+									}
+									else {
+										counter_j = 0;
+										div_counter_values[pos] = 0;
+									}
 									weight_final_j = counter_j * weight_j;
 									div_finalWeight[pos] = weight_final_j ;
 									cart_to_add_j = counter_j * price_j;
@@ -310,329 +367,798 @@
 									document.getElementById(div_weight).innerHTML = weight_final_j;
 									document.getElementById(div_price).innerHTML = cart_to_add_j;
 
-								// }
-								// else {
-								// 	// Flash message
-								// 	document.getElementById("sessionFlash").style.display = "block";
-								// 	document.getElementById("sessionFlash").innerHTML = '\
-								// 	<div class="alert alert-danger alert-dismissible fade in" role="alert">\
-								//       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-								//       <strong>Careful!</strong> You\'ve reached the maximum availability.\
-								//     </div>';
-								//     setTimeout(function() {
-								//     	$('.alert').fadeOut('fast');
-								//     	document.getElementById("sessionFlash").style.display = "none";
-								//     },5000);
-								// }
+									return false;
+								}
 
-								return false;
-							}
-							function deleteOne(type_c, div_counter, div_weight, div_price) {
-								var pos = 0;
-								for (var i = 0; i < div_types.length; i++) {
-									pos = i;
-									if (div_types[i] == type_c) {
-										break;
+								function add_to_cart(type_c, input_id, div_counter, div_weight, div_price) {
+									document.getElementById(input_id).className = "btn-loading";
+									
+									var pos = 0;
+									for (var i = 0; i < div_types.length; i++) {
+										pos = i;
+										if (div_types[i] == type_c) {
+											break;
+										}
 									}
-								}
-								var counter_j = div_counter_values[pos];
-								var weight_j = div_weights_values[pos];
-								var weight_final_j = div_finalWeight[pos];
-								var price_j = div_prices_values[pos];
-								var cart_to_add_j = div_cart_values[pos];
-								if (counter_j > 0) {
-									counter_j = counter_j - 1;
-									div_counter_values[pos] = counter_j ;
-								}
-								else {
-									counter_j = 0;
-									div_counter_values[pos] = 0;
-								}
-								weight_final_j = counter_j * weight_j;
-								div_finalWeight[pos] = weight_final_j ;
-								cart_to_add_j = counter_j * price_j;
-								div_cart_values[pos] = cart_to_add_j ;
 
-								document.getElementById(div_counter).innerHTML = counter_j;
-								document.getElementById(div_weight).innerHTML = weight_final_j;
-								document.getElementById(div_price).innerHTML = cart_to_add_j;
+									if (div_counter_values[pos] > 0) {
+							            // To read the cart:
+							            var sessionCart = $.cookie("sessionCart");
+							            // if (div_counter_values[pos] <= div_maxs[pos]) {
+							            	if (sessionCart.length > 0) {
+							            		var add_it = true;
+							            		for (var i = 0; i < sessionCart.length; i++) {
+							            			if (sessionCart[i].type == div_types[pos]) {
+							            				sessionCart[i].qty ++;
+							            				add_it = false;
+							            				break;
+							            			}
+							            		}
+							            		if (add_it == true) {
+						            				sessionCart[sessionCart.length] = {type: div_types[pos], qty: div_counter_values[pos]};
+							            		}
+							            	}
+							            	else {
+							            		var sessionCart = [];
+							            		sessionCart[0] = {type: div_types[pos], qty: div_counter_values[pos]};
+							            	}
+										//   }
+										//   else {
+										//   // Flash message
+										// 	document.getElementById("sessionFlash").style.display = "block";
+										// 	document.getElementById("sessionFlash").innerHTML = '\
+										// 	<div class="alert alert-danger alert-dismissible fade in" role="alert">\
+										//       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+										//       <strong>Careful!</strong> There aren\'t as many objects of that type. Please select a smaller number. Thank you.\
+										//     </div>';
+										//     setTimeout(function() {
+										//     	$('.alert').fadeOut('fast');
+										//     	document.getElementById("sessionFlash").style.display = "none";
+										//     },5000);
+										// }
 
-								return false;
-							}
+							            // To write the cart:
+							            $.cookie("sessionCart", sessionCart);
 
-							function add_to_cart(type_c, input_id, div_counter, div_weight, div_price) {
-								document.getElementById(input_id).className = "btn-loading";
-								
-								var pos = 0;
-								for (var i = 0; i < div_types.length; i++) {
-									pos = i;
-									if (div_types[i] == type_c) {
-										break;
+							            // To put button again normal, and update number_notif
+										document.getElementById(input_id).className = "btn-add-to-cart";
+										updateNotifNumber();
+										updateNotifNumberXS();
+
+										// Remise à zéro des compteurs pour cet élément
+										div_counter_values[pos] = 0;
+										div_finalWeight[pos] = 0;
+										div_cart_values[pos] = 0;
+										document.getElementById(div_counter).innerHTML = div_counter_values[pos];
+										document.getElementById(div_weight).innerHTML = div_finalWeight[pos];
+										document.getElementById(div_price).innerHTML = div_cart_values[pos];
+
+										// Flash message
+										document.getElementById("sessionFlash").style.display = "block";
+										document.getElementById("sessionFlash").innerHTML = '\
+										<div class="alert alert-success alert-dismissible fade in center" role="alert">\
+									      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
+									      <strong>\
+									      	{{ "alert.title.congratulations" | trans }}\
+									      </strong>\
+									      {{ "alert.content.congratulations" | trans }}\
+									      <button class="no_style_button" onClick="addToSessionCart()">\
+									      	<a><strong>\
+									      		{{ "header.titles.myCart" | trans }}\
+									      	</strong></a>\
+									      </button>\
+									    </div>';
+									    setTimeout(function() {
+									    	$('.alert').fadeOut('fast');
+									    	document.getElementById("sessionFlash").style.display = "none";
+									    },5000);
+									    
 									}
+									else {
+										document.getElementById(input_id).className = "btn-add-to-cart";
+									}
+
+									return false;
 								}
 
-								if (div_counter_values[pos] > 0) {
-						            // To read the cart:
-						            var sessionCart = $.cookie("sessionCart");
-						            // if (div_counter_values[pos] <= div_maxs[pos]) {
-						            	if (sessionCart.length > 0) {
-						            		var add_it = true;
-						            		for (var i = 0; i < sessionCart.length; i++) {
-						            			if (sessionCart[i].type == div_types[pos]) {
-						            				sessionCart[i].qty ++;
-						            				add_it = false;
-						            				break;
-						            			}
-						            		}
-						            		if (add_it == true) {
-					            				sessionCart[sessionCart.length] = {type: div_types[pos], qty: div_counter_values[pos]};
-						            		}
-						            	}
-						            	else {
-						            		var sessionCart = [];
-						            		sessionCart[0] = {type: div_types[pos], qty: div_counter_values[pos]};
-						            	}
-									//   }
-									//   else {
-									//   // Flash message
-									// 	document.getElementById("sessionFlash").style.display = "block";
-									// 	document.getElementById("sessionFlash").innerHTML = '\
-									// 	<div class="alert alert-danger alert-dismissible fade in" role="alert">\
-									//       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-									//       <strong>Careful!</strong> There aren\'t as many objects of that type. Please select a smaller number. Thank you.\
-									//     </div>';
-									//     setTimeout(function() {
-									//     	$('.alert').fadeOut('fast');
-									//     	document.getElementById("sessionFlash").style.display = "none";
-									//     },5000);
-									// }
+							</script>
 
-						            // To write the cart:
-						            $.cookie("sessionCart", sessionCart);
-
-						            // To put button again normal, and update number_notif
-									document.getElementById(input_id).className = "btn-add-to-cart";
-									updateNotifNumber();
-									updateNotifNumberXS();
-
-									// Remise à zéro des compteurs pour cet élément
-									div_counter_values[pos] = 0;
-									div_finalWeight[pos] = 0;
-									div_cart_values[pos] = 0;
-									document.getElementById(div_counter).innerHTML = div_counter_values[pos];
-									document.getElementById(div_weight).innerHTML = div_finalWeight[pos];
-									document.getElementById(div_price).innerHTML = div_cart_values[pos];
-
-									// Flash message
-									document.getElementById("sessionFlash").style.display = "block";
-									document.getElementById("sessionFlash").innerHTML = '\
-									<div class="alert alert-success alert-dismissible fade in center" role="alert">\
-								      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-								      <strong>\
-								      	{{ "alert.title.congratulations" | trans }}\
-								      </strong>\
-								      {{ "alert.content.congratulations" | trans }}\
-								      <button class="no_style_button" onClick="addToSessionCart()">\
-								      	<a><strong>\
-								      		{{ "header.titles.myCart" | trans }}\
-								      	</strong></a>\
-								      </button>\
-								    </div>';
-								    setTimeout(function() {
-								    	$('.alert').fadeOut('fast');
-								    	document.getElementById("sessionFlash").style.display = "none";
-								    },5000);
-								    
-								}
-								else {
-									document.getElementById(input_id).className = "btn-add-to-cart";
-								}
-
-								return false;
-							}
-
-						</script>
-
-						<div class="tab-content row" id="product_content">
-							{% set index_general = 1 %}
-							{% for category in allCategories %}
-								{% set productsArray = allSortedProducts[index_general] %}
-								<!-- BEGIN Tab pane {{ index_general }}  -->
-								<div class="tab-pane fade 
-									{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
-									<div class="row">
-										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-											<ul class="ver-inline-menu tabbable list_no_style_li">
-											{% set index_category = 1 %}
-											{% for product in productsArray %}
-												<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-													<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
-														{{ product.name }}
-														<div class="float-right inner_arrow">
-															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-														</div>
-													</a>
-													<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
-														{{ product.name }}
-													</a>
-												</li>
-												{% set index_category = index_category + 1 %}
-											{% endfor %}
-											</ul>
-										</div>
-										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-											<div class="tab-content">
-												{% set index_category = 1 %}
-												{% set naturalProductDef = false %}
-												{% for product in productsArray %}
-													<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
-														{% if index_category == 1 %} active in {% endif %}">
-														<div class="row product_info_xs">
-															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-																<div class="product_img_div">
-																{% if product.webPath|length > 0 %}
-																	<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
-																		<!-- onClick="showPhoto('{{ product.id }}')" -->
-																		<script type="text/javascript">
-																			var cw = $('.product_img').width();
-																			$('.product_img').css({'height':cw+'px'});
-																		</script>
-																	</div>
-																{% else %}
-																	<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
-																		<script type="text/javascript">
-																			var cw = $('.product_img').width();
-																			$('.product_img').css({'height':cw+'px'});
-																		</script>
-																{% endif %}
+							<div class="tab-content row" id="product_content">
+								{% set index_general = 1 %}
+								{% for category in allCategories %}
+									{% set productsArray = allSortedProducts[index_general] %}
+									{% if index_general != 4 %}
+										<!-- BEGIN Tab pane {{ index_general }}  -->
+										<div class="tab-pane fade 
+											{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<ul class="ver-inline-menu tabbable list_no_style_li">
+													{% set index_category = 1 %}
+													{% for product in productsArray %}
+														<li class="tab_select {% if index_category == 1 %} active {% endif %}">
+															<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
+																{{ product.name }}
+																<div class="float-right inner_arrow">
+																	<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																</div>
-																<br class="hidden-xs"/>
-																<div class="center">
-																	<strong>
-																		{{ 'ourProducts.details.weight' | trans }}
-																	</strong>
-																	{{ product.weight }} g
-																</div>
-																<!-- <div class="center">
-																	<div class="inline_div">
-																		<strong>
-																			Available:
-																		</strong>
+															</a>
+															<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+																{{ product.name }}
+															</a>
+														</li>
+														{% set index_category = index_category + 1 %}
+													{% endfor %}
+													</ul>
+												</div>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+													<div class="tab-content">
+														{% set index_category = 1 %}
+														{% set naturalProductDef = false %}
+														{% for product in productsArray %}
+															<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
+																{% if index_category == 1 %} active in {% endif %}">
+																<div class="row product_info_xs">
+																	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+																		<div class="product_img_div">
+																		{% if product.webPath|length > 0 %}
+																			<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
+																				<!-- onClick="showPhoto('{{ product.id }}')" -->
+																				<script type="text/javascript">
+																					var cw = $('.product_img').width();
+																					$('.product_img').css({'height':cw+'px'});
+																				</script>
+																			</div>
+																		{% else %}
+																			<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+																				<script type="text/javascript">
+																					var cw = $('.product_img').width();
+																					$('.product_img').css({'height':cw+'px'});
+																				</script>
+																		{% endif %}
+																		</div>
+																		<br class="hidden-xs"/>
+																		<div class="center">
+																			<strong>
+																				{{ 'ourProducts.details.weight' | trans }}
+																			</strong>
+																			{{ product.weight }} g
+																		</div>
+																		<!-- <div class="center">
+																			<div class="inline_div">
+																				<strong>
+																					Available:
+																				</strong>
+																			</div>
+																			<div class="inline_div">
+																				{{ product.quantity }}
+																			</div>
+																		</div> -->
+																		<div class="center">
+																			<strong>
+																				{{ 'ourProducts.details.price' | trans }}
+																			</strong>
+																			S/. {{ product.price }} 
+																			{% if product.unit > 0 %}
+																				{{ 'ourProducts.details.for' | trans }}
+																				{{ product.unit }}
+																				{{ 'ourProducts.details.piece' | trans }}
+																			{% endif %}
+																		</div>
 																	</div>
-																	<div class="inline_div">
-																		{{ product.quantity }}
+																	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+																		<div class="row">
+																			<h4>
+																				{{ product.name }}. 
+																				{% if product.naturalProduct == true %} 
+																					* 
+																					{% set naturalProductDef = true %}
+																				{% endif %} 
+																			</h4>
+																			{{ product.description }} 
+																		</div>
+																		<br/>
+																		<div class="row">
+																			{% if naturalProductDef == true %}
+																				<div class="row small_quote">
+																					* {{ 'ourProducts.details.naturalProducts' | trans }}
+																				</div>
+																			{% endif %} 
+																		</div>
+																		<br/>
+																		<div class="row center">
+																			<button class="btn btn-login" onClick="#">
+																				{{ 'ourProducts.actions.seeRecipes' | trans }}
+																				<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																			</button>
+																		</div>
 																	</div>
-																</div> -->
-																<div class="center">
-																	<strong>
-																		{{ 'ourProducts.details.price' | trans }}
-																	</strong>
-																	S/. {{ product.price }} 
-																	{% if product.category == 'Jamones' %}
-																		{{ 'ourProducts.details.for10pieces' | trans }}
-																	{% else %}
-																		{{ 'ourProducts.details.perPiece' | trans }}
-																	{% endif %}
-																</div>
-															</div>
-															<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-																<div class="row">
-																	<h4>
-																		{{ product.name }}. 
-																		{% if product.naturalProduct == true %} 
-																			* 
-																			{% set naturalProductDef = true %}
-																		{% endif %} 
-																	</h4>
-																	{{ product.description }} 
 																</div>
 																<br/>
-																<div class="row">
-																	{% if naturalProductDef == true %}
-																		<div class="row small_quote">
-																			* {{ 'ourProducts.details.naturalProducts' | trans }}
+																<div class="row right">
+																	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 inline_div margin_right_10">
+																		<div class="row hidden-xs">
+																			<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																			<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+
 																		</div>
-																	{% endif %} 
+																		<div class="row hidden-lg hidden-md hidden-sm">
+
+																			<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																			<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-3 col-md-3 col-sm-3 col-xs-3">
+																		<div class="inline_div counter_info_divs">
+																			<div id="counter_value_{{ product.type }}">
+																				0
+																			</div>
+																		</div>
+																		<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
+																			{{ 'ourProducts.details.pieces' | trans }}
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs">
+																		<div class="inline_div counter_info_divs">
+																			<div id="weight_value_{{ product.type }}">
+																				0
+																			</div>
+																		</div>
+																		<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
+																			g,
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs counter_price_divs">
+																		<div class="inline_div float-left">
+																			S/.
+																		</div>
+																		<div class="inline_div margin_right_10 hidden-xs">
+																			<div id="price_value_{{ product.type }}">
+																				0
+																			</div>
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-2 col-md-2 col-sm-2 col-xs-3">
+																		<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
+																		onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
+																		</button>
+																	</div>
 																</div>
+
+															</div>
+															{% set index_category = index_category + 1 %}
+														{% endfor %}
+													</div>
+												</div>	
+											</div>
+										</div>
+										<!-- END Tab pane {{ index_general }}  -->
+									{% else %}
+										<!-- BEGIN Tab pane {{ index_general }}  -->
+										<div class="tab-pane fade" id="tab_{{ index_general }}">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<ul class="ver-inline-menu tabbable list_no_style_li">
+													{% set index_category = 1 %}
+													{% set index_category_transit = 1 %}
+													{% set done_jam = 'NO' %}
+													{% set done_biscuit = 'NO' %}
+													{% set type = 'other' %}
+													{% for product in productsArray %}
+														{% if product.flavour|length != 0 %}
+															{% set type = 'jam' %}
+														{% elseif  product.biscuit|length != 0  %}
+															{% set type = 'biscuit' %}
+														{% endif %}
+
+														{% if type == 'other' %}
+															<li class="tab_select {% if index_category == 1 %} active {% endif %}">
+																<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
+																	{{ product.name }}
+																	<div class="float-right inner_arrow">
+																		<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																	</div>
+																</a>
+																<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+																	{{ product.name }}
+																</a>
+															</li>
+														{% elseif type == 'jam' %}
+															{% if done_jam == 'NO' %}
+																{% set index_category_transit = index_category %}
+																<li class="tab_select">
+																	<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
+																		{{ 'ourProducts.titles.jams' | trans }}
+																		<div class="float-right inner_arrow">
+																			<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																		</div>
+																	</a>
+																	<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+																		{{ 'ourProducts.titles.jams' | trans }}
+																	</a>
+																</li>
+																{% set done_jam = 'YES' %}
+															{% endif %}
+														{% elseif type == 'biscuit' %}
+															{% if done_biscuit == 'NO' %}
+																{% set index_category_transit = index_category_transit + 1 %}
+																<li class="tab_select">
+																	<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category_transit }}" class="btn btn-choice hidden-xs">
+																		{{ 'ourProducts.titles.biscuits' | trans }}
+																		<div class="float-right inner_arrow">
+																			<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																		</div>
+																	</a>
+																	<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category_transit }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+																		{{ 'ourProducts.titles.biscuits' | trans }}
+																	</a>
+																</li>
+																{% set done_biscuit = 'YES' %}
+															{% endif %}
+														{% endif %}
+														{% set index_category = index_category + 1 %}
+													{% endfor %}
+													
+													</ul>
+												</div>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+													<div class="tab-content">
+														{% set index_category = 1 %}
+														{% for product in productsArray if (product.flavour|length == 0 and product.biscuit|length == 0)  %}
+															<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
+																{% if index_category == 1 %} active in {% endif %}">
+																<div class="row product_info_xs">
+																	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+																		<div class="product_img_div">
+																		{% if product.webPath|length > 0 %}
+																			<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
+																				<!-- onClick="showPhoto('{{ product.id }}')" -->
+																				<script type="text/javascript">
+																					var cw = $('.product_img').width();
+																					$('.product_img').css({'height':cw+'px'});
+																				</script>
+																			</div>
+																		{% else %}
+																			<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
+																				<script type="text/javascript">
+																					var cw = $('.product_img').width();
+																					$('.product_img').css({'height':cw+'px'});
+																				</script>
+																		{% endif %}
+																		</div>
+																		<br class="hidden-xs"/>
+																		<div class="center">
+																			<strong>
+																				{{ 'ourProducts.details.weight' | trans }}
+																			</strong>
+																			{{ product.weight }} g
+																		</div>
+																		<!-- <div class="center">
+																			<div class="inline_div">
+																				<strong>
+																					Available:
+																				</strong>
+																			</div>
+																			<div class="inline_div">
+																				{{ product.quantity }}
+																			</div>
+																		</div> -->
+																		<div class="center">
+																			<strong>
+																				{{ 'ourProducts.details.price' | trans }}
+																			</strong>
+																			S/. {{ product.price }} 
+																			{% if product.unit > 0 %}
+																				{{ 'ourProducts.details.for' | trans }} 
+																				{{ product.unit }} 
+																				{{ 'ourProducts.details.piece' | trans }} 
+																			{% endif %}
+																		</div>
+																	</div>
+																	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+																		<div class="row">
+																			<h4>
+																				{{ product.name }}. 
+																				{% if product.naturalProduct == true %} 
+																					* 
+																					{% set naturalProductDef = true %}
+																				{% endif %} 
+																			</h4>
+																			{{ product.description }} 
+																		</div>
+																		<br/>
+																		<div class="row">
+																			{% if naturalProductDef == true %}
+																				<div class="row small_quote">
+																					* {{ 'ourProducts.details.naturalProducts' | trans }}
+																				</div>
+																			{% endif %} 
+																		</div>
+																		<br/>
+																		<div class="row center">
+																			<button class="btn btn-login" onClick="#">
+																				{{ 'ourProducts.actions.seeRecipes' | trans }}
+																				<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+																<br/>
+																<div class="row right">
+																	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 inline_div margin_right_10">
+																		<div class="row hidden-xs">
+																			<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																			<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+
+																		</div>
+																		<div class="row hidden-lg hidden-md hidden-sm">
+
+																			<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																			<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-3 col-md-3 col-sm-3 col-xs-3">
+																		<div class="inline_div counter_info_divs">
+																			<div id="counter_value_{{ product.type }}">
+																				0
+																			</div>
+																		</div>
+																		<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
+																			{{ 'ourProducts.details.pieces' | trans }}
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs">
+																		<div class="inline_div counter_info_divs">
+																			<div id="weight_value_{{ product.type }}">
+																				0
+																			</div>
+																		</div>
+																		<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
+																			g,
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs counter_price_divs">
+																		<div class="inline_div float-left">
+																			S/.
+																		</div>
+																		<div class="inline_div margin_right_10 hidden-xs">
+																			<div id="price_value_{{ product.type }}">
+																				0
+																			</div>
+																		</div>
+																	</div>
+																	<div class="inline_div col-lg-2 col-md-2 col-sm-2 col-xs-3">
+																		<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
+																		onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
+																		</button>
+																	</div>
+																</div>
+
+															</div>
+															{% set index_category = index_category + 1 %}
+														{% endfor %}
+
+
+														<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade">
+															<div class="row product_info_xs">
+																{% for product in productsArray if (product.flavour|length != 0)  %}
+																	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+																		<div class="product_img_div">
+																		{% if product.webPath|length > 0 %}
+																			<div class="product_img_bis" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
+																				<!-- onClick="showPhoto('{{ product.id }}')" -->
+																				<script type="text/javascript">
+																					var cw = $('.product_img_bis').width();
+																					$('.product_img_bis').css({'height':cw+'px'});
+																				</script>
+																			</div>
+																		{% else %}
+																			<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_bis"/>
+																				<script type="text/javascript">
+																					var cw = $('.product_img_bis').width();
+																					$('.product_img_bis').css({'height':cw+'px'});
+																				</script>
+																		{% endif %}
+																		</div>
+																		<br class="hidden-xs"/>
+																		<div class="center">
+																			<h5>
+																				{{ product.name }}
+																				{% if product.naturalProduct == true %} 
+																					* 
+																					{% set naturalProductDef = true %}
+																				{% endif %} 
+																			</h5>
+																		</div>
+																		<div class="center info_spe">
+																			<strong>
+																				{{ 'ourProducts.details.weight' | trans }}
+																			</strong>
+																			{{ product.weight }} g
+
+																			<br/>
+
+																			<strong>
+																				{{ 'ourProducts.details.price' | trans }}
+																			</strong>
+																			S/. {{ product.price }} 
+																			{% if product.unit > 0 %}
+																				{{ 'ourProducts.details.for' | trans }} 
+																				{{ product.unit }} 
+																				{{ 'ourProducts.details.piece' | trans }} 
+																			{% endif %}
+																		</div>
+																		<div class="center">
+																			<div class="inline_div hidden-xs">
+																				<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																				<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+
+																			</div>
+																			<div class="inline_div hidden-lg hidden-md hidden-sm">
+																				<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe_XS add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																				<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+																			</div>
+																			<div class="inline_div counter_info_divs">
+																				<div id="counter_value_{{ product.type }}">
+																					0
+																				</div>
+																				<div id="weight_value_{{ product.type }}" style="display:none;">
+																					0
+																				</div>
+																				<div id="price_value_{{ product.type }}" style="display:none;">
+																					0
+																				</div>
+																			</div>
+																			<div class="inline_div btn-add-to-cart-spe">
+																				<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
+																				onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
+																				</button>
+																			</div>
+																		</div>
+																	</div>
+																{% endfor %}
 															</div>
 														</div>
-														<br/>
-														<div class="row right">
-															<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 inline_div margin_right_10">
-																<div class="row hidden-xs">
-																	<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
 
-																	<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+														{% set index_category = index_category + 1 %}
 
-																</div>
-																<div class="row hidden-lg hidden-md hidden-sm">
+														<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade">
+															<div class="row product_info_xs">
+																{% for product in productsArray if (product.biscuit|length != 0)  %}
+																	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+																		<div class="product_img_div">
+																		{% if product.webPath|length > 0 %}
+																			<div class="product_img_bis" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
+																				<!-- onClick="showPhoto('{{ product.id }}')" -->
+																				<script type="text/javascript">
+																					var cw = $('.product_img_bis').width();
+																					$('.product_img_bis').css({'height':cw+'px'});
+																				</script>
+																			</div>
+																		{% else %}
+																			<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_bis"/>
+																				<script type="text/javascript">
+																					var cw = $('.product_img_bis').width();
+																					$('.product_img_bis').css({'height':cw+'px'});
+																				</script>
+																		{% endif %}
+																		</div>
+																		<br class="hidden-xs"/>
+																		<div class="center">
+																			<h5>
+																				{{ product.name }}
+																				{% if product.naturalProduct == true %} 
+																					* 
+																					{% set naturalProductDef = true %}
+																				{% endif %} 
+																			</h5>
+																		</div>
+																		<div class="center info_spe">
+																			<strong>
+																				{{ 'ourProducts.details.weight' | trans }}
+																			</strong>
+																			{{ product.weight }} g
 
-																	<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+																			<br/>
 
-																	<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
-																</div>
-															</div>
-															<div class="inline_div col-lg-3 col-md-3 col-sm-3 col-xs-3">
-																<div class="inline_div counter_info_divs">
-																	<div id="counter_value_{{ product.type }}">
-																		0
+																			<strong>
+																				{{ 'ourProducts.details.price' | trans }}
+																			</strong>
+																			S/. {{ product.price }} 
+																			{% if product.unit > 0 %}
+																				{{ 'ourProducts.details.for' | trans }} 
+																				{{ product.unit }} 
+																				{{ 'ourProducts.details.piece' | trans }} 
+																			{% endif %}
+																		</div>
+																		<div class="center">
+																			<div class="inline_div hidden-xs">
+																				<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																				<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+
+																			</div>
+																			<div class="inline_div hidden-lg hidden-md hidden-sm">
+																				<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe_XS add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
+
+																				<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_spe_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
+																			</div>
+																			<div class="inline_div counter_info_divs">
+																				<div id="counter_value_{{ product.type }}">
+																					0
+																				</div>
+																			</div>
+																			<div class="inline_div">
+																				<button class="btn-add-to-cart btn-add-to-cart-spe" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
+																				onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
+																				</button>
+																			</div>
+																		</div>
 																	</div>
-																</div>
-																<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
-																	{{ 'ourProducts.details.pieces' | trans }}
-																</div>
-															</div>
-															<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs">
-																<div class="inline_div counter_info_divs">
-																	<div id="weight_value_{{ product.type }}">
-																		0
-																	</div>
-																</div>
-																<div class="inline_div counter_info_divs margin_right_10 hidden-xs">
-																	g,
-																</div>
-															</div>
-															<div class="inline_div col-lg-2 col-md-2 col-sm-2 hidden-xs counter_price_divs">
-																<div class="inline_div float-left">
-																	S/.
-																</div>
-																<div class="inline_div margin_right_10 hidden-xs">
-																	<div id="price_value_{{ product.type }}">
-																		0
-																	</div>
-																</div>
-															</div>
-															<div class="inline_div col-lg-2 col-md-2 col-sm-2 col-xs-3">
-																<button class="btn-add-to-cart" value="" title="Add to cart" id="btn-add-to-cart_{{ product.type }}" 
-																onClick="javascript:add_to_cart('{{ product.type }}', 'btn-add-to-cart_{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')">
-																</button>
+																{% endfor %}
 															</div>
 														</div>
 
 													</div>
-													{% set index_category = index_category + 1 %}
-												{% endfor %}
+												</div>	
 											</div>
-										</div>	
-									</div>
-								</div>
-								<!-- END Tab pane {{ index_general }}  -->
+										</div>
+										<!-- END Tab pane {{ index_general }}  -->
+									{% endif %}
 
-								{% set index_general = index_general + 1 %}
-							{% endfor %}
-						</div>
+									{% set index_general = index_general + 1 %}
+								{% endfor %}
+							</div>
 
-					<!-- Otherwise .... -->
-					{% else %}
-						<p class="center">
-							{{ 'ourProducts.warning.message' | trans }}
-						</p>
-					{% endif %}
-
+						<!-- Otherwise .... -->
+						{% else %}
+							<p class="center">
+								{{ 'ourProducts.warning.message' | trans }}
+							</p>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 
 			<div class="section" id="section2">
+				<div class="presentation_texte">
+					<div class="row center">
+		        		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+		        			<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="btn btn-login">
+								<img src="{{ asset('img/system/defaults/up_arrow.png') }}" alt="" class="btn_right_arrow"/>
+								{{ 'ourRecipes.titles.products' | trans }}
+							</a>
+		        		</div>
+		        		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+							<h2>
+								{{ 'ourRecipes.titles.title_ourRecipes' | trans }}
+								<br/>
+								<span>
+									{{ 'ourRecipes.titles.title_ourRecipes_s' | trans }}
+								</span>
+							</h2>
+		        		</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						</div>
+					</div>
+					<br/>
+					<div class="row90">
+						
+						<!-- Recipes content -->
+						{% if allRecipes|length > 0 %}
+							<ul class="nav nav-tabs nav-justified">
+								{% set index_general = 1 %}
+								{% for category in allCategories %}
+									{% set recipesArray = allSortedRecipes[index_general] %}
+									<li class="{% if index_general == 1 %} active {% endif %}">
+										<a href="#tab_{{ index_general }}" data-toggle="tab">
+											{{ category }} <span class="hidden-xs">({{ recipesArray|length }})</span>
+											<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
+										</a>
+									</li>
+									{% set index_general = index_general + 1 %}
+								{% endfor %}
+							</ul>
+							<br/>
+
+							<div class="tab-content row" id="product_content">
+								{% set index_general = 1 %}
+								{% for category in allCategories %}
+									{% set productsArray = allSortedProducts[index_general] %}
+									{% set recipesArray = allSortedRecipes[index_general] %}
+									<!-- BEGIN Tab pane {{ index_general }}  -->
+									<div class="tab-pane fade 
+										{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
+										<div class="row">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<ul class="ver-inline-menu tabbable list_no_style_li">
+												{% set index_category = 1 %}
+												{% for product in productsArray %}
+													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
+														<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
+															{{ product.name }}
+															<div class="float-right inner_arrow">
+																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+															</div>
+														</a>
+														<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+															{{ product.name }}
+														</a>
+													</li>
+													{% set index_category = index_category + 1 %}
+												{% endfor %}
+												</ul>
+											</div>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+												<div class="tab-content">
+													{% set index_category = 1 %}
+													{% for product in productsArray %}
+														<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
+															{% if index_category == 1 %} active in {% endif %}">
+															<div class="row product_info_xs">
+																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																	<h4>
+																		{{ product.name }}. 
+																	</h4>
+																</div>
+																{% for recipe in recipesArray %}
+																	<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+																		{{ recipe.name }}
+																		<br/>
+																		{{ recipe.description | truncate(120, false, '...') }} ...
+																	</div>
+																	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+																		<div class="recipe_img_div">
+																		{% if recipe.webPath|length > 0 %}
+																			<div class="recipe_img" style="width: 100%; background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
+																				<!-- onClick="showPhoto('{{ recipe.id }}')" -->
+																				<script type="text/javascript">
+																					var cw = $('.recipe_img').width();
+																					$('.recipe_img').css({'height':cw+'px'});
+																				</script>
+																			</div>
+																		{% else %}
+																			<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="recipe_img"/>
+																				<script type="text/javascript">
+																					var cw = $('.recipe_img').width();
+																					$('.recipe_img').css({'height':cw+'px'});
+																				</script>
+																		{% endif %}
+																		</div>
+																	</div>
+																{% endfor %}
+															</div>
+
+														</div>
+														{% set index_category = index_category + 1 %}
+													{% endfor %}
+												</div>
+											</div>	
+										</div>
+									</div>
+									<!-- END Tab pane {{ index_general }}  -->
+
+									{% set index_general = index_general + 1 %}
+								{% endfor %}
+							</div>
+
+						<!-- Otherwise .... -->
+						{% else %}
+							<p class="center">
+								{{ 'ourRecipes.warning.message' | trans }}
+							</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="section" id="section3">
 				<div class="presentation_texte">
 					<div class="row center">
 		        		<div class="col-lg-2 col-md-2 col-xs-2"></div>
@@ -646,6 +1172,10 @@
 							</h2>
 		        		</div>
 						<div class="col-lg-2 col-md-2 col-xs-2">
+							<a href="{{ path('lbf_main_homepage') }}#footerSection" class="btn btn-login">
+								{{ 'aboutUs.titles.contact' | trans }}
+								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+							</a>
 						</div>
 					</div>
 					<br/>
@@ -670,28 +1200,28 @@
 
 						<div class="row bio hidden-lg hidden-md hidden-sm ">
 							<div class="col-xs-12 creator_padding sep_dotted_bottom">
-								<div class="col-xs-3">
+								<div class="col-xs-5">
 									<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="creator_img_xs"/>
 								</div>
-								<div class="col-xs-9">
+								<div class="col-xs-7">
 									<h4>Aude de Penfentenyo </h4>
 									Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
 								</div>
 							</div>
 							<div class="col-xs-12 creator_padding sep_dotted_bottom">
-								<div class="col-xs-3">
+								<div class="col-xs-5">
 									<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="creator_img_xs"/>
 								</div>
-								<div class="col-xs-9">
+								<div class="col-xs-7">
 									<h4>Antoine de Penfentenyo </h4>
 									Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
 								</div>
 							</div>
 							<div class="col-xs-12 creator_padding">
-								<div class="col-xs-3">
+								<div class="col-xs-5">
 									<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="creator_img_xs"/>
 								</div>
-								<div class="col-xs-9">
+								<div class="col-xs-7">
 									<h4>Pierre-Arnaud Destremau</h4>
 									Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents.
 								</div>

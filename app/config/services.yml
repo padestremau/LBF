@@ -9,6 +9,10 @@ services:
         arguments: 	[%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: lbf_user_registration }
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
