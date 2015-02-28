@@ -15,7 +15,7 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section5">
+			<div class="section section_padding" id="cartSection">
 				<br/><br/>
 
 				<script type="text/javascript">
@@ -43,7 +43,7 @@
                     }
                 </script>
 
-		        <div id="breadcrumb" class="center row80">
+		        <div id="breadcrumb" class="center row">
 			        <div class="row">
 		              	<h2>
 		                  	{{ 'header.titles.myCart' | trans }}
@@ -356,17 +356,17 @@
 		                    </div>
 		                    <div class="row">
 		                      	<div class="cart_price">
-		                          	<div class="inline_div left col-lg-4  col-md-4 col-sm-4 col-xs-4">
+		                          	<div class="left col-lg-4  col-md-4 col-sm-4 col-xs-4">
 		                          		{{ 'cart.titles.total' | trans }}
 		                          	</div>
-		                          	<div class="inline_div center col-lg-4  col-md-4 col-sm-4 col-xs-4">
+		                          	<div class="center col-lg-4  col-md-4 col-sm-4 col-xs-4">
 		                            	{% if total_weight_general > 999 %}
 		                              		{{ (total_weight_general / 1000) | number_format(1, '.', ',') }} kg
 		                            	{% else %}
 		                              		{{ total_weight_general }} g
 		                            	{% endif %}
 		                          	</div>
-		                          	<div class="inline_div right col-lg-4  col-md-4 col-sm-4 col-xs-4">
+		                          	<div class="right col-lg-4  col-md-4 col-sm-4 col-xs-4">
 			                            S/. {{ total_price_general }} 
 		                          	</div>
 		                      </div>

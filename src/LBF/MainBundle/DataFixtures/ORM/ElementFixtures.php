@@ -7,12 +7,21 @@ use LBF\MainBundle\Entity\Element;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+use LBF\MainBundle\Entity\Recipe;
 
 class ElementFixtures implements FixtureInterface
 {
   // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
   public function load(ObjectManager $manager)
   {
+
+
+
+
+    //  ---------------------------------------------- For Elements ------------------------------------------------
+
+
+
     $names_Element = array(
         // Embutidos
         '1'=>'Chorizo de cerdo',
@@ -224,8 +233,8 @@ class ElementFixtures implements FixtureInterface
         '5'=>'Rillettes_de_porc',
         
         // Jamones
-        '6'=>'Jamon_frances',
-        '7'=>'Jamon_serano',
+        '6'=>'Jamon_Paris',
+        '7'=>'Lardons',
 
         // Epicerie fine
         '8'=>'Marmelada_Limon',
@@ -412,6 +421,7 @@ class ElementFixtures implements FixtureInterface
         );
 
     // Combining
+    $allProducts = array();
     for ($i=1; $i < 22; $i++) { 
         $Element = new Element();
         $Element->setName($names_Element[$i]);
@@ -427,8 +437,202 @@ class ElementFixtures implements FixtureInterface
         $Element->setUnit($units_Element[$i]);
         $Element->setUrl('png');
         $Element->setAlt($types_alt[$i]);
+
+        $allProducts[] = $Element;
+
         $manager->persist($Element);
-    }    
+    }
+
+
+
+    //  ---------------------------------------------- For Recipes ------------------------------------------------
+
+    // Chorizo de Cerdo
+    $chorizo_cerdo = '';
+    for ($i=0; $i < sizeof($allProducts); $i++) { 
+        if ($allProducts[$i]->getType() == "Chorizo_de_cerdo") {
+            $chorizo_cerdo = $allProducts[$i];
+            break;
+        }
+    }
+
+    // Jambon
+    $jambon_paris = '';
+    for ($i=0; $i < sizeof($allProducts); $i++) { 
+        if ($allProducts[$i]->getType() == "Jamon_Paris") {
+            $jambon_paris = $allProducts[$i];
+            break;
+        }
+    }
+
+    // Lardons
+    $lardons = '';
+    for ($i=0; $i < sizeof($allProducts); $i++) { 
+        if ($allProducts[$i]->getType() == "Lardons") {
+            $lardons = $allProducts[$i];
+            break;
+        }
+    }
+
+    $titles_Recipe = array(
+        // Embutidos
+        '1'=>'Rougail de saucisses',
+        '2'=>'Saucisses aux lentilles',
+        '3'=>'Cassoulet',
+
+        // Jambons
+        '4'=>'Roulés au jambon',
+        '5'=>'Croquetas de jambon',
+        '6'=>'Pâtes à la carbonara',
+        '7'=>'Quiche lorraine',
+        '8'=>'Salade aux lardons'
+        );
+
+    $elements_Recipe = array(
+        // Embutidos
+        '1'=> $chorizo_cerdo,
+        '2'=> $chorizo_cerdo,
+        '3'=> $chorizo_cerdo,
+
+        // Jambons
+        '4'=> $jambon_paris,
+        '5'=> $jambon_paris,
+        '6'=> $lardons,
+        '7'=> $lardons,
+        '8'=> $lardons
+        );
+        
+        
+    $duration_Recipe = array(
+        // Embutidos
+        '1'=>'20',
+        '2'=>'10',
+        '3'=>'30',
+
+        // Jambons
+        '4'=>'15',
+        '5'=>'20',
+        '6'=>'15',
+        '7'=>'20',
+        '8'=>'20'
+        );
+    
+    $forHowMany_Recipe = array(
+        // Embutidos
+        '1'=>'4',
+        '2'=>'4',
+        '3'=>'6',
+
+        // Jambons
+        '4'=>'4',
+        '5'=>'4',
+        '6'=>'4',
+        '7'=>'4',
+        '8'=>'6'
+        );
+
+    
+    $cooking_Recipe = array(
+        // Embutidos
+        '1'=>'25',
+        '2'=>'25',
+        '3'=>'300',
+
+        // Jambons
+        '4'=>'0',
+        '5'=>'25',
+        '6'=>'15',
+        '7'=>'50',
+        '8'=>'50'
+        );
+
+    $origin_Recipe = array(
+        // Embutidos
+        '1'=>'Ile Maurice (France)',
+        '2'=>'France',
+        '3'=>'France',
+
+        // Jambons
+        '4'=>'France',
+        '5'=>'Espagne',
+        '6'=>'À la française',
+        '7'=>'France',
+        '8'=>'France'
+        );
+
+    $ingredients_Recipe = array(
+        // Embutidos
+        '1'=> array( "4 chorizos de cerdo", "4 tomates", "4 oignons", "4 gousses d’ail", "Thym, laurier", "Sel, poivre", "1 cuillère à café de curcuma ", "4g de gingembre", "1 petit rocoto", "huile végétale"),
+        '2'=> array("4 chorizos de cerdo","200g de lardons ","300g de lentilles ","2 carottes","2 oignons","2 gousses d’ail ","Thym, laurier","Sel, poivre","huile végétale"),
+        '3'=> array("6 chorizos de cerdo","300g de lardons","6 cuisses de canard","800g de haricots blancs ","1 carotte","1 oignon","4 gousses d’ail","Clou de girofle","Thym, laurier","Sel, poivre","huile végétale"),
+
+        // Jambons
+        '4'=> array("4 tranches de jambon de Paris","150g de fromage frais à tartiner ","Persil"),
+        '5'=> array(),
+        '6'=> array("500g de spaghetti","50cl de crème fraîche ","3 jaunes d’oeufs","Sel, poivre noir","300g de lardons"),
+        '7'=> array(array("title" => "Pour la pâte brisée :", "250g de farine", "125g de beurre mou ", "1 jaunes d’oeufs", "5cl d’eau"), array("title" => "Pour la garniture :","250g de lardons","3 oeufs","20cl de crème de lait ","20cl de lait","Sel, poivre","Muscade")),
+        '8'=> array("300g de lardons ","1 salade verte","4 tomates","3 oeufs","Huile","Vinaigre de vin ","Moutarde","Sel et poivre")
+        );
+
+
+    $preparation_Recipe = array(
+        // Embutidos
+        '1'=>array("Faire dorer les chorizos avec un filet d’huile à la poêle pendant 5 minutes et laisser refroidir dans une assiette.","Faire chauffer de l’huile dans la même poêle.","Y faire revenir les oignons émincés, l’ail écrasé et le gingembre rapé quelques instants à feu doux.","Une fois refroidies, couper les saucisses en tronçons puis les faire revenir avec les oignons. Après 5 minutes, ajouter les tomates coupées en petits morceaux et les aromates (curcuma, rocoto, sel, poivre, thym et laurier).","Mélanger le tout, ajouter un petit verre d’eau puis laisser mijoter à feu doux pendant environ 10 à 15 minutes en ôtant le couvercle de temps à autre pour éliminer l’excès d’eau.","Servir avec du riz et des lentilles."),
+        '2'=>array("Faire dorer les chorizos avec un filet d’huile à la cocote minute pendant 5 minutes.","Ajouter les lardons, les oignons émincés, l’ail en morceaux et les carottes en rondelles.","Faire légèrement colorer 5 minutes.","Ajouter les lentilles, 1 litre d’eau, le thym et le laurier, poivrer.","Fermer la cocotte minute et laisser cuire 15 min dès la mise en rotation de la soupape.","Saler et ajouter de la moutarde.","Cette recette est encore meilleure le lendemain réchauffée."),
+        '3'=>array("Faire tremper les haricots la veille.","Plonger dans l’eau bouillante 1 minute les haricots, l’oignon pelé et piqué de 3 clous de girofle, la carotte coupée en rondelles, le thym et le laurier.","Se débarasser de l’eau. Recouvrir d’eau froide et porter à ébulition. Continuer à petit feu pendant 1 heure. Ecumer si besoin.","Pendant ce temps tapisser le fond d’un plat allant au four avec la couenne coupée en morceau (gras côté plat) et frotter les parois de la cocotte avec l’ail.","Faire dorer la saucisse et les cuisses de canard d’un seul côté dans de la graisse de canard. Verser dans le fond du plat les haricots et les lardons.","Saler et poivrer. Ajouter de l’ail écrasé et 3 louches de bouillon (eau dans laquelle a ont cuit les haricots).","Enfourner à 165°C (thermostat 5-6) pendant environ 4 heures à découvert.","Toutes les 30 minutes, arroser avec le jus de cuisson, si le plat se dessèche rajouter de l’eau.","A 3h30 de cuisson, ajouter les cuisses de canard dans les haricots et disposer les saucisse sur le dessus du plat.","L’idéal est de faire ce plat la veille pour le lendemain. C’est encore meilleur !"),
+
+        // Jambons
+        '4'=>array("Mélanger le persil au fromage frais.","Etaler ce mélange sur chaque tranche de jambon. Rouler celles-ci et coupez les en tronçons pour en faire de petites bouchées.","Servir frais piqué d’un batonnet de bois et accompagné de petite tomates cerises."),
+        '5'=>array(),
+        '6'=>array("Faire cuire les pâtes.","Faire revenir les lardons à la poêle.","Battre dans un saladier la crème fraîche, les oeufs, le sel le poivre.","Retirer les lardons du feu dés qu’ils sont dorés et les ajouter à la crème.","Récupérer 2 cuillères à soupe d’eau de cuisson des pâtes.","Une fois les pâtes cuite al dente, les égoutter et y incorporer la crème.","Saupoudrer de fromage rapé et de basilic."),
+        '7'=>array(array("title" => "La pâte brisée :", "Dans un saladier, mélangez la farine, le beurre en morceaux, le jaune d’œuf et 5cl d’eau. ", "Formez une boule, enveloppez-la dans du film alimentaire et mettez-la au réfrigérateur au moins 2 heures. ", "Sortez la pâte du réfrigérateur au moins 15mn avant de l’étaler, puis farinez votre plan de travail et étalez la pâte au rouleau."), array("title" => "La garniture :",  "Etaler la pâte dans un moule, piquer à la fourchette.", "Faire rissoler les lardons à la poêle puis les répartir sur le fond de pâte.", "Battre les oeufs, la crème fraîche et le lait, assaisonner avec le sel, le poivre et la muscade. Verser sur la pâte.", "Faire cuire 45 à 50 min au four à 180°C (thermostat 6).")),
+        '8'=>array("Nettoyer la salade.","Faire revenir les lardons à la poêle.","Plongez les oeufs dans l’eau froide et porter à ébulition pendant 10 minutes.","Faire une vinaigrette.","Mélanger le tout avec les tomates.", array("title" => "Sauce vinaigrette :", "Mélanger 1 dose de vinaigre avec 3 doses d’huile.","Ajouter de la moutarde, du sel et poivre. ","Mélanger vigoureusement."))
+        );
+    
+    $description_Recipe = array(
+        // Embutidos
+        '1'=>'Rougail de saucisses - à développer',
+        '2'=>'Saucisses aux lentilles - à développer',
+        '3'=>'Cassoulet - à développer',
+
+        // Jambons
+        '4'=>'Roulés au jambon - à développer',
+        '5'=>'Croquetas de jambon - à développer',
+        '6'=>'Pâtes à la carbonara - à développer',
+        '7'=>'Quiche lorraine - à développer',
+        '8'=>'Salade aux lardons - à développer'
+        );
+
+    $recipes_alt = array(
+        // Embutidos
+        '1'=>'1.jpg',
+        '2'=>'2.jpg',
+        '3'=>'3.jpg',
+
+        // Jambons
+        '4'=>'4.jpg',
+        '5'=>'5.jpg',
+        '6'=>'6.jpg',
+        '7'=>'7.jpg',
+        '8'=>'8.jpg'
+        );
+
+    // Combining
+    for ($i=1; $i < (sizeof($titles_Recipe) + 1); $i++) { 
+        $Recipe = new Recipe();
+        $Recipe->setTitle($titles_Recipe[$i]);
+        $Recipe->setElement($elements_Recipe[$i]);
+        $Recipe->setDuration($duration_Recipe[$i]);
+        $Recipe->setForHowMany($forHowMany_Recipe[$i]);
+        $Recipe->setCooking($cooking_Recipe[$i]);
+        $Recipe->setOrigin($origin_Recipe[$i]);
+        $Recipe->setIngredients($ingredients_Recipe[$i]);
+        $Recipe->setPreparation($preparation_Recipe[$i]);
+        $Recipe->setDescription($description_Recipe[$i]);
+        $Recipe->setUrl('jpg');
+        $Recipe->setAlt($recipes_alt[$i]);
+        $manager->persist($Recipe);
+    }
     
     // Saving
     $manager->flush();

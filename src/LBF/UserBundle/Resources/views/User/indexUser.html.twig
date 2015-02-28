@@ -15,7 +15,7 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section8">
+			<div class="section section_padding" id="userSection">
 				<br/><br/>
 				
 				<div class="row">
@@ -37,7 +37,7 @@
 					  <div class="col-md-3 "> <!-- border_white_right -->
 						  <ul class="nav_tabs_user list_no_style_li" role="tablist">
 						    <li role="user_tabs" class="active">
-						    	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="btn btn-choice">
+						    	<a data-target="#tab_profile" aria-controls="profile" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Profile
 						    		<div class="float-right inner_arrow">
 										<img src="{{ asset('img/system/defaults/info.png') }}" alt="" class="btn_right_arrow"/>
@@ -45,7 +45,7 @@
 						    	</a>
 						    </li>
 						    <li role="user_tabs" class="">
-						    	<a href="#edit" aria-controls="edit" role="tab" data-toggle="tab" class="btn btn-choice">
+						    	<a data-target="#tab_edit" aria-controls="edit" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Edit information
 						    		<div class="float-right inner_arrow">
 										<img src="{{ asset('img/system/defaults/edit.png') }}" alt="" class="btn_right_arrow"/>
@@ -53,7 +53,7 @@
 						    	</a>
 						    </li>
 						    <li role="user_tabs" class="">
-						    	<a href="#password" aria-controls="password" role="tab" data-toggle="tab" class="btn btn-choice">
+						    	<a data-target="#tab_password" aria-controls="password" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Password
 						    		<div class="float-right inner_arrow">
 										<img src="{{ asset('img/system/defaults/password.png') }}" alt="" class="btn_right_arrow"/>
@@ -61,7 +61,7 @@
 						    	</a>
 						    </li>
 						    <li role="user_tabs" class="">
-						    	<a href="#avatar" aria-controls="avatar" role="tab" data-toggle="tab" class="btn btn-choice">
+						    	<a data-target="#tab_avatar" aria-controls="avatar" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Avatar
 						    		<div class="float-right inner_arrow">
 										<img src="{{ asset('img/system/defaults/avatar.png') }}" alt="" class="btn_right_arrow"/>
@@ -70,7 +70,7 @@
 						    </li>
 						    <br/>
 						    <li role="user_tabs" class="">
-						    	<a href="#current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+						    	<a data-target="#tab_current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Current orders ({{ currentOrders|length }})
 						    		<div class="float-right inner_arrow">
 										<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
@@ -78,7 +78,7 @@
 						    	</a>
 						    </li>
 						    <li role="user_tabs" class="">
-						    	<a href="#past" aria-controls="past" role="tab" data-toggle="tab" class="btn btn-choice">
+						    	<a data-target="#tab_past" aria-controls="past" role="tab" data-toggle="tab" class="btn btn-choice">
 						    		Past orders ({{ pastOrders|length }})
 						    		<div class="float-right inner_arrow">
 										<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
@@ -99,7 +99,7 @@
 
 				  	<!-- Tab panes -->
 				  	<div class="col-md-9 tab-content" id="user_panel">
-				    	<div role="tabpanel" class="tab-pane nav active" id="profile">
+				    	<div role="tabpanel" class="tab-pane fade nav active in" id="tab_profile">
 				    		<div class="col-md-9">
 								<div class="row">
 									<div class="col-md-5 right">
@@ -222,7 +222,7 @@
 								{% endif %}
 							</div>
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="password">
+				    	<div role="tabpanel" class="tab-pane fade" id="tab_password">
 				    		Your current password was edited the ... of ... 20.. : <br/>
 				    		To change password, click here :
 				    		<br/><br/><br/>
@@ -233,7 +233,7 @@
 							    </a>
 				    		</div>
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="avatar">
+				    	<div role="tabpanel" class="tab-pane fade" id="tab_avatar">
 							<form method="post" {{ form_enctype(formEditAvatar) }}>
 								<div class="edit_profile">
 									<div class="form-group row">
@@ -273,7 +273,7 @@
 								{{ form_widget(formEditAvatar) }}
 							</form>
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="edit">
+				    	<div role="tabpanel" class="tab-pane fade" id="tab_edit">
 				    		To edit your information, fill-in the missing fields : <br/><br/>
 							<form method="post" {{ form_enctype(formEditUser) }}>
 				        		{% if form_errors(formEditUser) %}
@@ -542,7 +542,7 @@
 								</div>
 							</form>
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="current">
+				    	<div role="tabpanel" class="tab-pane fade" id="tab_current">
 							{% if currentOrders|length > 0 %}
 								<div class="table-responsive">
 			                      <table class="table">
@@ -625,7 +625,7 @@
 								<div class="col-md-3"></div>
 							{% endif %}
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="past">
+				    	<div role="tabpanel" class="tab-pane fade" id="tab_past">
 				    		{% if pastOrders|length > 0 %}
 								<div class="table-responsive">
 			                      <table class="table">
@@ -693,7 +693,7 @@
 								<div class="col-md-3"></div>
 							{% endif %}
 				    	</div>
-				    	<div role="tabpanel" class="tab-pane" id="logout">
+				    	<div role="tabpanel" class="tab-pane fade" id="logout">
 							
 				    	</div>
 				    	

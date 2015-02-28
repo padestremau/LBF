@@ -22,14 +22,14 @@
     <meta content="Website for the Le Buffet Francés shop" name="description"/>
     <meta content="Pierre-Arnaud Destremau" name="author"/>
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -38,8 +38,6 @@
 
       'css/font.css'
       'css/main_style.css'
-
-      'css/jquery.fullPage.css'
 
       filter='cssrewrite' %}
       <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
@@ -85,142 +83,24 @@
           row margin0">
             {% block body %}
             {% endblock body %}  
-            <script type="text/javascript">
-            
-              $(document).ready(function() {
-                var header_height = $('#header').height() + 6 ;
-                $('#fullpage').fullpage({
-                  anchors: ['mainSection', 'ourProducts', 'ourRecipes', 'aboutUs', 'footerSection'],
-                  // menu: '#menu',
-                  paddingTop: header_height+'px',
-                  verticalCentered: false,
-                  navigation: true,
-                  navigationPosition: 'right',
-                  responsive: 1200,
-                  resize: false,
-                  // scrollingSpeed: 1000,  // Other
-                  // scrollOverflow: true,
-                  allowScrolling: true,
-                  animateAnchor: false,
-                  // autoScrolling: true,
-                  // controlArrows: true,
-                  // css3: true,
-                  // slidesNavigation: false,
-                  // loopHorizontal: false,
-                  // sectionSelector: '.section',
-                  // slideSelector: '.slide',
-                  afterLoad: function(anchorLink, index){
-                    // Top button
-                    if (anchorLink == 'aboutUs' || anchorLink == 'ourProducts' || anchorLink == 'ourRecipes' || anchorLink == 'footerSection') {
-                      document.getElementById("button_to_top").className = "opacity1";
-                    }
-                    else {
-                      document.getElementById("button_to_top").className = "opacity0";
-                    }
-
-                    // Active buttons
-                    if (anchorLink == 'aboutUs') {
-                      document.getElementById("btn_section2").className = "btn btn-log";
-                      document.getElementById("btn_section1").className += " btn-log-active";
-                    }
-                    else if (anchorLink == 'ourProducts') {
-                      document.getElementById("btn_section1").className = "btn btn-log";
-                      document.getElementById("btn_section2").className += " btn-log-active";
-                    }
-                    else {
-                      document.getElementById("btn_section1").className = "btn btn-log";
-                      document.getElementById("btn_section2").className = "btn btn-log";
-                    }
-                  }
-
-                });
-
-                //fullPage.js initialization
-
-                // $('#button_login_a').click(function(e){
-                //   e.preventDefault();
-                //   $.fn.fullpage.moveSlideLeft();
-                // });
-
-              });
-
-              function onLoadData() {
-                // Cookies
-                $.cookie.json = true;
-                var sessionCart = $.cookie("sessionCart");
-                if (sessionCart) {}
-                else {
-                  var sessionCart = [];
-                  $.cookie("sessionCart", sessionCart);
-                }
-                updateNotifNumber();
-                updateNotifNumberXS();
-
-                // Top button
-                document.getElementById("button_to_top").className = "opacity0";
-              }
-
-              function onLoadDataSpecial() {
-                // Cookies
-                $.cookie.json = true;
-                var sessionCart = [];
-                $.cookie("sessionCart", sessionCart);
-                updateNotifNumber();
-                updateNotifNumberXS();
-              }
-
-              $(window).resize(function() {
-                // window.location.reload();
-              });
-
-              $(function() {
-                //  changes mouse cursor when highlighting loawer right of box
-                $("textarea").mousemove(function(e) {
-                    var myPos = $(this).offset();
-                    myPos.bottom = $(this).offset().top + $(this).outerHeight();
-                    myPos.right = $(this).offset().left + $(this).outerWidth();
-                    
-                    if (myPos.bottom > e.pageY && e.pageY > myPos.bottom - 16 && myPos.right > e.pageX && e.pageX > myPos.right - 16) {
-                        $(this).css({ cursor: "nw-resize" });
-                    }
-                    else {
-                        $(this).css({ cursor: "" });
-                    }
-                })
-                //  the following simple make the textbox "Auto-Expand" as it is typed in
-                .keyup(function(e) {
-                    //  the following will help the text expand as typing takes place
-                    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-                        $(this).height($(this).height()+1);
-                    };
-                });
-            });
-            </script>
         </div>
         <!-- END CONTAINER -->
 
 
         <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-
         {% javascripts 
 
+          'js/javascripts_lbf.js'
           'js/ajax_load.js'
           
-          'js/jssor.slider.js'
           'js/jssor.js'
-          'js/jquery-1.10.2.min.js'
-          'js/jquery-ui-1.9.1.min.js'
-
-          'js/jquery.fullPage.js'
-          'js/jquery.slimscroll.min.js'
+          'js/jssor.slider.js'
 
           'js/jquery-cookie/jquery.cookie.js'
           
           %}
-          <script type="text/javascript" src="{{ asset_url }}"></script>
+          <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-
         <!-- END JAVASCRIPTS -->
   </body>
   <!-- END BODY -->

@@ -1,5 +1,5 @@
 <!-- BEGIN FOOTER -->
-<div class="footer center section" id="section3">
+<div class="footer section_padding center section" id="footerSection">
 	<br/>
 	<div class="row80">
 		<h2 class="h2_footer">
@@ -18,7 +18,7 @@
 				<br/>
 	            <div class="form-group row">
 	            	<script type="text/javascript">
-	                  function showOrderNumber() {
+	                  	function showOrderNumber() {
 	                      if (document.getElementById('SM0').selected || document.getElementById('SM1').selected || document.getElementById('SM2').selected) { 
 	                        document.getElementById('corpsOrder_input').style.display = 'block';
 	                      }
@@ -69,8 +69,8 @@
 	        <input type="submit" value="ENVOYER" class="btn btn-log submit_send_footer" title="Envoyer le message">
 	    </form>
 	</div>
-	<div class="row border_white_top footer_part hidden-xs">
-		<div class="col-lg-4 col-md-4 col-sm-4">
+	<div class="row border_white_top footer_part">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12">
 			<h4>
 				{{ 'footer.titles.receiveOurNewsletter' | trans }}
 			</h4>
@@ -89,7 +89,8 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4">
+		<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12">
 	 		<a href="/temoignages">
 		 	<h4>
 		 		{{ 'footer.titles.witnesses' | trans }}
@@ -100,7 +101,8 @@
 		 	</div>
 		 	</a>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4">
+		<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12">
 		 	<h4>
 		 		{{ 'footer.titles.clientService' | trans }}
 		 	</h4>
@@ -117,7 +119,7 @@
 	<div class="row left border_white_top multiple_list footer_part footer_bottom">
 		<div class="row">
 			
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 				<h4>
 				 	{{ 'footer.titles.aboutUs' | trans }}
 				</h4>
@@ -139,7 +141,8 @@
 					</li>
 				</ul>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"> 
+			<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> 
 				<h4>
 				 	{{ 'footer.titles.needHelp' | trans }}
 				</h4>
@@ -166,7 +169,8 @@
 					</li> 	
 				</ul>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+			<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 			  	<h4>
 			  		{{ 'footer.titles.meatPanel' | trans }}
 			  	</h4>
@@ -189,6 +193,7 @@
 				</ul>
 			</div>
 		</div>
+		<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
 		<div class="row center">
 			Le Buffet Francés - {{ 'footer.bottom.allRightsReserved' | trans }} © 2015
 		</div>

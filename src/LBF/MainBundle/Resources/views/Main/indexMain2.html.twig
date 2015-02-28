@@ -1,22 +1,5 @@
-{# src/LBF/MainBundle/Resources/Main/indexMain.html.twig #}
-
-{% extends "LBFMainBundle::main_general.html.twig" %}
-
-{% block title %}
-  {{ parent() }}
-{% endblock %}
-
-{% block LBF_Main_body %}
-
-	<!-- BEGIN CONTENT -->
-	<div id="page_content" class="row">
-
-		<div id="sessionFlash" class="sessionFlash">
-		</div>
-
-		<div id="fullpage">
-			<div class="section row" id="mainSection">
-				<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
+			<div class="section row" id="section0">
+				<div class="row hidden-xs">
 			      <div class="logo_welcome">
 			        <img src="{{ asset('img/system/logo/final_site.png') }}" alt="Logo" class="logo_welcome_img"/>
 			      </div>
@@ -26,12 +9,9 @@
 
 					<div class="content_presentation row">
 						
-	    				<script>
+					    <script>
 					        jQuery(document).ready(function ($) {
-					            //Reference http://www.jssor.com/development/slider-with-slideshow-jquery.html
-					            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
-
-					            var _SlideshowTransitions = [
+					        	var _SlideshowTransitions = [
 					            //Fade
 					            { $Duration: 1400, $Opacity: 2 }
 					            ];
@@ -50,27 +30,35 @@
 					            };
 
 					            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+								
+								//responsive code begin
+								//you can remove responsive code if you don't want the slider scales while window resizes
+								function ScaleSlider() {
+								    var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+								    if (parentWidth)
+								        jssor_slider1.$ScaleWidth(Math.min(parentWidth, 1920));
+								    else
+								        window.setTimeout(ScaleSlider, 30);
+								}
+								ScaleSlider();
 
+								$(window).bind("load", ScaleSlider);
+								$(window).bind("resize", ScaleSlider);
+								$(window).bind("orientationchange", ScaleSlider);
+								//responsive code end
 					        });
 					    </script>
 					    <!-- Jssor Slider Begin -->
 					    <!-- You can move inline styles to css file or css block. -->
-					    <div id="slider1_container" style="position: relative; top: 0px; right: 0px; width: 1200px;
-					        height: 400px; margin:auto; overflow: hidden ; opacity: 1 !important; z-index: 1;">
-
-					        <!-- Loading Screen -->
-					        <div u="loading" style="position: absolute; top: 0px; right: 0px;">
-					            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-					                background-color: #000; top: 0px; right: 0px; width: 1200px; height: 400px;">
-					            </div>
-					            <div style="position: absolute; display: block; background: url("{{ asset('img/system/slideshow/loader2.gif') }}") no-repeat center center;
-					                top: 0px; right: 0px; width: 1200px; height: 400px;">
-					            </div>
-					        </div>
-					        
+						<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 1200px;
+					        height: 400px; margin:auto; overflow: hidden !important; z-index: -10;">
 					        <!-- Slides Container -->
-					        <div id="slider1_container_content" u="slides" style="cursor: move; position: absolute; right: 0px; top: 0px; width: 1200px; height: 400px; overflow: hidden;">
-					            
+					        <div id="slider1_container_content" u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px; height: 400px; overflow: hidden;">
+
+					            <script>
+				            		var slider_height = window.innerHeight * 0.45;
+									$('#slider1_container').css({'height':slider_height+'px'});
+								</script>
 								<div>
 									<img u=image src="{{ asset('img/presentation/1.jpg') }}" />
 								</div>
@@ -101,19 +89,9 @@
 					            <div>
 					                <img u=image src="{{ asset('img/presentation/10.jpg') }}" />
 					            </div>
+
 					        </div>
 					    </div>
-
-					    <script>
-		            		var slider_width = $('#page_container_gen').innerWidth;
-		            		var slider_height = window.innerHeight * 0.45;
-							$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-					    	$(window).resize(function() {
-					    		var slider_width = $('#page_container_gen').innerWidth;
-			            		var slider_height = window.innerHeight * 0.45;
-								$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-				            });
-						</script>
 					</div>
 
 					<div class="presentation_texte row">
@@ -130,7 +108,7 @@
 								</h2>
 			        		</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs right" >
-								<a href="#ourProducts" class="no_style_a">
+								<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 						          	<button class="btn btn-login uppercase">
 										{{ 'main.actions.buy' | trans }}
 						          		<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -138,7 +116,7 @@
 						        </a>
 							</div>
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 center" >
-								<a href="#ourProducts" class="no_style_a">
+								<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 						          	<button class="btn btn-login uppercase">
 										{{ 'main.actions.buy' | trans }}
 						          		<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -169,7 +147,7 @@
 								</button>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-						        <a href="#ourProducts" class="no_style_a">
+						        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
 						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
 						        	</div>
@@ -187,7 +165,7 @@
 							</div>
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-								<a href="#ourRecipes" class="no_style_a">
+								<a href="{{ path('lbf_main_homepage') }}#ourRecipes" class="no_style_a">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Recipe" src="{{ asset('img/system/icons/recipe.png') }}" class="icon_presentation"/>
 									</div>
@@ -226,16 +204,13 @@
 					</div>
 
 				</div>
-
-				<br/><br/><br/>
 			</div>
 
-
-			<div class="section section_padding row" id="ourProducts">
+			<div class="section row" id="section1">
 				<div class="presentation_texte row">
 		        	<div class="row center">
 		        		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs" data-menuanchor="ourRecipes">
-		        			<a href="#ourRecipes" class="btn btn-login">
+		        			<a href="{{ path('lbf_main_homepage') }}#ourRecipes" class="btn btn-login">
 								<img src="{{ asset('img/system/defaults/down_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourProducts.titles.recipes' | trans }}
 							</a>
@@ -263,7 +238,7 @@
 								{% for category in allCategories %}
 									{% set productsArray = allSortedProducts[index_general] %}
 									<li class="{% if index_general == 1 %} active {% endif %}">
-										<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+										<a href="#tab_{{ index_general }}" data-toggle="tab">
 											{{ category }} 
 											<span class="hidden-xs">
 												({{ productsArray|length }})
@@ -484,13 +459,13 @@
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
+														<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
 															{{ product.name }}
 															<div class="float-right inner_arrow">
 																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
 														</a>
-														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+														<a data-toggle="tab" href="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
 															{{ product.name }}
 														</a>
 													</li>
@@ -514,10 +489,6 @@
 																			<script>
 																				var cw = $('.product_img').width();
 																				$('.product_img').css({'height':cw+'px'});
-																				$(window).resize(function() {
-																				    		var cw = $('.product_img').width();
-																				    		$('.product_img').css({'height':cw+'px'});
-																			            });
 																			</script>
 																		</div>
 																	{% else %}
@@ -525,10 +496,6 @@
 																			<script>
 																				var cw = $('.product_img').width();
 																				$('.product_img').css({'height':cw+'px'});
-																				$(window).resize(function() {
-																				    		var cw = $('.product_img').width();
-																				    		$('.product_img').css({'height':cw+'px'});
-																			            });
 																			</script>
 																	{% endif %}
 																	</div>
@@ -582,18 +549,18 @@
 																	</div>
 																	<br/>
 																	<div class="row center">
-																		<button class="btn btn-login" onClick="goToTab('#ourRecipes', '#tab_recipe_{{ category |replace({' ': '_'}) }}', 'recipe_nav_ul_{{ category |replace({' ': '_'}) }}', '#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}')">
+																		<a class="btn btn-login" href="javascript:goToTab('{{ path('lbf_main_homepage') }}#ourRecipes', '#tab_recipe_{{ category |replace({' ': '_'}) }}', 'recipe_nav_ul_{{ category |replace({' ': '_'}) }}', '#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}')">
 																			{{ 'ourProducts.actions.seeRecipes' | trans }}
 																			<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-																		</button>
+																		</a>
 
 																		<script>
 																			function goToTab(path, tab_gen_id, nav_id, tab_id) {
-																				window.location = path;
-																				tab_gen_loc = '#recipe_nav_ul a[data-target="'+tab_gen_id+'"]';
+																				tab_gen_loc = '#recipe_nav_ul a[href="'+tab_gen_id+'"]';
 																				$(tab_gen_loc).tab('show');
-																				tab_loc = '#'+nav_id+' a[data-target="'+tab_id+'"]';
+																				tab_loc = '#'+nav_id+' a[href="'+tab_id+'"]';
 																				$(tab_loc).tab('show');
+																				window.location = path;
 																			}
 																		</script>
 																	</div>
@@ -675,11 +642,11 @@
 				</div>
 			</div>
 
-			<div class="section section_padding row" id="ourRecipes">
+			<div class="section row" id="section2">
 				<div class="presentation_texte">
 					<div class="row center">
 		        		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs" data-menuanchor="ourProducts">
-		        			<a href="#ourProducts" class="btn btn-login">
+		        			<a href="{{ path('lbf_main_homepage') }}#ourProducts" class="btn btn-login">
 								<img src="{{ asset('img/system/defaults/up_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourRecipes.titles.products' | trans }}
 							</a>
@@ -707,7 +674,7 @@
 								{% for category in allCategories %}
 									{% set recipesArray = allSortedRecipes[index_general] %}
 									<li class="{% if index_general == 1 %} active {% endif %}">
-										<a data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
+										<a href="#tab_recipe_{{ category |replace({' ': '_'}) }}">
 											{{ category }} <span class="hidden-xs">({{ recipesArray|length }})</span>
 											<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
 										</a>
@@ -738,13 +705,13 @@
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice hidden-xs">
+														<a data-toggle="tab" href="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice hidden-xs">
 															{{ product.name }}
 															<div class="float-right inner_arrow">
 																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
 														</a>
-														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
+														<a data-toggle="tab" href="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
 															{{ product.name }}
 														</a>
 													</li>
@@ -831,10 +798,6 @@
 																					<script>
 																						var cw = $('.recipe_img').width() * 0.7;
 																						$('.recipe_img').css({'height':cw+'px'});
-																						$(window).resize(function() {
-																				    		var cw = $('.recipe_img').width() * 0.7;
-																				    		$('.recipe_img').css({'height':cw+'px'});
-																			            });
 																					</script>
 																				</div>
 																			{% else %}
@@ -842,10 +805,6 @@
 																					<script>
 																						var cw = $('.recipe_img').width() * 0.7;
 																						$('.recipe_img').css({'height':cw+'px'});
-																						$(window).resize(function() {
-																				    		var cw = $('.recipe_img').width() * 0.7;
-																				    		$('.recipe_img').css({'height':cw+'px'});
-																			            });
 																					</script>
 																			{% endif %}
 																			</div>
@@ -887,7 +846,7 @@
 				</div>
 			</div>
 
-			<div class="section section_padding row" id="aboutUs">
+			<div class="section row" id="section3">
 				<div class="presentation_texte">
 					<div class="row center">
 		        		<div class="col-lg-2 col-md-2 hidden-xs"></div>
@@ -901,7 +860,7 @@
 							</h2>
 		        		</div>
 						<div class="col-lg-2 col-md-2 col-xs-12">
-							<a href="#footerSection" class="btn btn-login">
+							<a href="{{ path('lbf_main_homepage') }}#footerSection" class="btn btn-login">
 								{{ 'aboutUs.titles.contact' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 							</a>
@@ -959,12 +918,3 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- BEGIN FOOTER -->
-              {% include 'includes/footer.html.twig' %}
-            <!-- END FOOTER -->
-		</div>
-	</div>
-	<!-- END CONTENT -->
-
-{% endblock LBF_Main_body %}

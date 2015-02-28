@@ -51,6 +51,10 @@
                       <script type="text/javascript">
                         var cw = $('.user_img_header').width();
                         $('.user_img_header').css({'height':cw+'px'});
+                        $(window).resize(function() {
+                          var cw = $('.user_img_header').width();
+                          $('.user_img_header').css({'height':cw+'px'});
+                        });
                       </script>
                     </div>
                   {% else %}
@@ -58,6 +62,10 @@
                       <script type="text/javascript">
                         var cw = $('.user_img_header').width();
                         $('.user_img_header').css({'height':cw+'px'});
+                        $(window).resize(function() {
+                          var cw = $('.user_img_header').width();
+                          $('.user_img_header').css({'height':cw+'px'});
+                        });
                       </script>
                   {% endif %}
                 </div>
@@ -181,7 +189,7 @@
             <script type="text/javascript">
               function updateNotifNumber() {
                 // To empty cart manually
-                // $.cookie("sessionCart", null);
+                // $.cookie("sessionCart", []);
 
                 var sessionCart = $.cookie("sessionCart");
                 if (sessionCart) {
@@ -269,6 +277,10 @@
                         <script type="text/javascript">
                           var cw = $('.user_img_header').width();
                           $('.user_img_header').css({'height':cw+'px'});
+                          $(window).resize(function() {
+                            var cw = $('.user_img_header').width();
+                            $('.user_img_header').css({'height':cw+'px'});
+                          });
                         </script>
                       </div>
                     {% else %}
@@ -276,6 +288,10 @@
                         <script type="text/javascript">
                           var cw = $('.user_img_header').width();
                           $('.user_img_header').css({'height':cw+'px'});
+                          $(window).resize(function() {
+                            var cw = $('.user_img_header').width();
+                            $('.user_img_header').css({'height':cw+'px'});
+                          });
                         </script>
                     {% endif %}
                   </div>
@@ -352,7 +368,7 @@
               </a>
             </li>
             <li class="social_item_spe_xs" data-menuanchor="footerSection">
-              <a href="{{ path('lbf_main_homepage') }}#footerSection">
+              <a href="#footerSection">
                 <div class="social_icon_xs social_mail"></div>
               </a>
             </li>
@@ -500,7 +516,7 @@
         </a>
       </li>
       <li class="social_item_spe" data-menuanchor="footerSection">
-        <a href="{{ path('lbf_main_homepage') }}#footerSection">
+        <a href="#footerSection">
           <div class="social_label">CONTACT</div>
           <div class="social_icon social_mail"></div>
         </a>

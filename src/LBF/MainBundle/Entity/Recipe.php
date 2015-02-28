@@ -65,14 +65,14 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredients", type="text")
+     * @ORM\Column(name="ingredients", type="array")
      */
     private $ingredients;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation", type="text")
+     * @ORM\Column(name="preparation", type="array")
      */
     private $preparation;
 
@@ -86,14 +86,14 @@ class Recipe
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="createdAt", type="datetime", nullable=true)
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -121,8 +121,8 @@ class Recipe
 
     public function __construct()
     {
-        // $this->createdAt        = new \Datetime;
-        // $this->updatedAt        = new \Datetime;
+        $this->createdAt        = new \Datetime;
+        $this->updatedAt        = new \Datetime;
     }
 
 
@@ -257,7 +257,7 @@ class Recipe
     /**
      * Set ingredients
      *
-     * @param string $ingredients
+     * @param array $ingredients
      * @return Recipe
      */
     public function setIngredients($ingredients)
@@ -270,7 +270,7 @@ class Recipe
     /**
      * Get ingredients
      *
-     * @return string 
+     * @return array 
      */
     public function getIngredients()
     {
@@ -280,7 +280,7 @@ class Recipe
     /**
      * Set preparation
      *
-     * @param string $preparation
+     * @param array $preparation
      * @return Recipe
      */
     public function setPreparation($preparation)
@@ -293,7 +293,7 @@ class Recipe
     /**
      * Get preparation
      *
-     * @return string 
+     * @return array 
      */
     public function getPreparation()
     {

@@ -78,24 +78,24 @@ class MainController extends Controller
         $recipesEpicerieFine = array();
         $recipesTraiteur = array();
         for ($i=0; $i < sizeof($allRecipes); $i++) { 
-            $recipe = $recipesProducts[$i];
-            if ($recipe->getCategory() == 'Embutidos') {
+            $recipe = $allRecipes[$i];
+            if ($recipe->getElement()->getCategory() == 'Embutidos') {
                 $recipesEmbutidos[] = $recipe;
             }
 
-            else if ($recipe->getCategory() == 'Pates') {
+            else if ($recipe->getElement()->getCategory() == 'Pates') {
                 $recipesPates[] = $recipe;
             }
 
-            else if ($recipe->getCategory() == 'Jamones') {
+            else if ($recipe->getElement()->getCategory() == 'Jamones') {
                 $recipesJamones[] = $recipe;
             }
 
-            else if ($recipe->getCategory() == 'Epicerie fine') {
+            else if ($recipe->getElement()->getCategory() == 'Epicerie fine') {
                 $recipesEpicerieFine[] = $recipe;
             }
 
-            else if ($recipe->getCategory() == 'Traiteur') {
+            else if ($recipe->getElement()->getCategory() == 'Traiteur') {
                 $recipesTraiteur[] = $recipe;
             }
 

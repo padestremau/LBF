@@ -50,8 +50,8 @@ ourProducts:
     details:
         weight:                 "Poids :"
         price:                  "Prix :"
-        for10pieces:            "pour "
-        perPiece:               " pièce(s)"
+        for:                    "pour "
+        piece:                  " pièce(s)"
         naturalProducts:        "Produits naturels sans colorants ni conservateurs"
         pieces:                 "pièces,"
     warning:
@@ -180,5 +180,8 @@ footer:
         allRightsReserved: 		TOUS DROITS RESERVES
 
 
-
+# Modal
+modal:
+    actions: 
+        close:                  Fermer
 

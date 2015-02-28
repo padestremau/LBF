@@ -50,8 +50,8 @@ ourProducts:
     details:
         weight:                 "Peso:"
         price:                  "Precio:"
-        for10pieces:            "para "
-        perPiece:               " pedazo(s)"
+        for:                    "para "
+        piece:                  " pedazo(s)"
         naturalProducts:        "Productos naturales sin colorantes ni preservantes"
         pieces:                 "pedazos,"
     warning:
@@ -182,5 +182,9 @@ footer:
         allRightsReserved: 		TOUS DROITS RESERVES
 
 
+# Modal
+modal:
+    actions: 
+        close:                  Cerrar
 
 

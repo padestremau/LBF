@@ -3,8 +3,6 @@
 /* -----------------------------------------------    MAIN STYLE   -------------------------------------------------- */
 
 html {
-	/*min-width: 1000px;
-	min-height: 700px;*/
 	width: 100%;
 	background-color: white; 
 	background-image: url('../img/system/defaults/background_default_medium.jpg');
@@ -199,6 +197,10 @@ hr {
 	color: rgba(41,41,41,0.5);
 	background-color: rgba(41,41,41,0.5);
 }
+.hr60 {
+	margin: auto !important;
+	width: 60% !important;
+}
 
 .center {
 	text-align: center;
@@ -277,6 +279,7 @@ button, button:focus {
 a:hover {
 	color: inherit;
 	text-decoration: underline;
+	cursor: pointer;
 }
 .no_style_a, .no_style_a:focus {
 	outline:none;
@@ -372,7 +375,7 @@ strong {
 #header {
 	position: fixed;
 	top: 0px;
-	z-index: 50 !important;
+	z-index: 1000 !important;
 	background-color: rgba(41,41,41,0.95); /*#222121*/
 	border-bottom: 1px solid rgba(250,250,250,0.6);
 	box-shadow: 0px 1px 3px 2px rgba(41,41,41,0.4);
@@ -394,7 +397,7 @@ strong {
 .navbar-brand {
 	font-weight: 500 !important;
 	font-size: 1em !important;
-	z-index: 99999 !important ;
+	z-index: 10100 !important ;
 }
 .navbar-collapse, .navbar-inverse {
 	background-color: rgba(41,41,41,0.95) !important;
@@ -472,7 +475,7 @@ strong {
 @media (min-width: 993px) and (max-width: 1400px){
 	.btn-log {
 		padding: 4px 7px; 
-		font-size: 0.8em;
+		font-size: 0.75em;
 	}
 }
 @media (min-width: 479px) and (max-width: 993px){
@@ -633,17 +636,18 @@ strong {
 	height: 30px !important;
 	border-radius: 15px !important;
 }
+
 .number_notif_XS_bis {
 	background-color: white;
 	color: rgba(41,41,41,0.95);
 	font-size: 1em;
 	text-align: center;
-	width: 20px !important;
-	height: 20px !important;
-	border-radius: 10px !important;
 	position: relative;
 	top: 12px;
 	right: 12px;
+	width: 20px !important;
+	height: 20px !important;
+	border-radius: 10px !important;
 }
 
 #social_media {	
@@ -657,7 +661,7 @@ strong {
 	margin: 0;
 	padding: 0;
 
-	z-index:9999;
+	z-index:10100;
 
 	-webkit-transition: 0.3s;
 	-moz-transition: 0.3s;
@@ -829,7 +833,7 @@ strong {
 	right: 50px;
 	width: 50px;
 	height: 50px;
-	z-index: 9999;
+	z-index: 10100;
 }
 #button_to_top button {
 	width: 50px;
@@ -855,7 +859,7 @@ strong {
 }
 
 #mobile_nav {
-	z-index: 30;
+	z-index: 1000;
 }
 #mobile_nav ul {
 	padding: 0;
@@ -870,7 +874,7 @@ strong {
 	padding: 0 !important;
 	margin: 8px 0 !important;
 	border-bottom: 1px solid rgba(200,200,200,0.4);
-	z-index: 31;
+	z-index: 1001;
 }
 
 
@@ -880,12 +884,12 @@ strong {
 	background-color: rgba(260,255,255,0.96); /*#541009 ;*/
 	margin: auto !important;
 	width: 100% !important;
-	max-width: 1200px;
+	max-width: 1200px !important;
 	border-left: 1px solid rgba(41,41,41,0.95);
 	border-right: 1px solid rgba(41,41,41,0.95);
 	box-shadow: 0px 4px 8px 4px rgba(41,41,41,0.3);
-
 	color: rgba(41,41,41,0.95) !important;
+	overflow: hidden !important;
 }
 
 #sessionFlash {
@@ -918,18 +922,24 @@ strong {
 	}
 }
 
+.section_padding {
+	padding-top: 50px !important;
+}
 .section {
 	border-bottom: 1px solid rgba(41,41,41,0.95);
+}
+@media (min-width: 993px) {
+	.section {
+		height: 100% !important;
+	}
 }
 
 .logo_welcome {
 	position: absolute !important;
-	z-index: 999999 !important;
+	z-index: 50 !important;
 }
 .logo_welcome_img {
 	width: 100%;
-	border-radius: 58%;
-	/*box-shadow: 0px 0px 10px 5px rgba(41,41,41,0.6);*/
 }
 @media (min-width: 1401px) {
 	.logo_welcome {
@@ -958,16 +968,18 @@ strong {
 	position: absolute;
 	top: 6px;
 	left: 6px;
-	z-index: 99999 !important ;
+	z-index: 10100 !important ;
 }
 
 .presentation_photos {
 }
 
 .content_presentation {
+	margin-top: 0;
+	padding-top: 0;
 	margin-bottom: 0;
-	border-bottom: 5px solid rgba(41,41,41,0.95); /* #d10909 */
-	z-index: 10 !important;
+	border-bottom: 5px solid rgba(41,41,41,0.95) !important; /* #d10909 */
+	z-index: 1 !important;
 }
 @media (max-width: 478px) {
 	.content_presentation {
@@ -1090,7 +1102,7 @@ a.captionOrange:hover
 		margin-bottom: 20px !important;
 	}
 }
-@media (max-width: 1200px){
+@media (max-width: 1400px){
 	.title_div {
 		margin-bottom: 0px !important;
 	}
@@ -1109,7 +1121,7 @@ a.captionOrange:hover
 }
 .modal-dialog {
 	/*background-color: rgba(41,41,41,0.95);*/
-	background-color: rgba(250,250,250,0.99); ; /*rgba(120,30,20,0.99) ;*/
+	background-color: rgba(250,250,250,0.99); /*rgba(120,30,20,0.99) ;*/
 	/*background-image: url('../img/system/defaults/background_default_medium.png');*/
 	border: 1px solid white;
 	border-radius: 0;
@@ -1130,6 +1142,9 @@ a.captionOrange:hover
 }
 .modal-backdrop {
   z-index: -1;
+}
+body.modal-open {
+	overflow: hidden;
 }
 .btn-modal {
 	margin-top: 10px;
@@ -1274,6 +1289,19 @@ a.captionOrange:hover
 	padding: 0;
 	margin-bottom: 0px;
 	margin-top: 10px;	
+}
+
+.recipe_img, .recipe_img_lg {
+	border-radius: 0%;
+	border: 1px solid rgba(41,41,41,0.5);
+	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.recipe_border {
+	border: 1px solid rgba(41,41,41,0.95);
+	padding: 10px;
 }
 
 .small_quote {
@@ -1550,12 +1578,12 @@ a.captionOrange:hover
 }
 @media (min-width: 1401px) {
 	.bio {
-		font-size: 1.2em;
+		font-size: 1.1em;
 	}
 }
 @media (min-width: 993px) and (max-width: 1400px){
 	.bio {
-		font-size: 1.1em;
+		font-size: 1em;
 	}
 }
 @media (min-width: 479px) and (max-width: 992px) {
@@ -1847,8 +1875,8 @@ a.captionOrange:hover
     background: rgba(41,41,41,0.95);
     padding: 5px 10px;
     /*border-radius:3px;*/
-    border: 5px solid white,
-    transform:scale(0) rotate(-12deg);
+    border: 5px solid white;
+    transform: scale(0) rotate(-12deg);
     transition:all .25s;
     opacity:0;
     z-index: 10000;
@@ -1938,6 +1966,10 @@ a.captionOrange:hover
 	font-size: 1em;
 	color: white !important;
 }
+.footer h4 {
+	text-align: left !important;
+	margin-left: 20%;
+}
 #contact_form select, #contact_form textarea {
 	font-size: 1em;
 }
@@ -1957,17 +1989,15 @@ a.captionOrange:hover
 .multiple_lists ul li {
 	list-style-type: none;
 }
-.multiple_lists div {
-	padding-left: 7%;
-}
 .footer_bottom {
 	text-transform : uppercase;
 }
+.footer_bottom ul {
+	margin-left: 22%;
+}
+
 .form_footer {
 	margin-bottom: 30px !important;
-}
-.footer_bottom ul {
-	margin-left: 20%;
 }
 .icon_presentation_footer {
 	width: 60%;
@@ -1983,6 +2013,6 @@ a.captionOrange:hover
 }
 .sep_presentation_footer {
 	padding: 0px !important;
-	margin: 5px 0 !important;
+	margin: 10px 0 !important;
 	border-bottom: 1px dotted white;
 }
