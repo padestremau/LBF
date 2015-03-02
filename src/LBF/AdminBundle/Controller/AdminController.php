@@ -50,6 +50,18 @@ class AdminController extends Controller
             ));
     }
 
+    public function currentOrdersAction()
+    {
+        $currentOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findSpecificAdminNon('complete', 10);
+
+        return $this->render('LBFAdminBundle:Admin:currentOrders.html.twig', array(
+            'currentOrders' => $currentOrders
+            ));
+    }
+
     public function answerAction($orderId)
     {
         $allElements = $this ->getDoctrine()
@@ -201,6 +213,43 @@ class AdminController extends Controller
         return $this->redirect($this->generateUrl('lbf_admin_homepage'));
     }
 
+    public function pastOrdersAction()
+    {
+        $pastOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findSpecificAdminNon('complete', 10);
+
+        return $this->render('LBFAdminBundle:Admin:pastOrders.html.twig', array(
+            'pastOrders' => $pastOrders
+            ));
+    }
+
+    public function usersAction()
+    {
+        $users = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:User')
+                            ->findAll();
+
+        return $this->render('LBFAdminBundle:Admin:users.html.twig', array(
+            'users' => $users
+            ));
+    }
+
+    public function newsletterAction()
+    {
+        $newsletterEmails = $this ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('LBFMainBundle:NewsletterEmail')
+                                    ->findAll();
+
+
+        return $this->render('LBFAdminBundle:Admin:newsletter.html.twig', array(
+            'newsletterEmails' => $newsletterEmails
+            ));
+    }
+    
     public function newsletterEmailsAction()
     {
         $newsletterEmails = $this ->getDoctrine()
@@ -211,6 +260,30 @@ class AdminController extends Controller
 
         return $this->render('LBFAdminBundle:Admin:newsletterEmails.html.twig', array(
             'newsletterEmails' => $newsletterEmails
+            ));
+    }
+
+    public function elementsAction()
+    {
+        $elements = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Element')
+                            ->findAll();
+
+        return $this->render('LBFAdminBundle:Admin:elements.html.twig', array(
+            'elements' => $elements
+            ));
+    }
+
+    public function recipesAction()
+    {
+        $recipes = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Recipe')
+                            ->findAll();
+
+        return $this->render('LBFAdminBundle:Admin:recipes.html.twig', array(
+            'recipes' => $recipes
             ));
     }
 

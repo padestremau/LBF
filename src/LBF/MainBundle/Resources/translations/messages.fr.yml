@@ -13,6 +13,16 @@ header:
     special:
         buttonToTop: 			HAUT
 
+# Side buttons
+
+sideButtons:
+    titles:
+        home:                   Accueil
+        ourProducts:            Produits
+        ourRecipes:             Recettes
+        aboutUs:                A propos
+        footer:                 Bas de page
+
 # Main
 
 main:

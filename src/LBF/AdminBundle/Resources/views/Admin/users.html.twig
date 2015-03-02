@@ -1,0 +1,104 @@
+{# src/LBF/AdminBundle/Resources/Admin/users.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Utilisateurs
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="center">
+
+					  		<div class="row">
+					    		{% if users|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="left">
+				                              Prénom
+				                            </th>
+				                            <th class="center">
+				                              Nom
+				                            </th>
+				                            <th class="center">
+				                              Email
+				                            </th>
+				                            <th class="center">
+				                              Login
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for user in users %}
+				                            <tr>
+				                              <th class="center">
+				                                {{ user.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{% if user.firstName|length > 0 %}
+				                              		{{ user.firstName }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if user.lastName|length > 0 %}
+				                              		{{ user.lastName }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{{ user.email }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ user.lastLogin|date("H:i d/M/Y") }}
+				                              </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun utilisateur par ici...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

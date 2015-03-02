@@ -1,5 +1,5 @@
 <?php
-// src/LBF/UserBundle/Form/EditUserType.php
+// src/LBF/UserBundle/Form/EditCompanyType.php
 
 namespace LBF\UserBundle\Form;
 
@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EditUserType extends AbstractType
+class EditCompanyType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,21 +15,11 @@ class EditUserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $ages = array('' => 'user.details.age');
-        for ($i=1; $i < 100; $i++) { 
-            $ages[$i] = $i;
-        }
         $builder
             ->add('email', 'email', array('label' => 'Email'))
-            ->add('firstName', 'text', array('label' => 'First Name'))
-            ->add('lastName', 'text', array('label' => 'Last Name'))
-            ->add('age', 'choice', array('label' => 'Age',
-                                            'choices' => $ages))
+            ->add('companyName', 'text', array('label' => 'Company name'))
+            ->add('RUCnumber', 'text', array('label' => 'RUC number'))
             ->add('tel', 'text', array('label' => 'Tel'))
-            ->add('gender', 'choice', array('label' => 'Gender',
-                                            'choices' => array( '' => 'user.details.gender', 
-                                                                '1' => 'user.details.male', 
-                                                                '0' => 'user.details.female')))
             ->add('addressNumber', 'text', array('label' => 'N°'))
             ->add('addressStreet', 'text', array('label' => 'Street'))
             ->add('addressPostCode', 'text', array('label' => 'Post code'))
@@ -280,6 +270,6 @@ class EditUserType extends AbstractType
 
     public function getName()
     {
-        return 'UserBundle_EditUserType';
+        return 'UserBundle_EditCompanyType';
     }
 }

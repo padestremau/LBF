@@ -1,0 +1,47 @@
+<!-- Button on side -->
+
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<div class="
+	{% if route == "lbf_main_homepage" %}
+		hidden-sm hidden-xs
+	{% else %}
+		hidden-lg hidden-md hidden-sm hidden-xs
+	{% endif %}
+	"  id="side_buttons"> 
+	<a href="#mainSection" style="no_style_a">
+		<button class="btn-side" id="btn_side_1">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.home'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#ourProducts" style="no_style_a">
+		<button class="btn-side" id="btn_side_2">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.ourProducts'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#ourRecipes" style="no_style_a">
+		<button class="btn-side" id="btn_side_3">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.ourRecipes'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#aboutUs" style="no_style_a">
+		<button class="btn-side" id="btn_side_4">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.aboutUs'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#footerSection" style="no_style_a">
+		<button class="btn-side" id="btn_side_5">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.footer'|trans }}
+			</div>
+		</button>
+	</a>
+</div>

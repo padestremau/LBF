@@ -2,19 +2,25 @@
 user:
     titles:
         profile:            My profile
-        member:             Member
     actions:
-        edit:               Edit infos
-        change:             Change pic
-        changeRoute:        Switch
+        editInfo:           Edit infos:
+        changeAvatar:       Please select a new profile picture:
+        changeCompanyLogo:  Please select a new logo:
         back:               Back
         save:               Save
         cancel:             Cancel
         changePassword:     Change password
+        toChangePassword:   "To change password, click here:"
         home:               Home
         remove:             Remove
+        logout:             Logout
+        editYourInfos:      "To edit your information, fill-in the missing fields:"
     details: 
-        username :          Username:
+        profile:            Profile
+        infos:              Personal infos:
+        infosCompany:       Company infos:
+        username:           Username:
+        password:           Password:
         firstName:          First name:
         lastName:           Last name:
         gender:             Gender:
@@ -27,14 +33,28 @@ user:
         male:               Male
         female:             Female
         avatar:             Profile picture
-        changeAvatar:       Please select a new profile picture:
+        companyName:        Company name
+        RUCnumber:          RUC number
+        companyLogo:        Company logo
+        currentOrders:      Current orders
+        pastOrders:        Past orders
         empty:              (Empty)
     warning:
-        fileMustBe:         File must be:
-        under1Mo:           "< 1Mb"
-        square:             Square if possible ...
-        face:               Contain your face
         warning:            Warning!
+        noOrdersYet:        "Sorry, no orders to be confirmed. Please make sure you validated your order."
+        noPastOrders:       "Sorry, no past orders in progress."
+    status:
+        onHold:             On hold
+        confirmed:          Confirmed
+        completed:          Completed
+        refused:            Refused
+        comeAndPick:        "You may come and pick it up"
+    table:
+        orderNumber:        "Order N°"
+        elements:           Elements
+        createdAt:          Created
+        deliveryFor:        Delivery asked for
+        status:             Status
 
 # Register and forgotten password
 registerUser:
@@ -45,9 +65,15 @@ registerUser:
         password:           Password
         rePassword:         Re-Type your password
         email:              Email
+        company:            Company 
         companyName:        Company name
         RUC:                RUC number
         address:            Company address
+        addressNumber:      Number
+        addressStreet:      Street
+        addressCity:        City
+        addressPostCode:    Post code
+        addressCountry:     Country
         iAgreeToThe:        I agree to the
         TermsOfService:     Terms of Service
         and:                and

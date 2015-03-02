@@ -1,0 +1,15 @@
+# # src/LBF/UserBundle/Resources/config/validation.yml
+# LBF\UserBundle\Entity\User:
+#     properties:
+#         companyName:
+#             - NotBlank: { message: "userRegister.companyName.not_blank" }
+#         addressNumber:
+#             - NotBlank: { message: "userRegister.addressNumber.not_blank" }
+#         addressStreet:
+#             - NotBlank: { message: "userRegister.addressStreet.not_blank" }
+#         addressCity:
+#             - NotBlank: { message: "userRegister.addressCity.not_blank" }
+#         addressCountry:
+#             - NotBlank: { message: "userRegister.addressCountry.not_blank" }
+#         RUCnumber:
+#             - NotBlank: { message: "userRegister.RUCnumber.not_blank" }

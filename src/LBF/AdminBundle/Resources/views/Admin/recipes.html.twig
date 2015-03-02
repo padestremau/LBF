@@ -1,0 +1,192 @@
+{# src/LBF/AdminBundle/Resources/Admin/recipes.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Recettes
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="center">
+
+					  		<div class="row">
+					    		<div class="row">
+						    		<div class="float-right">
+						    			<a href="{{ path('lbf_admin_new_element') }}" class="btn btn-login">
+						    				Nouveau
+						    			</a>
+						    		</div>
+					    		</div>
+					    		{% if elements|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="center">
+				                              Image
+				                            </th>
+				                            <th class="center">
+				                              Nom
+				                            </th>
+				                            <th class="center">
+				                              Description
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Modifié le
+				                            </th>
+				                            <th class="center">
+				                              Category
+				                            </th>
+				                            <th class="center">
+				                              Prix
+				                            </th>
+				                            <th class="center">
+				                              Poids
+				                            </th>
+				                            <th class="center">
+				                              /
+				                            </th>
+				                            <th class="center">
+				                              Naturel ?
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for element in elements %}
+				                            <tr>
+				                            	<th class="center">
+					                              {{ element.id }}
+					                            </th>
+					                            <td class="center">
+					                              	{% if element.webPath|length > 0 %}
+														<div class="product_img_admin" style="background-image: url('{{ asset(element.webPath) }}'); background-size: cover; background-position: 50%;">
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
+													{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.name|length > 0 %}
+					                              		{{ element.name }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.description|length > 0 %}
+					                              		{{ element.description }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.createdAt|length > 0 %}
+					                              		{{ element.createdAt|date("H:i d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.updatedAt|length > 0 %}
+					                              		{{ element.updatedAt|date("H:i d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.category|length > 0 %}
+					                              		{{ element.category }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.price|length > 0 %}
+					                              		S/. {{ element.price }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.weight|length > 0 %}
+					                              		{{ element.weight }}g
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              /
+					                              	{% if element.unit|length > 0 %}
+					                              		{{ element.unit }}p
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.naturalProduct %}
+					                              		Oui
+					                              	{% else %}
+					                              		Non
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	<a href="">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun "élément"...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

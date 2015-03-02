@@ -1,40 +1,61 @@
 # Profile
 user:
     titles:
-        profile:            My profile
+        profile:            Mi perfil
         member:             Member
     actions:
-        edit:               Edit infos
-        change:             Change pic
-        changeRoute:        Switch
+        editInfo:           Editar informaciones:
+        changeAvatar:       Por favor selectione una nueva foto:
+        changeCompanyLogo:  Por favor selectione un nuevo logo:
         back:               Back
         save:               Save
         cancel:             Cancel
-        changePassword:     Change password
+        changePassword:     Cambiar 
+        toChangePassword:   "Para cambiar de contraseña, haga clic aquí:"
         home:               Home
         remove:             Remove
+        logout:             Desconectarse
+        editYourInfos:      "Para cambiar sus informaciones, por favor rellene las entradas siguientes:"
     details: 
-        username :          Username:
-        firstName:          First name:
-        lastName:           Last name:
-        gender:             Gender:
+        profile:            Perfil
+        infos:              Informaciones personal:
+        infosCompany:       Informaciones sobre la empresa:
+        username:           Username:
+        password:           Contraseña:
+        firstName:          Nombre:
+        lastName:           Apellido:
+        gender:             Sexo:
         email:              Email:
         tel:                Tel:
-        country:            Country:
-        age:                Age:
-        address:            Address:
+        country:            País:
+        age:                Edad:
+        address:            Dirección:
         team:               Team:
         male:               Male
         female:             Female
-        avatar:             Profile picture
-        changeAvatar:       Please select a new profile picture:
-        empty:              (Empty)
+        avatar:             Foto de prefil
+        companyName:        Nombre de la empresa
+        RUCnumber:          Numero RUC
+        companyLogo:        Logo de empresa
+        currentOrders:      Pedidos corrientes
+        pastOrders:         Pedidos pasados
+        empty:              (Vacío)
     warning:
-        fileMustBe:         File must be:
-        under1Mo:           "< 1Mb"
-        square:             Square if possible ...
-        face:               Contain your face
-        warning:            Warning!
+        warning:            Cuidado!
+        noOrdersYet:        "Disculpa, no hay ningun pedido a confirmar. Por favor, aseguredse de que el orden esta bien confirmado."
+        noPastOrders:       "Disculpa, no hay ningun pedido pasado."
+    status:
+        onHold:             Tramitando
+        confirmed:          Confirmado
+        completed:          Terminado
+        refused:            Rechazado
+        comeAndPick:        "Usted puede venir a recoger el pedido"
+    table:
+        orderNumber:        "Pedido N°"
+        elements:           Artículos
+        createdAt:          Creado
+        deliveryFor:        Fecha de entrega
+        status:             Estado
 
 # Register and forgotten password
 registerUser:
@@ -45,9 +66,15 @@ registerUser:
         password:           Contraseña
         rePassword:         Reescribir su contraseña
         email:              Email
+        company:            "Empresa"
         companyName:        "Nombre de la empresa"
         RUC:                Numero RUC
         address:            "Dirección de la empresa"
+        addressNumber:      Numero
+        addressStreet:      Calle
+        addressCity:        Cuidad
+        addressPostCode:    Codigo postal
+        addressCountry:     País
         iAgreeToThe:        Estoy de acuerdo con las 
         TermsOfService:     Condiciones de uso
         and:                y la

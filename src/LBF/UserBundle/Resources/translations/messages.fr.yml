@@ -4,17 +4,24 @@ user:
         profile:            Mon profil
         member:             Membre
     actions:
-        edit:               Modifier ses infos
-        change:             Changer l'avatar
-        changeRoute:        Echanger
+        editInfo:           Modifier mes infos :
+        changeAvatar:       Sélectionner une nouvelle photo :
+        changeCompanyLogo:  Sélectionner un nouveau logo :
         back:               Retour
         save:               Enregistrer
         cancel:             Annuler
         changePassword:     Changer de mot de passe
+        toChangePassword:   "Pour changer de mot de passe, veuillez clickez ici :"
         home:               Accueil
         remove:             Retirer
+        logout:             Déconnexion
+        editYourInfos:      "Pour modifier vos informations personnelles, veuillez replir les champs suivants :"
     details: 
-        username :          Pseudo :
+        profile:            Profil
+        infos:              Infos personnelles :
+        infosCompany:       Infos sur l'entreprise:
+        username:           Pseudo :
+        password:           Mot de passe :
         firstName:          Prénom :
         lastName:           Nom :
         gender:             Sexe :
@@ -27,14 +34,28 @@ user:
         male:               Homme
         female:             Femme
         avatar:             Mon avatar
-        changeAvatar:       Sélectionner une nouvelle photo :
+        companyName:        Nom de l'entreprise
+        RUCnumber:          Numéro RUC
+        companyLogo:        Logo d'entreprise
+        currentOrders:      Commandes en cours
+        pastOrders:        Commandes terminées
         empty:              (Vide)
     warning:
-        fileMustBe:         Le fichier doit :
-        under1Mo:           "< 1Mo"
-        square:             Carré si possible ...
-        face:               Contenir ton visage
         warning:            Attention !
+        noOrdersYet:        "Désolé, il n'y a aucun ordre à confirmer. Assurez-vous que vous avez bien validé votre commande."
+        noPastOrders:       "Désolé, aucune commande passée pour l'instants."
+    status:
+        onHold:             En attente
+        confirmed:          Confirmée
+        completed:          Terminée
+        refused:            Refusée
+        comeAndPick:        "Vous pouvez à présent passer la récupérer au magasin"
+    table:
+        orderNumber:        "Commande N°"
+        elements:           Contenu
+        createdAt:          Créée
+        deliveryFor:        Demandée pour le
+        status:             Statut
 
 # Register and forgotten password
 registerUser:
@@ -45,9 +66,15 @@ registerUser:
         password:           Mot de passe
         rePassword:         Saisissez à nouveau votre mot de passe
         email:              Email
-        companyName:        "Nom de l'enreprise"
+        company:            "Entreprise"
+        companyName:        "Nom de l'entreprise"
         RUC:                Numéro RUC
         address:            "Adresse de l'entreprise"
+        addressNumber:      Numéro
+        addressStreet:      Rue
+        addressCity:        Ville
+        addressPostCode:    Code postal
+        addressCountry:     Pays
         iAgreeToThe:        J'accepte les 
         TermsOfService:     "Conditions d'utilisation"
         and:                et les

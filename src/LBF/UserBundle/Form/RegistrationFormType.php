@@ -26,7 +26,7 @@ class RegistrationFormType extends BaseType
             ->add('addressPostCode', 'text', array('label' => 'Post code'))
             ->add('addressCity', 'text', array('label' => 'City'))
             ->add('addressCountry', 'choice', array('label' => 'Country',
-                                            'choices' => array( '' => 'Country',
+                                                    'choices' => array( '' => 'Country',
                                                                 'AF' => "Afghanistan",
                                                                 'AL' => "Albania",
                                                                 'DZ' => "Algeria",
@@ -262,7 +262,7 @@ class RegistrationFormType extends BaseType
                                                                 'YE' => "Yemen",
                                                                 'ZM' => "Zambia",
                                                                 'ZW' => "Zimbabwe"),
-                                                            'data' => 'PE'))
+                                                    'data' => 'PE'))
         ;
     }
     

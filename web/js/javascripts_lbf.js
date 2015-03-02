@@ -27,7 +27,7 @@
 
   // To reload page on browser size change !!
   $(window).resize(function() {
-    // window.location.reload();
+    window.location.reload();
   });
 
   $(function() {
@@ -62,6 +62,7 @@
   // Anchors
   var myAnchors = ['#mainSection', '#ourProducts', '#ourRecipes', '#aboutUs', '#footerSection'];
   var myAnchorsLinksId = ['#btn_section0', '#btn_section2', '#btn_section3', '#btn_section1', '#btn_section4'];
+  var side_buttons = ['btn_side_1', 'btn_side_2', 'btn_side_3', 'btn_side_4', 'btn_side_5'];
   var currentAnchor = 0;
   if (document.location.hash) {
     var the_hash = document.location.hash;
@@ -74,6 +75,7 @@
     }
   }
   changeActiveAnchor(currentAnchor);
+  changeSideButton(currentAnchor);
   var currentPosition = $(window).scrollTop();
 
 
@@ -127,6 +129,7 @@
     // }
     // Change Anchor active
     changeActiveAnchor(currentAnchor);
+    changeSideButton(currentAnchor);
   });
 
   /**
@@ -188,6 +191,7 @@
     }
 
     changeActiveAnchor(currentAnchor);
+    changeSideButton(currentAnchor);
 
   });
 
@@ -213,9 +217,9 @@
             var regex = new RegExp("(.*)\#(.*)","gi");
 
             // Check no bootstrap tabs
-            if (the_hash.indexOf('tab') > -1) {
-              return false;
-            }
+            // if (the_hash.indexOf('tab') > -1) {
+            //   return false;
+            // }
 
             if ( the_hash.match("\#") ) {  
               the_hash = the_hash.replace(regex,"$2");
@@ -244,6 +248,7 @@
                 }
                 currentPosition = $(window).scrollTop();
                 changeActiveAnchor(currentAnchor);
+                changeSideButton(currentAnchor);
 
                 return false;  
               }  
@@ -304,6 +309,29 @@
     else {
       document.getElementById("btn_section1").className = "btn btn-log";
       document.getElementById("btn_section2").className = "btn btn-log";
+    }
+  }
+
+  /**
+   * Side buttons
+   */
+  function changeSideButton(current) {
+    for (var i = 0; i < side_buttons.length; i++) {
+      if (i == current) {
+        document.getElementById(side_buttons[i]).className = "btn-side btn-side-active";
+      }
+      else {
+        document.getElementById(side_buttons[i]).className = "btn-side";
+      }
+    }
+    // In footer
+    if (current == (side_buttons.length - 1)) {
+      for (var i = 0; i < side_buttons.length; i++) {
+        document.getElementById(side_buttons[i]).className += " btn-side-footer";
+        if (i == current) {
+          document.getElementById(side_buttons[i]).className += " btn-side-footer-active";
+        }
+      }
     }
   }
 

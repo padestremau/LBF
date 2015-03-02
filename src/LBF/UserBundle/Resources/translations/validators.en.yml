@@ -1,0 +1,16 @@
+# FOS user customized
+
+userRegister:
+    companyName:   
+        not_blank:          Please fill in your company name
+    addressNumber: 
+        not_blank:          Please fill in your address number
+    addressStreet: 
+        not_blank:          Please fill in your address street
+    addressCity:   
+        not_blank:          Please fill in your address city
+    addressCountry: 
+        not_blank:          Please fill in your address country
+    RUCnumber:     
+        already_used:   "Sorry, this RUCnumber is already used."
+        not_blank:          Please fill in your company RUC number

@@ -1,0 +1,159 @@
+{# src/LBF/AdminBundle/Resources/Admin/currentOrders.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Commandes courantes
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="center">
+
+					  		<div class="row">
+								{% if currentOrders|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Ordre n°
+				                            </th>
+				                            <th class="left">
+				                              Eléments
+				                            </th>
+				                            <th class="center">
+				                              Client
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Livraison le
+				                            </th>
+				                            <th class="center">
+				                              Statut
+				                            </th>
+				                            <th class="center">
+				                            	Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for single_order in currentOrders %}
+				                            <tr>
+				                              <th class="center">
+				                                {{ single_order.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{% if single_order.elements|length > 0 %}
+				                              		<ul class="list_no_style_li item_list">
+				                              			{% for single_element in single_order.elements %}
+				                              				{% set item = single_element['item'] %}
+			                            					{% set qty = single_element['qty'] %}
+				                              				<li>
+				                              					{{ item.name }} (x{{ qty }})
+				                              				</li>
+				                              			{% endfor %}
+				                              		</ul>
+				                              	{% else %}
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.user.firstName|length > 0 and single_order.user.lastName|length > 0 %}
+				                              		{{ single_order.user.firstName }} {{ single_order.user.lastName }}
+				                              	{% else %}
+				                              		{{ single_order.user.email }}
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{{ single_order.createdAt|date("H:i d M Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ single_order.deliveryAt|date("H:i d M Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.status == 'onHold' %}
+				                              		En attente
+					                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% elseif single_order.status == 'confirm' %}
+				                              		Confirmé
+				                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% elseif single_order.status == 'refused' %}
+				                              		Refusé
+				                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.status == 'confirm' %}
+					                              	<a href="javascript:areYouSureComplete('{{ path('lbf_admin_complete', {'orderId':single_order.id}) }}')">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-ok" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+				                              	{% endif %}
+					                              	<a href="{{ path('lbf_admin_answer', {'orderId':single_order.id}) }}">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-pencil" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+					                              	<a href="javascript:areYouSureDelete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+					                              	<script type="text/javascript">
+					                              		function areYouSureDelete(path) {
+					                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
+					                              				window.location = path;
+					                              			}
+					                              		}
+					                              		function areYouSureComplete(path) {
+					                              			if (confirm('Le client est-il effectivement passer récupérer sa commande ?')) {
+					                              				window.location = path;
+					                              			}
+					                              		}
+					                              	</script>
+				                              </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center row">
+										Aucun ordre pour l'instant.
+									</div>
+								{% endif %}
+					    	</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

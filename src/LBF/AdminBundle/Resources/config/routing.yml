@@ -1,6 +1,12 @@
+# Homepage
 lbf_admin_homepage:
     path:     /
     defaults: { _controller: LBFAdminBundle:Admin:index }
+
+# Answer to an order
+lbf_admin_currentOrders:
+    path:     /currentOrders
+    defaults: { _controller: LBFAdminBundle:Admin:currentOrders }
 
 lbf_admin_answer:
     path:     /answer/{orderId}
@@ -20,13 +26,39 @@ lbf_admin_complete:
     requirements:
         orderId: \d+
 
+lbf_admin_pastOrders:
+    path:     /pastOrders
+    defaults: { _controller: LBFAdminBundle:Admin:pastOrders }
+
+
+# Check about users
+lbf_admin_users:
+    path:     /users
+    defaults: { _controller: LBFAdminBundle:Admin:users }
+
 lbf_admin_newsletterEmails:
     path:     /newsletterEmails
+    defaults: { _controller: LBFAdminBundle:Admin:newsletter }
+
+lbf_admin_newsletterEmails:
+    path:     /newsletterEmails/emails
     defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }
+
+
+# Change elements
+lbf_admin_elements:
+    path:     /elements
+    defaults: { _controller: LBFAdminBundle:Admin:elements }
 
 lbf_admin_new_element:
     path:     /elements/new
     defaults: { _controller: LBFAdminBundle:Admin:newElement }
+
+
+# Change recipes
+lbf_admin_recipes:
+    path:     /recipes
+    defaults: { _controller: LBFAdminBundle:Admin:recipes }
 
 lbf_admin_new_recipe:
     path:     /recipes/new

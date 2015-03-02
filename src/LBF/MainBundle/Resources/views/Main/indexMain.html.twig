@@ -803,19 +803,42 @@
 																					document.getElementById('recipeModalContent_Origin').innerHTML = origin;
 																					document.getElementById('recipeModalContent_UpdatedAt').innerHTML = updatedAt;
 																					document.getElementById('recipeModalContent_PhotoRecipe').style.backgroundImage = 'url('+photo_webPath+')';
-																					var ingredients_j = JSON.parse(ingredients);
-																					var ingredients_str = '<ul>';
+																					var ingredients_j = JSON.parse(ingredients);	
+																					var ingredients_str = '<ul class="margin0">';
 																					for (var i = 0; i < ingredients_j.length; i++) {
-																						ingredients_str = ingredients_str+'<li>'+ingredients_j[i]+'</li>';
+																						if (typeof ingredients_j[i] == 'string') {
+																							ingredients_str = ingredients_str+'<li>'+ingredients_j[i]+'</li>';
+																						}
+																						else {
+																							var ingredients_sub = ingredients_j[i];
+																							ingredients_str = ingredients_str+'<li><strong>'+ingredients_sub['title']+'</strong></li>';
+																							ingredients_str = ingredients_str+'<ul class="margin0">';
+																							for (var k = 0; k < Object.keys(ingredients_sub).length; k++) {
+																								ingredients_str = ingredients_str+'<li>'+ingredients_sub[k]+'</li>';
+																							};
+																							ingredients_str = ingredients_str+'</ul><br/>';
+																						}
 																					};
-																					var ingredients_str = ingredients_str+'</ul>';
+																					ingredients_str = ingredients_str+'</ul>';
 																					document.getElementById('recipeModalContent_Ingredients').innerHTML = ingredients_str;
-																					var preparation_j = JSON.parse(preparation);
-																					var preparation_str = '<ul>';
+
+																					var preparation_j = JSON.parse(ingredients);	
+																					var preparation_str = '<ul class="margin0">';
 																					for (var i = 0; i < preparation_j.length; i++) {
-																						preparation_str = preparation_str+'<li>'+preparation_j[i]+'</li>';
+																						if (typeof preparation_j[i] == 'string') {
+																							preparation_str = preparation_str+'<li>'+preparation_j[i]+'</li>';
+																						}
+																						else {
+																							var preparation_sub = preparation_j[i];
+																							preparation_str = preparation_str+'<li><strong>'+preparation_sub['title']+'</strong></li>';
+																							preparation_str = preparation_str+'<ul class="margin0">';
+																							for (var k = 0; k < Object.keys(preparation_sub).length; k++) {
+																								preparation_str = preparation_str+'<li>'+preparation_sub[k]+'</li>';
+																							};
+																							preparation_str = preparation_str+'</ul><br/>';
+																						}
 																					};
-																					var preparation_str = preparation_str+'</ul>';
+																					preparation_str = preparation_str+'</ul>';
 																					document.getElementById('recipeModalContent_Preparation').innerHTML = preparation_str;
 
 																					$('#recipeModal').modal('toggle');

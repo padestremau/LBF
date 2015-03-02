@@ -2,14 +2,6 @@ lbf_user_homepage:
     path:     /
     defaults: { _controller: LBFUserBundle:User:index }
 
-lbf_user_edit:
-    path:     /edit
-    defaults: { _controller: LBFUserBundle:User:editUser }
-
-lbf_user_editAvatar:
-    path:     /editAvatar
-    defaults: { _controller: LBFUserBundle:User:editAvatar }
-
 
 # gbe_presentation_photos_routes:
 #     pattern:  /photos/{routesId}

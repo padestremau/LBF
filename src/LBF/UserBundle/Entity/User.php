@@ -17,6 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="LBF\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(fields="RUCnumber", message="userRegister.RUCnumber.already_used")
  */
 class User extends BaseUser
 {
@@ -32,7 +33,6 @@ class User extends BaseUser
     /**
      * @var boolean
      *
-     * @Assert\NotBlank(message="Please select your type.", groups={"Registration", "Profile"})
      * @ORM\Column(name="type", type="boolean")
      */
     protected $type;
@@ -54,7 +54,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="userRegister.companyName.not_blank", groups={"Registration", "Profile"})
      * @ORM\Column(name="companyName", type="string", length=255, nullable=true)
      */
     protected $companyName;
@@ -76,6 +76,7 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="userRegister.addressNumber.not_blank", groups={"Registration", "Profile"})
      * @ORM\Column(name="address_number", type="string", length=255, nullable=true)
      */
     protected $addressNumber;
@@ -83,6 +84,7 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="userRegister.addressStreet.not_blank", groups={"Registration", "Profile"})
      * @ORM\Column(name="address_street", type="string", length=255, nullable=true)
      */
     protected $addressStreet;
@@ -97,6 +99,7 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="userRegister.addressCity.not_blank", groups={"Registration", "Profile"})
      * @ORM\Column(name="address_city", type="string", length=255, nullable=true)
      */
     protected $addressCity;
@@ -104,6 +107,7 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="userRegister.addressCountry.not_blank", groups={"Registration", "Profile"})
      * @ORM\Column(name="address_country", type="string", length=255, nullable=true)
      */
     protected $addressCountry;
@@ -111,7 +115,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Please enter your RUC number.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="userRegister.RUCnumber.not_blank", groups={"Registration", "Profile"})
      * @ORM\Column(name="RUCnumber", type="string", length=11, nullable=true)
      */
     protected $RUCnumber;
@@ -148,8 +152,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $username = $this->getEmail();
-        $usernameCanonical = $this->getEmailCanonical();
     }
 
 
@@ -164,7 +166,17 @@ class User extends BaseUser
         $this->username = $this->email;
         $this->usernameCanonical = $this->emailCanonical;
 
-        $this->type  =   true;
+        $this->setLastLogin(new \Datetime);
+
+        if ($this->getType() == 1) {
+            $this->setCompanyName('');
+            $this->setAddressNumber('');
+            $this->setAddressStreet('');
+            $this->setAddressCity('');
+            $this->setAddressPostCode('');
+            $this->setAddressCountry('');
+            $this->setRUCnumber('');
+        }
     }
 
 

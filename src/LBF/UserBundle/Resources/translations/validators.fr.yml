@@ -1,0 +1,16 @@
+# FOS user customized
+
+userRegister:
+    companyName:   
+        not_blank:          "Entrez votre nom d'entreprise s'il vous plaît"
+    addressNumber: 
+        not_blank:          "Entrez votre numéro s'il vous plaît"
+    addressStreet: 
+        not_blank:          "Entrez votre rue s'il vous plaît"
+    addressCity:   
+        not_blank:          "Entrez votre ville s'il vous plaît"
+    addressCountry: 
+        not_blank:          "Choisissez votre pays s'il vous plaît"
+    RUCnumber:     
+        already_used:   "Désolé, ce numéro RUC est déjà utilisé."
+        not_blank:          "Entrez votre numéro RUC d'entreprise"
