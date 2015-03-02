@@ -397,8 +397,7 @@ class ElementFixtures implements FixtureInterface
         $Element->setQuantity($quantities_Element[$i]);
         $Element->setWeight($weights_Element[$i]);
         $Element->setType($types_Element[$i]);
-        $Element->setFlavour($flavours_Element[$i]);
-        $Element->setBiscuit($biscuits_Element[$i]);
+        $Element->setFamily($families_Element[$i]);
         $Element->setCategory($categories_Element[$i]);
         $Element->setNaturalProduct($natural_Element[$i]);
         $Element->setUnit($units_Element[$i]);
