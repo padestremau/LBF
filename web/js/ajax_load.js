@@ -109,7 +109,3 @@ function loadContentAdmin(path_chosen)
 
 	return false;
 }
-
-
-
-section_admin
