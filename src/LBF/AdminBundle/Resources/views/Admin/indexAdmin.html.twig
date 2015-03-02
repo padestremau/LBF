@@ -16,8 +16,7 @@
 
 		<div id="fullpage">
 			<div class="section" id="section9">
-				<br/><br/>
-				
+				<br/>
 				<div class="row">
 					<div class="col-md-4"></div>
 
@@ -29,397 +28,780 @@
 
 					<div class="col-md-4"></div>
 				</div>
-				<hr/>
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
-		        		<div role="tabpanel" id="user_panel_parent">
 
-							  <!-- Nav tabs -->
-							  <div class="col-md-3 col-xs-3 ">  <!-- border_white_right -->
-								  <ul class="nav_tabs_user list_no_style_li" role="tablist">
-								    <li role="user_tabs" class="active">
-								    	<a href="#current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
-								    		Current orders ({{ currentOrders|length }})
-								    		<div class="float-right inner_arrow">
-												<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
-											</div>
-								    	</a>
-								    </li>
-								    <li role="user_tabs" class="">
-								    	<a href="#past" aria-controls="past" role="tab" data-toggle="tab" class="btn btn-choice">
-								    		Past orders ({{ pastOrders|length }})
-								    		<div class="float-right inner_arrow">
-												<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
-											</div>
-								    	</a>
-								    </li>
-								    <br/>
-								    <li role="user_tabs" class="">
-								    	<a href="#users" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
-								    		Users ({{ users|length }})
-								    		<div class="float-right inner_arrow">
-												<img src="{{ asset('img/system/defaults/users.png') }}" alt="" class="btn_right_arrow"/>
-											</div>
-								    	</a>
-								    </li>
-								    <li role="user_tabs" class="">
-								    	<a href="#emails" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
-								    		Newsletter emails ({{ newsletterEmails|length }})
-								    		<div class="float-right inner_arrow">
-												<img src="{{ asset('img/system/defaults/emails.png') }}" alt="" class="btn_right_arrow"/>
-											</div>
-								    	</a>
-								    </li>
-								    <br/>
-								    <li role="user_tabs" class="">
-								    	<a href="{{ path('fos_user_security_logout') }}" class="btn btn-choice logout-btn">
-								    		Logout
-								    		<div class="float-right inner_arrow">
-												<img src="{{ asset('img/system/defaults/logout.png') }}" alt="" class="btn_right_arrow"/>
-											</div>
-								    	</a>
-								    </li>
-								  </ul>
-							  </div>
-
-						  	<!-- Tab panes -->
-						  	<div class="col-md-9 col-xs-9 tab-content" id="user_panel">
-						  		
-						    	<div role="tabpanel" class="tab-pane nav active" id="current">
-									{% if currentOrders|length > 0 %}
-										<div class="table-responsive">
-					                      <table class="table">
-					                        <thead>
-					                          <tr>
-					                            <th class="center">
-					                              Ordre n°
-					                            </th>
-					                            <th class="left">
-					                              Eléments
-					                            </th>
-					                            <th class="center">
-					                              Client
-					                            </th>
-					                            <th class="center">
-					                              Créé le
-					                            </th>
-					                            <th class="center">
-					                              Livraison le
-					                            </th>
-					                            <th class="center">
-					                              Statut
-					                            </th>
-					                            <th class="center">
-					                            	Action
-					                            </th>
-					                          </tr>
-					                        </thead>
-					                        <tbody>
-					                          {% for single_order in currentOrders %}
-					                            <tr>
-					                              <th class="center">
-					                                {{ single_order.id }}
-					                              </th>
-					                              <td class="left">
-					                              	{% if single_order.elements|length > 0 %}
-					                              		<ul class="list_no_style_li item_list">
-					                              			{% for single_element in single_order.elements %}
-					                              				{% set item = single_element['item'] %}
-				                            					{% set qty = single_element['qty'] %}
-					                              				<li>
-					                              					{{ item.name }} (x{{ qty }})
-					                              				</li>
-					                              			{% endfor %}
-					                              		</ul>
-					                              	{% else %}
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{% if single_order.user.firstName|length > 0 and single_order.user.lastName|length > 0 %}
-					                              		{{ single_order.user.firstName }} {{ single_order.user.lastName }}
-					                              	{% else %}
-					                              		{{ single_order.user.email }}
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{{ single_order.createdAt|date("H:i d M Y") }}
-					                              </td>
-					                              <td class="center">
-					                              	{{ single_order.deliveryAt|date("H:i d M Y") }}
-					                              </td>
-					                              <td class="center">
-					                              	{% if single_order.status == 'onHold' %}
-					                              		En attente
-						                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
-					                              	{% elseif single_order.status == 'confirm' %}
-					                              		Confirmé
-					                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
-					                              	{% elseif single_order.status == 'refused' %}
-					                              		Refusé
-					                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{% if single_order.status == 'confirm' %}
-						                              	<a href="javascript:areYouSureComplete('{{ path('lbf_admin_complete', {'orderId':single_order.id}) }}')">
-						                              		<button class="btn btn-admin">
-							                              		<span class="glyphicon black glyphicon-ok" aria-hidden="true"></span>
-						                              		</button>
-						                              	</a>
-					                              	{% endif %}
-						                              	<a href="{{ path('lbf_admin_answer', {'orderId':single_order.id}) }}">
-						                              		<button class="btn btn-admin">
-							                              		<span class="glyphicon black glyphicon-pencil" aria-hidden="true"></span>
-						                              		</button>
-						                              	</a>
-						                              	<a href="javascript:areYouSureDelete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
-						                              		<button class="btn btn-admin">
-							                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
-						                              		</button>
-						                              	</a>
-						                              	<script type="text/javascript">
-						                              		function areYouSureDelete(path) {
-						                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
-						                              				window.location = path;
-						                              			}
-						                              		}
-						                              		function areYouSureComplete(path) {
-						                              			if (confirm('Le client est-il effectivement passer récupérer sa commande ?')) {
-						                              				window.location = path;
-						                              			}
-						                              		}
-						                              	</script>
-					                              </td>
-					                            </tr>
-					                          {% endfor %}
-					                        </tbody>
-					                      </table>
-					                    </div>
-									{% else %}
-										<div class="center col-md-9">
-											Aucun ordre pour l'instant.
+						<!-- Nav tabs -->
+						<div class="row"> 
+							<ul class="nav-justified nav_tabs_admin">
+							    <li class="active">
+							    	<a data-target="#current" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+							    		Current orders ({{ currentOrders|length }})
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
 										</div>
-										<div class="col-md-3"></div>
-									{% endif %}
-						    	</div>
-						    	<div role="tabpanel" class="tab-pane" id="past">
-						    		{% if pastOrders|length > 0 %}
-										<div class="table-responsive">
-					                      <table class="table">
-					                        <thead>
-					                          <tr>
-					                            <th class="center">
-					                              Ordre n°
-					                            </th>
-					                            <th class="left">
-					                              Eléments
-					                            </th>
-					                            <th class="center">
-					                            	Client
-					                            </th>
-					                            <th class="center">
-					                              Créé le
-					                            </th>
-					                            <th class="center">
-					                              Livraison le
-					                            </th>
-					                            <th class="center">
-					                              Statut
-					                            </th>
-					                            <th class="center">
-					                              Action
-					                            </th>
-					                          </tr>
-					                        </thead>
-					                        <tbody>
-					                          {% for single_order in pastOrders %}
-					                            <tr>
-					                              <th class="center">
-					                                {{ single_order.id }}
-					                              </th>
-					                              <td class="left">
-					                              	{% if single_order.elements|length > 0 %}
-					                              		<ul class="list_no_style_li">
-					                              			{% for single_element in single_order.elements %}
-					                              				{% set item = single_element['item'] %}
-				                            					{% set qty = single_element['qty'] %}
-					                              				<li>
-					                              					{{ item.name }} (x{{ qty }})
-					                              				</li>
-					                              			{% endfor %}
-					                              		</ul>
-					                              	{% else %}
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{% if single_order.user.firstName|length > 0 and single_order.user.lastName|length > 0 %}
-					                              		{{ single_order.user.firstName }} {{ single_order.user.lastName }}
-					                              	{% else %}
-					                              		{{ single_order.user.email }}
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{{ single_order.createdAt|date("H:i d/M/Y") }}
-					                              </td>
-					                              <td class="center">
-					                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
-					                              </td>
-					                              <td class="center">
-					                              	Livré
-					                              </td>
-					                              <td class="center">
-					                              		<a href="javascript:areYouSureDeleteComplete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
-						                              		<button class="btn btn-admin">
-							                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
-						                              		</button>
-						                              	</a>
-						                              	<script type="text/javascript">
-						                              		function areYouSureDeleteComplete(path) {
-						                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
-						                              				window.location = path;
-						                              			}
-						                              		}
-						                              	</script>
-					                              </td>
-					                            </tr>
-					                          {% endfor %}
-					                        </tbody>
-					                      </table>
-					                    </div>
-									{% else %}
-										<div class="center col-md-9">
-											Aucun ordre pour l'instant.
+							    	</a>
+							    </li>
+							    <li class="">
+							    	<a data-target="#past" aria-controls="past" role="tab" data-toggle="tab" class="btn btn-choice">
+							    		Past orders ({{ pastOrders|length }})
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
 										</div>
-										<div class="col-md-3"></div>
-									{% endif %}
-						    	</div>
-
-						    	<div role="tabpanel" class="tab-pane" id="users">
-						    		{% if users|length > 0 %}
-										<div class="table-responsive">
-					                      <table class="table">
-					                        <thead>
-					                          <tr>
-					                            <th class="center">
-					                              Id
-					                            </th>
-					                            <th class="left">
-					                              Prénom
-					                            </th>
-					                            <th class="center">
-					                              Nom
-					                            </th>
-					                            <th class="center">
-					                              Email
-					                            </th>
-					                            <th class="center">
-					                              Login
-					                            </th>
-					                          </tr>
-					                        </thead>
-					                        <tbody>
-					                          {% for user in users %}
-					                            <tr>
-					                              <th class="center">
-					                                {{ user.id }}
-					                              </th>
-					                              <td class="left">
-					                              	{% if user.firstName|length > 0 %}
-					                              		{{ user.firstName }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{% if user.lastName|length > 0 %}
-					                              		{{ user.lastName }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
-					                              </td>
-					                              <td class="center">
-					                              	{{ user.email }}
-					                              </td>
-					                              <td class="center">
-					                              	{{ user.lastLogin|date("H:i d/M/Y") }}
-					                              </td>
-					                            </tr>
-					                          {% endfor %}
-					                        </tbody>
-					                      </table>
-					                    </div>
-									{% else %}
-										<div class="center col-md-9">
-											Sorry, no users.
+							    	</a>
+							    </li>
+							    <li class="">
+							    	<a data-target="#users" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+							    		Users ({{ users|length }})
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/users.png') }}" alt="" class="btn_right_arrow"/>
 										</div>
-										<div class="col-md-3"></div>
-									{% endif %}
-						    	</div>
-						    	<div role="tabpanel" class="tab-pane" id="emails">
-						    		<div class="row">
-							    		<div class="float-right">
-							    			<a href="{{ path('lbf_admin_newsletterEmails') }}" class="btn btn-log">
-							    				Ecire une newsletter
-							    			</a>
-							    		</div>
-						    		</div>
-						    		{% if newsletterEmails|length > 0 %}
-										<div class="table-responsive">
-					                      <table class="table">
-					                        <thead>
-					                          <tr>
-					                            <th class="center">
-					                              Id
-					                            </th>
-					                            <th class="left">
-					                              Email
-					                            </th>
-					                            <th class="center">
-					                              Inscrit le
-					                            </th>
-					                          </tr>
-					                        </thead>
-					                        <tbody>
-					                          {% for email in newsletterEmails %}
-					                            <tr>
-					                              <th class="center">
-					                                {{ email.id }}
-					                              </th>
-					                              <td class="left">
-					                              	{{ email.email }}
-					                              </td>
-					                              <td class="center">
-					                              	{{ email.createdAt|date("H:i d/M/Y") }}
-					                              </td>
-					                            </tr>
-					                          {% endfor %}
-					                        </tbody>
-					                      </table>
-					                    </div>
-									{% else %}
-										<div class="center col-md-9">
-											Sorry, no Emails.
+							    	</a>
+							    </li>
+							    <li class="">
+							    	<a data-target="#emails" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+							    		Newsletter emails ({{ newsletterEmails|length }})
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/emails.png') }}" alt="" class="btn_right_arrow"/>
 										</div>
-										<div class="col-md-3"></div>
-									{% endif %}
-						    	</div>
-						    	
-						  	</div>
-
+							    	</a>
+							    </li>
+							    <li class="">
+							    	<a data-target="#elements" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+							    		Elements ({{ elements|length }})
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/elements.png') }}" alt="" class="btn_right_arrow"/>
+										</div>
+							    	</a>
+							    </li>
+							    <li class="">
+							    	<a data-target="#recipes" aria-controls="current" role="tab" data-toggle="tab" class="btn btn-choice">
+							    		Recipes ({{ recipes|length }})
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/recipes.png') }}" alt="" class="btn_right_arrow"/>
+										</div>
+							    	</a>
+							    </li>
+							    <li class="logout-btn">
+							    	<a href="{{ path('fos_user_security_logout') }}" class="btn btn-choice">
+							    		Logout
+							    		<div class="float-right inner_arrow">
+											<img src="{{ asset('img/system/defaults/logout.png') }}" alt="" class="btn_right_arrow"/>
+										</div>
+							    	</a>
+							    </li>
+							</ul>
 						</div>
+
+						<hr/>
+
+					  	<!-- Tab panes -->
+					  	<div class="row tab-content">
+					  		
+					    	<div role="tabpanel" class="tab-pane fade nav active in" id="current">
+								{% if currentOrders|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Ordre n°
+				                            </th>
+				                            <th class="left">
+				                              Eléments
+				                            </th>
+				                            <th class="center">
+				                              Client
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Livraison le
+				                            </th>
+				                            <th class="center">
+				                              Statut
+				                            </th>
+				                            <th class="center">
+				                            	Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for single_order in currentOrders %}
+				                            <tr>
+				                              <th class="center">
+				                                {{ single_order.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{% if single_order.elements|length > 0 %}
+				                              		<ul class="list_no_style_li item_list">
+				                              			{% for single_element in single_order.elements %}
+				                              				{% set item = single_element['item'] %}
+			                            					{% set qty = single_element['qty'] %}
+				                              				<li>
+				                              					{{ item.name }} (x{{ qty }})
+				                              				</li>
+				                              			{% endfor %}
+				                              		</ul>
+				                              	{% else %}
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.user.firstName|length > 0 and single_order.user.lastName|length > 0 %}
+				                              		{{ single_order.user.firstName }} {{ single_order.user.lastName }}
+				                              	{% else %}
+				                              		{{ single_order.user.email }}
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{{ single_order.createdAt|date("H:i d M Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ single_order.deliveryAt|date("H:i d M Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.status == 'onHold' %}
+				                              		En attente
+					                              	<img src="{{ asset('img/system/orders/onHold.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% elseif single_order.status == 'confirm' %}
+				                              		Confirmé
+				                              		<img src="{{ asset('img/system/orders/confirmed.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% elseif single_order.status == 'refused' %}
+				                              		Refusé
+				                              		<img src="{{ asset('img/system/orders/refused.png') }}" alt="" class="btn_right_arrow"/>
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.status == 'confirm' %}
+					                              	<a href="javascript:areYouSureComplete('{{ path('lbf_admin_complete', {'orderId':single_order.id}) }}')">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-ok" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+				                              	{% endif %}
+					                              	<a href="{{ path('lbf_admin_answer', {'orderId':single_order.id}) }}">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-pencil" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+					                              	<a href="javascript:areYouSureDelete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+					                              	<script type="text/javascript">
+					                              		function areYouSureDelete(path) {
+					                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
+					                              				window.location = path;
+					                              			}
+					                              		}
+					                              		function areYouSureComplete(path) {
+					                              			if (confirm('Le client est-il effectivement passer récupérer sa commande ?')) {
+					                              				window.location = path;
+					                              			}
+					                              		}
+					                              	</script>
+				                              </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Aucun ordre pour l'instant.
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+					    	<div role="tabpanel" class="tab-pane fade" id="past">
+					    		{% if pastOrders|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Ordre n°
+				                            </th>
+				                            <th class="left">
+				                              Eléments
+				                            </th>
+				                            <th class="center">
+				                            	Client
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Livraison le
+				                            </th>
+				                            <th class="center">
+				                              Statut
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for single_order in pastOrders %}
+				                            <tr>
+				                              <th class="center">
+				                                {{ single_order.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{% if single_order.elements|length > 0 %}
+				                              		<ul class="list_no_style_li">
+				                              			{% for single_element in single_order.elements %}
+				                              				{% set item = single_element['item'] %}
+			                            					{% set qty = single_element['qty'] %}
+				                              				<li>
+				                              					{{ item.name }} (x{{ qty }})
+				                              				</li>
+				                              			{% endfor %}
+				                              		</ul>
+				                              	{% else %}
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if single_order.user.firstName|length > 0 and single_order.user.lastName|length > 0 %}
+				                              		{{ single_order.user.firstName }} {{ single_order.user.lastName }}
+				                              	{% else %}
+				                              		{{ single_order.user.email }}
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{{ single_order.createdAt|date("H:i d/M/Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ single_order.deliveryAt|date("H:i d/M/Y") }}
+				                              </td>
+				                              <td class="center">
+				                              	Livré
+				                              </td>
+				                              <td class="center">
+				                              		<a href="javascript:areYouSureDeleteComplete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
+					                              		<button class="btn btn-admin">
+						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+					                              	<script type="text/javascript">
+					                              		function areYouSureDeleteComplete(path) {
+					                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
+					                              				window.location = path;
+					                              			}
+					                              		}
+					                              	</script>
+				                              </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun ordre pour l'instant.
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					    	<div role="tabpanel" class="tab-pane fade" id="users">
+					    		{% if users|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="left">
+				                              Prénom
+				                            </th>
+				                            <th class="center">
+				                              Nom
+				                            </th>
+				                            <th class="center">
+				                              Email
+				                            </th>
+				                            <th class="center">
+				                              Login
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for user in users %}
+				                            <tr>
+				                              <th class="center">
+				                                {{ user.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{% if user.firstName|length > 0 %}
+				                              		{{ user.firstName }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{% if user.lastName|length > 0 %}
+				                              		{{ user.lastName }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                              </td>
+				                              <td class="center">
+				                              	{{ user.email }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ user.lastLogin|date("H:i d/M/Y") }}
+				                              </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun utilisateur par ici...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					    	<div role="tabpanel" class="tab-pane fade" id="emails">
+					    		<div class="row">
+						    		<div class="float-right">
+						    			<a href="{{ path('lbf_admin_newsletterEmails') }}" class="btn btn-login">
+						    				Ecire une newsletter
+						    			</a>
+						    		</div>
+					    		</div>
+					    		{% if newsletterEmails|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="left">
+				                              Email
+				                            </th>
+				                            <th class="center">
+				                              Inscrit le
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for email in newsletterEmails %}
+				                            <tr>
+				                              <th class="center">
+				                                {{ email.id }}
+				                              </th>
+				                              <td class="left">
+				                              	{{ email.email }}
+				                              </td>
+				                              <td class="center">
+				                              	{{ email.createdAt|date("H:i d/M/Y") }}
+				                              </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun email par ici...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					    	<div role="tabpanel" class="tab-pane fade" id="elements">
+					    		<div class="row">
+						    		<div class="float-right">
+						    			<a href="{{ path('lbf_admin_new_element') }}" class="btn btn-login">
+						    				Nouveau
+						    			</a>
+						    		</div>
+					    		</div>
+					    		{% if elements|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="center">
+				                              Image
+				                            </th>
+				                            <th class="center">
+				                              Nom
+				                            </th>
+				                            <th class="center">
+				                              Description
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Modifié le
+				                            </th>
+				                            <th class="center">
+				                              Category
+				                            </th>
+				                            <th class="center">
+				                              Prix
+				                            </th>
+				                            <th class="center">
+				                              Poids
+				                            </th>
+				                            <th class="center">
+				                              /
+				                            </th>
+				                            <th class="center">
+				                              Naturel ?
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for element in elements %}
+				                            <tr>
+				                            	<th class="center">
+					                              {{ element.id }}
+					                            </th>
+					                            <td class="center">
+					                              	{% if element.webPath|length > 0 %}
+														<div class="product_img_admin" style="background-image: url('{{ asset(element.webPath) }}'); background-size: cover; background-position: 50%;">
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
+													{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.name|length > 0 %}
+					                              		{{ element.name }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.description|length > 0 %}
+					                              		{{ element.description }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.createdAt|length > 0 %}
+					                              		{{ element.createdAt|date("H:i d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.updatedAt|length > 0 %}
+					                              		{{ element.updatedAt|date("H:i d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.category|length > 0 %}
+					                              		{{ element.category }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.price|length > 0 %}
+					                              		S/. {{ element.price }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.weight|length > 0 %}
+					                              		{{ element.weight }}g
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              /
+					                              	{% if element.unit|length > 0 %}
+					                              		{{ element.unit }}p
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.naturalProduct %}
+					                              		Oui
+					                              	{% else %}
+					                              		Non
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	<a href="">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun "élément"...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+
+					    	<div role="tabpanel" class="tab-pane fade" id="recipes">
+					    		<div class="row">
+						    		<div class="float-right">
+						    			<a href="{{ path('lbf_admin_new_recipe') }}" class="btn btn-login">
+						    				Nouveau
+						    			</a>
+						    		</div>
+					    		</div>
+					    		{% if recipes|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="center">
+				                              Image
+				                            </th>
+				                            <th class="center">
+				                              Rattachée à
+				                            </th>
+				                            <th class="center">
+				                              Titre
+				                            </th>
+				                            <th class="center">
+				                              Tps prep (min)
+				                            </th>
+				                            <th class="center">
+				                              Cuisson (min)
+				                            </th>
+				                            <th class="center">
+				                              Pour
+				                            </th>
+				                            <th class="center">
+				                              Origine
+				                            </th>
+				                            <th class="center">
+				                              Description
+				                            </th>
+				                            <th class="center">
+				                              Ingrédients
+				                            </th>
+				                            <th class="center">
+				                              Préparation
+				                            </th>
+				                            <th class="center">
+				                              Créée le
+				                            </th>
+				                            <th class="center">
+				                              Modifiée le
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for recipe in recipes %}
+				                            <tr>
+				                            	<th class="center">
+				                            		{{ recipe.id }}
+					                            </th>
+					                            <td class="center">
+					                              	{% if recipe.webPath|length > 0 %}
+														<div class="product_img_admin" style="background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
+													{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.element|length > 0 %}
+					                            		{{ recipe.element.name }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.title|length > 0 %}
+					                            		{{ recipe.title }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.duration|length > 0 %}
+					                            		{{ recipe.duration }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.cooking|length > 0 %}
+					                            		{{ recipe.cooking }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.forHowMany|length > 0 %}
+					                            		{{ recipe.forHowMany }}p
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.origin|length > 0 %}
+					                            		{{ recipe.origin }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	Description
+					                            	{% if recipe.description|length > 0 %}
+					                            		{{ recipe.description }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.ingredients|length > 0 %}
+					                            		<ul class="left">
+					                            		{% for ing in recipe.ingredients %}
+					                            			{# evaluates to true if the variable is iterable #}
+															{% if ing is iterable %}
+																<ul class="left">
+																{% set index_ing = 0 %}
+															    {% for sub_ing in ing %}
+															        <li>
+															        	{% if index_ing == 0 %}
+															        	<strong>
+															        		{{ sub_ing }}
+															        	</strong>
+															        	{% else %}
+															        	{{ sub_ing }}
+															        	{% endif %}
+															        </li>
+															        {% set index_ing = index_ing + 1 %}
+															    {% endfor %}
+																</ul>
+															{% else %}
+															    {# ing is probably a string #}
+						                            			<li>
+						                            				{{ ing }}
+						                            			</li>
+															{% endif %}
+					                            		{% endfor %}
+					                            		</ul>
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.preparation|length > 0 %}
+					                            		<ul class="left">
+					                            		{% for prep in recipe.preparation %}
+					                            			{# evaluates to true if the variable is iterable #}
+															{% if prep is iterable %}
+																<ul class="left">
+																{% set index_prep = 0 %}
+															    {% for sub_prep in prep %}
+															        <li>
+															        	{% if index_prep == 0 %}
+															        	<strong>
+															        		{{ sub_prep }}
+															        	</strong>
+															        	{% else %}
+															        	{{ sub_prep }}
+															        	{% endif %}
+															        </li>
+															        {% set index_prep = index_prep + 1 %}
+															    {% endfor %}
+																</ul>
+															{% else %}
+															    {# prep is probably a string #}
+						                            			<li>
+						                            				{{ prep }}
+						                            			</li>
+															{% endif %}
+					                            		{% endfor %}
+					                            		</ul>
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.createdAt|length > 0 %}
+					                            		{{ recipe.createdAt|date('d/M/Y') }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.updatedAt|length > 0 %}
+					                            		{{ recipe.updatedAt|date('d/M/Y') }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	<a href="">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucune recette...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					    	
+					    	
+					  	</div>
 		        	{% else %}
 		        		<div>
-		        			Vous n'etes pas autorisé à etre sur cette partie du site.
+		        			You're not allowed on this part of the website.
 		        		</div>
 		        	{% endif %}
 
 			</div>
-
-			<script type="text/javascript">
-				var wh = window.innerHeight * 0.8;
-				$('#user_panel').css({'max-height':wh+'px'});
-			</script>
 		</div>
 	</div>
 	<!-- END CONTENT -->

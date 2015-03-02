@@ -241,8 +241,8 @@ class ElementFixtures implements FixtureInterface
         '9'=>'Marmelada_Fresa',
         '10'=>'Marmelada_Naranja',
         '11'=>'Marmelada_Durazno',
-        '12'=>'Marmelada_Durazno',
-        '13'=>'Marmelada_Durazno',
+        '12'=>'Marmelada_Manguo_Limon',
+        '13'=>'Marmelada_Manzana_Uva',
         '14'=>'Sables_Bretons',
         '15'=>'Meringues',
         '16'=>"Confits_Oigons",
@@ -253,72 +253,6 @@ class ElementFixtures implements FixtureInterface
         // Traiteur
         '20'=>"Empanadas",
         '21'=>"Cake_Olives_Lardons"
-        );
-
-    $flavours_Element = array(
-        // Embutidos
-        '1'=>'',
-        '2'=>'',
-        
-        // Patés
-        '3'=>'',
-        '4'=>'',
-        '5'=>'',
-        
-        // Jamones
-        '6'=>'',
-        '7'=>'',
-
-        // Epicerie fine
-        '8'=>'Limón',
-        '9'=>'Fresa',
-        '10'=>'Naranja',
-        '11'=>'Durazno',
-        '12'=>'Manguo Limón',
-        '13'=>'Manzana Uva',
-        '14'=>'',
-        '15'=>'',
-        '16'=>'',
-        '17'=>'',
-        '18'=>'',
-        '19'=>'',
-        
-        // Traiteur
-        '20'=>'',
-        '21'=>''
-        );
-
-    $biscuits_Element = array(
-        // Embutidos
-        '1'=>'',
-        '2'=>'',
-        
-        // Patés
-        '3'=>'',
-        '4'=>'',
-        '5'=>'',
-        
-        // Jamones
-        '6'=>'',
-        '7'=>'',
-
-        // Epicerie fine
-        '8'=>'',
-        '9'=>'',
-        '10'=>'',
-        '11'=>'',
-        '12'=>'',
-        '13'=>'',
-        '14'=>'Sables',
-        '15'=>'Meringues',
-        '16'=>'',
-        '17'=>'',
-        '18'=>'',
-        '19'=>'',
-        
-        // Traiteur
-        '20'=>'',
-        '21'=>''
         );
     
     $categories_Element = array(
@@ -352,6 +286,39 @@ class ElementFixtures implements FixtureInterface
         // Traiteur
         '20'=>'Traiteur',
         '21'=>'Traiteur'
+        );
+
+    $families_Element = array(
+        // Embutidos
+        '1'=>'',
+        '2'=>'',
+        
+        // Pates
+        '3'=>'',
+        '4'=>'',
+        '5'=>'',
+        
+        // Jamones
+        '6'=>'',
+        '7'=>'',
+
+        // Epicerie fine
+        '8'=>'Jam',
+        '9'=>'Jam',
+        '10'=>'Jam',
+        '11'=>'Jam',
+        '12'=>'Jam',
+        '13'=>'Jam',
+        '14'=>'Biscuit',
+        '15'=>'Biscuit',
+        '16'=>'',
+        '17'=>'',
+        '18'=>'',
+        '19'=>'',
+        
+        // Traiteur
+        '20'=>'',
+        '21'=>''
         );
 
     $natural_Element = array(

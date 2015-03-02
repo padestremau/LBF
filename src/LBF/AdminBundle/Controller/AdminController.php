@@ -30,11 +30,24 @@ class AdminController extends Controller
                             ->getRepository('LBFUserBundle:Orders')
                             ->findSpecificAdmin('complete', 10);
 
+        $elements = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Element')
+                            ->findAll();
+
+        $recipes = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Recipe')
+                            ->findAll();
+
         return $this->render('LBFAdminBundle:Admin:indexAdmin.html.twig', array(
             'users' => $users,
             'newsletterEmails' => $newsletterEmails,
             'currentOrders' => $currentOrders,
-            'pastOrders' => $pastOrders));
+            'pastOrders' => $pastOrders,
+            'elements' => $elements,
+            'recipes' => $recipes
+            ));
     }
 
     public function answerAction($orderId)

@@ -23,3 +23,11 @@ lbf_admin_complete:
 lbf_admin_newsletterEmails:
     path:     /newsletterEmails
     defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }
+
+lbf_admin_new_element:
+    path:     /elements/new
+    defaults: { _controller: LBFAdminBundle:Admin:newElement }
+
+lbf_admin_new_recipe:
+    path:     /recipes/new
+    defaults: { _controller: LBFAdminBundle:Admin:newRecipe }

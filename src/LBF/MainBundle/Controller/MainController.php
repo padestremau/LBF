@@ -44,12 +44,13 @@ class MainController extends Controller
                 $otherEpicerie = $allEpicerieFine['otherEpicerie'];
                 $jamEpicerie = $allEpicerieFine['jamEpicerie'];
                 $biscuitEpicerie = $allEpicerieFine['biscuitEpicerie'];
-                if (strlen($product->getFlavour()) > 0) {
-                    $jamEpicerie[] = $product;
+                if (strlen($product->getFamily()) > 0) {
+                    if ($product->getFamily() == 'Jam') {
+                        $jamEpicerie[] = $product;
+                    } else {
+                        $biscuitEpicerie[] = $product;
+                    }
                 } 
-                else if (strlen($product->getBiscuit()) > 0) {
-                    $biscuitEpicerie[] = $product;
-                }
                 else {
                     $otherEpicerie[] = $product;
                 }

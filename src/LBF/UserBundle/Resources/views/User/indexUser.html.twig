@@ -34,7 +34,7 @@
 				<div role="tabpanel" id="user_panel_parent">
 
 					  <!-- Nav tabs -->
-					  <div class="col-md-3 "> <!-- border_white_right -->
+					  <div class="col-md-3 ">
 						  <ul class="nav_tabs_user list_no_style_li" role="tablist">
 						    <li role="user_tabs" class="active">
 						    	<a data-target="#tab_profile" aria-controls="profile" role="tab" data-toggle="tab" class="btn btn-choice">
@@ -618,7 +618,7 @@
 								<div class="center col-md-9">
 									Sorry, no orders to be confirmed. Please make sure you validated your order.
 									<br/><br/><br/>
-									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal" data-dismiss="modal">
+									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-login" data-dismiss="modal">
 							            Go shopping 
 							        </a>
 								</div>
@@ -686,7 +686,7 @@
 								<div class="center col-md-9">
 									Sorry, no past orders in progress.
 									<br/><br/><br/>
-									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-modal" data-dismiss="modal">
+									<a href="{{ path('lbf_main_homepage') }}#ourProducts" type="button" class="no_style_a btn btn-login" data-dismiss="modal">
 							            Go shopping 
 							        </a>
 								</div>
@@ -702,11 +702,6 @@
 				</div>
 
 			</div>
-
-			<script type="text/javascript">
-				var wh = window.innerHeight * 0.8;
-				$('#user_panel').css({'max-height':wh+'px'});
-			</script>
 
 		</div>
 	</div>

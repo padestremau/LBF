@@ -93,23 +93,16 @@ class Element
     /**
      * @var string
      *
-     * @ORM\Column(name="flavour", type="string", length=255, nullable=true)
-     */
-    private $flavour;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="biscuit", type="string", length=255, nullable=true)
-     */
-    private $biscuit;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="category", type="string", length=255)
      */
     private $category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="family", type="string", length=255)
+     */
+    private $family;    
 
     /**
      * @var boolean
@@ -391,52 +384,6 @@ class Element
     }
 
     /**
-     * Set flavour
-     *
-     * @param string $flavour
-     * @return Element
-     */
-    public function setFlavour($flavour)
-    {
-        $this->flavour = $flavour;
-
-        return $this;
-    }
-
-    /**
-     * Get flavour
-     *
-     * @return string 
-     */
-    public function getFlavour()
-    {
-        return $this->flavour;
-    }
-
-    /**
-     * Set biscuit
-     *
-     * @param string $biscuit
-     * @return Element
-     */
-    public function setBiscuit($biscuit)
-    {
-        $this->biscuit = $biscuit;
-
-        return $this;
-    }
-
-    /**
-     * Get biscuit
-     *
-     * @return string 
-     */
-    public function getBiscuit()
-    {
-        return $this->biscuit;
-    }
-
-    /**
      * Set naturalProduct
      *
      * @param boolean $naturalProduct
@@ -603,4 +550,27 @@ class Element
     /*   *********   End  File  *************  */
 
     
+
+    /**
+     * Set family
+     *
+     * @param string $family
+     * @return Element
+     */
+    public function setFamily($family)
+    {
+        $this->family = $family;
+
+        return $this;
+    }
+
+    /**
+     * Get family
+     *
+     * @return string 
+     */
+    public function getFamily()
+    {
+        return $this->family;
+    }
 }

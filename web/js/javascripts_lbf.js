@@ -27,7 +27,7 @@
 
   // To reload page on browser size change !!
   $(window).resize(function() {
-    window.location.reload();
+    // window.location.reload();
   });
 
   $(function() {
@@ -53,10 +53,15 @@
     });
   });
 
+
+
+
+
   //  BEGIN SMOOTH SCROLLING
 
   // Anchors
   var myAnchors = ['#mainSection', '#ourProducts', '#ourRecipes', '#aboutUs', '#footerSection'];
+  var myAnchorsLinksId = ['#btn_section0', '#btn_section2', '#btn_section3', '#btn_section1', '#btn_section4'];
   var currentAnchor = 0;
   if (document.location.hash) {
     var the_hash = document.location.hash;
@@ -69,58 +74,60 @@
     }
   }
   changeActiveAnchor(currentAnchor);
+  var currentPosition = $(window).scrollTop();
 
-  // function getAnchorOffset(prevnext){
-  //     //prevnext = 'next' or 'prev' to decide which we want.
-  //     currentPosition = $(window).scrollTop();
-  //     for(k in $myAnchors){
-  //         if($myAnchors[k].offset().top<currentPosition && $myAnchors[k].offset().top>closestOffset){
-  //              closestOffset = $myAnchors[k].offset().top;
-  //              key = k;
-  //         }else if($myAnchors[k].offset().top>currentPosition){
-  //             break;
-  //         }
 
+  /**
+   * Get current anchor
+   */
+  function getCurrentAnchor() {
+    // Get container scroll position
+    var gap_point = window.innerHeight * 0.4;
+    var currentPosition = $(window).scrollTop();
+    // Get id of current scroll item
+    for (var i = 0; i < myAnchors.length; i++) {
+      if (Math.abs(currentPosition - $(myAnchors[i]).offset().top) < gap_point) {
+        currentAnchor = i;
+      }
+    }
+  }
+
+  /**
+   * Stick to closest anchor
+   */
+  // function goToClosestAnchor(){
+  //   var gap_to_join = window.innerHeight * 0.2;
+  //   var currentPosition = $(window).scrollTop();
+  //   for (var i = 0; i < myAnchors.length; i++) {
+  //     if (Math.abs(currentPosition - $(myAnchors[i]).offset().top) < gap_to_join) {
+  //       currentAnchor = i;
   //     }
-  //     if(prevnext=='next'){
-  //         return $myAnchors[key+1].offset().top;
-  //     }else{
-  //         return closestOffset; 
-  //     }
+  //   }
+
+  //   var idAgoToAnchor = myAnchorsLinksId[currentAnchor];
+  //   // alert(idAgoToAnchor);
+  //   $(idAgoToAnchor).trigger('click');
   // }
+  
+  /**
+   * Scrolling event
+   */
+  $(window).scroll(function(){
+    // Get current Anchor
+    getCurrentAnchor();
 
-  // $(document).keydown(function(e){
-  //     // Keyboard UP
-  //     if (e.keyCode == 38) {
-  //       for (var i = 0; i < myAnchors.length; i++) {
-  //         if (myAnchors[i] == currentAnchor) {
-  //           currentAnchor = i;
-  //           break;
-  //         }
-  //       }
-  //       if (currentAnchor > 0) {
-  //         currentAnchor --;
-  //         var goToAnchor = myAnchors[currentAnchor];
-  //         // alert(goToAnchor);
-  //         $('a[href~="'+goToAnchor+'"]').trigger('click');
-  //       }
-  //     }
-  //     // Keyboard DOWN
-  //     if (e.keyCode == 40) {
-  //       for (var i = 0; i < myAnchors.length; i++) {
-  //         if (myAnchors[i] == currentAnchor) {
-  //           currentAnchor = i;
-  //           break;
-  //         }
-  //       }
-  //       if (currentAnchor < myAnchors.length - 1) {
-  //         currentAnchor ++;
-  //         var goToAnchor = myAnchors[currentAnchor];
-  //         // alert(goToAnchor);
-  //         $('a[href~="'+goToAnchor+'"]').trigger('click');
-  //       }
-  //     }
-  // });
+    // // Check if user has scrolled at least 1/3 of page
+    // var movedOf = window.innerHeight * 0.3;
+    // var newPosition = $(window).scrollTop();
+    // if (Math.abs(newPosition - currentPosition) > movedOf) {
+    //   // alert(Math.abs(newPosition - currentPosition));
+    //   currentPosition = newPosition;
+    //   // Activate anchor MAGNET
+    //   goToClosestAnchor();
+    // }
+    // Change Anchor active
+    changeActiveAnchor(currentAnchor);
+  });
 
   /**
    * Sliding with arrow keys, both, vertical and horizontal
@@ -135,34 +142,24 @@
       //up
       case 38:
       case 33:
-        for (var i = 0; i < myAnchors.length; i++) {
-          if (myAnchors[i] == currentAnchor) {
-            currentAnchor = i;
-            break;
-          }
-        }
+        getCurrentAnchor();
         if (currentAnchor > 0) {
           currentAnchor --;
-          var goToAnchor = myAnchors[currentAnchor];
-          // alert(goToAnchor);
-          $('a[href~="'+goToAnchor+'"]').trigger('click');
+          var idAgoToAnchor = myAnchorsLinksId[currentAnchor];
+          // alert(idAgoToAnchor);
+          $(idAgoToAnchor).trigger('click');
         }
         break;
 
       //down
       case 40:
       case 34:
-        for (var i = 0; i < myAnchors.length; i++) {
-          if (myAnchors[i] == currentAnchor) {
-            currentAnchor = i;
-            break;
-          }
-        }
+        getCurrentAnchor();
         if (currentAnchor < myAnchors.length - 1) {
           currentAnchor ++;
-          var goToAnchor = myAnchors[currentAnchor];
-          // alert(goToAnchor);
-          $('a[href~="'+goToAnchor+'"]').trigger('click');
+          var idAgoToAnchor = myAnchorsLinksId[currentAnchor];
+          // alert(idAgoToAnchor);
+          $(idAgoToAnchor).trigger('click');
         }
         break;
 
@@ -194,6 +191,10 @@
 
   });
 
+  
+  /**
+   * Soft scrolling on click
+   */
   $(document).ready(function(){ 
 
     var window_height = window.innerHeight;
@@ -236,11 +237,12 @@
                 });  
 
                 for (var i = 0; i < myAnchors.length; i++) {
-                  if (myAnchors[i] == the_hash) {
+                  if (myAnchors[i] == '#'+the_hash) {
                     currentAnchor = i;
                     break;
                   }
                 }
+                currentPosition = $(window).scrollTop();
                 changeActiveAnchor(currentAnchor);
 
                 return false;  
@@ -278,6 +280,9 @@
   });
 
   
+  /**
+   * Acivate anchor link in menu
+   */
   function changeActiveAnchor(current) {
     var goToAnchor = myAnchors[current];
     // Top button

@@ -107,7 +107,7 @@
       </li>
       
       <li class="button_anchors float-right hidden-xs" data-menuanchor="aboutUs">
-        <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a">
+        <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a btn_active_sroll">
           <button class="btn btn-log " id="btn_section1">
             {{ 'header.titles.aboutUs' | trans }}
           </button>
@@ -115,7 +115,7 @@
       </li>
 
       <li class="button_anchors float-right hidden-xs" data-menuanchor="ourProducts">
-        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+        <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a btn_active_sroll">
           <button class="btn btn-log"  id="btn_section2">
             {{ 'header.titles.ourProducts' | trans }}
           </button>
@@ -126,7 +126,7 @@
 
     <div class="col-lg-4 col-md-4 col-sm-4">   <!-- nav navbar-nav  -->
       <!-- Main title -->
-      <a href="{{ path('lbf_main_homepage') }}#mainSection" class="no_style_a">
+      <a href="{{ path('lbf_main_homepage') }}#mainSection" class="no_style_a" id="btn_section0">
         <h1>
           Le Buffet Francés
         </h1>
@@ -499,6 +499,8 @@
 
 
 
+  {% if is_granted("ROLE_ADMIN") %}
+  {% else %}
 
   <!-- Social section  -->
   <div id="social_media" class="hidden-xs">
@@ -525,7 +527,7 @@
   </div>
 
 
-
+  {% endif %}
 
 
 </div>
