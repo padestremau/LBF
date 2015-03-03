@@ -27,14 +27,12 @@
 					  	<div id="section_admin" class="center">
 
 					  		<div class="row">
-					    		<div class="row">
-						    		<div class="float-right">
-						    			<a href="{{ path('lbf_admin_new_element') }}" class="btn btn-login">
-						    				Nouveau
-						    			</a>
-						    		</div>
+					  			<div class="row90 left">
+					    			<a href="{{ path('lbf_admin_new_recipe') }}" class="btn btn-admin">
+					    				Nouvelle recette
+					    			</a>
 					    		</div>
-					    		{% if elements|length > 0 %}
+					    		{% if recipes|length > 0 %}
 									<div class="table-responsive">
 				                      <table class="table">
 				                        <thead>
@@ -46,31 +44,40 @@
 				                              Image
 				                            </th>
 				                            <th class="center">
-				                              Nom
+				                              Rattachée à
+				                            </th>
+				                            <th class="center">
+				                              Titre
+				                            </th>
+				                            <th class="center">
+				                              Tps prep (min)
+				                            </th>
+				                            <th class="center">
+				                              Cuisson (min)
+				                            </th>
+				                            <th class="center">
+				                              Pour
+				                            </th>
+				                            <th class="center">
+				                              Origine
 				                            </th>
 				                            <th class="center">
 				                              Description
 				                            </th>
 				                            <th class="center">
-				                              Créé le
+				                              Ingrédients
 				                            </th>
 				                            <th class="center">
-				                              Modifié le
+				                              Préparation
 				                            </th>
 				                            <th class="center">
-				                              Category
+				                              Créée le
 				                            </th>
 				                            <th class="center">
-				                              Prix
+				                              Modifiée le
 				                            </th>
 				                            <th class="center">
-				                              Poids
-				                            </th>
-				                            <th class="center">
-				                              /
-				                            </th>
-				                            <th class="center">
-				                              Naturel ?
+				                              Statut
 				                            </th>
 				                            <th class="center">
 				                              Action
@@ -78,88 +85,177 @@
 				                          </tr>
 				                        </thead>
 				                        <tbody>
-				                          {% for element in elements %}
+				                          {% for recipe in recipes %}
 				                            <tr>
 				                            	<th class="center">
-					                              {{ element.id }}
+				                            		{{ recipe.id }}
 					                            </th>
 					                            <td class="center">
-					                              	{% if element.webPath|length > 0 %}
-														<div class="product_img_admin" style="background-image: url('{{ asset(element.webPath) }}'); background-size: cover; background-position: 50%;">
+					                              	{% if recipe.webPath|length > 0 %}
+														<div class="product_img_admin" style="background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
 														</div>
 													{% else %}
 														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
 													{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.name|length > 0 %}
-					                              		{{ element.name }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.element|length > 0 %}
+					                            		{{ recipe.element.name }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.description|length > 0 %}
-					                              		{{ element.description }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.title|length > 0 %}
+					                            		{{ recipe.title }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.createdAt|length > 0 %}
-					                              		{{ element.createdAt|date("H:i d/M/Y") }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.duration|length > 0 %}
+					                            		{{ recipe.duration }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.updatedAt|length > 0 %}
-					                              		{{ element.updatedAt|date("H:i d/M/Y") }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.cooking|length > 0 %}
+					                            		{{ recipe.cooking }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.category|length > 0 %}
-					                              		{{ element.category }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.forHowMany|length > 0 %}
+					                            		{{ recipe.forHowMany }}p
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.price|length > 0 %}
-					                              		S/. {{ element.price }}
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.origin|length > 0 %}
+					                            		{{ recipe.origin }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.weight|length > 0 %}
-					                              		{{ element.weight }}g
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	Description
+					                            	{% if recipe.description|length > 0 %}
+					                            		{{ recipe.description }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              /
-					                              	{% if element.unit|length > 0 %}
-					                              		{{ element.unit }}p
-					                              	{% else %}
-					                              		---
-					                              	{% endif %}
+					                            	{% if recipe.ingredients|length > 0 %}
+					                            		<ul class="left">
+					                            		{% for ing in recipe.ingredients %}
+					                            			{# evaluates to true if the variable is iterable #}
+															{% if ing is iterable %}
+																<ul class="left">
+																{% set index_ing = 0 %}
+															    {% for sub_ing in ing %}
+															        <li>
+															        	{% if index_ing == 0 %}
+															        	<strong>
+															        		{{ sub_ing }}
+															        	</strong>
+															        	{% else %}
+															        	{{ sub_ing }}
+															        	{% endif %}
+															        </li>
+															        {% set index_ing = index_ing + 1 %}
+															    {% endfor %}
+																</ul>
+															{% else %}
+															    {# ing is probably a string #}
+						                            			<li>
+						                            				{{ ing }}
+						                            			</li>
+															{% endif %}
+					                            		{% endfor %}
+					                            		</ul>
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.naturalProduct %}
-					                              		Oui
-					                              	{% else %}
-					                              		Non
-					                              	{% endif %}
+					                            	{% if recipe.preparation|length > 0 %}
+					                            		<ul class="left">
+					                            		{% for prep in recipe.preparation %}
+					                            			{# evaluates to true if the variable is iterable #}
+															{% if prep is iterable %}
+																<ul class="left">
+																{% set index_prep = 0 %}
+															    {% for sub_prep in prep %}
+															        <li>
+															        	{% if index_prep == 0 %}
+															        	<strong>
+															        		{{ sub_prep }}
+															        	</strong>
+															        	{% else %}
+															        	{{ sub_prep }}
+															        	{% endif %}
+															        </li>
+															        {% set index_prep = index_prep + 1 %}
+															    {% endfor %}
+																</ul>
+															{% else %}
+															    {# prep is probably a string #}
+						                            			<li>
+						                            				{{ prep }}
+						                            			</li>
+															{% endif %}
+					                            		{% endfor %}
+					                            		</ul>
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                            	<a href="">
+					                            	{% if recipe.createdAt|length > 0 %}
+					                            		{{ recipe.createdAt|date('d/M/Y') }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	{% if recipe.updatedAt|length > 0 %}
+					                            		{{ recipe.updatedAt|date('d/M/Y') }}
+					                            	{% else %}
+					                            		---
+					                            	{% endif %}
+					                            </td>
+					                            <th class="center hover_popup">
+					                            	{% if recipe.active %}
+					                              		{% if recipe.active == "active" %}
+					                              			Actif
+					                              		{% elseif recipe.active == "toCome" %}
+					                              			A venir
+					                              		{% elseif recipe.active == "soldOut" %}
+					                              			Epuisé
+					                              		{% elseif recipe.active == "inactive" %}
+					                              			Inactif
+					                              		{% else %}
+					                              			Erreur
+					                              			<span class="italic">
+					                              				Vous devez choisir parmi les statuts proposés
+						                              		</span>
+					                              		{% endif %}
+					                              	{% else %}
+					                              		Erreur
+					                              		<span class="italic">
+															Vous devez choisir parmi les statuts proposés
+					                              		</span>
+					                              	{% endif %}
+					                            </th>
+					                            <td class="center">
+					                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_recipe', {'recipeId':recipe.id}) }}')" class="btn btn-action-admin">
 						                            	<span class="glyphicon glyphicon-pencil"></span>
 					                            	</a>
-					                            	<a href="">
+					                            	<a href="javascript:areYouSureDeleteRecipe('{{ path('lbf_admin_delete_recipe', {'recipeId':recipe.id}) }}')" class="btn btn-action-admin">
 						                            	<span class="glyphicon glyphicon-trash"></span>
 					                            	</a>
 					                            </td>
@@ -170,7 +266,7 @@
 				                    </div>
 								{% else %}
 									<div class="center col-md-9">
-										Désolé, aucun "élément"...
+										Désolé, aucune recette...
 									</div>
 									<div class="col-md-3"></div>
 								{% endif %}

@@ -37,49 +37,49 @@ class Recipe
     /**
      * @var integer
      *
-     * @ORM\Column(name="duration", type="integer")
+     * @ORM\Column(name="duration", type="integer", nullable=true)
      */
     private $duration;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="forHowMany", type="integer")
+     * @ORM\Column(name="forHowMany", type="integer", nullable=true)
      */
     private $forHowMany;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cooking", type="integer")
+     * @ORM\Column(name="cooking", type="integer", nullable=true)
      */
     private $cooking;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="origin", type="string", length=255)
+     * @ORM\Column(name="origin", type="string", length=255, nullable=true)
      */
     private $origin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredients", type="array")
+     * @ORM\Column(name="ingredients", type="array", nullable=true)
      */
     private $ingredients;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation", type="array")
+     * @ORM\Column(name="preparation", type="array", nullable=true)
      */
     private $preparation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -96,6 +96,13 @@ class Recipe
      * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="active", type="string", length=255, nullable=true)
+     */
+    private $active;
 
 
     /**
@@ -123,6 +130,7 @@ class Recipe
     {
         $this->createdAt        = new \Datetime;
         $this->updatedAt        = new \Datetime;
+        $this->active           = "active";
     }
 
 
@@ -533,5 +541,28 @@ class Recipe
     public function getElement()
     {
         return $this->element;
+    }
+
+    /**
+     * Set active
+     *
+     * @param string $active
+     * @return Recipe
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return string 
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

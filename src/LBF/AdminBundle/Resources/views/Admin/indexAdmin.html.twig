@@ -15,7 +15,7 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section section_padding" id="section9">
+			<div class="section section_padding">
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
@@ -38,6 +38,34 @@
 		        		</div>
 		        	{% endif %}
 
+
+		        <script>
+              		function areYouSureDelete(path) {
+              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
+              				window.location = path;
+              			}
+              		}
+              		function areYouSureComplete(path) {
+              			if (confirm('Le client est-il effectivement passer récupérer sa commande ?')) {
+              				window.location = path;
+              			}
+              		}
+              		function areYouSureDeleteComplete(path) {
+              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
+              				window.location = path;
+              			}
+              		}
+              		function areYouSureDeleteElement(path) {
+              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer ce produit ?')) {
+              				window.location = path;
+              			}
+              		}
+              		function areYouSureDeleteRecipe(path) {
+              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette recette ?')) {
+              				window.location = path;
+              			}
+              		}
+              	</script>
 			</div>
 		</div>
 	</div>

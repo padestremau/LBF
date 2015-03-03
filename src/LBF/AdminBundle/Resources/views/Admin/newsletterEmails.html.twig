@@ -15,34 +15,32 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section9">
-				<br/><br/>
-				
-				<div class="row">
-					<div class="col-md-4">
-						<a href="{{ path('lbf_admin_homepage') }}" class="btn btn-admin">
-							Retour
-						</a>
-					</div>
-
-					<div class="col-md-4">
-						<h2 class="center">
-							Administration du site
-						</h2>
-					</div>
-
-					<div class="col-md-4"></div>
-				</div>
-				<hr/>
+			<div class="section section_padding" id="section9">
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
-		        		<div class="row">
-		        			<div class="form-group">
-								<div class="input-icon">
-				        			<textarea style="color:black !important;" class="form-control select2" name="newsletterEmails_emails" id="newsletterEmails_emails">{% set index_email = 0 %}{% for email in newsletterEmails %}{{ email.email }}{% if index_email < newsletterEmails|length %}, {% endif %}{% set index_email = index_email + 1 %}{% endfor %}</textarea>
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+		        		<div id="section_admin" class="center">
+
+		        			<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_currentOrders') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>	
+
+			        		<div class="row80">
+			        			<div class="form-group">
+									<div class="input-icon">
+					        			<textarea style="color:black !important;" class="form-control select2" name="newsletterEmails_emails" id="newsletterEmails_emails">{% set index_email = 0 %}{% for email in newsletterEmails %}{{ email.email }}{% if index_email < newsletterEmails|length %}, {% endif %}{% set index_email = index_email + 1 %}{% endfor %}</textarea>
+									</div>
 								</div>
-							</div>
+			        		</div>
 		        		</div>
 		        	{% else %}
 		        		<div>

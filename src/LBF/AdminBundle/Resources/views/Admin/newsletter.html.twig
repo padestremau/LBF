@@ -27,12 +27,10 @@
 					  	<div id="section_admin" class="center">
 
 					  		<div class="row">
-					    		<div class="row">
-						    		<div class="float-right">
-						    			<a href="{{ path('lbf_admin_newsletterEmails') }}" class="btn btn-login">
-						    				Ecire une newsletter
-						    			</a>
-						    		</div>
+					  			<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletterEmails') }}')" class="btn btn-login">
+					    				Ecire une newsletter
+					    			</a>
 					    		</div>
 					    		{% if newsletterEmails|length > 0 %}
 									<div class="table-responsive">

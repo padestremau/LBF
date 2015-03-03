@@ -1,0 +1,264 @@
+{# src/LBF/AdminBundle/Resources/Admin/elements.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Produits
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="left">
+
+					  		<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>
+
+					  		<div class="row80">
+					  			<form method="post" {{ form_enctype(formRecipe) }}>
+					        		{% if form_errors(formRecipe) %}
+					                    <div class="error_message">
+					                      <span class="warning_word">
+					                        {{ 'user.warning.warning'|trans }}
+					                      </span>
+					                      <span class="warning_message">
+					                        {{ form_errors(formRecipe) }}
+					                      </span>
+					                    </div>
+					                    <br/>
+					                {% endif %}
+
+					                <div class="row">
+					                	
+						  				<strong>
+						  					Informations sur la recette :
+						  				</strong>
+						  				<hr/>
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {% if form_errors(formRecipe.title) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.title) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':'Titre (Ex: Roulés au jambon)', 'id':'title', 
+									        		'name':'_title'}} %}
+									        	{{ form_widget(formRecipe.title, opt_title) }}
+									        </div>
+										</div>
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {% if form_errors(formRecipe.description) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.description) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_description = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':'Brêve description (5 lignes)', 'id':'description', 
+									        		'name':'_description'}} %}
+									        	{{ form_widget(formRecipe.description, opt_description) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.duration) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.duration) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-group">
+									        	{% set opt_duration = {'attr': {'class': 'form-control',
+									        		'type':'text', 'placeholder':"Temps de préparation (Ex: 20)", 'id':'duration', 
+									        		'name':'_duration', 'aria-describedby':'duration_unit'}} %}
+									        	{{ form_widget(formRecipe.duration, opt_duration) }}
+											  	<span class="input-group-addon" id="duration_unit">min</span>
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.cooking) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.cooking) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-group">
+									        	{% set opt_cooking = {'attr': {'class': 'form-control',
+									        		'type':'text', 'placeholder':"Temps de cuisson (Ex: 60)", 'id':'cooking', 
+									        		'name':'_cooking', 'aria-describedby':'cooking_unit'}} %}
+									        	{{ form_widget(formRecipe.cooking, opt_cooking) }}
+											  	<span class="input-group-addon" id="cooking_unit">min</span>
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.forHowMany) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.forHowMany) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-group">
+									        	{% set opt_forHowMany = {'attr': {'class': 'form-control',
+									        		'type':'text', 'placeholder':"Pour combien ? (Ex:4)", 'id':'forHowMany', 
+									        		'name':'_forHowMany', 'aria-describedby':'forHowMany_unit'}} %}
+									        	{{ form_widget(formRecipe.forHowMany, opt_forHowMany) }}
+											  	<span class="input-group-addon" id="forHowMany_unit">personnes</span>
+									        </div>
+										</div>
+										
+										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.origin) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.origin) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_origin = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'origin':'text', 'placeholder':"Origine de la recette (ex: France)", 'id':'origin', 
+									        		'name':'_origin'}} %}
+									        	{{ form_widget(formRecipe.origin, opt_origin) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+											Recette liée au produit(s) suivant(s) :
+										</div>
+										<div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.element) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.element) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_element = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'element':'text', 'id':'element', 
+									        		'name':'_element'}} %}
+									        	{{ form_widget(formRecipe.element, opt_element) }}
+									        </div>
+										</div>
+										
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+											{{ form_errors(formRecipe) }}
+											<div class="input-icon left">
+									        	Image de la recette (recommandé): {{ form_widget(formRecipe.file) }}
+									        </div>
+										</div>
+					                </div>
+
+									<br/><br/>
+
+									<div class="row">
+										<strong>
+						  					Informations d'affichage :
+						  				</strong>
+						  				<hr/>
+										
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+											Le produit est:
+										</div>
+										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.active) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.active) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_active = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'id':'active', 'name':'_active'}} %}
+									        	{{ form_widget(formRecipe.active, opt_active) }}
+									        </div>
+										</div>
+									</div>
+
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formRecipe) }}
+
+									<div class="center">
+										<input type="submit" class="btn btn-login" value="Enregistrer"/>
+									</div>
+								</form>
+					  		</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

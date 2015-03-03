@@ -4,7 +4,12 @@ namespace LBF\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use LBF\MainBundle\Entity\Element;
+use LBF\MainBundle\Entity\Recipe;
+
 use LBF\UserBundle\Form\AdminConfirmOrdersType;
+use LBF\MainBundle\Form\ElementType;
+use LBF\MainBundle\Form\RecipeType;
 
 class AdminController extends Controller
 {
@@ -62,7 +67,7 @@ class AdminController extends Controller
             ));
     }
 
-    public function answerAction($orderId)
+    public function answerOrderAction($orderId)
     {
         $allElements = $this ->getDoctrine()
                             ->getManager()
@@ -152,7 +157,7 @@ class AdminController extends Controller
             ));
     }
 
-    public function completeAction($orderId)
+    public function completeOrderAction($orderId)
     {
         $order = $this ->getDoctrine()
                         ->getManager()
@@ -196,10 +201,10 @@ class AdminController extends Controller
 
         $this->get('mailer')->send($messageAdmin);
 
-        return $this->redirect($this->generateUrl('lbf_admin_homepage'));
+        return $this->redirect($this->generateUrl('lbf_admin_pastOrders'));
     }
 
-    public function deleteAction($orderId)
+    public function deleteOrderAction($orderId)
     {
         $order = $this ->getDoctrine()
                         ->getManager()
@@ -210,7 +215,7 @@ class AdminController extends Controller
         $em->remove($order);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('lbf_admin_homepage'));
+        return $this->redirect($this->generateUrl('lbf_admin_currentOrders'));
     }
 
     public function pastOrdersAction()
@@ -218,7 +223,7 @@ class AdminController extends Controller
         $pastOrders = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecificAdminNon('complete', 10);
+                            ->findSpecificAdmin('complete', 10);
 
         return $this->render('LBFAdminBundle:Admin:pastOrders.html.twig', array(
             'pastOrders' => $pastOrders
@@ -275,6 +280,53 @@ class AdminController extends Controller
             ));
     }
 
+    public function newElementAction($elementId = null)
+    {
+        if (sizeof($elementId) > 0) {
+            $element = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Element')
+                            ->find($elementId);
+        } else {
+            $element = new Element;
+        }
+        
+        // On utiliser le EditAvatarType
+        $formElement = $this->createForm(new ElementType(), $element);
+
+        // On récupère la requête
+        $formElement->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formElement->isValid()) {
+            $element->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($element);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_elements'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newElement.html.twig', array(
+            'formElement' => $formElement->createView()
+            ));
+    }
+
+    public function deleteElementAction($elementId)
+    {
+        $element = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:Element')
+                        ->find($elementId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($element);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_elements'));
+    }
+
     public function recipesAction()
     {
         $recipes = $this ->getDoctrine()
@@ -285,6 +337,53 @@ class AdminController extends Controller
         return $this->render('LBFAdminBundle:Admin:recipes.html.twig', array(
             'recipes' => $recipes
             ));
+    }
+
+    public function newRecipeAction($recipeId = null)
+    {
+        if (sizeof($recipeId) > 0) {
+            $recipe = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Recipe')
+                            ->find($recipeId);
+        } else {
+            $recipe = new Recipe;
+        }
+        
+        // On utiliser le EditAvatarType
+        $formRecipe = $this->createForm(new RecipeType(), $recipe);
+
+        // On récupère la requête
+        $formRecipe->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formRecipe->isValid()) {
+            $recipe->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_recipes'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newRecipe.html.twig', array(
+            'formRecipe' => $formRecipe->createView()
+            ));
+    }
+
+    public function deleteRecipeAction($recipeId)
+    {
+        $recipe = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:Recipe')
+                        ->find($recipeId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($recipe);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_recipes'));
     }
 
     

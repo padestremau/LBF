@@ -35,7 +35,7 @@ function loadContentLogin(path_chosen)
 
 function loadContentCart(path_chosen)
 {
-	$('div#sectionContentAjax').fadeOut('slow',loadContent);
+	$('#sectionContentAjax').fadeOut('slow',loadContent);
 
 	function loadContent() {
 		document.getElementById('sectionContentAjax').innerHTML = '';
@@ -74,31 +74,20 @@ function loadContentCart(path_chosen)
 
 function loadContentAdmin(path_chosen)
 {
-	$('div#section_admin').fadeOut('slow',loadContent);
+	$('#section_admin').fadeOut('slow',loadContent);
 
 	function loadContent() {
 		document.getElementById('section_admin').innerHTML = '';
 		var toLoad = path_chosen +' #section_admin';
-		var headerChange = path_chosen +' #login_name_status';
-		var headerChangeXS = path_chosen +' #login_name_status_XS';
-		var breadcrumb = path_chosen +' #breadcrumb';
+		var headerChange = path_chosen +' #nav_admin';
 		$('#section_admin').load(toLoad,'',showNewContent());
-		$('#login_name_status').load(headerChange,'',showNewHeaderStatus());
-		$('#breadcrumb').load(breadcrumb,'',showNewBreadcrumb());
-		$('#login_name_status_XS').load(headerChangeXS,'',showNewHeaderXSStatus());
-		document.getElementById('button_cart_a').className = "btn btn-log float-right ";
+		$('#nav_admin').load(headerChange,'',showNewHeaderStatus());
 	}
 	function showNewContent() {
 		$('#section_admin').fadeIn('slow');
 	}
 	function showNewHeaderStatus() {
-		$('#login_name_status').fadeIn('slow');
-	}
-	function showNewBreadcrumb() {
-		$('#breadcrumb').fadeIn('slow');
-	}
-	function showNewHeaderXSStatus() {
-		$('#login_name_status_XS').fadeIn('slow');
+		$('#nav_admin').fadeIn('slow');
 	}
 
 

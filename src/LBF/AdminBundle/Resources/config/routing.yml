@@ -10,19 +10,19 @@ lbf_admin_currentOrders:
 
 lbf_admin_answer:
     path:     /answer/{orderId}
-    defaults: { _controller: LBFAdminBundle:Admin:answer }
+    defaults: { _controller: LBFAdminBundle:Admin:answerOrder }
     requirements:
         orderId: \d+
 
 lbf_admin_delete:
     path:     /delete/{orderId}
-    defaults: { _controller: LBFAdminBundle:Admin:delete }
+    defaults: { _controller: LBFAdminBundle:Admin:deleteOrder }
     requirements:
         orderId: \d+
 
 lbf_admin_complete:
     path:     /complete/{orderId}
-    defaults: { _controller: LBFAdminBundle:Admin:complete }
+    defaults: { _controller: LBFAdminBundle:Admin:completeOrder }
     requirements:
         orderId: \d+
 
@@ -36,7 +36,7 @@ lbf_admin_users:
     path:     /users
     defaults: { _controller: LBFAdminBundle:Admin:users }
 
-lbf_admin_newsletterEmails:
+lbf_admin_newsletter:
     path:     /newsletterEmails
     defaults: { _controller: LBFAdminBundle:Admin:newsletter }
 
@@ -54,6 +54,18 @@ lbf_admin_new_element:
     path:     /elements/new
     defaults: { _controller: LBFAdminBundle:Admin:newElement }
 
+lbf_admin_edit_element:
+    path:     /elements/edit/{elementId}
+    defaults: { _controller: LBFAdminBundle:Admin:newElement }
+    requirements:
+        elementId: \d+
+
+lbf_admin_delete_element:
+    path:     /elements/delete/{elementId}
+    defaults: { _controller: LBFAdminBundle:Admin:deleteElement }
+    requirements:
+        elementId: \d+
+
 
 # Change recipes
 lbf_admin_recipes:
@@ -63,3 +75,15 @@ lbf_admin_recipes:
 lbf_admin_new_recipe:
     path:     /recipes/new
     defaults: { _controller: LBFAdminBundle:Admin:newRecipe }
+
+lbf_admin_edit_recipe:
+    path:     /recipes/edit/{recipeId}
+    defaults: { _controller: LBFAdminBundle:Admin:newRecipe }
+    requirements:
+        recipeId: \d+
+
+lbf_admin_delete_recipe:
+    path:     /recipes/delete/{recipeId}
+    defaults: { _controller: LBFAdminBundle:Admin:deleteRecipe }
+    requirements:
+        recipeId: \d+

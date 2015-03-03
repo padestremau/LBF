@@ -2,77 +2,106 @@
 
 {% set route = app.request.attributes.get( '_route' ) %}
 
-<div class="row">
-	<div class="col-md-4"></div>
+<div id="nav_admin">	
+	<div class="row">
+		<div class="col-md-4"></div>
 
-	<div class="col-md-4">
-		<h2 class="center">
-			Administration du site
-		</h2>
+		<div class="col-md-4">
+			<h2 class="center">
+				Administration du site
+			</h2>
+		</div>
+
+		<div class="col-md-4"></div>
 	</div>
 
-	<div class="col-md-4"></div>
+	<hr/>
+
+	<div class="row">
+		<ul class="nav-justified nav_tabs_admin">
+			<li class="
+				{% if route == 'lbf_admin_currentOrders' or route == 'lbf_admin_answer' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_currentOrders') }}')" class="btn btn-choice">
+					Commandes en cours
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_pastOrders' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders') }}')" class="btn btn-choice">
+					Commandes passées
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_users' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users') }}')" class="btn btn-choice">
+					Utilisateurs
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/users.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_newsletter' or route == 'lbf_admin_newsletterEmails' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletter') }}')" class="btn btn-choice">
+					Newsletter emails
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/emails.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_elements' or route == 'lbf_admin_new_element' or route == 'lbf_admin_edit_element' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements') }}')" class="btn btn-choice">
+					Produits
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/elements.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_recipes' or route == 'lbf_admin_new_recipe' or route == 'lbf_admin_edit_recipe' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes') }}')" class="btn btn-choice">
+					Recettes
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/recipes.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="{% if route == 'fos_user_security_logout' %} active {% endif %} logout-btn">
+				<a href="{{ path('fos_user_security_logout') }}" class="btn btn-choice">
+					Déconnexion
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/logout.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>
 
-<div class="row">
-	<ul class="nav-justified nav_tabs_admin">
-		<li class="{% if route == 'lbf_admin_currentOrders' %} active {% endif %}">
-			<a href="{{ path('lbf_admin_currentOrders') }}" class="btn btn-choice">
-				Commandes en cours
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-		<li class="{% if route == 'lbf_admin_pastOrders' %} active {% endif %}">
-			<a href="{{ path('lbf_admin_pastOrders') }}" class="btn btn-choice">
-				Commandes passées
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-		<li class="{% if route == 'lbf_admin_users' %} active {% endif %}">
-			<a href="{{ path('lbf_admin_users') }}" class="btn btn-choice">
-				Utilisateurs
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/users.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-		<li class="{% if route == 'lbf_admin_newsletterEmails' %} active {% endif %}">
-			<a href="{{ path('lbf_admin_newsletterEmails') }}" class="btn btn-choice">
-				Newsletter emails
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/emails.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-		<li class="{% if route == 'lbf_admin_elements' %} active {% endif %}">
-			<a href="{{ path('lbf_admin_elements') }}" class="btn btn-choice">
-				Produits
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/elements.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-		<li class="{% if route == 'lbf_admin_recipes' %} active {% endif %}">
-			<a href="{{ path('lbf_admin_recipes') }}" class="btn btn-choice">
-				Recettes
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/recipes.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-		<li class="{% if route == 'fos_user_security_logout' %} active {% endif %} logout-btn">
-			<a href="{{ path('fos_user_security_logout') }}" class="btn btn-choice">
-				Déconnexion
-				<div class="float-right inner_arrow">
-					<img src="{{ asset('img/system/defaults/logout.png') }}" alt="" class="btn_right_arrow"/>
-				</div>
-			</a>
-		</li>
-	</ul>
-</div>
 
 

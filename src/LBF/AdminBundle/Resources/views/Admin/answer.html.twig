@@ -15,25 +15,25 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section9">
-				<br/><br/>
-				
-				<div class="row">
-					<div class="col-md-4"></div>
-
-					<div class="col-md-4">
-						<h2 class="center">
-							Administration du site
-						</h2>
-					</div>
-
-					<div class="col-md-4"></div>
-				</div>
-				<hr/>
+			<div class="section section_padding" id="section9">
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
-		        		<div class="row" id="admin_content">
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+		        		<div id="section_admin" class="center">
+
+		        			<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_currentOrders') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>			        			
+
 		        			<div class="row center">
 		        				Commane effectuée par {% if order.user.firstName|length > 0 %} {{ order.user.firstName }} {% else %} {{ order.user.email }} {% endif %}, le {{ order.createdAt|date('d/M/Y') }} à {{ order.createdAt|date('H:i') }} : <br/><br/>
 		        			</div>

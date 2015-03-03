@@ -1,6 +1,12 @@
 <!-- Button to top -->
 
-<div class="hidden-xs">
+<div class="
+	{% if route == "lbf_main_homepage" %}
+		hidden-xs
+	{% else %}
+		hidden-lg hidden-md hidden-sm hidden-xs
+	{% endif %}
+	">
 	<div id="button_to_top" class="opcatiy0">
 		<a href="#mainSection" style="no_style_a">
 			<button class="btn btn-to-top">

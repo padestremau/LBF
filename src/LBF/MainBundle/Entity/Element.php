@@ -114,6 +114,13 @@ class Element
     /**
      * @var string
      *
+     * @ORM\Column(name="active", type="string", length=255, nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
@@ -136,7 +143,7 @@ class Element
     {
         $this->createdAt        = new \Datetime;
         $this->updatedAt        = new \Datetime;
-        $this->unit        =  1;
+        $this->active           = "active";
     }
 
 
@@ -572,5 +579,28 @@ class Element
     public function getFamily()
     {
         return $this->family;
+    }
+
+    /**
+     * Set active
+     *
+     * @param string $active
+     * @return Element
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return string 
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

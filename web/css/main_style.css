@@ -6,15 +6,20 @@ html {
 	width: 100%;
 	background-color: white; 
 	background-image: url('../img/system/defaults/background_default_medium.jpg');
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;	
+	font-weight: 200;
 }
 
 body
 {	
 	width: 100%;
 	background-color: transparent;
-	font-family: 'Helvetica Neue';  /* existencelight */
 	font-weight: 200;
-	
 	color: rgba(41,41,41,0.95) !important;
 }
 
@@ -81,6 +86,7 @@ h2
 h2 span {
 	margin: 0 !important;
 	margin-top: -8px !important;
+	margin-bottom: 8px !important;
 	padding: 0 !important;
 	font-weight: 120 !important;
 }
@@ -361,6 +367,9 @@ strong {
 }
 .cursor_default {
 	cursor: default !important;
+}
+textarea {
+	resize: vertical;
 }
 
 .white {
@@ -1939,15 +1948,19 @@ body.modal-open {
 }
 .hover_popup span {
     position:absolute;
-    margin-top:30px;
-    margin-left:-135px;
+    margin-top:-10px;
+    margin-left:-260px;
+    width: 200px;
     color: white;
     background: rgba(41,41,41,0.95);
     padding: 5px 10px;
     /*border-radius:3px;*/
-    border: 5px solid white;
+    border: 2px solid white;
     opacity:0;
     z-index: 10000;
+}
+.hover_popup span:hover {
+	opacity: 0;
 }
 .hover_popup:hover span, .hover_popup:focus span {
 	outline:none;
@@ -1980,35 +1993,40 @@ body.modal-open {
 .page-container-admin {
 	background-color: rgba(250,250,250,0.98);
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 10px;
 	width: 100%;
-}
-
-#admin_content {
-	/*font-size: 1.2em !important;*/
-}
-#admin_content input {
-	/*font-size: 0.9em !important;	*/
-}
-#admin_content select, #admin_content textarea {
-	/*font-size: 1.1em !important;	*/
 }
 
 .btn-admin, .btn-admin:focus {
 	outline:none;
-	margin:0;
-	color: rgba(41,41,41,0.95);
+	margin: 5px;
+	padding: 5px 9px 1px 9px; 
 	background-color: transparent;
 	/*border: 1px solid white;*/
 	border-radius: 0;
-	border-bottom: 1.5px solid transparent;
-	/*font-size: 1.1em;*/
+	border-top: 1px solid rgba(41,41,41,0.5);
+	border-bottom: 1px solid rgba(41,41,41,0.5);
+
+	color: rgba(41,41,41,0.5);
+}
+.btn-admin:hover, .btn-admin-active {
+	background-color: transparent;
+	color: rgba(41,41,41,0.95);
+	border-top: 1px solid rgba(41,41,41,0.95);
+	border-bottom: 1px solid rgba(41,41,41,0.95);
+}
+.btn-action-admin, .btn-action-admin:focus {
+	outline:none;
+	margin:0;
+	color: rgba(41,41,41,0.95);
+	background-color: transparent;
+	border-radius: 0;
+	border-bottom: 1px solid transparent;
 	padding: 2px;
 }
-.btn-admin:hover {
-	/*background-color: rgba(0,0,0,0.5);*/
+.btn-action-admin:hover {
 	color: rgba(41,41,41,0.95);
-	border-bottom: 1.5px solid rgba(41,41,41,0.5);
+	border-bottom: 1px solid rgba(41,41,41,0.5);
 }
 
 .sep_order_admin {
@@ -2059,7 +2077,7 @@ body.modal-open {
 #contact_form select, #contact_form textarea {
 	font-size: 1em;
 }
-#contact_form textarea {
+textarea {
 	resize: vertical;
 }
 .footer div.footer_part {

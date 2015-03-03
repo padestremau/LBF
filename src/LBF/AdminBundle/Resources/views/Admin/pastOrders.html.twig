@@ -93,17 +93,10 @@
 				                              </td>
 				                              <td class="center">
 				                              		<a href="javascript:areYouSureDeleteComplete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
-					                              		<button class="btn btn-admin">
+					                              		<button class="btn btn-action-admin">
 						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
 					                              		</button>
 					                              	</a>
-					                              	<script type="text/javascript">
-					                              		function areYouSureDeleteComplete(path) {
-					                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
-					                              				window.location = path;
-					                              			}
-					                              		}
-					                              	</script>
 				                              </td>
 				                            </tr>
 				                          {% endfor %}

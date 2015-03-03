@@ -582,14 +582,16 @@
 																	</div>
 																	<br/>
 																	<div class="row center">
-																		<button class="btn btn-login" onClick="goToTab('#ourRecipes', '#tab_recipe_{{ category |replace({' ': '_'}) }}', 'recipe_nav_ul_{{ category |replace({' ': '_'}) }}', '#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}')">
+																		<button class="btn btn-login" onClick="goToTab('#tab_recipe_{{ category |replace({' ': '_'}) }}', 'recipe_nav_ul_{{ category |replace({' ': '_'}) }}', '#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}')">
 																			{{ 'ourProducts.actions.seeRecipes' | trans }}
 																			<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																		</button>
 
 																		<script>
-																			function goToTab(path, tab_gen_id, nav_id, tab_id) {
-																				window.location = path;
+																			function goToTab(tab_gen_id, nav_id, tab_id) {
+																				$('#btn_section3').trigger('click', '', showTab(tab_gen_id, nav_id, tab_id));
+																			}
+																			function showTab(tab_gen_id, nav_id, tab_id) {
 																				tab_gen_loc = '#recipe_nav_ul a[data-target="'+tab_gen_id+'"]';
 																				$(tab_gen_loc).tab('show');
 																				tab_loc = '#'+nav_id+' a[data-target="'+tab_id+'"]';

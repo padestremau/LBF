@@ -15,7 +15,7 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section section_padding" id="section9">
+			<div class="section section_padding">
 
 					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
 		        	{% if is_granted("ROLE_ADMIN") %}
@@ -103,33 +103,21 @@
 				                              <td class="center">
 				                              	{% if single_order.status == 'confirm' %}
 					                              	<a href="javascript:areYouSureComplete('{{ path('lbf_admin_complete', {'orderId':single_order.id}) }}')">
-					                              		<button class="btn btn-admin">
+					                              		<button class="btn btn-action-admin">
 						                              		<span class="glyphicon black glyphicon-ok" aria-hidden="true"></span>
 					                              		</button>
 					                              	</a>
 				                              	{% endif %}
-					                              	<a href="{{ path('lbf_admin_answer', {'orderId':single_order.id}) }}">
-					                              		<button class="btn btn-admin">
+					                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_answer', {'orderId':single_order.id}) }}')">
+					                              		<button class="btn btn-action-admin">
 						                              		<span class="glyphicon black glyphicon-pencil" aria-hidden="true"></span>
 					                              		</button>
 					                              	</a>
 					                              	<a href="javascript:areYouSureDelete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
-					                              		<button class="btn btn-admin">
+					                              		<button class="btn btn-action-admin">
 						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
 					                              		</button>
 					                              	</a>
-					                              	<script type="text/javascript">
-					                              		function areYouSureDelete(path) {
-					                              			if (confirm('Êtes-vous sûr(e) de vouloir supprimer cette commande ?')) {
-					                              				window.location = path;
-					                              			}
-					                              		}
-					                              		function areYouSureComplete(path) {
-					                              			if (confirm('Le client est-il effectivement passer récupérer sa commande ?')) {
-					                              				window.location = path;
-					                              			}
-					                              		}
-					                              	</script>
 				                              </td>
 				                            </tr>
 				                          {% endfor %}

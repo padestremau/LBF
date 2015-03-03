@@ -205,7 +205,7 @@
     $('.section').css({'min-height':window_height+'px'});
 
 
-    (function($) {  
+    (function($) {
       $.fn.juizScrollTo = function( speed ) { 
         if ( !speed ) var speed = 'slow';  
         
