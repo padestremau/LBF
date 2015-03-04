@@ -221,7 +221,7 @@
     var window_height_modal = Math.round(window.innerHeight * 0.77);
     $(".modal-body").css({'max-height':window_height_modal+'px'});
 
-    alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));
+    // alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));
 
 
     (function($) {
