@@ -27,7 +27,14 @@
 
   // To reload page on browser size change !!
   $(window).resize(function() {
-    window.location.reload();
+    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {}
+    else {
+      var window_Height = window.innerHeight;
+      var window_Width = window.innerWidth;
+      if (window_Width > (window_Height * 1.2) && window_Width < (window_Height * 2)) {
+        window.location.reload();
+      }
+    }
   });
 
   $(function() {
@@ -201,8 +208,20 @@
    */
   $(document).ready(function(){ 
 
-    var window_height = window.innerHeight;
-    $('.section').css({'min-height':window_height+'px'});
+
+    var window_Height = window.innerHeight;
+    var window_Width = window.innerWidth;
+    if (window_Width > (window_Height * 1.2)) {
+      // Full page customized
+      $('.section').css({'min-height':window_Height+'px'});
+    }
+
+
+    // Modal height and scroll
+    var window_height_modal = Math.round(window.innerHeight * 0.77);
+    $(".modal-body").css({'max-height':window_height_modal+'px'});
+
+    alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));
 
 
     (function($) {

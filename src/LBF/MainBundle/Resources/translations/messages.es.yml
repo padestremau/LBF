@@ -90,6 +90,7 @@ alert:
         elementDeleted:         "Elemento barrado."
         cartEmptied:            "Carro de compra completamente vacío."
         noChangeMade:           "Ningún cambio."
+        cartIsEmpty:            "Su carro de compra esta vacío."
 
 
 # Cart
@@ -137,26 +138,11 @@ aboutUs:
         title_aboutUs: 			A propuesto
         title_aboutUs_s: 		Historias y anecdotas
         contact:                ESCRÍBENOS
+    descriptions:
+        aude:                   "Desde el sur-oeste de Francia, región del 'foie gras'. El refinamiento culinario frances no tiene secretos para ella. Con su sentido de acogida, viajarán algunos momentos en Francia. Con sed de descubrimientos y encuentros, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
+        antoine:                "Francés, natural de Gran Bretaña, una de las primeras áreas de producción de cerdos en el mundo. Está hecho a mano de la niñez a la corte y elaboración de carne. Con sed de compartir la cultura culinaria francesa a su país de adopción, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
+        pierreArnaud:           "Ingeniero francés, se unió al equipo en enero de 2015 para sacar partido de su experiencia en la comunicación. Apasionado por los viajes y reuniones, decidió romper su rutina para descubrir Perú. Viajad en nuestro mundo culinario gracias a su talento."
 
-
-
-# Contact
-
-contact:
-    titles:
-        contact:                Contact
-        thankYou:               Thank you!
-    actions: 
-        send:                   Send
-    content:
-        sender:                 Sender
-        name:                   Name
-        email:                  Email
-        recipient:              Recipient
-        message:                Message
-        object:                 Object
-        content:                Content
-        messageSent:            Message sent.
 
 # Footer
 
@@ -183,7 +169,20 @@ footer:
         entireBlog: 			Todo el blog
         cookingRecipe: 			Les recettes
         news: 					Actualidad
-
+    contact:
+        senderName:             Nombre
+        senderEmail:            Email
+        selectObject:           "Seleccionna el sujete de su demanda"
+        object1:                "Pedido todavia no confirmado"
+        object2:                "Pedido vacío"
+        object3:                "Pedido negado"
+        object4:                "Problema con mi cuenta"
+        object5:                "Error del sitio web"
+        object6:                "Mas infos"
+        object7:                "Nuevos productos"
+        orderNumber:            "Pedido n°"
+        message:                "Mensaje"
+        send:                   "ENVIAR"
     actions: 
         send: 					OK
         enterEmail:             Escriben vuestro email
@@ -194,7 +193,72 @@ footer:
 
 # Modal
 modal:
+    modalQuality:
+        intro:                  "Le Buffet Francés es una allianza entre productos locales de riqueza excepcional y recetas tradicionales francésas. "
+        quote1:                 "Estos productos son frescos y cuidadosamente seleccionados para ofrecer los mejores sabores."
+        quote2:                 "Nuestros productos son envasado al vacío para proporcionarles una mejor conservación."
+        quote3:                 "Hemos seleccionado las recetas tradicionales de embutidos, de paté y de jamón que se pueden cocinar con nuestros productos de delicadeces. La oferta no sería completa sin nuestras mermeladas y nuestros licores caseros. Por último, podran pronto encontrar una variedad de conservas y una selección de vinos franceses."
+        dontWait:               "No espere a probar "
+        products:               " nuestors productos "
+        thanksTo:               " gracias a "
+        recipes:                " nuestras recetas "
+        tested:                 "probadas y aprobadas."
+    modalReservation:
+        intro:                  "Principio de la reserva :"
+        quote1:                 "Elige los artículos que le gusta y añadilos a su carro de compras "
+        quote2:                 "Pase a su carro de compra y valide su pedido desde su cuenta "
+        quote3:                 "Elija la fecha y hora que funcione mejor para usted para recoger su pedido en la tienda "
+        quote4:                 "Haga clic en enviar "
+        quote5:                 "Usted recibirá un correo electrónico de confirmación de pedido, a la espera de la validación de un gerente de la tienda "
+        quote6:                 "Una vez que su pedido sea validado, simplemente vaya a la tienda a recoger su pedido en la dirección siguiente: "
+        remark:                 "Nota:"
+        remarkContent:          "Si usted no tiene una cuenta, podra simplemente crear uno rápidamente con un correo electrónico y una contraseña!"
+    modalRecipe:
+        origin:                 "Origen: "
+        forHowMany:             "Para: "
+        people:                 "personas"
+        duration:               "Preparación: "
+        cooking:                "Cocción: "
+        min:                    " min "
+        ingredients:            "Ingredientes : "
+        preparation:            "Preparación : "
+        lastEdit:               "Ultima modificacion el "
+        atTime:                 " a las "
     actions: 
         close:                  Cerrar
+
+
+# Contact
+contact:
+    titles: 
+        thankYou:               Muchas gracias!
+    content:
+        thankYou:               "Gracias por su mensaje. Deberíamos responder próximamente."
+        regards:                "Saludos,"
+
+
+# Email contact
+emailContact:
+    notes: 
+        topSentence:            "Esto es un mensaje de "
+    titles:
+        general:                Usted not envió un mensaje
+        thankYou:               GRACIAS
+        forMessage:             POR SU MENSAJE
+        messageWritten:         MENSAJE
+    content:
+        youWrote:               "Usted nos escribió sobre nuestro website y se le agradecimos. Deberíamos responder próximamente cuando hubieramos resoludo su problema, o encontrado la mejor respuesta a su pregunta."
+        subject:                "Tema:"
+        orderNumber:            "Numero de pedido:"
+        mailContent:            "Contenido del mensaje:"
+    footer:
+        anecdote:               "es una nueva tienda de charcuteria en Cusco, que viende productos de carne local, pero cortada y cocinada según los metodos y tecnicas francéses. La start-up ha abierta el 1ero de Marso de 2015 en Perú, con su primera fabrica. Otras seguiron."
+        keepInTouch:            "Mantener el contacto : "
+        ifWantToJoin:           "Si alguien le ha mandado este email y usted quiere sumarse a la lista de distribución de las newsletters, usted puede añadir su email "
+        here:                   "aquí"
+        quitSubscription:       "Usted recibe este email siguiendo o un pedido sobre nuestro sitio web, o su abono a nuestras newsletters. Para deshuesarse de la newsletter, por favor haga "
+        clickHere:              clic aquí
+
+
 
 

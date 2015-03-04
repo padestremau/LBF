@@ -90,6 +90,7 @@ alert:
         elementDeleted:         "Elément supprimé."
         cartEmptied:            "Le panier a bien été vidé."
         noChangeMade:           "Aucune modification n'a été apportée."
+        cartIsEmpty:            "Votre panier est encore vide."
 
 # Cart
 cart:
@@ -135,26 +136,10 @@ aboutUs:
         title_aboutUs: 			A propos
         title_aboutUs_s: 		Histoires et anecdotes
         contact:                ECRIVEZ-NOUS
-
-
-
-# Contact
-
-contact:
-    titles:
-        contact:                Contact
-        thankYou:               Thank you!
-    actions: 
-        send:                   Send
-    content:
-        sender:                 Sender
-        name:                   Name
-        email:                  Email
-        recipient:              Recipient
-        message:                Message
-        object:                 Object
-        content:                Content
-        messageSent:            Message sent.
+    descriptions:
+        aude:                   "Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n'a pas de secret pour elle. Grâce à son sens de l'accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco."
+        antoine:                "Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s'est fait la main dès l'enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d'adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco."
+        pierreArnaud:           "Ingénieur français,  il rejoint l'équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents."
 
 # Footer
 
@@ -181,7 +166,20 @@ footer:
         entireBlog: 			Tout le blog
         cookingRecipe: 			Les recettes
         news: 					Actualité
-
+    contact:
+        senderName:             Expéditeur
+        senderEmail:            Email
+        selectObject:           "Sélectionner l'objet de votre demande"
+        object1:                "Commande non validée"
+        object2:                "Commande vide"
+        object3:                "Commande refusée"
+        object4:                "Compte utilisateur défaillant"
+        object5:                "Erreur de site web"
+        object6:                "Demande de renseignements"
+        object7:                "Nouveaux produits"
+        orderNumber:            "Commande n°"
+        message:                "Message"
+        send:                   "ENVOYER"
     actions: 
         send: 					OK
         enterEmail:             Entrez votre email
@@ -192,6 +190,72 @@ footer:
 
 # Modal
 modal:
+    modalQuality:
+        intro:                  "Le Buffet Francés c'est une alliance entre les produits d'un terroir local d'une exceptionnelle richesse et des recettes françaises traditionnelles. "
+        quote1:                 "Ces produits sont frais et sélectionnés avec soin pour vous offrir les meilleures saveurs."
+        quote2:                 "Nos produits frais sont conditionnés sous vide afin de leur procurer une meilleure conservation."
+        quote3:                 "Nous avons sélectionné des recettes traditionnelles de saucisses, pâtés, jambon qui peuvent être cuisinées avec nos produits d'épicerie fine.  L'offre ne serait pas complète sans nos confitures et nos liqueurs maison. Vous pourrez enfin bientôt retrouver toute une variété de conserves ainsi qu'une sélection de vins français."
+        dontWait:               "N'attendez pas pour tester "
+        products:               " nos produits "
+        thanksTo:               " grâce à "
+        recipes:                " nos recettes "
+        tested:                 "testées et approuvées."
+    modalReservation:
+        intro:                  "Principe de la réservation : "
+        quote1:                 "Choisissez les éléments qui vous plaisent et ajoutez-les à votre panier "
+        quote2:                 "Rendez-vous sur votre panier et validez votre commande depuis votre compte "
+        quote3:                 "Choisissez la date et l'heure qui vous conviennent le mieux pour venir les récupérer au magasin "
+        quote4:                 "Cliquez sur envoyer "
+        quote5:                 "Vous recevrez un email de confirmation de commande, en attente de la validation d'un gérant de magasin "
+        quote6:                 "Une fois votre commande validée, il vous suffira de passer au magasin la récupérer à l'adresse suivante : "
+        remark:                 "Remarque :"
+        remarkContent:          "Si vous n'avez pas de compte, il vous suffira d'en créer un rapidement avec un email et un mot de passe !"
+    modalRecipe:
+        origin:                 "Provenance : "
+        forHowMany:             "Pour : "
+        people:                 "personnes"
+        duration:               "Préparation : "
+        cooking:                "Cuisson : "
+        min:                    " min "
+        ingredients:            "Ingrédients : "
+        preparation:            "Préparation : "
+        lastEdit:               "Dernière modification le "
+        atTime:                 " à "
     actions: 
         close:                  Fermer
+
+# Contact
+contact:
+    titles: 
+        thankYou:               Merci beaucoup !
+    content:
+        thankYou:               "Merci pour votre message. Nous devrions y répondre très prochainement."
+        regards:                "Bien cordialement,"
+
+
+# Email contact
+emailContact:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                Vous nous avez envoyé un message
+        thankYou:               ENCORE MERCI
+        forMessage:             POUR VOTRE MESSAGE
+        messageWritten:         MESSAGE
+    content:
+        youWrote:               "Vous nous avez envoyé un message depuis notre site web et pour cela nous vous remercions. Nous devrions répondre très prochainement quand nous aurons résolu votre dilemne ou trouvé une réponse adaptée à votre question."
+        subject:                "Objet :"
+        orderNumber:            "Commande numéro :"
+        mailContent:            "Contenu du message :"
+    footer:
+        anecdote:               "est un nouveau magasin de charcuterie à Cusco, qui vend des produits faits avec la viande locale mais coupée et cuisinée selon les méthodes et techniques françaises. La start-up a ouvert le 1er Mars 2015 au Perou, avec leur premier atelier. D'autres suivront."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
+
+
+
+
 

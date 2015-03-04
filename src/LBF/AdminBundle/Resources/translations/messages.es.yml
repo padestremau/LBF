@@ -5,7 +5,8 @@ emailConfirm:
     titles:
         general:                Su pedido esta ahora confirmado
         orderBeingProcessed:   	SU PEDIDO SE ESTA TRAMITANDO
-        messageFromManager: 	MENSAJE DEL GERENTE
+        orderContent:           CONTENIDO
+        messageFromManager:     MENSAJE DEL GERENTE
     content:
         emailRegarding:  		"Esto es un email de confirmación en relación con su pedido realizado sobre "
         orderIs:                "Su pedido esta ahora "

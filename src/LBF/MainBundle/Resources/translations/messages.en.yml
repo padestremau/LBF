@@ -90,6 +90,7 @@ alert:
         elementDeleted:         "Element deleted."
         cartEmptied:            "Cart was successfully emptied."
         noChangeMade:           "No change to your cart were made."
+        cartIsEmpty:            "Your cart is curently empty."
 
 # Cart
 cart:
@@ -135,26 +136,11 @@ aboutUs:
         title_aboutUs: 			About us
         title_aboutUs_s: 		Histoires et anecdotes
         contact:                CONTACT US
+    descriptions:
+        aude:                   "Native from the south-west of France, region of the 'foie gras'. The French culinary refinement has no secrets for her. With her sense of welcome, you will travel a few moments throughout France. Thirst for discoveries and encounters, she decided with her family to drop everything to achieve their dreams in Cusco."
+        antoine:                "French, native from Britain, one of the first porc-producing areas in the world. He got his hand in the cutting and processing of meat since his early childhood. Thirst to share the French culinary culture to his country of adoption, he decided with his family to drop everything to achieve their dreams in Cusco."
+        pierreArnaud:           "French engineer, he joined the team in January 2015 to make the best use of his expertise in communication. Travel geek, always looking forward to making new friends, he decided to break his routine to discover Peru. Traveling in our culinary world thanks to his talents."
 
-
-
-# Contact
-
-contact:
-    titles:
-        contact:                Contact
-        thankYou:               Thank you!
-    actions: 
-        send:                   Send
-    content:
-        sender:                 Sender
-        name:                   Name
-        email:                  Email
-        recipient:              Recipient
-        message:                Message
-        object:                 Object
-        content:                Content
-        messageSent:            Message sent.
 
 # Footer
 
@@ -181,7 +167,20 @@ footer:
         entireBlog: 			The blog
         cookingRecipe: 			Recipes
         news: 					News
-
+    contact:
+        senderName:             Name
+        senderEmail:            Email
+        selectObject:           "Select the subject of your demand"
+        object1:                "Order still not validated"
+        object2:                "Order is empty"
+        object3:                "Order was refused"
+        object4:                "Problem with my account"
+        object5:                "Web site mistake"
+        object6:                "More infos"
+        object7:                "New products"
+        orderNumber:            "Order n°"
+        message:                "Message"
+        send:                   "SEND"
     actions: 
         send: 					GO
         enterEmail:             Enter your email
@@ -192,6 +191,73 @@ footer:
 
 # Modal
 modal:
+    modalQuality:
+        intro:                  "The Buffet Francés is an alliance between the products of a local terroir of exceptional wealth and traditional French recipes. "
+        quote1:                 "These products are fresh and carefully selected to offer you the best flavors."
+        quote2:                 "Our fresh products are vacuum packaged for better conservation."
+        quote3:                 "We selected traditional recipes with sausages, pâté and ham, that can be cooked with our delicatessen products. The offer would not be complete without our jams and our homemade liqueurs. You will soon find as well a variety of canned food and a selection of French wines."
+        dontWait:               "Don't wait to test "
+        products:               " our products "
+        thanksTo:               " thanks to "
+        recipes:                " our recipes "
+        tested:                 "tested and approved."
+    modalReservation:
+        intro:                  "Principle of the booking:"
+        quote1:                 "Choose the items you like and add them to your shopping cart "
+        quote2:                 "Go to your shopping cart and confirm your order from your account "
+        quote3:                 "Choose the date and time that most suit you to come and pick up your order at the store "
+        quote4:                 "Click send "
+        quote5:                 "You should receive a confirmation email that your order is on hold waiting for one of the managers to validate it "
+        quote6:                 "Once your order is validated, you may come and pick it up at the store, located at the following address: "
+        remark:                 "Note:"
+        remarkContent:          "If your don't have an account, you'll be able to easily and quickly create one with your email and a password!"
+    modalRecipe:
+        origin:                 "Origin : "
+        forHowMany:             "For: "
+        people:                 "people"
+        duration:               "Preparation time: "
+        cooking:                "Cooking time: "
+        min:                    " min "
+        ingredients:            "Ingredients: "
+        preparation:            "Preparation: "
+        lastEdit:               "Last edited the "
+        atTime:                 " at "
     actions: 
         close:                  Close
+
+# Contact
+contact:
+    titles: 
+        thankYou:               Thank you!
+    content:
+        thankYou:               "Thank you for your message. We'll be getting back to you shortly."
+        regards:                "Best regards,"
+
+
+# Email contact
+emailContact:
+    notes: 
+        topSentence:            "This is a letter from "
+    titles:
+        general:                You sent us a message on our website
+        thankYou:               THANK YOU
+        forMessage:             FOR YOUR MESSAGE
+        messageWritten:         MESSAGE
+    content:
+        youWrote:               "You wrote us on our website, and we thank you for that. We'll be getting back to you very shortly as soon as we resolved your matter, or found a suitable answer to your question."
+        subject:                "Subject:"
+        orderNumber:            "Order number:"
+        mailContent:            "Content of the message:"
+    footer:
+        anecdote:               "is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way."
+        keepInTouch:            "Keep in touch: "
+        ifWantToJoin:           "If someone sent you this email and you'd like to join our mailing list, you can sign up "
+        here:                   "here"
+        quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
+        clickHere:              click here
+
+
+
+
+
 

@@ -1,5 +1,14 @@
 <!-- Modals for "more info" -->
 
+<script type="text/javascript">
+  
+
+  function goToWithoutModal(path) {
+    $('#qualityModal').modal('hide');
+    window.location = path;
+  }
+</script>
+
 <!-- 1. Quality -->
 <div class="modal bs-example-modal-lg fade" id="qualityModal" tabindex="-1" role="dialog" aria-labelledby="qualityModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
   <div class="modal-dialog modal-lg">
@@ -11,27 +20,24 @@
         </h2>
       </div>
       <div class="modal-body">
-        Le Buffet Francés c’est une alliance entre les produits d’un terroir local d’une exceptionnelle richesse et des recettes françaises traditionnelles. 
-        <ul>
-          <li>
-            Ces produits sont frais et sélectionnés avec soin pour vous offrir les meilleures saveurs. 
-          </li>
-          <li>
-            Nos produits frais sont conditionnés sous vide afin de leur procurer une meilleure conservation.
-          </li>
-          <li>
-            Nous avons sélectionné des recettes traditionnelles de saucisses, pâtés, jambon qui peuvent être cuisinées avec nos produits d’épicerie fine.  L’offre ne serait pas complète sans nos confitures et nos liqueurs maison. Vous pourrez enfin bientôt retrouver toute une variété de conserves ainsi qu’une sélection de vins français.
-            
-          </li>
-        </ul>
-        N’attendez pas pour tester <a href="javascript:goToWithoutModal('{{ path('lbf_main_homepage') }}#ourProducts')" ><strong> nos produits </strong></a> grâce à <a href="javascript:goToWithoutModal('{{ path('lbf_main_homepage') }}#ourRecipes')" ><strong> nos recettes </strong></a> testées et approuvées.
-
-        <script type="text/javascript">
-          function goToWithoutModal(path) {
-            $('#qualityModal').modal('hide');
-            window.location = path;
-          }
-        </script>
+        <div class="modal-body-inner">
+          {{ 'modal.modalQuality.intro' | trans }}
+          <ul>
+            <li>
+              {{ 'modal.modalQuality.quote1' | trans }}
+            </li>
+            <li>
+              {{ 'modal.modalQuality.quote2' | trans }}
+            </li>
+            <li>
+              {{ 'modal.modalQuality.quote3' | trans }}
+            </li>
+          </ul>
+          {{ 'modal.modalQuality.dontWait' | trans }} <a href="javascript:goToWithoutModal('{{ path('lbf_main_homepage') }}#ourProducts')" ><strong> 
+          {{ 'modal.modalQuality.products' | trans }} </strong></a> 
+          {{ 'modal.modalQuality.thanksTo' | trans }} <a href="javascript:goToWithoutModal('{{ path('lbf_main_homepage') }}#ourRecipes')" ><strong> {{ 'modal.modalQuality.recipes' | trans }} </strong></a> 
+          {{ 'modal.modalQuality.tested' | trans }}
+        </div>
       </div>
       <div class="modal-footer padding0">
         <button type="button" class="btn btn-modal" data-dismiss="modal">
@@ -54,30 +60,50 @@
         </h2>
       </div>
       <div class="modal-body">
-        Principe de la réservation:
-        <ol>
-          <li>
-            Choisissez les éléments qui vous plaisient et ajoutez-les à votre panier
-          </li>
-          <li>
-            Rendez-vous sur votre panier et validez votre commande depuis votre compte *
-          </li>
-          <li>
-            Choisissez la date et l'heure qui vous conviennent le mieux pour venir les récupérer au magasin
-          </li>
-          <li>
-            Cliquez sur envoyer
-          </li>
-          <li>
-            Vous receverez un email de confirmation de commande, en attente de la validation d'un gérant de magasin
-          </li>
-        </ol>
+        <div class="modal-body-inner">
+          {{ 'modal.modalReservation.intro' | trans }}
+          <ol>
+            <li>
+              {{ 'modal.modalReservation.quote1' | trans }}
+            </li>
+            <li>
+              {{ 'modal.modalReservation.quote2' | trans }} *
+            </li>
+            <li>
+              {{ 'modal.modalReservation.quote3' | trans }}
+            </li>
+            <li>
+              {{ 'modal.modalReservation.quote4' | trans }}
+            </li>
+            <li>
+              {{ 'modal.modalReservation.quote5' | trans }}
+            </li>
+            <li>
+              {{ 'modal.modalReservation.quote6' | trans }}
+              <br/>
+              <br class="hidden-xs"/>
+              <div class="address_box">
+                <span style="font-size:1.2em;">
+                  <strong>Le Buffet Francés</strong> 
+                </span>
+                <br/>
+                <span style="font-size:0.9em;">
+                  Avenida Las Sauces <br/>
+                  Larapa, San Sebastian, Cusco <br/>
+                  <strong>
+                    Perú
+                  </strong>
+                </span>
+              </div>
+            </li>
+          </ol>
 
-        <strong>
-          * Remarque :
-        </strong>
-        Si vous n'avez pas de compte, il vous suffira d'en créer un rapidement avec un email et un mot de passe !
-
+          <strong>
+            * 
+            {{ 'modal.modalReservation.remark' | trans }}
+          </strong>
+          {{ 'modal.modalReservation.remarkContent' | trans }}
+        </div>
       </div>
       <div class="modal-footer padding0">
         <button type="button" class="btn btn-modal" data-dismiss="modal">
@@ -97,63 +123,87 @@
         <button type="button" class="close white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h2 class="modal-title center" id="recipeModalTitle"></h2>
       </div>
-      <div class="modal-body row" id="recipeModalContent">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_LeftPart">
-            <div class="recipe_border">
-              <div class="left">
-                <span><strong>Provenance :</strong></span> <span id="recipeModalContent_Origin"></span> <br/>
-                <span><strong>Pour :</strong></span> <span id="recipeModalContent_ForHowMany"></span> <span>personnes</span> <br/>
-                <span><strong>Préparation :</strong></span> <span id="recipeModalContent_Duration"></span> <span> MIN</span> <br/>
-                <span><strong>Cuisson :</strong></span> <span id="recipeModalContent_Cooking"></span> <span> MIN</span>
-                <hr/>
-                <strong class="text-decoration:underline;">Ingrédients :</strong>
-                <div id="recipeModalContent_Ingredients">
+      <div class="modal-body" id="recipeModalContent">
+        <div class="modal-body-inner row">
+          
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_LeftPart">
+              <div class="recipe_border">
+                <div class="left">
+                  <span>
+                    <strong>
+                      {{ 'modal.modalRecipe.origin' | trans }}
+                    </strong>
+                  </span> 
+                  <span id="recipeModalContent_Origin"></span> <br/>
+                  <span>
+                    <strong>
+                      {{ 'modal.modalRecipe.forHowMany' | trans }}
+                    </strong>
+                  </span> 
+                  <span id="recipeModalContent_ForHowMany"></span> 
+                  <span>
+                    {{ 'modal.modalRecipe.people' | trans }}
+                  </span> 
+                  <br/>
+                  <span>
+                    <strong>
+                      {{ 'modal.modalRecipe.duration' | trans }}
+                    </strong>
+                  </span> 
+                  <span id="recipeModalContent_Duration"></span> 
+                  <span>
+                    {{ 'modal.modalRecipe.min' | trans }}
+                  </span> 
+                  <br/>
+                  <span>
+                    <strong>
+                      {{ 'modal.modalRecipe.cooking' | trans }}
+                    </strong>
+                  </span> 
+                  <span id="recipeModalContent_Cooking"></span> 
+                  <span>
+                    {{ 'modal.modalRecipe.min' | trans }}
+                  </span>
+                  <hr/>
+                  <strong class="text-decoration:underline;">
+                    {{ 'modal.modalRecipe.ingredients' | trans }}
+                  </strong>
+                  <div id="recipeModalContent_Ingredients">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
+              <div class="recipe_border">
+                <strong class="text-decoration:underline;">
+                  {{ 'modal.modalRecipe.preparation' | trans }}
+                </strong>
+                <div class="left" id="recipeModalContent_Preparation">
                   
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
-            <div class="recipe_border">
-              <strong class="text-decoration:underline;">Préparation :</strong>
-              <div class="left" id="recipeModalContent_Preparation">
-                
+
+          <br/><br/>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+              <div class="center">
+                <span>
+                  {{ 'modal.modalRecipe.lastEdit' | trans }}
+                </span> 
+                <span id="recipeModalContent_UpdatedAt_date"></span> 
+                {{ 'modal.modalRecipe.atTime' | trans }}
+                <span id="recipeModalContent_UpdatedAt_time"></span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <script type="text/javascript">
-          // $('#recipeModal').modal().on('shown', function(){
-          //     $('body').css('overflow', 'hidden !important');
-          // }).on('hidden', function(){
-          //     $('body').css('overflow', 'auto');
-          // });
-          
-          var height_Left = $('#recipeModalContent_LeftPart').height();
-          var height_Right = $('#recipeModalContent_RightPart').height();
-          if (height_Left > height_Right) {
-            $('#recipeModalContent_RightPart').css({'height':height_Left+'px !important'});
-          }
-          else {
-            $('#recipeModalContent_LeftPart').css({'height':height_Right+'px !important'}); 
-          }
-
-        </script>
-
-
-        <br/><br/>
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-            <div class="center">
-              <span>Dernière modification: </span> <span id="recipeModalContent_UpdatedAt"></span>
-            </div>
-            <div id="recipeModalContent_PhotoRecipe" class="recipe_img_lg" style="width: 100%; background-size: cover; background-position: 50%;">
-              <script type="text/javascript">
-                var recipe_height_lg = $('.recipe_img_lg').width() * 0.8;
-                $('.recipe_img_lg').css({'height':recipe_height_lg+'px'});
-              </script>
+              <div id="recipeModalContent_PhotoRecipe" class="recipe_img_lg" style="width: 100%; background-size: cover; background-position: 50%;">
+                <script type="text/javascript">
+                  var recipe_height_lg = $('.recipe_img_lg').width() * 0.8;
+                  $('.recipe_img_lg').css({'height':recipe_height_lg+'px'});
+                </script>
+              </div>
             </div>
           </div>
         </div>

@@ -113,7 +113,7 @@ class AdminController extends Controller
             // Message for client
             $message = \Swift_Message::newInstance()
                 ->setContentType('text/html')
-                ->setSubject('[Le Buffet Francés] Your order is now confirmed.')
+                ->setSubject('[Le Buffet Francés]')
                 ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
                 ->setTo($order->getUser()->getEmail())
                 ->setBody(
@@ -172,7 +172,7 @@ class AdminController extends Controller
         // Message for client
         $message = \Swift_Message::newInstance()
             ->setContentType('text/html')
-            ->setSubject('[Le Buffet Francés] Your order is now complete.')
+            ->setSubject('[Le Buffet Francés]')
             ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
             ->setTo($order->getUser()->getEmail())
             ->setBody(

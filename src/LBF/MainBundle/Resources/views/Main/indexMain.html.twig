@@ -234,18 +234,18 @@
 			<div class="section section_padding row" id="ourProducts">
 				<div class="presentation_texte row">
 		        	<div class="row center">
-		        		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs" data-menuanchor="ourRecipes">
+		        		<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs" data-menuanchor="ourRecipes">
 		        			<a href="#ourRecipes" class="btn btn-login" id="btn_section3">
 								<img src="{{ asset('img/system/defaults/down_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourProducts.titles.recipes' | trans }}
 							</a>
 		        		</div>
-		        		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+		        		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 							<h2>
 								{{ 'ourProducts.titles.title_ourProducts' | trans }}
 							</h2>
 		        		</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
 							<button class="btn btn-login" onClick="addToSessionCart(); addToSessionCartXS();">
 								{{ 'header.titles.myCart' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -680,13 +680,13 @@
 			<div class="section section_padding row" id="ourRecipes">
 				<div class="presentation_texte">
 					<div class="row center">
-		        		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs" data-menuanchor="ourProducts">
+		        		<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs" data-menuanchor="ourProducts">
 		        			<a href="#ourProducts" class="btn btn-login">
 								<img src="{{ asset('img/system/defaults/up_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourRecipes.titles.products' | trans }}
 							</a>
 		        		</div>
-		        		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+		        		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 							<h2>
 								{{ 'ourRecipes.titles.title_ourRecipes' | trans }}
 								<br/>
@@ -695,7 +695,7 @@
 								</span>
 							</h2>
 		        		</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+						<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
 						</div>
 					</div>
 					<br/>
@@ -790,20 +790,21 @@
 																			{% endif %}
 																			<div class="center">
 																				<button class="btn btn-login" 
-																					onClick="showFullRecipe('{{ recipe.title }}', '{{ recipe.description }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ recipe.ingredients|json_encode() }}', '{{ recipe.preparation|json_encode() }}', '{{ recipe.updatedAt|date('H:i d/M/Y') }}')">
+																					onClick="showFullRecipe('{{ recipe.title }}', '{{ recipe.description }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ recipe.ingredients|json_encode() }}', '{{ recipe.preparation|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
 																					Découvrir la recette
 																					<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																				</button>			
 																			</div>
 
 																			<script>
-																				function showFullRecipe(title, description, duration, forHowMany, cooking, origin, photo_webPath, ingredients, preparation, updatedAt) {
+																				function showFullRecipe(title, description, duration, forHowMany, cooking, origin, photo_webPath, ingredients, preparation, updatedAt_date, updatedAt_time) {
 																					document.getElementById('recipeModalTitle').innerHTML = title;
 																					document.getElementById('recipeModalContent_ForHowMany').innerHTML = forHowMany;
 																					document.getElementById('recipeModalContent_Duration').innerHTML = duration;
 																					document.getElementById('recipeModalContent_Cooking').innerHTML = cooking;
 																					document.getElementById('recipeModalContent_Origin').innerHTML = origin;
-																					document.getElementById('recipeModalContent_UpdatedAt').innerHTML = updatedAt;
+																					document.getElementById('recipeModalContent_UpdatedAt_date').innerHTML = updatedAt_date;
+																					document.getElementById('recipeModalContent_UpdatedAt_time').innerHTML = updatedAt_time;
 																					document.getElementById('recipeModalContent_PhotoRecipe').style.backgroundImage = 'url('+photo_webPath+')';
 																					var ingredients_j = JSON.parse(ingredients);	
 																					var ingredients_str = '<ul class="margin0">';
@@ -824,7 +825,7 @@
 																					ingredients_str = ingredients_str+'</ul>';
 																					document.getElementById('recipeModalContent_Ingredients').innerHTML = ingredients_str;
 
-																					var preparation_j = JSON.parse(ingredients);	
+																					var preparation_j = JSON.parse(preparation);	
 																					var preparation_str = '<ul class="margin0">';
 																					for (var i = 0; i < preparation_j.length; i++) {
 																						if (typeof preparation_j[i] == 'string') {
@@ -915,8 +916,8 @@
 			<div class="section section_padding row" id="aboutUs">
 				<div class="presentation_texte">
 					<div class="row center">
-		        		<div class="col-lg-2 col-md-2 hidden-xs"></div>
-		        		<div class="col-lg-8 col-md-8 col-xs-12">
+		        		<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs"></div>
+		        		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 							<h2>
 								{{ 'aboutUs.titles.title_aboutUs' | trans }}
 								<br/>
@@ -925,7 +926,7 @@
 								</span>
 							</h2>
 		        		</div>
-						<div class="col-lg-2 col-md-2 col-xs-12">
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
 							<a href="#footerSection" class="btn btn-login" id="btn_section4">
 								{{ 'aboutUs.titles.contact' | trans }}
 								<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
@@ -938,17 +939,17 @@
 							<div class="col-lg-4 col-md-4 col-sm-4 sep_dotted_right">
 								<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="creator_img"/>
 								<h4>Aude de Penfentenyo </h4>
-								Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
+								{{ 'aboutUs.descriptions.aude' | trans }}
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 sep_dotted_right">
 								<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="creator_img"/>
 								<h4>Antoine de Penfentenyo </h4>
-								Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
+								{{ 'aboutUs.descriptions.antoine' | trans }}
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4">
 								<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="creator_img"/>
 								<h4>Pierre-Arnaud Destremau</h4>
-								Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents.
+								{{ 'aboutUs.descriptions.pierreArnaud' | trans }}
 							</div>
 						</div>
 
@@ -959,7 +960,7 @@
 								</div>
 								<div class="col-xs-7">
 									<h4>Aude de Penfentenyo </h4>
-									Originaire du sud-ouest de la France, région du foie gras. Le raffinement culinaire français n’a pas de secret pour elle. Grâce à son sens de l’accueil, vous voyagerez quelques instants à travers la France. Soif de découvertes et de rencontres, elle décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
+									{{ 'aboutUs.descriptions.aude' | trans }}
 								</div>
 							</div>
 							<div class="col-xs-12 creator_padding sep_dotted_bottom">
@@ -968,7 +969,7 @@
 								</div>
 								<div class="col-xs-7">
 									<h4>Antoine de Penfentenyo </h4>
-									Français, originaire de Bretagne, une des premières régions productrices de porcs au monde. Il s’est fait la main dès l’enfance à la découpe et à la transformation de la viande. Soif de faire partager la culture culinaire française à son pays d’adoption, il décide avec sa famille de tout lâcher pour réaliser leurs rêves à Cusco.
+									{{ 'aboutUs.descriptions.antoine' | trans }}
 								</div>
 							</div>
 							<div class="col-xs-12 creator_padding">
@@ -977,7 +978,7 @@
 								</div>
 								<div class="col-xs-7">
 									<h4>Pierre-Arnaud Destremau</h4>
-									Ingénieur français,  il rejoint l’équipe en janvier 2015 pour mettre à profit ses compétences dans la communication. Passionné de voyages et de rencontres, il décide de casser sa routine pour découvrir le Pérou. Voyagez dans notre univers culinaire grâce à ses talents.
+									{{ 'aboutUs.descriptions.pierreArnaud' | trans }}
 								</div>
 							</div>
 						</div>

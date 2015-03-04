@@ -217,7 +217,9 @@
                   document.getElementById("sessionFlash").innerHTML = '\
                   <div class="alert alert-warning alert-dismissible fade in" role="alert">\
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-                    <strong>Careful!</strong> Your cart is curently empty.\
+                    <strong>\
+                      {{ "alert.title.careful" | trans }}\
+                    </strong> {{ "alert.content.cartIsEmpty" | trans }}\
                   </div>';
                   setTimeout(function() {
                     $('.alert').fadeOut('fast');
@@ -464,7 +466,9 @@
                     document.getElementById("sessionFlash").innerHTML = '\
                     <div class="alert alert-warning alert-dismissible fade in" role="alert">\
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>\
-                      <strong>Careful!</strong> Your cart is curently empty.\
+                      <strong>\
+                        {{ "alert.title.careful" | trans }}\
+                      </strong> {{ "alert.content.cartIsEmpty" | trans }}\
                     </div>';
                     setTimeout(function() {
                       $('.alert').fadeOut('fast');

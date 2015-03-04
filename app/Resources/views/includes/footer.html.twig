@@ -5,17 +5,31 @@
 		<h2 class="h2_footer">
 			Contact
 		</h2>
-		<form id="contact_form" method="post">
+		<form id="contact_form" method="post" action="{{ path('lbf_main_footer_contact') }}">
 	        <div id="" class="row">
-	        	<div class="form-group row">
+
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	        	<div class="hidden">
 					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<input type="sender" name="senderContact" id="senderContact" placeholder="Expéditeur" class="form-control placeholder-no-fix"/>
+						<input type="hidden" name="senderContact" id="senderContact" class="form-control placeholder-no-fix"
+							value="{% if app.user.firstName|length > 0 %}{{ app.user.firstName }}{% endif %}"/>
 			        </div>
 					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<input type="email" name="emailContact" id="emailContact" placeholder="Email" class="form-control placeholder-no-fix"/>
+						<input type="hidden" name="emailContact" id="emailContact" class="form-control placeholder-no-fix" 
+							value="{{ app.user.email }}"/>
+			        </div>
+				</div>
+				{% else %}
+				<div class="form-group row">
+					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<input type="text" name="senderContact" id="senderContact" placeholder="{{ 'footer.contact.senderName' | trans }}" class="form-control placeholder-no-fix"/>
+			        </div>
+					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<input type="email" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderEmail' | trans }}" class="form-control placeholder-no-fix"/>
 			        </div>
 				</div>
 				<br/>
+				{% endif %}
 	            <div class="form-group row">
 	            	<script type="text/javascript">
 	                  	function showOrderNumber() {
@@ -30,43 +44,43 @@
 	            	<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix" onClick="showOrderNumber()">
 		                    <option value="" selected>
-		                    	Sélectionner l'objet de votre demande
+		                    	{{ 'footer.contact.selectObject' | trans }}
 		                    </option>
-		                    <option value="SM0" id="SM0">
-		                    	Commande non validée
+		                    <option value="OBJ1: {{ 'footer.contact.object1' | trans }}" id="SM0">
+		                    	{{ 'footer.contact.object1' | trans }}
 		                    </option>
-							<option value="SM1" id="SM1">
-								Commande vide
+							<option value="OBJ2: {{ 'footer.contact.object2' | trans }}" id="SM1">
+								{{ 'footer.contact.object2' | trans }}
 							</option>
-							<option value="SM2" id="SM2">
-								Commande refusée
+							<option value="OBJ3: {{ 'footer.contact.object3' | trans }}" id="SM2">
+								{{ 'footer.contact.object3' | trans }}
 							</option>
-							<option value="SM3">
-								Compte utilisateur défaillant
+							<option value="OBJ4: {{ 'footer.contact.object4' | trans }}">
+								{{ 'footer.contact.object4' | trans }}
 							</option>
-							<option value="SM4">
-								Erreur de site web
+							<option value="OBJ5: {{ 'footer.contact.object5' | trans }}">
+								{{ 'footer.contact.object5' | trans }}
 							</option>
-							<option value="SM5">
-								Demande de renseignements
+							<option value="OBJ6: {{ 'footer.contact.object6' | trans }}">
+								{{ 'footer.contact.object6' | trans }}
 							</option>
-							<option value="SM6">
-								Nouveaux produits
+							<option value="OBJ7: {{ 'footer.contact.object7' | trans }}">
+								{{ 'footer.contact.object7' | trans }}
 							</option>
 						</select>
 	            	</div>
 	                <div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="display:none;" id="corpsOrder_input">
-	                	<input type="integer" name="corpsOrder" id="corpsOrder" placeholder="Commande n°" class="form-control placeholder-no-fix"/>
+	                	<input type="integer" name="orderNumber" id="orderNumber" placeholder="{{ 'footer.contact.orderNumber' | trans }}" class="form-control placeholder-no-fix"/>
 	                </div>
 	          	</div> 	
 				<br/>
 	            <div class="form-group row">
 	                <div class="input-icon col-md-12">
-	                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="Message"></textarea>
+	                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'footer.contact.message' | trans }}"></textarea>
 	                </div>
 	            </div>
 	        </div>
-	        <input type="submit" value="ENVOYER" class="btn btn-log submit_send_footer" title="Envoyer le message">
+	        <input type="submit" value="{{ 'footer.contact.send' | trans }}" class="btn btn-footer submit_send_footer">
 	    </form>
 	</div>
 	<div class="row border_white_top footer_part">

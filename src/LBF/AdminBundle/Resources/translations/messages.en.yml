@@ -5,7 +5,8 @@ emailConfirm:
     titles:
         general:                Your order is now confirmed
         orderBeingProcessed:   	YOUR ORDER IS BEING PROCESSED
-        messageFromManager: 	MESSAGE FROM MANAGER
+        orderContent:           CONTENT
+        messageFromManager:     MESSAGE FROM MANAGER
     content:
         emailRegarding:  		"This is a confirmation email regarding your recent order on "
         orderIs:                "Your order is now "

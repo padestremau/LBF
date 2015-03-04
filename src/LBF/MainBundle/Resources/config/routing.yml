@@ -37,3 +37,11 @@ lbf_main_newsletterEmail:
 lbf_main_newsletterEmail_undo:
     path:     /newsletterEmailUndo/{email}
     defaults: { _controller: LBFMainBundle:Main:newsletterEmailUndo }
+
+lbf_main_footer_contact:
+    path:     /contact
+    defaults: { _controller: LBFMainBundle:Main:footerContact }
+
+lbf_main_footer_contact_thankYou:
+    path:     /contact/thankYou
+    defaults: { _controller: LBFMainBundle:Main:footerContactThankYou }

@@ -5,7 +5,8 @@ emailConfirm:
     titles:
         general:                Votre commande est à présent confirmée
         orderBeingProcessed:   	VOTRE COMMANDE EST EN COURS DE PRÉPARATION
-        messageFromManager: 	MESSAGE D'UN DES GÉRANTS
+        orderContent:           CONTENU
+        messageFromManager:     MESSAGE D'UN DES GÉRANTS
     content:
         emailRegarding:  		"Ceci est un email de confirmation concernant votre récente commande sur "
         orderIs:                "Votre commande est à présent "

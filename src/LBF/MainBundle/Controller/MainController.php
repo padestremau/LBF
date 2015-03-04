@@ -345,7 +345,7 @@ class MainController extends Controller
             // Message for client
             $message = \Swift_Message::newInstance()
                 ->setContentType('text/html')
-                ->setSubject('[Le Buffet Francés] New order on hold.')
+                ->setSubject('[Le Buffet Francés]')
                 ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
                 ->setTo($currentUser->getEmail())
                 ->setBody(
@@ -396,8 +396,101 @@ class MainController extends Controller
         return $this->redirect($this->generateUrl('lbf_main_confirm'));
     }
 
-    public function confirmAction() {
-        
+    public function confirmAction() 
+    {    
         return $this->render('LBFMainBundle:Main:confirm.html.twig');
+    }
+
+    public function footerContactAction() 
+    {
+
+        /* Current User */
+        $currentUser = $this->getUser();
+        if ($currentUser) {
+            $senderName = $currentUser->getFirstName();
+            $senderEmail = $currentUser->getEmail();
+        } else {
+            $senderName = $_POST['senderContact'];
+            $senderEmail = $_POST['emailContact'];
+        }
+        $senderSubject = $_POST['sujetMail'];
+        // if ($senderSubject == 'SM0') {
+        //     $senderSubject = "Commande non validée";
+        // }
+        // else if ($senderSubject == 'SM1') {
+        //     $senderSubject = "Commande vide";
+        // }
+        // else if ($senderSubject == 'SM2') {
+        //     $senderSubject = "Commande refusée";
+        // }
+        // else if ($senderSubject == 'SM3') {
+        //     $senderSubject = "Compte utilisateur défaillant";
+        // }
+        // else if ($senderSubject == 'SM4') {
+        //     $senderSubject = "Erreur de site web";
+        // }
+        // else if ($senderSubject == 'SM5') {
+        //     $senderSubject = "Demande de renseignements";
+        // }
+        // else if ($senderSubject == 'SM6') {
+        //     $senderSubject = "Nouveaux produits";
+        // }
+        // else {
+        //     $senderSubject = "Erreur ";
+        // }
+        
+        $senderOrderNumber = '';
+        if ($_POST['orderNumber']) {
+            $senderOrderNumber = $_POST['orderNumber'];
+        }
+
+        $senderContent = $_POST['corpsMail'];
+
+        // Message for client
+        $message = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Le Buffet Francés]')
+            ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+            ->setTo($senderEmail)
+            ->setBody(
+                $this->renderView('LBFMainBundle:Main:emailContactClient.html.twig',
+                    array(  'senderName' => $senderName,
+                            'senderSubject' => $senderSubject,
+                            'senderOrderNumber' => $senderOrderNumber,
+                            'senderContent' => $senderContent
+                            )
+                )
+            )
+        ;
+
+        // Message for manager/admin
+        $messageAdmin = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Le Buffet Francés] Nouveau message.')
+            ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+            ->setTo('p.a.destremau@gmail.com')
+            ->setBody(
+                $this->renderView('LBFMainBundle:Main:emailContactAdmin.html.twig',
+                    array(  'senderName' => $senderName,
+                            'senderEmail' => $senderEmail,
+                            'senderSubject' => $senderSubject,
+                            'senderOrderNumber' => $senderOrderNumber,
+                            'senderContent' => $senderContent
+                            )
+                )
+            )
+        ;
+
+        $this->get('mailer')->send($message);
+        $this->get('mailer')->send($messageAdmin);        
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('lbf_main_footer_contact_thankYou'));
+    }
+
+    public function footerContactThankYouAction() 
+    {
+        
+        return $this->render('LBFMainBundle:Main:contactThankYou.html.twig');
     }
 }
