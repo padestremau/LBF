@@ -74,8 +74,11 @@ ourRecipes:
         title_ourRecipes:       Our recipes
         title_ourRecipes_s:     A new way to cook
         products:               PRODUCTS
+    actions:
+        discoverRecipe:         Discover the recipe
     warning:
         message:                "This page is empty. Contact the web-master."
+        noRecipe:               "Sorry, no recipe at the moment"
 
 
 

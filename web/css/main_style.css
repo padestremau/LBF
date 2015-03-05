@@ -57,7 +57,7 @@ h1
 	margin-bottom: 0 !important;
 	margin-top: 0 !important;
 	text-align: center;
-	font-family: 'Helvetica Neue';
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	font-weight: 100 !important;
 }
 @media (min-width: 1401px) {
@@ -85,38 +85,49 @@ h2
 }
 h2 span {
 	margin: 0 !important;
-	margin-top: -8px !important;
+	/*margin-top: -8px !important;*/
 	margin-bottom: 8px !important;
 	padding: 0 !important;
-	font-weight: 120 !important;
+	font-weight: 150 !important;
 }
 @media (min-width: 1401px) {
 	h2 {
-		/*margin-bottom: 4px !important;*/
+		margin-bottom: 8px !important;
 		font-size: 2em;
 	}
 	h2 span {
 		font-size: 0.6em;
 	}
 }
-@media (min-width: 993px) and (max-width: 1400px){
+@media (min-width: 993px) and (max-width: 1400px) {
 	h2 {
-		/*margin-bottom: 3px !important;*/
+		margin-bottom: 7px !important;
 		font-size: 1.6em;
 	}
 	h2 span {
 		font-size: 0.6em;
 	}
 }
-@media (max-width: 992px) {
+@media (min-width: 479px) and (max-width: 992px) {
 	h2 {
-		/*margin-bottom: 0px !important;*/
+		margin-bottom: 5px !important;
 		font-size: 1.3em;
 	}
 	h2 span {
 		font-size: 0.6em;
 	}
 }
+@media (max-width: 478px) {
+	h2 {
+		margin-top: 20px !important;
+		margin-bottom: 3px !important;
+		font-size: 1.5em;
+	}
+	h2 span {
+		font-size: 0.7em;
+	}
+}
+
 
 h3
 {	
@@ -165,7 +176,7 @@ h4
 }
 @media (max-width: 478px) {
 	h4 {
-		font-size: 0.95em;
+		font-size: 1.2em;
 	}
 }
 
@@ -370,6 +381,10 @@ strong {
 }
 textarea {
 	resize: vertical;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+	padding: 5px !important;
 }
 
 .white {
@@ -872,6 +887,11 @@ textarea {
 	width: 12px;
 	z-index: 10100;
 }
+@media (max-width: 992px) {
+	#side_buttons {
+		right: 14px !important;
+	}
+}
 .btn-side {
 	width: 10px !important;
 	height: 10px !important;
@@ -1180,7 +1200,7 @@ a.captionOrange:hover
 	border-bottom: 2px solid transparent;
 	padding-bottom: 0 !important;
 }
-.read-more:hover {
+.read-more:hover, .pres_a:hover .read-more {
 	border-bottom: 1px solid rgba(41,41,41,0.95);
 }
 .modal-content {
@@ -1196,6 +1216,7 @@ a.captionOrange:hover
 }
 .modal-title {
 	padding: 0 !important;
+	margin: 0 !important;
 }
 .modal-header, .modal-footer {
 	color: white !important;
@@ -1218,16 +1239,14 @@ body.modal-open {
 	overflow: hidden;
 }
 .btn-modal {
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin: 10px;
 	font-size : 1em;
 	background-color: transparent;
-	/*border: 1px solid white;*/
+	border: 1px solid white !important;
 	border-radius: 0;
-	border: 0.5px solid white;
 }
 .btn-modal:hover, .btn-modal-active {
+	border: 1px solid white !important;
 	background-color: rgba(250,250,250,0.4);
 	color: white;
 }
@@ -1242,21 +1261,34 @@ body.modal-open {
 	}
 }
 .nav-tabs li {
-	background-color: transparent;
 	text-align: center;
 }
 .nav-tabs li a {
 	width: 100%;
-	background-color: transparent;
 	color: rgba(41,41,41,0.95);
-}
-.nav-tabs li a.active {
-	background-color: transparent;
-	border-bottom: 1px solid transparent !important;
+	/*border: 1px dotted rgba(41,41,41,0.05);*/
 }
 .nav-tabs li a:hover {
-	background-color: rgba(100,100,100,0.2);
+	background-color: rgba(41,41,41,0.1) !important;
 	color: rgba(41,41,41,0.95);
+}
+.nav-tabs li.active a:hover {
+	background-color: white !important;
+}
+@media (min-width: 769px) {
+	.nav-tabs li {
+		background-color: transparent !important;
+	}
+	.nav-tabs li a {
+		background-color: transparent !important;
+	}
+	.nav-tabs li.active a {
+		background-color: transparent !important;
+		border-bottom: 1px solid transparent !important;
+	}
+}
+.nav-tabs.nav-justified li {
+
 }
 .tab-content {
 	font-size: 1em;
@@ -1282,6 +1314,12 @@ body.modal-open {
 	position: relative;
 	top: -2px;
 }
+@media (max-width: 478px) {
+	.btn_right_arrow {
+		width: 14px !important;
+		top: 0px !important;
+	}
+}
 
 #product_content {
 	color: rgba(41,41,41,0.95) !important;
@@ -1297,6 +1335,7 @@ body.modal-open {
 	padding: 6px 10px;
 	border-radius: 5px;
 	color: rgba(41,41,41,0.95);
+	overflow: hidden !important;
 }
 .btn-choice:hover, .tabbable .active .btn-choice {
 	background-color: rgba(100,100,100,0.2);
@@ -1317,22 +1356,12 @@ body.modal-open {
 		font-size : 1.4em;
 	}
 }
+@media (max-width: 478px) {
+	.btn-choice {
+		font-size : 1.5em;
+	}
+}
 
-.btn-choice-xs {
-	text-align: left;
-	width: 100%;
-	height: 30px;
-	margin-top: 1px;
-	font-size : 1.5em !important;
-	background-color: transparent;
-	padding: 6px 8px;
-	border-radius: 4px;
-	color: rgba(41,41,41,0.95);
-}
-.btn-choice-xs:hover, .tabbable .active .btn-choice-xs {
-	background-color: rgba(100,100,100,0.2);
-	color: rgba(41,41,41,0.95);
-}
 
 .inner_arrow {
 	display: inline-block;
@@ -1342,7 +1371,7 @@ body.modal-open {
 	opacity: 0.5;
 }
 .tabbable .active .btn-choice .inner_arrow{
-	opacity: 1;
+	opacity: 1 ;
 }
 
 .product_img {
@@ -1351,6 +1380,12 @@ body.modal-open {
 	width: 100%;
 	margin-bottom: 20px;
 	margin-top: 20px;
+}
+@media (max-width: 992px) {
+	.product_img {
+		width: 60% !important;
+		margin-left: 20% !important;
+	}
 }
 .product_img_bis {
 	border-radius: 50%;
@@ -1414,9 +1449,9 @@ body.modal-open {
 	margin-bottom: 10px;
 }
 
-@media (max-width: 478px) {
+@media (max-width: 768px) {
 	.product_info_xs {
-		font-size: 1.2em;
+		font-size: 1.4em;
 	}
 	.tab-pane {
 		padding: 0 !important;
@@ -1553,14 +1588,13 @@ body.modal-open {
 	top: 10px;
 }
 
-/*@media (max-width: 478px) {
-	.counter_info_divs_XS {
+@media (max-width: 768px) {
+	.counter_info_divs {
 		font-style: normal !important;
 		font-size: 1.6em !important;
-		padding: 3px 6px;
-		border: 1px dotted rgba(41,41,41,0.95) !important;
+		padding: 0 !important;
 	}
-}*/
+}
 .counter_price_divs {
 	color: white;
 	font-weight: 600;
@@ -1670,7 +1704,7 @@ body.modal-open {
 }
 @media (max-width: 478px) {
 	.bio {
-		font-size: 0.6em;
+		font-size: 0.9em;
 	}
 }
 
@@ -1694,6 +1728,7 @@ body.modal-open {
 	#login_section {
 		width: 96%;
 		margin-left: 2%;
+		margin-bottom: 20px;
 	}
 	#login_content {
 		margin-top: 20px;
@@ -1741,14 +1776,14 @@ body.modal-open {
 		font-size: 1em;
 	}
 }
-@media (min-width: 479px) and (max-width: 992px){
+@media (min-width: 769px) and (max-width: 992px){
 	.btn-login {
-		font-size: 1em;
+		font-size: 0.9em;
 	}
 }
-@media (max-width: 478px) {
+@media (max-width: 768px) {
 	.btn-login {
-		font-size: 1.4em;
+		font-size: 1.2em;
 	}
 }
 .btn-login:hover, .btn-login-active {
@@ -1873,10 +1908,16 @@ body.modal-open {
 		width: 30%;
 	}
 }
-@media (max-width: 992px) {
+@media (min-width: 479px) and (max-width: 992px) { 
 	.address_box {
 		margin-left: 25%;
 		width: 50%;
+	}
+}
+@media (max-width: 478px) {
+	.address_box {
+		margin-left: 5%;
+		width: 90%;
 	}
 }
 
@@ -2151,13 +2192,13 @@ textarea {
 @media (min-width: 993px) and (max-width: 1400px){
 	.btn-footer {
 		padding: 4px 7px; 
-		font-size: 0.75em;
+		font-size: 0.9em;
 	}
 }
 @media (min-width: 479px) and (max-width: 993px){
 	.btn-footer {
 		padding: 3px 5px; 
-		font-size: 0.58em;
+		font-size: 1em;
 	}
 }
 @media (max-width: 478px){

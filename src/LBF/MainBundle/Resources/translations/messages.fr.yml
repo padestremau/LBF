@@ -74,8 +74,11 @@ ourRecipes:
         title_ourRecipes:       Nos recettes
         title_ourRecipes_s:     Une nouvelle façon de cuisiner
         products:               PRODUITS
+    actions:
+        discoverRecipe:         Découvrir la recette
     warning:
         message:                "Cette page est vide. Contactez l'administrateur de ce site web s'il vous plait."
+        noRecipe:               "Désolé, aucune recette pour l'instant"
     
 
 

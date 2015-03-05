@@ -215,10 +215,12 @@
       // Full page customized
       $('.section').css({'min-height':window_height+'px'});
     }
-
+    if ($('.section_login')) {
+      $('.section_login').css({'min-height':window_height+'px'});
+    }
 
     // Modal height and scroll
-    var window_height_modal = Math.round(window.innerHeight * 0.77);
+    var window_height_modal = Math.round(window.innerHeight * 0.72);
     $(".modal-body").css({'max-height':window_height_modal+'px'});
 
     // alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));

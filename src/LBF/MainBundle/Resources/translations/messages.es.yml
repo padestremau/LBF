@@ -28,7 +28,7 @@ sideButtons:
 main:
     titles:
         title_meat: 			Nuevos sabores sobre tu mesa
-        title_meat_s: 			Buen viaje en nuestro universo culinario francés. 
+        title_meat_s: 			Buen viaje en nuestro universo culinario francés
         recipes: 		        Recetas apetitosas
         qualityProduct: 		Qualitad de producto
         securedPayment: 		Pagamento securo
@@ -75,8 +75,11 @@ ourRecipes:
         title_ourRecipes:       Nuestras recetas
         title_ourRecipes_s:     Un nuevo modo de cocinar
         products:               PRODUCTOS
+    actions:
+        discoverRecipe:         Descubrir la receta
     warning:
         message:                "Esta pagina esta en blanco. Contactad el administratorio del sitio web por favor."
+        noRecipe:               "Disculpa, no hay ningun receta ahora"
     
 
 # Alerts
@@ -140,8 +143,8 @@ aboutUs:
         contact:                ESCRÍBENOS
     descriptions:
         aude:                   "Desde el sur-oeste de Francia, región del 'foie gras'. El refinamiento culinario frances no tiene secretos para ella. Con su sentido de acogida, viajarán algunos momentos en Francia. Con sed de descubrimientos y encuentros, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
-        antoine:                "Francés, natural de Gran Bretaña, una de las primeras áreas de producción de cerdos en el mundo. Está hecho a mano de la niñez a la corte y elaboración de carne. Con sed de compartir la cultura culinaria francesa a su país de adopción, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
-        pierreArnaud:           "Ingeniero francés, se unió al equipo en enero de 2015 para sacar partido de su experiencia en la comunicación. Apasionado por los viajes y reuniones, decidió romper su rutina para descubrir Perú. Viajad en nuestro mundo culinario gracias a su talento."
+        antoine:                "Francés, natural de Bretaña, una de las primeras áreas de producción de cerdos en el mundo. Está hecho a mano de la niñez a la corte y elaboración de carne. Con sed de compartir la cultura culinaria francesa a su país de adopción, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
+        pierreArnaud:           "Ingeniero francés, se unió al equipo en enero de 2015 para sacar partido de su experiencia en la comunicación. Apasionado por los viajes y reuniones, decidió romper su rutina para descubrir Perú. Viajen en nuestro mundo culinario gracias a su talento."
 
 
 # Footer

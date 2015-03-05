@@ -151,7 +151,7 @@
 
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-								<button class="no_style_button" type="button" data-toggle="modal" data-target="#qualityModal">
+								<button class="no_style_button pres_a" type="button" data-toggle="modal" data-target="#qualityModal">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
 									</div>
@@ -161,15 +161,15 @@
 											{{ 'main.content.qualityProduct' | trans }}
 
 											<!-- Button trigger modal -->
-											<a class="read-more no_style_a" >
+											<span class="read-more" >
 												{{ 'main.actions.learnMore' | trans }}
-											</a> >
+											</span> >
 										</p>
 									</div>
 								</button>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-						        <a href="#ourProducts" class="no_style_a">
+						        <a href="#ourProducts" class="no_style_a pres_a">
 						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
 						        	</div>
@@ -178,16 +178,16 @@
 										<p>
 											{{ 'main.content.ourProducts' | trans }}
 
-								          	<a class="read-more no_style_a">
+								          	<span class="read-more" >
 												{{ 'main.actions.discover' | trans }}
-								          	</a> >
+								          	</span> >
 										</p>
 						        	</div>
 						        </a>
 							</div>
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-								<a href="#ourRecipes" class="no_style_a">
+								<a href="#ourRecipes" class="no_style_a pres_a">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Recipe" src="{{ asset('img/system/icons/recipe.png') }}" class="icon_presentation"/>
 									</div>
@@ -197,15 +197,15 @@
 											{{ 'main.content.recipes' | trans }}
 
 											<!-- Button trigger modal -->
-											<a class="read-more no_style_a" >
+											<span class="read-more" >
 												{{ 'main.actions.discover' | trans }}
-											</a> >
+											</span> >
 										</p>
 									</div>
 								</a>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
-								<button type="button" class="no_style_button row" data-toggle="modal" data-target="#reservationModal">
+								<button type="button" class="no_style_button pres_a" data-toggle="modal" data-target="#reservationModal">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<img alt="Reservation" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
 									</div>
@@ -215,9 +215,9 @@
 											{{ 'main.content.reservation' | trans }}
 
 											<!-- Button trigger modal -->
-											<a class="read-more no_style_a" >
+											<span class="read-more" >
 												{{ 'main.actions.learnMore' | trans }}
-											</a> >
+											</span> >
 										</p>
 									</div>
 								</button>
@@ -258,23 +258,25 @@
 						
 						<!-- Product content -->
 						{% if allProducts|length > 0 %}
-							<ul class="nav nav-tabs nav-justified row">
-								{% set index_general = 1 %}
-								{% for category in allCategories %}
-									{% set productsArray = allSortedProducts[index_general] %}
-									<li class="{% if index_general == 1 %} active {% endif %}">
-										<a data-target="#tab_{{ index_general }}" data-toggle="tab">
-											{{ category }} 
-											<span class="hidden-xs">
-												({{ productsArray|length }})
-											</span>
-											<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
-										</a>
-									</li>
-									{% set index_general = index_general + 1 %}
-								{% endfor %}
-							</ul>
-							<br/>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<ul class="nav nav-tabs nav-justified">
+									{% set index_general = 1 %}
+									{% for category in allCategories %}
+										{% set productsArray = allSortedProducts[index_general] %}
+										<li class="{% if index_general == 1 %} active {% endif %}">
+											<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+												{{ category }} 
+												<span class="hidden-xs">
+													({{ productsArray|length }})
+												</span>
+											</a>
+										</li>
+										{% set index_general = index_general + 1 %}
+									{% endfor %}
+								</ul>
+							</div>
+							<br class="hidden-xs"/>
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 
 							<!-- Varying numbers -->
 							<script>
@@ -471,7 +473,7 @@
 
 							</script>
 
-							<div class="tab-content row" id="product_content">
+							<div class="tab-content" id="product_content">
 								{% set index_general = 1 %}
 								{% for category in allCategories %}
 									{% set productsArray = allSortedProducts[index_general] %}
@@ -479,26 +481,23 @@
 									<div class="tab-pane fade 
 										{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
 										<div class="row">
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
 												<ul class="ver-inline-menu tabbable list_no_style_li">
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice hidden-xs">
+														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
 															{{ product.name }}
-															<div class="float-right inner_arrow">
+															<div class="float-right inner_arrow hidden-xs">
 																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
-														</a>
-														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
-															{{ product.name }}
 														</a>
 													</li>
 													{% set index_category = index_category + 1 %}
 												{% endfor %}
 												</ul>
 											</div>
-											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
 												<div class="tab-content">
 													{% set index_category = 1 %}
 													{% set naturalProductDef = false %}
@@ -506,7 +505,7 @@
 														<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
 															{% if index_category == 1 %} active in {% endif %}">
 															<div class="row product_info_xs">
-																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 																	<div class="product_img_div">
 																	{% if product.webPath|length > 0 %}
 																		<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
@@ -561,8 +560,8 @@
 																		{% endif %}
 																	</div>
 																</div>
-																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-																	<div class="row">
+																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+																	<div class="row product_description">
 																		<h4>
 																			{{ product.name }}. 
 																			{% if product.naturalProduct == true %} 
@@ -580,7 +579,7 @@
 																			</div>
 																		{% endif %} 
 																	</div>
-																	<br/>
+																	<br class="hidden-xs"/>
 																	<div class="row center">
 																		<button class="btn btn-login" onClick="goToTab('#tab_recipe_{{ category |replace({' ': '_'}) }}', 'recipe_nav_ul_{{ category |replace({' ': '_'}) }}', '#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}')">
 																			{{ 'ourProducts.actions.seeRecipes' | trans }}
@@ -603,7 +602,7 @@
 															</div>
 															<br/>
 															<div class="row right">
-																<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 inline_div margin_right_10">
+																<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 inline_div margin_right_10">
 																	<div class="row hidden-xs">
 																		<button onClick="addOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons add_button_plus no_style_button" type="button" value="+" title="Add one more"></button>
 
@@ -617,7 +616,7 @@
 																		<button onClick="deleteOne('{{ product.type }}', 'counter_value_{{ product.type }}', 'weight_value_{{ product.type }}', 'price_value_{{ product.type }}')" class="add_buttons_XS add_button_minus no_style_button" type="button" value="-" title="Delete one"></button>
 																	</div>
 																</div>
-																<div class="inline_div col-lg-3 col-md-3 col-sm-3 col-xs-3">
+																<div class="inline_div col-lg-3 col-md-3 col-sm-3 col-xs-2">
 																	<div class="inline_div counter_info_divs">
 																		<div id="counter_value_{{ product.type }}">
 																			0
@@ -704,29 +703,33 @@
 						
 						<!-- Recipes content -->
 						{% if allRecipes|length > 0 %}
-							<ul class="nav nav-tabs nav-justified" id="recipe_nav_ul">
-								{% set index_general = 1 %}
-								{% for category in allCategories %}
-									{% set recipesArray = allSortedRecipes[index_general] %}
-									<li class="{% if index_general == 1 %} active {% endif %}">
-										<a data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
-											{{ category }} <span class="hidden-xs">({{ recipesArray|length }})</span>
-											<br class="hidden-lg hidden-md hidden-sm col-xs-12" />
-										</a>
-									</li>
-									{% set index_general = index_general + 1 %}
-								{% endfor %}
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<ul class="nav nav-tabs nav-justified" id="recipe_nav_ul">
+									{% set index_general = 1 %}
+									{% for category in allCategories %}
+										{% set recipesArray = allSortedRecipes[index_general] %}
+										<li class="{% if index_general == 1 %} active {% endif %}">
+											<a data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
+												{{ category }} 
+												<span class="hidden-xs">
+													({{ recipesArray|length }})
+												</span>
+											</a>
+										</li>
+										{% set index_general = index_general + 1 %}
+									{% endfor %}
 
-								<script>
-									$('#recipe_nav_ul a').click(function (e) {
-										e.preventDefault();
-										$(this).tab('show');
-									});
-								</script>
-							</ul>
-							<br/>
-
-							<div class="tab-content row" id="recipe_content">
+									<script>
+										$('#recipe_nav_ul a').click(function (e) {
+											e.preventDefault();
+											$(this).tab('show');
+										});
+									</script>
+								</ul>
+							</div>
+							<br class="hidden-xs"/>
+							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
+							<div class="tab-content" id="recipe_content">
 								{% set index_general = 1 %}
 								{% for category in allCategories %}
 									{% set productsArray = allSortedProducts[index_general] %}
@@ -735,19 +738,16 @@
 									<div class="tab-pane fade 
 										{% if index_general == 1 %} active in {% endif %}" id="tab_recipe_{{ category |replace({' ': '_'}) }}">
 										<div class="row">
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
 												<ul class="ver-inline-menu tabbable list_no_style_li" id="recipe_nav_ul_{{ category |replace({' ': '_'}) }}">
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice hidden-xs">
+														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice">
 															{{ product.name }}
-															<div class="float-right inner_arrow">
+															<div class="float-right inner_arrow hidden-xs">
 																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
-														</a>
-														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice-xs hidden-lg hidden-md hidden-sm">
-															{{ product.name }}
 														</a>
 													</li>
 													{% set index_category = index_category + 1 %}
@@ -760,7 +760,7 @@
 												</script>
 												</ul>
 											</div>
-											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
 												<div class="tab-content">
 													{% set index_category = 1 %}
 													{% for product in productsArray %}
@@ -772,7 +772,7 @@
 																		{{ product.name }}. 
 																	</h4>
 																</div>
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sep_presentation"></div>
+																<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
 																{% set empty_list = 'YES' %}
 																{% for recipe in recipesArray %}
 																	{% if recipe.element == product %}
@@ -791,7 +791,7 @@
 																			<div class="center">
 																				<button class="btn btn-login" 
 																					onClick="showFullRecipe('{{ recipe.title }}', '{{ recipe.description }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ recipe.ingredients|json_encode() }}', '{{ recipe.preparation|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
-																					Découvrir la recette
+																					{{ 'ourRecipes.actions.discoverRecipe' | trans }}
 																					<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																				</button>			
 																			</div>
@@ -884,8 +884,8 @@
 
 																{% if empty_list == 'YES' %}
 																<div class="row center italic">
-																	<br/>
-																	Aucune recette pour l'instant
+																	<br class="hidden-xs"/>
+																	{{ 'ourRecipes.warning.noRecipe' | trans }}
 																</div>
 																{% endif %}
 															</div>
@@ -955,28 +955,28 @@
 
 						<div class="row bio hidden-lg hidden-md hidden-sm ">
 							<div class="col-xs-12 creator_padding sep_dotted_bottom">
-								<div class="col-xs-5">
+								<div class="col-xs-4">
 									<img src="{{ asset('img/creators/aude.jpg') }}" alt="Aude" class="creator_img_xs"/>
 								</div>
-								<div class="col-xs-7">
+								<div class="col-xs-8">
 									<h4>Aude de Penfentenyo </h4>
 									{{ 'aboutUs.descriptions.aude' | trans }}
 								</div>
 							</div>
 							<div class="col-xs-12 creator_padding sep_dotted_bottom">
-								<div class="col-xs-5">
+								<div class="col-xs-4">
 									<img src="{{ asset('img/creators/antoine.jpg') }}" alt="Antoine" class="creator_img_xs"/>
 								</div>
-								<div class="col-xs-7">
+								<div class="col-xs-8">
 									<h4>Antoine de Penfentenyo </h4>
 									{{ 'aboutUs.descriptions.antoine' | trans }}
 								</div>
 							</div>
 							<div class="col-xs-12 creator_padding">
-								<div class="col-xs-5">
+								<div class="col-xs-4">
 									<img src="{{ asset('img/creators/pierre-arnaud.jpg') }}" alt="Pierre-Arnaud" class="creator_img_xs"/>
 								</div>
-								<div class="col-xs-7">
+								<div class="col-xs-8">
 									<h4>Pierre-Arnaud Destremau</h4>
 									{{ 'aboutUs.descriptions.pierreArnaud' | trans }}
 								</div>

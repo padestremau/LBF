@@ -18,7 +18,7 @@
     <!-- BEGIN CONTENT -->
     <div id="fullpage" class="login_background">
 
-      <div class="section section_padding" id="section4">
+      <div class="section section_login section_padding" id="section4">
 
         <div id="sectionContentAjax">
           <div id="login_section">
@@ -185,8 +185,8 @@
                           {{ form_widget(form.new.second, opt_new_password_confirmation) }}
                         </div>
                       </div>
-                      <div class="form-actions">
-                        <button type="submit" class="btn btn-login pull-right">
+                      <div class="form-actions center">
+                        <button type="submit" class="btn btn-login">
                           {{ 'resetPassword.actions.changePassword'|trans }}
                         </button>
                       </div>
@@ -530,7 +530,9 @@
                           </div> 
                           {{ 'login.actions.remember_me'|trans }}
                         </label>
-                        <button type="submit" data-loading-text="{{ 'welcome.buttons.loading' | trans }}" class="demo-loading-btn btn btn-login center">
+                      </div>
+                      <div class="center">
+                        <button type="submit" class="btn btn-login center">
                           {{ 'login.actions.login'|trans }}
                         </button>
                       </div>
