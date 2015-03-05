@@ -1783,7 +1783,7 @@ body.modal-open {
 }
 @media (max-width: 768px) {
 	.btn-login {
-		font-size: 1.2em;
+		font-size: 1.1em !important;
 	}
 }
 .btn-login:hover, .btn-login-active {

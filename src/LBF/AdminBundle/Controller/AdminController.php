@@ -114,7 +114,7 @@ class AdminController extends Controller
             $message = \Swift_Message::newInstance()
                 ->setContentType('text/html')
                 ->setSubject('[Le Buffet Francés]')
-                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
                 ->setTo($order->getUser()->getEmail())
                 ->setBody(
                     $this->renderView('LBFAdminBundle:Admin:emailConfirmClient.html.twig',
@@ -132,8 +132,8 @@ class AdminController extends Controller
             $messageAdmin = \Swift_Message::newInstance()
                 ->setContentType('text/html')
                 ->setSubject('[Le Buffet Francés] Commande confirmée.')
-                ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
-                ->setTo('p.a.destremau@gmail.com')
+                ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo('antoine@lebuffetfrances.com')
                 ->setBody(
                     $this->renderView('LBFAdminBundle:Admin:emailConfirmAdmin.html.twig',
                         array(  'order' => $order,
@@ -173,7 +173,7 @@ class AdminController extends Controller
         $message = \Swift_Message::newInstance()
             ->setContentType('text/html')
             ->setSubject('[Le Buffet Francés]')
-            ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
+            ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
             ->setTo($order->getUser()->getEmail())
             ->setBody(
                 $this->renderView('LBFAdminBundle:Admin:emailCompleteClient.html.twig',
@@ -189,8 +189,8 @@ class AdminController extends Controller
         $messageAdmin = \Swift_Message::newInstance()
             ->setContentType('text/html')
             ->setSubject('[Le Buffet Francés] Commande terminée.')
-            ->setFrom(array('contact@lebuffetfrances.com' => 'Le Buffet Francés'))
-            ->setTo('p.a.destremau@gmail.com')
+            ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
+            ->setTo('antoine@lebuffetfrances.com')
             ->setBody(
                 $this->renderView('LBFAdminBundle:Admin:emailCompleteAdmin.html.twig',
                     array(  'order' => $order
