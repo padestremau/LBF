@@ -50,19 +50,25 @@ security:
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fr/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/en/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/es/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fr/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/en/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/es/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fr/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/en/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/es/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fr/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/en/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user/, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/fr/user/, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/en/user/, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/user/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
-        - { path: ^/fr/user/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
-        - { path: ^/en/user/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/es/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/fr/user, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/en/user, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/es/user, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/fr/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/en/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/es/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
