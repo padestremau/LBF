@@ -265,13 +265,13 @@
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
             {% if is_granted("ROLE_ADMIN") %}
-                <a href="{{ path('lbf_admin_homepage') }}" class="no_style_a">
+                <a href="{{ path('lbf_admin_homepage') }}" class="no_style_a link_in_dropdown">
                   <button id="button_login_a" class="btn btn-log-xs">
                     ADMIN
                   </button>
                 </a>
             {% else %}
-                <a href="{{ path('lbf_user_homepage') }}" class="no_style_a user_access_button">
+                <a href="{{ path('lbf_user_homepage') }}" class="no_style_a user_access_button link_in_dropdown">
                   <div class="inline_div">
                     {% if app.user.alt|length > 0  and app.user.url|length > 0 %}
                       <div class="user_img_header" style="width: 100%; background-image: url('{{ asset( app.user.webPath) }}'); background-size: cover; background-position: 50%;">
@@ -307,7 +307,7 @@
                 </a>
             {% endif %}
           {% else %}
-              <a href="{{ path('fos_user_security_login') }}" class="no_style_a">
+              <a href="{{ path('fos_user_security_login') }}" class="no_style_a link_in_dropdown">
                 <button id="button_login_a" class="btn btn-log-xs
                 {% if (route == 'fos_user_security_login')
                     or (route == 'fos_user_resetting_reset')
@@ -337,7 +337,7 @@
         <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
 
         <li class="col-xs-12">
-          <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a">
+          <a href="{{ path('lbf_main_homepage') }}#ourProducts" class="no_style_a link_in_dropdown">
             <button class="btn btn-log-xs"  id="btn_section2">
               {{ 'header.titles.ourProducts' | trans }}
             </button>
@@ -347,7 +347,7 @@
         <li class="divider-lbf col-xs-12"><a href="#" class="inactive"></a></li>
         
         <li class="col-xs-12">
-          <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a">
+          <a href="{{ path('lbf_main_homepage') }}#aboutUs" class="no_style_a link_in_dropdown">
             <button class="btn btn-log-xs " id="btn_section1">
               {{ 'header.titles.aboutUs' | trans }}
             </button>
@@ -360,17 +360,17 @@
         <li class="col-xs-12">
           <ul class="social_list_xs">
             <li class="social_item_xs">
-              <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" target="_blank">
+              <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" target="_blank" class="link_in_dropdown">
                 <div class="social_icon_xs social_fb"></div>
               </a>
             </li>
             <li class="social_item_xs">
-              <a href="https://twitter.com/" target="_blank">
+              <a href="https://twitter.com/" target="_blank" class="link_in_dropdown">
                 <div class="social_icon_xs social_tw"></div>
               </a>
             </li>
             <li class="social_item_spe_xs" data-menuanchor="footerSection">
-              <a href="#footerSection">
+              <a href="#footerSection" class="link_in_dropdown">
                 <div class="social_icon_xs social_mail"></div>
               </a>
             </li>
@@ -392,21 +392,21 @@
               {% set current_language = 'es' %}
             {% endif %}
           {% endif %}
-          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection_xs no_style_a
+          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection_xs link_in_dropdown no_style_a
           {% if current_language == 'es' %}
             language_active_xs
           {% endif %}
           ">
             <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag_xs"/>
           </a>
-          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection_xs no_style_a
+          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection_xs link_in_dropdown no_style_a
           {% if current_language == 'fr' %}
             language_active_xs
           {% endif %}
           ">
             <img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag_xs"/>
           </a>
-          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection_xs no_style_a
+          <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection_xs link_in_dropdown no_style_a
           {% if current_language == 'en' %}
             language_active_xs
           {% endif %}
@@ -420,7 +420,7 @@
 
         <!-- BEGIN CART XS -->
         <li class="cart_button center" id="button_cart_div">
-          <button id="button_cart_a"  class="btn btn-log-xs-spe
+          <button id="button_cart_a"  class="btn link_in_dropdown btn-log-xs-spe
               {% if route == 'lbf_main_cart'
                   or route == 'lbf_main_order'
                   or route == 'lbf_main_confirm' %}

@@ -10,18 +10,30 @@ function loadContentLogin(path_chosen)
 		var headerChange = path_chosen +' #login_name_status';
 		var headerChange_XS = path_chosen +' #login_name_status_XS';
 		// setTimeout(function(){alert('Hello')},3000);
-		$('#login_content').load(toLoad,'',showNewContent());
-		$('#login_name_status').load(headerChange,'',showNewHeaderStatus());
-		$('#login_name_status_XS').load(headerChange_XS,'',showNewHeaderStatusXS());
-	}
-	function showNewContent() {
-		$('#login_content').fadeIn('slow');
-	}
-	function showNewHeaderStatus() {
-		$('#login_name_status').fadeIn('slow');
-	}
-	function showNewHeaderStatusXS() {
-		$('#login_name_status_XS').fadeIn('slow');
+		$('#login_content').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#login_content').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+		$('#login_name_status').load(headerChange,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#login_name_status').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+		$('#login_name_status_XS').load(headerChange_XS,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#login_name_status_XS').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
 	}
 
 	//to change the browser URL to 'path_chosen'
@@ -43,25 +55,40 @@ function loadContentCart(path_chosen)
 		var headerChange = path_chosen +' #login_name_status';
 		var headerChangeXS = path_chosen +' #login_name_status_XS';
 		var breadcrumb = path_chosen +' #breadcrumb';
-		$('#sectionContentAjax').load(toLoad,'',showNewContent());
-		$('#login_name_status').load(headerChange,'',showNewHeaderStatus());
-		$('#breadcrumb').load(breadcrumb,'',showNewBreadcrumb());
-		$('#login_name_status_XS').load(headerChangeXS,'',showNewHeaderXSStatus());
+		$('#sectionContentAjax').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#sectionContentAjax').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+		$('#login_name_status').load(headerChange,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#login_name_status').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+		$('#breadcrumb').load(breadcrumb,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#breadcrumb').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+		$('#login_name_status_XS').load(headerChangeXS,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#login_name_status_XS').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
 		document.getElementById('button_cart_a').className = "btn btn-log float-right ";
 	}
-	function showNewContent() {
-		$('#sectionContentAjax').fadeIn('slow');
-	}
-	function showNewHeaderStatus() {
-		$('#login_name_status').fadeIn('slow');
-	}
-	function showNewBreadcrumb() {
-		$('#breadcrumb').fadeIn('slow');
-	}
-	function showNewHeaderXSStatus() {
-		$('#login_name_status_XS').fadeIn('slow');
-	}
-
 
 	//to change the browser URL to 'path_chosen'
     if(path_chosen!=window.location){
@@ -80,16 +107,23 @@ function loadContentAdmin(path_chosen)
 		document.getElementById('section_admin').innerHTML = '';
 		var toLoad = path_chosen +' #section_admin';
 		var headerChange = path_chosen +' #nav_admin';
-		$('#section_admin').load(toLoad,'',showNewContent());
-		$('#nav_admin').load(headerChange,'',showNewHeaderStatus());
+		$('#section_admin').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#section_admin').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+		$('#nav_admin').load(headerChange,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#nav_admin').fadeIn('slow');
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
 	}
-	function showNewContent() {
-		$('#section_admin').fadeIn('slow');
-	}
-	function showNewHeaderStatus() {
-		$('#nav_admin').fadeIn('slow');
-	}
-
 
 	//to change the browser URL to 'path_chosen'
     if(path_chosen!=window.location){

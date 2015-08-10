@@ -85,6 +85,12 @@
   changeSideButton(currentAnchor);
   var currentPosition = $(window).scrollTop();
 
+  // For mobile
+    $("#mobile_nav a").click(function() {
+      $('#mobile_nav').collapse('hide');
+      $(this).closest(".dropdown-menu").prev().dropdown("toggle");
+    });
+
 
   /**
    * Get current anchor
