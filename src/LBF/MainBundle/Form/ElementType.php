@@ -21,12 +21,12 @@ class ElementType extends AbstractType
             ->add('descriptionEs', 'textarea', array('label' => 'Description Es'))
             ->add('nameEn', 'text', array('label' => 'Name En'))
             ->add('descriptionEn', 'textarea', array('label' => 'Description En'))
-            ->add('price', 'text', array('label' => 'Price'))
-            ->add('quantity', 'text', array('label' => 'Quantity'))
-            ->add('unit', 'text', array('label' => 'Unit'))
-            ->add('weight', 'text', array('label' => 'Weight'))
+            ->add('price', 'text', array('label' => 'Prix'))
+            ->add('quantity', 'text', array('label' => 'Quantité'))
+            ->add('unit', 'text', array('label' => 'Unité'))
+            ->add('weight', 'text', array('label' => 'Poids'))
             ->add('type', 'text', array('label' => 'Type'))
-            ->add('category', 'choice', array('label' => 'Category',
+            ->add('category', 'choice', array('label' => 'Categorie',
                                                 'choices' => array( 'Catégorie' => array(   '1' => 'PanVino', 
                                                                                             '2' => 'BufSalado',
                                                                                             '3' => 'Embutidos',

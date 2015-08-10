@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new LBF\MainBundle\LBFMainBundle(),
             new LBF\UserBundle\LBFUserBundle(),
             new LBF\AdminBundle\LBFAdminBundle(),
+            new LBF\RedactorBundle\LBFRedactorBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

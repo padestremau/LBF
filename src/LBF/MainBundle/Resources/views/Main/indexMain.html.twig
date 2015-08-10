@@ -862,7 +862,20 @@
 																				{{ recipe.title }}
 																			</h5>
 																			<br/>
-																			{{ recipe.description | truncate(120, false, '...') }}
+																			{% set descriptionForRecipe = '' %}
+																			{% if current_language %}
+																				{% if current_language == 'fr' and recipe.descriptionFr|length > 0 %}
+																					{% set descriptionForRecipe = recipe.descriptionFr %}
+																				{% elseif current_language == 'en' and recipe.descriptionEn|length > 0 %}
+																					{% set descriptionForRecipe = recipe.descriptionEn %}
+																				{% else %}
+																					{% set descriptionForRecipe = recipe.descriptionEs %}
+																				{% endif %}
+																			{% else %}
+																					{% set descriptionForRecipe = recipe.descriptionEs %}
+																			{% endif %}
+																			
+																			{{ descriptionForRecipe | truncate(120, false, '...')  }}
 
 																			<br/>
 																			{% set image_url_recipe = asset('img/system/defaults/default_recipe.jpg') %}
@@ -870,8 +883,32 @@
 																				{% set image_url_recipe = asset(recipe.webPath) %}
 																			{% endif %}
 																			<div class="center">
+																				{% set ingredientsForRecipe = '' %}
+																				{% if current_language %}
+																					{% if current_language == 'fr' and recipe.ingredientsFr|length > 0 %}
+																						{% set ingredientsForRecipe = recipe.ingredientsFr %}
+																					{% elseif current_language == 'en' and recipe.ingredientsEn|length > 0 %}
+																						{% set ingredientsForRecipe = recipe.ingredientsEn %}
+																					{% else %}
+																						{% set ingredientsForRecipe = recipe.ingredientsEs %}
+																					{% endif %}
+																				{% else %}
+																						{% set ingredientsForRecipe = recipe.ingredientsEs %}
+																				{% endif %}
+																				{% set preparationForRecipe = '' %}
+																				{% if current_language %}
+																					{% if current_language == 'fr' and recipe.preparationFr|length > 0 %}
+																						{% set preparationForRecipe = recipe.preparationFr %}
+																					{% elseif current_language == 'en' and recipe.preparationEn|length > 0 %}
+																						{% set preparationForRecipe = recipe.preparationEn %}
+																					{% else %}
+																						{% set preparationForRecipe = recipe.preparationEs %}
+																					{% endif %}
+																				{% else %}
+																						{% set preparationForRecipe = recipe.preparationEs %}
+																				{% endif %}
 																				<button class="btn btn-login" 
-																					onClick="showFullRecipe('{{ recipe.title }}', '{{ recipe.description }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ recipe.ingredients|json_encode() }}', '{{ recipe.preparation|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
+																					onClick="showFullRecipe('{{ recipe.title }}', '{{ descriptionForRecipe }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ ingredientsForRecipe|json_encode() }}', '{{ preparationForRecipe|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
 																					{{ 'ourRecipes.actions.discoverRecipe' | trans }}
 																					<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																				</button>			

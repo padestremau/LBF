@@ -73,25 +73,6 @@
 									        	{{ form_widget(formRecipe.title, opt_title) }}
 									        </div>
 										</div>
-										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									        {% if form_errors(formRecipe.description) %}
-							                    <div class="error_message">
-							                      	<span class="warning_word">
-							                        	{{ 'user.warning.warning'|trans }}
-							                      	</span>
-							                      	<span class="warning_message">
-							                        	{{ form_errors(formRecipe.description) }}
-							                      	</span>
-							                    </div>
-							                    <br/>
-							                {% endif %}
-											<div class="input-icon">
-									        	{% set opt_description = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'type':'text', 'placeholder':'Brêve description (5 lignes)', 'id':'description', 
-									        		'name':'_description'}} %}
-									        	{{ form_widget(formRecipe.description, opt_description) }}
-									        </div>
-										</div>
 
 										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
 									        {% if form_errors(formRecipe.duration) %}
@@ -176,6 +157,220 @@
 									        </div>
 										</div>
 
+										<hr/>
+
+										<ul class="nav nav-tabs">
+											{% set index_general = 1 %}
+											{% for lang in 1..3 %}
+												<li class="{% if index_general == 1 %} active {% endif %}">
+													<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+														{% if lang == 1 %}
+															<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+														{% elseif lang == 2 %}
+															<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
+														{% elseif lang == 3 %}
+															<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+														{% endif %}
+													</a>
+												</li>
+												{% set index_general = index_general + 1 %}
+											{% endfor %}
+										</ul>
+
+										<div class="tab-content" id="product_content">
+											<div class="tab-pane fade active in" id="tab_1">
+												<div class="row">
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.descriptionEs) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.descriptionEs) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_descriptionEs = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Descripción (5 lineas)', 'id':'descriptionEs', 
+												        		'name':'_descriptionEs'}} %}
+												        	{{ form_widget(formRecipe.descriptionEs, opt_descriptionEs) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.ingredientsEs) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.ingredientsEs) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_ingredientsEs = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Ingredientes de la receta', 'id':'ingredientsEs', 
+												        		'name':'_ingredientsEs'}} %}
+												        	{{ form_widget(formRecipe.ingredientsEs, opt_ingredientsEs) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.preparationEs) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.preparationEs) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_preparationEs = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Preparación de la receta', 'id':'preparationEs', 
+												        		'name':'_preparationEs'}} %}
+												        	{{ form_widget(formRecipe.preparationEs, opt_preparationEs) }}
+												        </div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="tab_2">
+												<div class="row">
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.descriptionFr) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.descriptionFr) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_descriptionFr = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Courte description (5 lineas)', 'id':'descriptionFr', 
+												        		'name':'_descriptionFr'}} %}
+												        	{{ form_widget(formRecipe.descriptionFr, opt_descriptionFr) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.ingredientsFr) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.ingredientsFr) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_ingredientsFr = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Ingredients de la recette', 'id':'ingredientsFr', 
+												        		'name':'_ingredientsFr'}} %}
+												        	{{ form_widget(formRecipe.ingredientsFr, opt_ingredientsFr) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.preparationFr) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.preparationFr) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_preparationFr = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Preparation de la recette', 'id':'preparationFr', 
+												        		'name':'_preparationFr'}} %}
+												        	{{ form_widget(formRecipe.preparationFr, opt_preparationFr) }}
+												        </div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="tab_3">
+												<div class="row">
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.descriptionEn) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.descriptionEn) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_descriptionEn = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Short description (5 lines)', 'id':'descriptionEn', 
+												        		'name':'_descriptionEn'}} %}
+												        	{{ form_widget(formRecipe.descriptionEn, opt_descriptionEn) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.ingredientsEn) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.ingredientsEn) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_ingredientsEn = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Ingredients of the recipe', 'id':'ingredientsEn', 
+												        		'name':'_ingredientsEn'}} %}
+												        	{{ form_widget(formRecipe.ingredientsEn, opt_ingredientsEn) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formRecipe.preparationEn) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formRecipe.preparationEn) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_preparationEn = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Recipe preparation', 'id':'preparationEn', 
+												        		'name':'_preparationEn'}} %}
+												        	{{ form_widget(formRecipe.preparationEn, opt_preparationEn) }}
+												        </div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<hr/>
+
 										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
 											Recette liée au produit(s) suivant(s) :
 										</div>
@@ -199,7 +394,7 @@
 									        </div>
 										</div>
 										
-										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+										<div class="form-group col-lg-6 col-md-8 col-sm-12 col-xs-12 row">
 											{{ form_errors(formRecipe) }}
 											<div class="input-icon left">
 									        	Image de la recette (recommandé): {{ form_widget(formRecipe.file) }}
@@ -245,6 +440,7 @@
 									<div class="center">
 										<input type="submit" class="btn btn-login" value="Enregistrer"/>
 									</div>
+									<br/><br/><br/>
 								</form>
 					  		</div>
 

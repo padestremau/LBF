@@ -20,9 +20,33 @@ class RecipeType extends AbstractType
             ->add('forHowMany', 'text', array('label' => 'For how many'))
             ->add('cooking', 'text', array('label' => 'Cooking'))
             ->add('origin', 'text', array('label' => 'Origin'))
-            ->add('ingredients', 'choice', array('label' => 'Ingredients'))
-            ->add('preparation', 'choice', array('label' => 'Preparation'))
-            ->add('description', 'textarea', array('label' => 'Description'))
+            ->add('ingredientsFr', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Ingredients Fr'))
+            ->add('preparationFr', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Preparation Fr'))
+            ->add('descriptionFr', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Description Fr'))
+            ->add('ingredientsEs', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Ingredients Es'))
+            ->add('preparationEs', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Preparation Es'))
+            ->add('descriptionEs', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Description Es'))
+            ->add('ingredientsEn', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Ingredients En'))
+            ->add('preparationEn', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Preparation En'))
+            ->add('descriptionEn', 'redactor', array(
+                "redactor"=>"admin_main",
+                'label' => 'Description En'))
             ->add('active', 'choice', array('label' => 'Active',
                                             'choices' => array( 'active' => 'Actif',
                                                                 'toCome' => 'A venir', 
@@ -30,7 +54,7 @@ class RecipeType extends AbstractType
                                                                 'inactive' => 'Inactif')))
             ->add('file', 'file')
             ->add('element', 'entity', array(   'class' => 'LBFMainBundle:Element',
-                                                'property' => 'Name'
+                                                'property' => 'NameEs'
                                                 // 'multiple' => true
                                             ))
         ;

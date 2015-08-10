@@ -142,16 +142,16 @@
 					                            </td>
 					                            <td class="center">
 					                            	Description
-					                            	{% if recipe.description|length > 0 %}
-					                            		{{ recipe.description }}
+					                            	{% if recipe.descriptionFr|length > 0 %}
+					                            		{{ recipe.descriptionFr }}
 					                            	{% else %}
 					                            		---
 					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                            	{% if recipe.ingredients|length > 0 %}
+					                            	{% if recipe.ingredientsFr|length > 0 %}
 					                            		<ul class="left">
-					                            		{% for ing in recipe.ingredients %}
+					                            		{% for ing in recipe.ingredientsFr %}
 					                            			{# evaluates to true if the variable is iterable #}
 															{% if ing is iterable %}
 																<ul class="left">
@@ -182,9 +182,9 @@
 					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                            	{% if recipe.preparation|length > 0 %}
+					                            	{% if recipe.preparationFr|length > 0 %}
 					                            		<ul class="left">
-					                            		{% for prep in recipe.preparation %}
+					                            		{% for prep in recipe.preparationFr %}
 					                            			{# evaluates to true if the variable is iterable #}
 															{% if prep is iterable %}
 																<ul class="left">
