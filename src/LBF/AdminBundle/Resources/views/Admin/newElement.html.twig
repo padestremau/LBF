@@ -53,45 +53,159 @@
 						  				<strong>
 						  					Informations sur le produit :
 						  				</strong>
-						  				<hr/>
-										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									        {% if form_errors(formElement.name) %}
-							                    <div class="error_message">
-							                      	<span class="warning_word">
-							                        	{{ 'user.warning.warning'|trans }}
-							                      	</span>
-							                      	<span class="warning_message">
-							                        	{{ form_errors(formElement.name) }}
-							                      	</span>
-							                    </div>
-							                    <br/>
-							                {% endif %}
-											<div class="input-icon">
-									        	{% set opt_name = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'type':'text', 'placeholder':'Nom (Ex: Chorizo de Cerdo)', 'id':'name', 
-									        		'name':'_name'}} %}
-									        	{{ form_widget(formElement.name, opt_name) }}
-									        </div>
+						  				<br/>
+
+						  				<ul class="nav nav-tabs">
+											{% set index_general = 1 %}
+											{% for lang in 1..3 %}
+												<li class="{% if index_general == 1 %} active {% endif %}">
+													<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+														{% if lang == 1 %}
+															<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+														{% elseif lang == 2 %}
+															<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
+														{% elseif lang == 3 %}
+															<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+														{% endif %}
+													</a>
+												</li>
+												{% set index_general = index_general + 1 %}
+											{% endfor %}
+										</ul>
+
+										<div class="tab-content" id="product_content">
+											<div class="tab-pane fade active in" id="tab_1">
+												<div class="row">
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formElement.nameEs) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formElement.nameEs) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_nameEs = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Nombre (Ex: Chorizo de Cerdo)', 'id':'nameEs', 
+												        		'name':'_nameEs'}} %}
+												        	{{ form_widget(formElement.nameEs, opt_nameEs) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formElement.descriptionEs) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formElement.descriptionEs) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_descriptionEs = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Descripción (5 lineas)', 'id':'descriptionEs', 
+												        		'name':'_descriptionEs'}} %}
+												        	{{ form_widget(formElement.descriptionEs, opt_descriptionEs) }}
+												        </div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="tab_2">
+												<div class="row">
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formElement.nameFr) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formElement.nameFr) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_nameFr = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Nom (Ex: Chorizo de Cerdo)', 'id':'nameFr', 
+												        		'name':'_nameFr'}} %}
+												        	{{ form_widget(formElement.nameFr, opt_nameFr) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formElement.descriptionFr) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formElement.descriptionFr) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_descriptionFr = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Brêve description (5 lignes)', 'id':'descriptionFr', 
+												        		'name':'_descriptionFr'}} %}
+												        	{{ form_widget(formElement.descriptionFr, opt_descriptionFr) }}
+												        </div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="tab_3">
+												<div class="row">
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formElement.nameEn) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formElement.nameEn) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_nameEn = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Name (Ex: Pig sausage)', 'id':'nameEn', 
+												        		'name':'_nameEn'}} %}
+												        	{{ form_widget(formElement.nameEn, opt_nameEn) }}
+												        </div>
+													</div>
+
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formElement.descriptionEn) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formElement.descriptionEn) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_descriptionEn = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Short description (5 lines)', 'id':'descriptionEn', 
+												        		'name':'_descriptionEn'}} %}
+												        	{{ form_widget(formElement.descriptionEn, opt_descriptionEn) }}
+												        </div>
+													</div>
+												</div>
+											</div>
 										</div>
-										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									        {% if form_errors(formElement.description) %}
-							                    <div class="error_message">
-							                      	<span class="warning_word">
-							                        	{{ 'user.warning.warning'|trans }}
-							                      	</span>
-							                      	<span class="warning_message">
-							                        	{{ form_errors(formElement.description) }}
-							                      	</span>
-							                    </div>
-							                    <br/>
-							                {% endif %}
-											<div class="input-icon">
-									        	{% set opt_description = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'type':'text', 'placeholder':'Brêve description (5 lignes)', 'id':'description', 
-									        		'name':'_description'}} %}
-									        	{{ form_widget(formElement.description, opt_description) }}
-									        </div>
-										</div>
+
+										<hr/>
 
 										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
 									        {% if form_errors(formElement.price) %}
@@ -196,7 +310,7 @@
 									        </div>
 										</div>
 
-										<div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
 									        {% if form_errors(formElement.category) %}
 							                    <div class="error_message">
 							                      	<span class="warning_word">
@@ -215,26 +329,7 @@
 									        </div>
 										</div>
 
-										<div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">  <!-- id="familyElementInputInEdit" style="display:none;" -->
-									        {% if form_errors(formElement.family) %}
-							                    <div class="error_message">
-							                      	<span class="warning_word">
-							                        	{{ 'user.warning.warning'|trans }}
-							                      	</span>
-							                      	<span class="warning_message">
-							                        	{{ form_errors(formElement.family) }}
-							                      	</span>
-							                    </div>
-							                    <br/>
-							                {% endif %}
-											<div class="input-icon">
-									        	{% set opt_family = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'id':'family', 'name':'_family'}} %}
-									        	{{ form_widget(formElement.family, opt_family) }}
-									        </div>
-										</div>
-
-										<div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
 									        {% if form_errors(formElement.naturalProduct) %}
 							                    <div class="error_message">
 							                      	<span class="warning_word">
@@ -267,7 +362,7 @@
 										<strong>
 						  					Informations d'affichage :
 						  				</strong>
-						  				<hr/>
+						  				<br/>
 										
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
 											Le produit est:
@@ -292,13 +387,16 @@
 										</div>
 									</div>
 
+									<hr/>
+
 									
 									<!-- Et pour le reste du formulaire ... ;) -->
 									{{ form_widget(formElement) }}
 
 									<div class="center">
-										<input type="submit" class="btn btn-login" value="Enregistrer"/>
+										<input type="submit" class="btn btn-admin" value="Enregistrer"/>
 									</div>
+									<br/><br/><br/>
 								</form>
 					  		</div>
 

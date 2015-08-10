@@ -50,6 +50,9 @@
 				                              Description
 				                            </th>
 				                            <th class="center">
+				                              Langues dispo
+				                            </th>
+				                            <th class="center">
 				                              Créé le
 				                            </th>
 				                            <th class="center">
@@ -93,17 +96,28 @@
 													{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.name|length > 0 %}
-					                              		{{ element.name }}
+					                              	{% if element.nameFr|length > 0 %}
+					                              		{{ element.nameFr }}
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.description|length > 0 %}
-					                              		{{ element.description }}
+					                              	{% if element.descriptionFr|length > 0 %}
+					                              		{{ element.descriptionFr }}
 					                              	{% else %}
 					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.nameEs|length > 0 and element.descriptionEs|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                              	{% if element.nameFr|length > 0 and element.descriptionFr|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                              	{% if element.nameEn|length > 0 and element.descriptionEn|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag_sm_admin"/>
 					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
@@ -122,7 +136,17 @@
 					                            </td>
 					                            <td class="center">
 					                              	{% if element.category|length > 0 %}
-					                              		{{ element.category }}
+					                              		{% if element.category == 1 %}
+															{{ 'main.second_titles.category_1' | trans }}
+														{% elseif element.category == 2 %}
+															{{ 'main.second_titles.category_2' | trans }}
+														{% elseif element.category == 3 %}
+															{{ 'main.second_titles.category_3' | trans }}
+														{% elseif element.category == 4 %}
+															{{ 'main.second_titles.category_4' | trans }}
+														{% elseif element.category == 5 %}
+															{{ 'main.second_titles.category_5' | trans }}
+														{% endif %}
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}

@@ -34,6 +34,12 @@ main:
         securedPayment: 		Paiment sécurisé
         reservation:            Réservations faciles
         ourProducts:            Nos produits
+    second_titles:
+        category_1:             "Pain & vin"
+        category_2:             "Traiteur salé"
+        category_3:             "Charcuterie"
+        category_4:             "Traiteur sucré"
+        category_5:             "Confitures"
     content:
         recipes: 		        "Un ensemble de recettes à suivre méticuleusement, aux goûts de chacun et aux bonheurs de tous."
         qualityProduct: 		"Notre particularité est de concevoir des produits sains et de qualité sans colorant ni conservateur."

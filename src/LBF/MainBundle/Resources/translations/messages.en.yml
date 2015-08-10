@@ -34,6 +34,12 @@ main:
         securedPayment: 		Secured payment
         reservation:            Easy reservation
         ourProducts:            Our products
+    second_titles:
+        category_1:             "Bread & wine"
+        category_2:             "Salt buffet"
+        category_3:             "Delicatessens"
+        category_4:             "Sweet buffet"
+        category_5:             "Jams"
     content:
         recipes: 		        "Recipes to follow for extra gourmet meals to share with your relatives and friends."
         qualityProduct: 		"Quality meat with sole purpose of satisfying the gastronomical curisoty of all."

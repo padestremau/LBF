@@ -1655,7 +1655,7 @@ body.modal-open {
 	padding-right: 2px;
 	border: 1px solid rgba(41,41,41,0.5);
 	margin: 10px;
-	min-height: 30px;
+	min-height: 40px;
 }
 @media (min-width: 1400px) {
 	.cart_price {
@@ -2098,6 +2098,10 @@ body.modal-open {
 
 .nav_tabs_admin li.logout-btn:hover {
 	background-color: rgba(196,1,1,0.5) !important;
+}
+
+.language_flag_sm_admin {
+	width: 15px;
 }
 
 

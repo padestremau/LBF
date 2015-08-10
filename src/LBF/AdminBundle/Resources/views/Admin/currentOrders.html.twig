@@ -14,6 +14,17 @@
 		<div id="sessionFlash" class="sessionFlash">
 		</div>
 
+		{% set current_language = '' %}
+        {% if (app.request.get('_route_params')) != null %}
+          {% if (app.request.get('_route_params')._locale == 'fr') %}
+            {% set current_language = 'fr' %}
+          {% elseif (app.request.get('_route_params')._locale == 'en') %}
+            {% set current_language = 'en' %}
+          {% else %}
+            {% set current_language = 'es' %}
+          {% endif %}
+        {% endif %}
+
 		<div id="fullpage">
 			<div class="section section_padding">
 
@@ -68,7 +79,17 @@
 				                              				{% set item = single_element['item'] %}
 			                            					{% set qty = single_element['qty'] %}
 				                              				<li>
-				                              					{{ item.name }} (x{{ qty }})
+				                              					{% if current_language %}
+																	{% if current_language == 'fr' and item.nameFr|length > 0 %}
+																		{{ item.nameFr }}
+																	{% elseif current_language == 'en' and item.nameEn|length > 0 %}
+																		{{ item.nameEn }}
+																	{% else %}
+																		{{ item.nameEs }}
+																	{% endif %}
+																{% else %}
+																	{{ item.nameEs }}
+																{% endif %} (x{{ qty }})
 				                              				</li>
 				                              			{% endfor %}
 				                              		</ul>

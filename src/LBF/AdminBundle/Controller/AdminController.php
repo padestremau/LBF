@@ -273,7 +273,7 @@ class AdminController extends Controller
         $elements = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findAll();
+                            ->findAllSortedByCategory();
 
         return $this->render('LBFAdminBundle:Admin:elements.html.twig', array(
             'elements' => $elements

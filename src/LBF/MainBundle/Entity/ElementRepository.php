@@ -11,5 +11,12 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class ElementRepository extends EntityRepository
-{	
+{
+	public function findAllSortedByCategory	()
+	{
+		return $this->createQueryBuilder('e')
+					->orderBy('e.category', 'ASC')
+					->getQuery()
+					->getResult();
+	}
 }

@@ -30,16 +30,44 @@ class Element
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name_fr", type="string", length=255, nullable=true)
      */
-    private $name;
+    private $name_fr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description_fr", type="text", nullable=true)
      */
-    private $description;
+    private $description_fr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_es", type="string", length=255)
+     */
+    private $name_es;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_es", type="text", nullable=true)
+     */
+    private $description_es;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_en", type="string", length=255, nullable=true)
+     */
+    private $name_en;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_en", type="text", nullable=true)
+     */
+    private $description_en;
 
     /**
      * @var \DateTime
@@ -98,13 +126,6 @@ class Element
     private $category;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="family", type="string", length=255)
-     */
-    private $family;    
-
-    /**
      * @var boolean
      *
      * @ORM\Column(name="naturalProduct", type="boolean", nullable=true)
@@ -158,52 +179,6 @@ class Element
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Element
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Element
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -556,30 +531,6 @@ class Element
 
     /*   *********   End  File  *************  */
 
-    
-
-    /**
-     * Set family
-     *
-     * @param string $family
-     * @return Element
-     */
-    public function setFamily($family)
-    {
-        $this->family = $family;
-
-        return $this;
-    }
-
-    /**
-     * Get family
-     *
-     * @return string 
-     */
-    public function getFamily()
-    {
-        return $this->family;
-    }
 
     /**
      * Set active
@@ -602,5 +553,143 @@ class Element
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Set name_fr
+     *
+     * @param string $nameFr
+     * @return Element
+     */
+    public function setNameFr($nameFr)
+    {
+        $this->name_fr = $nameFr;
+
+        return $this;
+    }
+
+    /**
+     * Get name_fr
+     *
+     * @return string 
+     */
+    public function getNameFr()
+    {
+        return $this->name_fr;
+    }
+
+    /**
+     * Set description_fr
+     *
+     * @param string $descriptionFr
+     * @return Element
+     */
+    public function setDescriptionFr($descriptionFr)
+    {
+        $this->description_fr = $descriptionFr;
+
+        return $this;
+    }
+
+    /**
+     * Get description_fr
+     *
+     * @return string 
+     */
+    public function getDescriptionFr()
+    {
+        return $this->description_fr;
+    }
+
+    /**
+     * Set name_es
+     *
+     * @param string $nameEs
+     * @return Element
+     */
+    public function setNameEs($nameEs)
+    {
+        $this->name_es = $nameEs;
+
+        return $this;
+    }
+
+    /**
+     * Get name_es
+     *
+     * @return string 
+     */
+    public function getNameEs()
+    {
+        return $this->name_es;
+    }
+
+    /**
+     * Set description_es
+     *
+     * @param string $descriptionEs
+     * @return Element
+     */
+    public function setDescriptionEs($descriptionEs)
+    {
+        $this->description_es = $descriptionEs;
+
+        return $this;
+    }
+
+    /**
+     * Get description_es
+     *
+     * @return string 
+     */
+    public function getDescriptionEs()
+    {
+        return $this->description_es;
+    }
+
+    /**
+     * Set name_en
+     *
+     * @param string $nameEn
+     * @return Element
+     */
+    public function setNameEn($nameEn)
+    {
+        $this->name_en = $nameEn;
+
+        return $this;
+    }
+
+    /**
+     * Get name_en
+     *
+     * @return string 
+     */
+    public function getNameEn()
+    {
+        return $this->name_en;
+    }
+
+    /**
+     * Set description_en
+     *
+     * @param string $descriptionEn
+     * @return Element
+     */
+    public function setDescriptionEn($descriptionEn)
+    {
+        $this->description_en = $descriptionEn;
+
+        return $this;
+    }
+
+    /**
+     * Get description_en
+     *
+     * @return string 
+     */
+    public function getDescriptionEn()
+    {
+        return $this->description_en;
     }
 }

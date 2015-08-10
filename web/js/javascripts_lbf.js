@@ -363,3 +363,16 @@
   }
 
   // END SMOOTH SCROLLING
+
+
+function areYouSureDeleteElement(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cet élément ?')) {
+    window.location = path;   
+  }
+}
+
+function areYouSureDeleteRecipe(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cette recette ?')) {
+    window.location = path;   
+  }
+}

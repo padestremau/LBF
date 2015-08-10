@@ -18,6 +18,17 @@
 			<div class="section section_login section_padding" id="orderSection">
 				<br/><br/>
 
+				{% set current_language = '' %}
+		        {% if (app.request.get('_route_params')) != null %}
+		          {% if (app.request.get('_route_params')._locale == 'fr') %}
+		            {% set current_language = 'fr' %}
+		          {% elseif (app.request.get('_route_params')._locale == 'en') %}
+		            {% set current_language = 'en' %}
+		          {% else %}
+		            {% set current_language = 'es' %}
+		          {% endif %}
+		        {% endif %}
+
 	            <div id="breadcrumb" class="center row">
 			        <div class="row">
 		              	<h2>
@@ -59,7 +70,18 @@
 			                            	{% set item = item_array['item'] %}
 			                            	{% set qty = item_array['qty'] %}
 			                            	<li>
-			                            		{{ qty }} {{ item.name }},
+			                            		{{ qty }} 
+			                            		{% if current_language %}
+													{% if current_language == 'fr' and item.nameFr|length > 0 %}
+														{{ item.nameFr }}
+													{% elseif current_language == 'en' and item.nameEn|length > 0 %}
+														{{ item.nameEn }}
+													{% else %}
+														{{ item.nameEs }}
+													{% endif %}
+												{% else %}
+													{{ item.nameEs }}
+												{% endif %},
 			                            	</li>
 					                    	{% set total_price_general = total_price_general + qty * item.price  %}
 					        			{% endfor %}

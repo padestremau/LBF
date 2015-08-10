@@ -22,6 +22,17 @@
 			      </div>
 			    </div>
 
+			    {% set current_language = '' %}
+		        {% if (app.request.get('_route_params')) != null %}
+		          {% if (app.request.get('_route_params')._locale == 'fr') %}
+		            {% set current_language = 'fr' %}
+		          {% elseif (app.request.get('_route_params')._locale == 'en') %}
+		            {% set current_language = 'en' %}
+		          {% else %}
+		            {% set current_language = 'es' %}
+		          {% endif %}
+		        {% endif %}
+
 				<div class="presentation_photos row">
 
 					<div class="content_presentation row">
@@ -265,7 +276,17 @@
 										{% set productsArray = allSortedProducts[index_general] %}
 										<li class="{% if index_general == 1 %} active {% endif %}">
 											<a data-target="#tab_{{ index_general }}" data-toggle="tab">
-												{{ category }} 
+												{% if category == 1 %}
+													{{ 'main.second_titles.category_1' | trans }}
+												{% elseif category == 2 %}
+													{{ 'main.second_titles.category_2' | trans }}
+												{% elseif category == 3 %}
+													{{ 'main.second_titles.category_3' | trans }}
+												{% elseif category == 4 %}
+													{{ 'main.second_titles.category_4' | trans }}
+												{% elseif category == 5 %}
+													{{ 'main.second_titles.category_5' | trans }}
+												{% endif %}
 												<span class="hidden-xs">
 													({{ productsArray|length }})
 												</span>
@@ -487,7 +508,17 @@
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
 														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
-															{{ product.name }}
+															{% if current_language %}
+																{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																	{{ product.nameFr }}
+																{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																	{{ product.nameEn }}
+																{% else %}
+																	{{ product.nameEs }}
+																{% endif %}
+															{% else %}
+																	{{ product.nameEs }}
+															{% endif %}
 															<div class="float-right inner_arrow hidden-xs">
 																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
@@ -563,13 +594,33 @@
 																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 																	<div class="row product_description">
 																		<h4>
-																			{{ product.name }}. 
+																			{% if current_language %}
+																				{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																					{{ product.nameFr }}.
+																				{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																					{{ product.nameEn }}. 
+																				{% else %}
+																					{{ product.nameEs }}. 
+																				{% endif %}
+																			{% else %}
+																				{{ product.nameEs }}
+																			{% endif %}
 																			{% if product.naturalProduct == true %} 
 																				* 
 																				{% set naturalProductDef = true %}
 																			{% endif %} 
 																		</h4>
-																		{{ product.description }} 
+																		{% if current_language %}
+																			{% if current_language == 'fr' and product.descriptionFr|length > 0 %}
+																				{{ product.descriptionFr }}
+																			{% elseif current_language == 'en' and product.descriptionEn|length > 0 %}
+																				{{ product.descriptionEn }}
+																			{% else %}
+																				{{ product.descriptionEs }}
+																			{% endif %}
+																		{% else %}
+																				{{ product.descriptionEs }}
+																		{% endif %}
 																	</div>
 																	<br/>
 																	<div class="row">
@@ -710,7 +761,17 @@
 										{% set recipesArray = allSortedRecipes[index_general] %}
 										<li class="{% if index_general == 1 %} active {% endif %}">
 											<a data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
-												{{ category }} 
+												{% if category == 1 %}
+													{{ 'main.second_titles.category_1' | trans }}
+												{% elseif category == 2 %}
+													{{ 'main.second_titles.category_2' | trans }}
+												{% elseif category == 3 %}
+													{{ 'main.second_titles.category_3' | trans }}
+												{% elseif category == 4 %}
+													{{ 'main.second_titles.category_4' | trans }}
+												{% elseif category == 5 %}
+													{{ 'main.second_titles.category_5' | trans }}
+												{% endif %}
 												<span class="hidden-xs">
 													({{ recipesArray|length }})
 												</span>
@@ -744,7 +805,17 @@
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
 														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice">
-															{{ product.name }}
+															{% if current_language %}
+																{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																	{{ product.nameFr }}
+																{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																	{{ product.nameEn }}
+																{% else %}
+																	{{ product.nameEs }}
+																{% endif %}
+															{% else %}
+																	{{ product.nameEs }}
+															{% endif %}
 															<div class="float-right inner_arrow hidden-xs">
 																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
@@ -769,7 +840,17 @@
 															<div class="row product_info_xs">
 																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 																	<h4>
-																		{{ product.name }}. 
+																		{% if current_language %}
+																			{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																				{{ product.nameFr }}.
+																			{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																				{{ product.nameEn }}. 
+																			{% else %}
+																				{{ product.nameEs }}. 
+																			{% endif %}
+																		{% else %}
+																			{{ product.nameEs }}
+																		{% endif %}
 																	</h4>
 																</div>
 																<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>

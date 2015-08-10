@@ -18,129 +18,108 @@ class MainController extends Controller
                             ->getRepository('LBFMainBundle:Element')
                             ->findAll();
 
+        $allPanVino = array();
+        $allBufSalado = array();
         $allEmbutidos = array();
-        $allPates = array();
-        $allJamones = array();
-        $otherEpicerie = array();
-        $jamEpicerie = array();
-        $biscuitEpicerie = array();
-        $allEpicerieFine = array('otherEpicerie' => $otherEpicerie, 'jamEpicerie' => $jamEpicerie, 'biscuitEpicerie' => $biscuitEpicerie);
-        $allTraiteur = array();
+        $allBufDulce = array();
+        $allMermeladas = array();
         for ($i=0; $i < sizeof($allProducts); $i++) { 
         	$product = $allProducts[$i];
-        	if ($product->getCategory() == 'Embutidos') {
+        	if ($product->getCategory() == 1) {
+        		$allPanVino[] = $product;
+        	}
+
+        	else if ($product->getCategory() == 2) {
+        		$allBufSalado[] = $product;
+        	}
+
+        	else if ($product->getCategory() == 3) {
         		$allEmbutidos[] = $product;
         	}
 
-        	else if ($product->getCategory() == 'Pates') {
-        		$allPates[] = $product;
+        	else if ($product->getCategory() == 4) {
+                $allBufDulce[] = $product;
         	}
 
-        	else if ($product->getCategory() == 'Jamones') {
-        		$allJamones[] = $product;
-        	}
-
-        	else if ($product->getCategory() == 'Epicerie fine') {
-                $otherEpicerie = $allEpicerieFine['otherEpicerie'];
-                $jamEpicerie = $allEpicerieFine['jamEpicerie'];
-                $biscuitEpicerie = $allEpicerieFine['biscuitEpicerie'];
-                if (strlen($product->getFamily()) > 0) {
-                    if ($product->getFamily() == 'Jam') {
-                        $jamEpicerie[] = $product;
-                    } else {
-                        $biscuitEpicerie[] = $product;
-                    }
-                } 
-                else {
-                    $otherEpicerie[] = $product;
-                }
-                $allEpicerieFine = array('otherEpicerie' => $otherEpicerie, 'jamEpicerie' => $jamEpicerie, 'biscuitEpicerie' => $biscuitEpicerie);
-        	}
-
-            else if ($product->getCategory() == 'Traiteur') {
-                $allTraiteur[] = $product;
+            else if ($product->getCategory() == 5) {
+                $allMermeladas[] = $product;
             }
 
         }
-        $otherEpicerie = $allEpicerieFine['otherEpicerie'];
-        $jamEpicerie = $allEpicerieFine['jamEpicerie'];
-        $biscuitEpicerie = $allEpicerieFine['biscuitEpicerie'];
-        $allEpicerieFine = array_merge($otherEpicerie, $jamEpicerie, $biscuitEpicerie);
-
 
         $allRecipes = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Recipe')
                             ->findAll();
 
+        $recipesPanVino = array();
+        $recipesBufSalado = array();
         $recipesEmbutidos = array();
-        $recipesPates = array();
-        $recipesJamones = array();
-        $recipesEpicerieFine = array();
-        $recipesTraiteur = array();
+        $recipesBufDulce = array();
+        $recipesMermeladas = array();
         for ($i=0; $i < sizeof($allRecipes); $i++) { 
             $recipe = $allRecipes[$i];
-            if ($recipe->getElement()->getCategory() == 'Embutidos') {
+            if ($recipe->getElement()->getCategory() == 1) {
+                $recipesPanVino[] = $recipe;
+            }
+
+            else if ($recipe->getElement()->getCategory() == 2) {
+                $recipesBufSalado[] = $recipe;
+            }
+
+            else if ($recipe->getElement()->getCategory() == 3) {
                 $recipesEmbutidos[] = $recipe;
             }
 
-            else if ($recipe->getElement()->getCategory() == 'Pates') {
-                $recipesPates[] = $recipe;
+            else if ($recipe->getElement()->getCategory() == 4) {
+                $recipesBufDulce[] = $recipe;
             }
 
-            else if ($recipe->getElement()->getCategory() == 'Jamones') {
-                $recipesJamones[] = $recipe;
-            }
-
-            else if ($recipe->getElement()->getCategory() == 'Epicerie fine') {
-                $recipesEpicerieFine[] = $recipe;
-            }
-
-            else if ($recipe->getElement()->getCategory() == 'Traiteur') {
-                $recipesTraiteur[] = $recipe;
+            else if ($recipe->getElement()->getCategory() == 5) {
+                $recipesMermeladas[] = $recipe;
             }
 
         }
 
 
         $allCategories = array(
-        	'1' => 'Embutidos', 
-        	'2' => 'Pates',
-        	'3' => 'Jamones',
-        	'4' => 'Epicerie fine',
-            '5' => 'Traiteur'
+        	'1' => 1, 
+        	'2' => 2,
+        	'3' => 3,
+        	'4' => 4,
+            '5' => 5
         );
         $allSortedProducts = array(
-        	'1' => $allEmbutidos,
-        	'2' => $allPates,
-			'3' => $allJamones,
-			'4' => $allEpicerieFine,
-            '5' => $allTraiteur
+        	'1' => $allPanVino,
+        	'2' => $allBufSalado,
+			'3' => $allEmbutidos,
+			'4' => $allBufDulce,
+            '5' => $allMermeladas
         	);
 
         $allSortedRecipes = array(
-            '1' => $recipesEmbutidos,
-            '2' => $recipesPates,
-            '3' => $recipesJamones,
-            '4' => $recipesEpicerieFine,
-            '5' => $recipesTraiteur
+            '1' => $recipesPanVino,
+            '2' => $recipesBufSalado,
+            '3' => $recipesEmbutidos,
+            '4' => $recipesBufDulce,
+            '5' => $recipesMermeladas
             );
 
         return $this->render('LBFMainBundle:Main:indexMain.html.twig', array(
-        	'allEmbutidos' => $allEmbutidos,
-        	'allPates' => $allPates,
-			'allJamones' => $allJamones,
-			'allEpicerieFine' => $allEpicerieFine,
+        	'allPanVino' => $allPanVino,
+        	'allBufSalado' => $allBufSalado,
+			'allEmbutidos' => $allEmbutidos,
+			'allBufDulce' => $allBufDulce,
         	'allProducts' => $allProducts,
         	'allCategories' => $allCategories,
-            'allTraiteur' => $allTraiteur,
+            'allMermeladas' => $allMermeladas,
             'allProducts' => $allProducts,
             'allSortedProducts' => $allSortedProducts,
+            'recipesPanVino' => $recipesPanVino,
+            'recipesBufSalado' => $recipesBufSalado,
             'recipesEmbutidos' => $recipesEmbutidos,
-            'recipesPates' => $recipesPates,
-            'recipesJamones' => $recipesJamones,
-            'recipesEpicerieFine' => $recipesEpicerieFine,
-            'recipesTraiteur' => $recipesTraiteur,
+            'recipesBufDulce' => $recipesBufDulce,
+            'recipesMermeladas' => $recipesMermeladas,
             'allRecipes' => $allRecipes,
 			'allSortedRecipes' => $allSortedRecipes
         	));

@@ -34,6 +34,12 @@ main:
         securedPayment: 		Pagamento securo
         reservation:            Reservacion facil
         ourProducts:            Productos
+    second_titles:
+        category_1:             "Pan & vino"
+        category_2:             "Buffet salado"
+        category_3:             "Embutidos"
+        category_4:             "Buffet dulce"
+        category_5:             "Mermeladas"
     content:
         recipes: 		        "Recetas a seguir para disfrutir de gustosos platos a compartir con su familia y amigos."
         qualityProduct: 		"Carne de qualitad, con unico objetivo de satisfacer la curiosidad gastronmica de todos."
