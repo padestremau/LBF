@@ -56,6 +56,8 @@ emailComplete:
         didSo: 					" y lo hizo"
         seeYouSoon: 			"Hasta pronto!"
         enjoy: 					"Buen provecho!"
+        ifYouHaveTime:          "PS: Si tienen algunos minutitos, por favor, dejen nos une comentario y una nota de evaluacion! :)"
+        leaveComment:           "Dejar un comentario"
     footer:
         anecdote:               "es una nueva tienda de charcuteria en Cusco, que viende productos de carne local, pero cortada y cocinada según los metodos y tecnicas francéses. La start-up ha abierta el 1ero de Marso de 2015 en Perú, con su primera fabrica. Otras seguiron."
         keepInTouch:            "Mantener el contacto : "

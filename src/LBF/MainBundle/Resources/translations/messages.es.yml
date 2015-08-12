@@ -194,7 +194,7 @@ footer:
         send:                   "ENVIAR"
     actions: 
         send: 					OK
-        enterEmail:             Escriben vuestro email
+        enterEmail:             Escriben su email
     newsletter:
         user:                   Particular
         company:                Empresa
@@ -270,6 +270,7 @@ modal:
         title:                  "Testimonios"
     actions: 
         close:                  Cerrar
+        newTestimony:           Nuevo testimonio
 
 
 # Contact
@@ -302,6 +303,36 @@ emailContact:
         here:                   "aquí"
         quitSubscription:       "Usted recibe este email siguiendo o un pedido sobre nuestro sitio web, o su abono a nuestras newsletters. Para deshuesarse de la newsletter, por favor haga "
         clickHere:              clic aquí
+
+
+# Testimony
+testimony:
+    titles:
+        testimony:              "Que pensaron de nosotros?"
+        author:                 "Su nombre de autor:"
+        content:                "Contenido del comentario :"
+        evaluationNote:         "Nota de evaluación del"
+        LBF:                    "Buffet Francés"
+    content: 
+        testimony:              "Esperemos que le gusto nuestros productos, y deseamos verlos muy rapidamente de nuevo en nuestras tiendas. Para ayudarnos, y incitar otros a venir, pro favor, dejen nos un comentario y una nota de evaluación. Le agradeceríamos mucho."
+        team:                   "Todo el equipo."
+        evaluation:             "Por favor, den su nota de evaluación del servicio que recibieron: "
+        namePlaceholder:        "Ex: Jose Paracas"
+        contentPlaceholder:     "Pequeño comentario sobre nuestro servicio, nuestra tienda y nuestros productos."
+    action:
+        save:                   "Registrar"
+
+testimonyThankYou:
+    titles:
+        thankYou:               "Un gran agradecimiento !"
+    content:
+        thankYou:               "Gracias a usted, avanzamos cada vez un poco más cerca de la perfección que deseamos alcanzar, que sea para los productos, el atractivo de nuestras tiendas o el servicio que reciben cuando pasan."
+        thankYou2:              "Y para eso, le agradecimos mucho!"
+        team:                   "El equipo "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Página de inicio"
+
 
 
 

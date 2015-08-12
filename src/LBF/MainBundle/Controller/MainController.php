@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use LBF\UserBundle\Form\OrdersType;
 use LBF\UserBundle\Entity\Orders;
 use LBF\MainBundle\Entity\NewsletterEmail;
+use LBF\MainBundle\Entity\Testimony;
+use LBF\MainBundle\Form\TestimonyType;
 
 class MainController extends Controller
 {
@@ -480,4 +482,60 @@ class MainController extends Controller
         
         return $this->render('LBFMainBundle:Main:contactThankYou.html.twig');
     }
+
+    public function newTestimonyAction()
+    {
+        $testimony = new Testimony;
+
+        // On utiliser le OrdersType
+        $formNewTestimony = $this->createForm(new TestimonyType(), $testimony);
+
+        // On récupère la requête
+        $formNewTestimony->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewTestimony->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($testimony);
+            $em->flush();
+            
+            $messageAdminContent = stripslashes($formNewTestimony->get('content')->getData());
+            $messageAdminAuthor = stripslashes($formNewTestimony->get('author')->getData());
+            $messageAdminRate = stripslashes($formNewTestimony->get('rate')->getData());
+
+            // Message for manager/admin
+            $messageAdmin = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] Nouveau commentaire.')
+                ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo('antoine@lebuffetfrances.com')
+                ->setBody(
+                    $this->renderView('LBFAdminBundle:Admin:emailTestimonyAdmin.html.twig',
+                        array(  
+                            'messageAdminContent' => $messageAdminContent,
+                            'messageAdminAuthor' => $messageAdminAuthor,
+                            'messageAdminRate' => $messageAdminRate
+                            )
+                    )
+                )
+            ;
+
+            $this->get('mailer')->send($messageAdmin);
+
+            return $this->redirect($this->generateUrl('lbf_main_testimony_thankYou'));
+            
+
+        }
+        return $this->render('LBFMainBundle:Main:newTestimony.html.twig', array(
+            'formNewTestimony' => $formNewTestimony->createView()
+            ));
+    }
+
+    public function thankYouTestimonyAction() 
+    {
+        
+        return $this->render('LBFMainBundle:Main:thankYouTestimony.html.twig');
+    }
+
 }

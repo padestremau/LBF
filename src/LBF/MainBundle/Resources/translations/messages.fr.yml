@@ -267,6 +267,7 @@ modal:
         title:                  "Témoignages"
     actions: 
         close:                  Fermer
+        newTestimony:           Nouveau témoignage
 
 # Contact
 contact:
@@ -298,6 +299,42 @@ emailContact:
         here:                   "ici"
         quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
         clickHere:              cliquer ici
+
+
+
+# Testimony
+testimony:
+    titles:
+        testimony:              "Qu'avez-vous pensé de nous ?"
+        author:                 "Votre nom d'auteur :"
+        content:                "Contenu du commentaire :"
+        evaluationNote:         "Note d'évaluation du"
+        LBF:                    "Buffet Francés"
+    content: 
+        testimony:              "Nous espérons que vous avez apprécié nos produits et souhaitons vous revoir très vite dans l'une de nos boutiques. Afin de nous aider et d'inciter d'autres à comparaître, veuillez nous laisser un petit commentaire et une note d'évaluation s'il vous plaît. Nous vous en seriez très reconnaissant."
+        team:                   "Toute l'équipe."
+        evaluation:             "Donnez une note d'évaluation au service que vous avez reçu : "
+        namePlaceholder:        "Ex: Jean Dupont"
+        contentPlaceholder:     "Petit commentaire à propos de notre service, notre magasin et nos produits."
+    action:
+        save:                   "Enregistrer"
+
+testimonyThankYou:
+    titles:
+        thankYou:               "Un immense merci !"
+    content:
+        thankYou:               "Grâce à vous, nous progressons et nous rapprochons un peu plus de la perfection que nous désirons atteindre, que ce soit sur les produits, l'attractivité de la boutique ou le service que vous recevez lors de votre passage."
+        thankYou2:              "Et pour cela, nous vous disons merci !"
+        team:                   "L'équipe "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Accueil"
+
+
+
+
+
+
 
 
 

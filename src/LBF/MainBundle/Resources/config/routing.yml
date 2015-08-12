@@ -45,3 +45,11 @@ lbf_main_footer_contact:
 lbf_main_footer_contact_thankYou:
     path:     /contact/thankYou
     defaults: { _controller: LBFMainBundle:Main:footerContactThankYou }
+
+lbf_main_testimony_new:
+    path:     /testimony/new
+    defaults: { _controller: LBFMainBundle:Main:newTestimony }
+
+lbf_main_testimony_thankYou:
+    path:     /testimony/thankYou
+    defaults: { _controller: LBFMainBundle:Main:thankYouTestimony }

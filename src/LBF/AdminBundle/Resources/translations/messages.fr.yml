@@ -56,6 +56,8 @@ emailComplete:
         didSo: 					" et l'avez fait"
         seeYouSoon: 			"Merci de votre fidélité. Nous espérons vous revoir bien vite !"
         enjoy: 					"Bon appétit !"
+        ifYouHaveTime:          "PS: Si vous avez quelques minutes, laissez-nous un commentaire et une note d'évaluation ! :)"
+        leaveComment:           "Laisser un commentaire"
     footer:
         anecdote:               "est un nouveau magasin de charcuterie à Cusco, qui vend des produits faits avec la viande locale mais coupée et cuisinée selon les méthodes et techniques françaises. La start-up a ouvert le 1er Mars 2015 au Perou, avec leur premier atelier. D'autres suivront."
         keepInTouch:            "Se tenir au courant : "

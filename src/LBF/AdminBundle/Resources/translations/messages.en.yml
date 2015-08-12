@@ -56,6 +56,8 @@ emailComplete:
         didSo: 					" and did so"
         seeYouSoon: 			"We hope to see you soon!"
         enjoy: 					"Enjoy your meal!"
+        ifYouHaveTime:          "PS: If you have a couple minutes, please leave us a comment and an evaluation note ! :)"
+        leaveComment:           "Leave a comment"
     footer:
         anecdote:               "is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way."
         keepInTouch:            "Keep in touch: "

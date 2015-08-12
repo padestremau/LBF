@@ -268,6 +268,7 @@ modal:
         title:                  "Testimonies"
     actions: 
         close:                  Close
+        newTestimony:           New testimony
 
 # Contact
 contact:
@@ -299,6 +300,35 @@ emailContact:
         here:                   "here"
         quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
         clickHere:              click here
+
+
+# Testimony
+testimony:
+    titles:
+        testimony:              "What did you think of us?"
+        author:                 "Your name:"
+        content:                "Content of the comment:"
+        evaluationNote:         "Evaluation mark of"
+        LBF:                    "Le Buffet Francés"
+    content: 
+        testimony:              "We really hope you enjoyed our products, and wish to see you very soon in our shops again. In order to help us, and ecourage others to come around, please leave us a comment and an evaluation mark. We would be very grateful."
+        team:                   "The team."
+        evaluation:             "Please give an evaluation mark of the service you received: "
+        namePlaceholder:        "Ex: John Nash"
+        contentPlaceholder:     "Short comment on our service, our shop and our products."
+    action:
+        save:                   "Save"
+
+testimonyThankYou:
+    titles:
+        thankYou:               "Un huge thank you!"
+    content:
+        thankYou:               "Thanks to you, we keep on making progress, getting a little close to the perfection we look for, either for our porducts, for the attractivity of our shops or for the service you receive when you pass by."
+        thankYou2:              "And for that, we are very greateful!"
+        team:                   "Team "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Homepage"
 
 
 

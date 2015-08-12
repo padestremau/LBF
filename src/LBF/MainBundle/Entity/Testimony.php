@@ -49,6 +49,17 @@ class Testimony
      */
     private $rate;
 
+    /*   *********      construct  *************  */
+
+    public function __construct()
+    {
+        $this->createdAt        = new \Datetime;
+    }
+
+
+    /*   *********     Setter and getter Functions  *************  */
+
+
 
     /**
      * Get id
