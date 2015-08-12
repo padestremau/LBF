@@ -3,7 +3,7 @@
 {% extends "LBFAdminBundle::admin_general.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Utilisateurs
+  {{ parent() }} - Newsletter emails
 {% endblock %}
 
 {% block LBF_Admin_body %}
@@ -28,8 +28,14 @@
 
 					  		<div class="row">
 					  			<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletterEmailsSpe', {'emailType':'user'}) }}')" class="btn btn-login">
+					    				Emails particuliers
+					    			</a>
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletterEmailsSpe', {'emailType':'company'}) }}')" class="btn btn-login">
+					    				Emails entreprises
+					    			</a>
 					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletterEmails') }}')" class="btn btn-login">
-					    				Ecire une newsletter
+					    				Tous les emails
 					    			</a>
 					    		</div>
 					    		{% if newsletterEmails|length > 0 %}
@@ -46,20 +52,43 @@
 				                            <th class="center">
 				                              Inscrit le
 				                            </th>
+				                            <th class="center">
+				                              Type
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
 				                          </tr>
 				                        </thead>
 				                        <tbody>
 				                          {% for email in newsletterEmails %}
 				                            <tr>
-				                              <th class="center">
-				                                {{ email.id }}
-				                              </th>
-				                              <td class="left">
-				                              	{{ email.email }}
-				                              </td>
-				                              <td class="center">
-				                              	{{ email.createdAt|date("H:i d/M/Y") }}
-				                              </td>
+				                              	<th class="center">
+				                                	{{ email.id }}
+				                              	</th>
+				                              	<td class="left">
+				                              		{{ email.email }}
+				                              	</td>
+				                              	<td class="center">
+				                              		{{ email.createdAt|date("H:i d/M/Y") }}
+				                              	</td>
+				                              	<td class="center">
+				                                	{% if email.category == "user" %}
+				                                		Particulier
+				                                	{% elseif email.category == "company"  %}
+				                                		Entreprise
+				                                	{% else %}
+				                                		ERREUR
+				                                	{% endif %}
+				                              	</td>
+				                              	<td class="center">
+				                              		<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_email', {'emailId':email.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="javascript:areYouSureDeleteElement('{{ path('lbf_admin_delete_email', {'emailId':email.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
 				                            </tr>
 				                          {% endfor %}
 				                        </tbody>

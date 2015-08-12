@@ -34,6 +34,8 @@ main:
         securedPayment: 		Secured payment
         reservation:            Easy reservation
         ourProducts:            Our products
+        ourShops:               Our shops
+        delivery:               Delivery
     second_titles:
         category_1:             "Bread & wine"
         category_2:             "Salt buffet"
@@ -133,9 +135,10 @@ cart:
         finalize:               "You're about to finalize your order of:"
         ofaTotal:               "TOTAL: "
         requisites:             "Please be aware that this a pre-order that:"
+        requisites2:            "Please be aware that this website is only ment for pre-orders that:"
         conditions1:            "The managers have to validate it for your order to get confirmed."
         conditions2:            "Once the order is confirmed and ready, you will have to come to pay and to collect your order at the following address: "
-        shopOpen:               "The shop is open between 10am and 7pm, from Monday to Saturday."
+        shopOpen:               "The shop is open between 9am and 7pm, from Monday to Saturday."
         minimumOpen:            "The minimum delay is 2 hours, but you can choose a date that best suits you:"
 
 # About us
@@ -156,26 +159,23 @@ aboutUs:
 footer:
     titles:
         receiveOurNewsletter: 	Receive our newsletter
-        witnesses: 				Witness
+        testimonies:            Testimonies
         clientService: 			Client service
         aboutUs: 				Abous us
         needHelp: 				Need help?
-        meatPanel: 				Meat panel
         blog: 					Blog
     content:
         receiveOurNewsletter: 	Stay tuned to all our offers and recipes!
-        witnesses: 				They already tried our meat.
-        clientService: 			At your service from 10am to 7pm!
-        contact: 				Contact
-        thanks: 				Greetings
-        legalMentions: 			Legal mentions/ CGV
-        moreInfo: 				More information
-        delivery: 				Delivery
+        testimonies: 			They already tried our products.
+        clientService: 			At your service from 9am to 7pm!
+        whoWeAre: 			    Who we are
+        shops: 				    Our shops
+        sellingConditions:      Terms of reference
+        legalMentions: 			Legal mentions
+        delivery:               Delivery
+        ourProducts: 		    Our products
         ourWork: 				Our work
-        questions: 				Your questions - FAQ
-        entireBlog: 			The blog
-        cookingRecipe: 			Recipes
-        news: 					News
+        questions: 				Your questions
     contact:
         senderName:             Name
         senderEmail:            Email
@@ -193,7 +193,9 @@ footer:
     actions: 
         send: 					GO
         enterEmail:             Enter your email
-
+    newsletter:
+        user:                   Private
+        company:                Company
     bottom: 
         allRightsReserved: 		ALL RIGHTS RESERVED
 
@@ -231,6 +233,39 @@ modal:
         preparation:            "Preparation: "
         lastEdit:               "Last edited the "
         atTime:                 " at "
+    modalDelivery: 
+        pleaseBeAware:          "Please make sure that your order is being processed by checking your emails. You should be receiving a confirmation email with all the information about your latest order. In that case, you should be able to come and pick up your order at the shop."
+        cantDeliver:            "We can't deliver you at the moment, and hope the service will be available very soon. In the meantime, all orders past on our website must be picked up directly at the shop."
+        deliveryTime:           "Once the order has been processed and is ready to be picked up, you may come between"
+        deliveryTime2:          "9am and 7pm."
+    ourWorkModal:
+        title:                  "Our work"
+        why:                    "We opened this business based on several work ethics that we try to implement and maintain all day long with our products and co-workers:"
+        ethic1:                 "The aim of Le Buffet Francés is to employ Peruvians from poor origins in order to empower them professionaly and economically, to restore hope of getting integrated to a big city, and to help them get rid of their precarious situation."
+        ethic2:                 "Our products are created according to French recipes, but all the raw materials come from Peru. They are all natural, without any preservatives. Besides, we strive to use natural raw materials, without any pesticides. The objective is to sensibilize the Peruvian gastronomic curiosity, in order to widen their panel of choices for a particular meal."
+        ethic3:                 "Our quality products follow the letter of a specific recipe. We wish our methods will transform the Peruvian way of working, in the perspective of reaching a certain rigor in their mind and work. The quality we offer in the products we sell supports that approach, making sure that all sales in our shops are beyond reproach."
+    FAQModal:
+        title:                  "Your questions, our answers"
+        question1:              "I didn't receive any email, is that okay?"
+        answer1:                "Wait a few hours, the system may be a little slow. Refresh your inbox, and check if you have enough available space to receive the email (about 20Ko). Restart your computer as well as your internet connection. If you still haven't received the email, please contact the manager: "
+        answer1bis:             "antoine@lebuffetfrances.com"
+        question2:              "My order is wrong, how can I edit it?"
+        answer2:                "We should receive your order and process it as soon as possible. If some of the components are wrong, please notify us, specifying in the email your name, the number of the order, as well as the desired content of your order."
+        question3:              "When will my order by ready and how do I get it?"
+        answer3:                "You should have been able to give us a specific date and time for you order to be ready. If that is not the case, please contact the manager. Once the order is ready, you may come to pick it up directly at our shop."
+        question4:              "I got the delivery date wrong, how do I edit it?"
+        answer4:                "Please contact the manager, specifying your name, the number of your order as well as the desired delivery date. If possible, please specify as well the content of your order:"
+        question5:              "I would like to cancel an order I made, how can I do that?"
+        answer5:                "Please contact the manager, specifying your name, the number of your order as well as the reason why you would like the order to be canceled. If possible, please specify as well the content of your order:"
+        question6:              "The products have a problem, what should I do?"
+        answer6:                "We strive to create qulaity products which satisfy your expectations. If, for any particular reason, we failed to do that on any product, or if you find that a product doesn't satisfy the explaination we gave you, please don't hesitate to inform us directly at the shop for us to make it up to you."
+        question7:              "I would like to sell some of your products in my shop, what should I do?"
+        answer7:                "Contact the manager, and come to the shop for further discussions. We would be delighted to answer you and work with you."
+        question8:              "I would like to ask for a specific product for my event (delicatessen and/or products in large quantity), what should I do?"
+        answer8:                "Contact us directly, either by phone, or by email : "
+        answer8bis:             "+51 984 06 06 20"
+    testimoniesModal:
+        title:                  "Testimonies"
     actions: 
         close:                  Close
 

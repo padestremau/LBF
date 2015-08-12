@@ -49,6 +49,7 @@ class RecipeType extends AbstractType
                 'label' => 'Description En'))
             ->add('active', 'choice', array('label' => 'Active',
                                             'choices' => array( 'active' => 'Actif',
+                                                                'new' => 'Nouveauté', 
                                                                 'toCome' => 'A venir', 
                                                                 'soldOut' => 'Epuisé',
                                                                 'inactive' => 'Inactif')))

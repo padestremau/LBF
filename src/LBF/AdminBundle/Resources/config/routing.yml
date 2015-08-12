@@ -44,6 +44,21 @@ lbf_admin_newsletterEmails:
     path:     /newsletterEmails/emails
     defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }
 
+lbf_admin_newsletterEmailsSpe:
+    path:     /newsletterEmails/emails/{emailType}
+    defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }
+
+lbf_admin_edit_email:
+    path:     /newsletterEmails/edit/{emailId}
+    defaults: { _controller: LBFAdminBundle:Admin:editEmail }
+    requirements:
+        emailId: \d+
+
+lbf_admin_delete_email:
+    path:     /newsletterEmails/delete/{emailId}
+    defaults: { _controller: LBFAdminBundle:Admin:deleteEmail }
+    requirements:
+        emailId: \d+
 
 # Change elements
 lbf_admin_elements:

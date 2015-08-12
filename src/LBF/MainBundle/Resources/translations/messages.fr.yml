@@ -34,6 +34,8 @@ main:
         securedPayment: 		Paiment sécurisé
         reservation:            Réservations faciles
         ourProducts:            Nos produits
+        ourShops:               Nos magasins
+        delivery:               Livraison
     second_titles:
         category_1:             "Pain & vin"
         category_2:             "Traiteur salé"
@@ -133,6 +135,7 @@ cart:
         finalize:               "Vous êtes sur le point de finaliser votre commande de :"
         ofaTotal:               "TOTAL : "
         requisites:             "Veuillez noter que ceci n'est qu'une pré-commande que :"
+        requisites2:            "Veuillez noter que ce site web n'est destiné qu'aux pré-commandes que :"
         conditions1:            "Les gérants doivent d'abord valider pour que votre commande soit confirmée."
         conditions2:            "Une fois que la commande est validée et prête, vous devrez passer la régler et la récupérer à l'adresse suivante :"
         shopOpen:               "Le magasin est ouvert de 10h à 19h, de Lundi à Samedi."
@@ -155,26 +158,23 @@ aboutUs:
 footer:
     titles:
         receiveOurNewsletter: 	Recevez notre newsletter
-        witnesses: 				Témoignages
+        testimonies: 			Témoignages
         clientService: 			Service client
         aboutUs: 				A propos
         needHelp: 				Besoin d'aide ?
-        meatPanel: 				Viandes proposées
         blog: 					Le blog
     content:
         receiveOurNewsletter: 	Restez abonnés à nos offres et recettes !
         witnesses: 				Ils ont déjà gouté à notre viande.
-        clientService: 			A votre écoute de 10h à 19h00 !
-        contact: 				Contact
-        thanks: 				Remerciements
-        legalMentions: 			Mentions légales/ CGV
-        moreInfo: 				Tout comprendre
-        delivery: 				La Livraison
+        clientService: 			A votre écoute de 9h00 à 19h00 !
+        whoWeAre: 			    Qui sommes-nous ?
+        shops: 				    Nos magasins
+        sellingConditions:      Conditions générales de vente
+        legalMentions: 			Mentions légales
+        delivery:               La Livraison
+        ourProducts: 			Nos produits
         ourWork: 				Notre travail
         questions: 				Vos questions - FAQ
-        entireBlog: 			Tout le blog
-        cookingRecipe: 			Les recettes
-        news: 					Actualité
     contact:
         senderName:             Expéditeur
         senderEmail:            Email
@@ -192,7 +192,9 @@ footer:
     actions: 
         send: 					OK
         enterEmail:             Entrez votre email
-
+    newsletter:
+        user:                   Particulier
+        company:                Entreprise
     bottom: 
         allRightsReserved: 		TOUS DROITS RESERVES
 
@@ -230,6 +232,39 @@ modal:
         preparation:            "Préparation : "
         lastEdit:               "Dernière modification le "
         atTime:                 " à "
+    modalDelivery: 
+        pleaseBeAware:          "Assurez-vous s'il vous plaît que votre commande a bien été enregistrée en vérifiant vos emails. Vous devriez recevoir un email de confirmation avec toutes les informations à propos de votre dernière commande. Si c'est le cas, vous pourrez venir récupérer votre commande au magasin une fois prête."
+        cantDeliver:            "Nous ne pouvons vous livrer pour l'instant, mais nous espérons que ce sera un service disponible très bientôt. En attendant, toutes les commandes passées sur notre site web doivent être récupérées directement dans notre magasin."
+        deliveryTime:           "Une fois votre commande est traitée et prête, vous pourrez venir entre "
+        deliveryTime2:          "9h00 et 19h00."
+    ourWorkModal:
+        title:                  "Notre travail"
+        why:                    "L'ouverture de cette entreprise repose sur plusieurs éthiques de travail que nous nous efforçons de mettre en place et de maintenir tout au long de nos journées :"
+        ethic1:                 "Le principe même du Buffet Francés est d'employé des péruviens provenant de situations difficiles afin de les autonomiser en terme professionnel et financier, de leur redonner espoir d'intégration dans leur approche d'une grande ville, et de les aider à sortir de leur situation précaire."
+        ethic2:                 "Nos produits sont élaborés selon nos recettes françaises, mais toutes les matières premières proviennent du Pérou. Ils sont naturels, sans conservateurs. En plus de cela, nous nous efforçons de n'utiliser que des matières bio, sans pesticides. L'objectif est de sensibiliser la curiosité gastronomique des péruviens, afin d'élargir leur panel de choix pour tel ou tel repas."
+        ethic3:                 "Nos produits sont de qualité, et suivent une recette à la lettre. Nous travaillons dans l'optique de transformer la manière de faire des péruviens, pour atteindre une rigueur d'esprit et de travail. La qualité que nous offrons dans les produits que nous vendons vient confirmer cette démarche, en garantissant aux péruviens que leurs achats dans nos boutiques sont irréprochables."
+    FAQModal:
+        title:                  "FAQ - Vos questions, nos réponses"
+        question1:              "Je n'ai pas reçu d'email, est-ce normal ?"
+        answer1:                "Attendez encore quelques heures, le système est peut-être un peu lent. Actualisez votre boîte mail, et vérifiez que vous avez de l'espace disponible pour recevoir l'email (environ 20Ko). Redémarrez votre ordinateur, ainsi que votre connexion à internet. Si vous ne recevez toujours pas l'email, contactez le gérant: "
+        answer1bis:             "antoine@lebuffetfrances.com"
+        question2:              "Je me suis trompé dans ma commande, comment faire pour rectifier les composants y figurants ?"
+        answer2:                "Nous devrions avoir reçu votre commande et la traiterons dans les meilleurs délais. Si les éléments y figurants sont erronnés, veuillez nous le signaler en précisant dans votre mail, votre nom, le numéro de la commande, ainsi que le contenu désiré de votre commande."
+        question3:              "Quand ma commande sera-t-elle prête et comment faire pour la récupérer ?"
+        answer3:                "Vous devriez avoir précisé une date et une heure à laquelle vous désireriez avoir la commande prête. Si cela n'est pas le cas, contacter le gérant. La commande une fois prête est à récupérer directement au magasin."
+        question4:              "Je me suis trompé dans la date à laquelle je désirais avoir la commande prête, comment la rectifier ?"
+        answer4:                "Contactez le gérant en précisant votre nom, votre numéro de commande, ainsi que la nouvelle date à laquelle vous désirez votre commande prête. Rappelez si vous le pouvez, le contenu de votre commande s'il vous plaît :"
+        question5:              "Je désire annuler une commande, comment faire ?"
+        answer5:                "Contactez le gérant en précisant votre nom, votre numéro de commande, ainsi que la raison pour laquelle vous désirez annuler votre commande. Rappelez si vous le pouvez, le contenu de votre commande s'il vous plaît :"
+        question6:              "Les produits ont un problème, que faire ?"
+        answer6:                "Nous nous efforçons d'avoir des produits de qualité qui satisfassent vos attentes. Si pour une raison particulière, nous vous avons fait défaut sur tel ou tel produit, ou vous trouvez qu'un produit ne correspond pas à ce que nous vous avions expliqué, n'hésitez pas à nous faire un retour de vive voix directement au magasin pour rectifier notre erreur."
+        question7:              "Je désire revendre certains de vos produits dans mon magasin, que faire ?"
+        answer7:                "Contactez le gérant, et passez au magasin pour en discuter plus amplement. Nous nous ferons un plaisir de vous répondre et travailler avec vous."
+        question8:              "Je désire passer commande pour un évènement particulier (traiteur et/ou produits en grande quantité), que faire ?"
+        answer8:                "Contactez-nous directement, soit par téléphone, soit par email : "
+        answer8bis:             "+51 984 06 06 20"
+    testimoniesModal:
+        title:                  "Témoignages"
     actions: 
         close:                  Fermer
 

@@ -105,6 +105,11 @@ class MainController extends Controller
             '5' => $recipesMermeladas
             );
 
+        $testimonies = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Testimony')
+                            ->findAll();
+
         return $this->render('LBFMainBundle:Main:indexMain.html.twig', array(
         	'allPanVino' => $allPanVino,
         	'allBufSalado' => $allBufSalado,
@@ -121,7 +126,8 @@ class MainController extends Controller
             'recipesBufDulce' => $recipesBufDulce,
             'recipesMermeladas' => $recipesMermeladas,
             'allRecipes' => $allRecipes,
-			'allSortedRecipes' => $allSortedRecipes
+			'allSortedRecipes' => $allSortedRecipes,
+            'testimonies' => $testimonies
         	));
     }
 
@@ -134,7 +140,9 @@ class MainController extends Controller
 
         $newsletterEmail = new NewsletterEmail;
         $email = stripslashes($_POST['newsletterEmail']);
+        $type = stripslashes($_POST['newsletterType']);
         $newsletterEmail->setEmail($email);
+        $newsletterEmail->setCategory($type);
 
         $decision = 'YES';
         for ($i=0; $i < sizeof($allMails); $i++) { 

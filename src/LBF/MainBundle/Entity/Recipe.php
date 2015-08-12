@@ -86,21 +86,21 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredients_es", type="array", nullable=true)
+     * @ORM\Column(name="ingredients_es", type="array")
      */
     private $ingredients_es;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation_es", type="array", nullable=true)
+     * @ORM\Column(name="preparation_es", type="array")
      */
     private $preparation_es;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description_es", type="text", nullable=true)
+     * @ORM\Column(name="description_es", type="text")
      */
     private $description_es;
 

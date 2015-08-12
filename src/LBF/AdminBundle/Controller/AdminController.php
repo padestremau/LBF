@@ -255,12 +255,20 @@ class AdminController extends Controller
             ));
     }
     
-    public function newsletterEmailsAction()
+    public function newsletterEmailsAction($emailType = null)
     {
-        $newsletterEmails = $this ->getDoctrine()
-                                    ->getManager()
-                                    ->getRepository('LBFMainBundle:NewsletterEmail')
-                                    ->findAll();
+        if ($emailType == null) {
+            $newsletterEmails = $this ->getDoctrine()
+                                        ->getManager()
+                                        ->getRepository('LBFMainBundle:NewsletterEmail')
+                                        ->findAll();
+        }
+        else {
+            $newsletterEmails = $this ->getDoctrine()
+                                        ->getManager()
+                                        ->getRepository('LBFMainBundle:NewsletterEmail')
+                                        ->findByCategory($emailType);
+        }
 
 
         return $this->render('LBFAdminBundle:Admin:newsletterEmails.html.twig', array(

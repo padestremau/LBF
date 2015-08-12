@@ -376,3 +376,12 @@ function areYouSureDeleteRecipe(path) {
     window.location = path;   
   }
 }
+
+function showNewsletterSelect() {
+  if (document.getElementById('user_type').checked) {
+      $('#newsletter_email_input').fadeIn('fast');
+  }
+  else {
+      $('#newsletter_email_input').fadeIn('fast');
+  }
+}

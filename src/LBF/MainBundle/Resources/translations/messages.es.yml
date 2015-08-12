@@ -34,6 +34,8 @@ main:
         securedPayment: 		Pagamento securo
         reservation:            Reservacion facil
         ourProducts:            Productos
+        ourShops:               Nuestras tiendas
+        delivery:               Entrega
     second_titles:
         category_1:             "Pan & vino"
         category_2:             "Buffet salado"
@@ -134,9 +136,10 @@ cart:
         finalize:               "Usted esta finalizando su pedido de :"
         ofaTotal:               "TOTAL : "
         requisites:             "Apunta usted por favor que esto solamente es un pre-pedido que :"
+        requisites2:            "Apunta usted por favor que este sitio permite solamente de hacer pre-pedido que :"
         conditions1:            "Los gerentes tienen que validar para que su pedido sea confirmado."
         conditions2:            "Una vez que su pedido esta listo, usted tendra que pasar pagar y conseguir su pedido a la dirección siguiente :"
-        shopOpen:               "La tienda esta abierta desde las 10 hasta las 19, del Lúnes al Sabado."
+        shopOpen:               "La tienda esta abierta desde las 9 hasta las 19, del Lúnes al Sabado."
         minimumOpen:            "El minimum de preparación de su pedido es 2 horas, pero si quiere, usted puede cambiar la fecha que más le conviene :"
 
 
@@ -158,26 +161,23 @@ aboutUs:
 footer:
     titles:
         receiveOurNewsletter: 	Reciben nuestra newsletter
-        witnesses: 				Témoignages
+        testimonies:            Testimonios
         clientService: 			Servicio al cliente
         aboutUs: 				A propuesto
         needHelp: 				Necesitan ayuda ?
-        meatPanel: 				Carne propuesta
         blog: 					El blog
     content:
-        receiveOurNewsletter: 	Restez abonnés à nos offres et recettes !
-        witnesses: 				Ya han probado nuestra carne.
-        clientService: 			A vuestro servicio desde las 10 hasta las 19 !
-        contact: 				Contacto
-        thanks: 				Remerciements
-        legalMentions: 			Mentiones legales/ CGV
-        moreInfo: 				Comprender todo
-        delivery: 				La Livraison
+        receiveOurNewsletter: 	Suscribense a nuestras ofertas y recetas!
+        testimonies: 		    Ya han probado nuestros productos.
+        clientService: 			A vuestro servicio desde las 9 hasta las 19 !
+        whoWeAre: 			    Quienes somos
+        shops: 				    Nuestras tiendas
+        sellingConditions:      Condiciones generales de venta
+        legalMentions: 			Menciones legales
+        delivery:               La entrega
+        ourProducts: 			Nuestros productos
         ourWork: 				Nuestro trabajo
-        questions: 				Vuestras preguntas - FAQ
-        entireBlog: 			Todo el blog
-        cookingRecipe: 			Les recettes
-        news: 					Actualidad
+        questions: 				Vuestras preguntas
     contact:
         senderName:             Nombre
         senderEmail:            Email
@@ -195,9 +195,11 @@ footer:
     actions: 
         send: 					OK
         enterEmail:             Escriben vuestro email
-
+    newsletter:
+        user:                   Particular
+        company:                Empresa
     bottom: 
-        allRightsReserved: 		TOUS DROITS RESERVES
+        allRightsReserved: 		RESERVADOS TODOS LOS DERECHOS
 
 
 # Modal
@@ -233,6 +235,39 @@ modal:
         preparation:            "Preparación : "
         lastEdit:               "Ultima modificacion el "
         atTime:                 " a las "
+    modalDelivery: 
+        pleaseBeAware:          "Por favor, asegurense que su reserva esta tramitando, averiguando sus emails. Usted debería recibir un email de confirmación con todas las informaciones de su ultima reserva. En este caso, usted podra recoger su reserva en la tienda."
+        cantDeliver:            "Ahora no podemos entregar su reserva, pero esperamos que será un servicio disponible muy pronto. Por lo tanto, todas las reservas echas sobre nuestro sitio web tienen que ser recogidas directamente en nuestra tienda."
+        deliveryTime:           "Una vez que la reserva esta procesada y lista, usted podra venir entre "
+        deliveryTime2:          "9am y 7pm."
+    ourWorkModal:
+        title:                  "Nuestro trabajo"
+        why:                    "El negocio que abrímos se basa sobre algunas éticas de trabajo que intentamos de establecer y mantener durante todo el día:"
+        ethic1:                 "El principio mismo de Le Buffet Francés es de emplear a peruanos que vienen de situaciones difíciles para empoderarlos profesionalmente y económicamente, para devolver la esperanza de integrarse a una gran ciudad, y para ayudarlos a salir de estas situaciones precarias."
+        ethic2:                 "Nuestros productos son echos con recetas francesas, pero todos los ingredientes son de Perú. Todos son naturales, sin preservantes. Ademas, nos esforzamos de solo usar ingredientes naturales, sin pesticidas. El objetivo es de sensibilizar de los peruanos curiosidad gastronómica, para aumentar su panel de juicios de sabores para una comida."
+        ethic3:                 "Nuestros productos son de qualidad, y siguen una receta al pie de la letra. Trabajamos con miras a convertir la manera de hacer de los peruanos, para alcanzar una rigor de pensamiento y de trabajo. La qualidad que ofrecemos en los productos que vendemos confirma este proceso, asegurando los peruanos que todos sus compras sean irreprochables."
+    FAQModal:
+        title:                  "Sus preguntas, nuestras respuestas"
+        question1:              "No recibi ningun email, es normal?"
+        answer1:                "Espera algunas horas, el sistema puede ser lento. Actualise su inbox, y averigue que tenga el espacio disponible para para recibir el email (±20Ko). Reinicie su computador, y su connexión internet. Si todavía no le recibe, contacte el gerente: "
+        answer1bis:             "antoine@lebuffetfrances.com"
+        question2:              "Me equivoque en mi pedida, como hacer para rectificarla?"
+        answer2:                "Deberíamos recibir su pedida y tratarla rapidamente. Si se equivoque en su pedida, avisenos por favor, precisando en su email, su nombre, su número de pedida, y el contenido que desea."
+        question3:              "Cuando sera lista my pedida y como recogerla?"
+        answer3:                "Debería haber dado una fecha en la cual desea su pedida lista. Si no es el caso, contacte el gerente. Una vez que la pedida esta lista, la podra recoger directamente a la tienda."
+        question4:              "Me equivoque en la fecha, como rectificarla?"
+        answer4:                "Contacte por favor el gerente, precisando su nombre, su número de pedida, y la fecha en la cual desea su pedida lista. Recuerdanos si posible, el contenido de su pedida por favor:"
+        question5:              "Deseo anular mi pedida, como hacer?"
+        answer5:                "Contacte el gerente  precisando su nombre, su número de pedida, y la razón de su anulación. Recuerdanos si posible, el contenido de su pedida por favor:"
+        question6:              "Los productos tienen un problema, que hago ?"
+        answer6:                "Intentatmos tener productos de alta qualidad que satisfacen sus expectativas. Si por una razón particular, no le satisface uno de nuestros productos, o si un producto ne corresponde a lo que le habíamos dicho, no vacilan decirnos directamente en la tienda para que rectifiquémos nuestra error."
+        question7:              "Deseo vender sus productos en mi tienda, como hacer?"
+        answer7:                "Contacte el gerente, y pase a la tienda para discutir más ampliamente. Sera un placer responderle y trabajar con usted."
+        question8:              "Deseo una pedida para un evento en particular (proveedor y/o productos en gran quantidad), que hago ?"
+        answer8:                "Contactenos directamente, por telefono, or por email : "
+        answer8bis:             "+51 984 06 06 20"
+    testimoniesModal:
+        title:                  "Testimonios"
     actions: 
         close:                  Cerrar
 

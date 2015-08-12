@@ -61,9 +61,26 @@
           {% include 'includes/header.html.twig' %}
         <!-- END header -->
 
+        {% if route != 'lbf_admin_homepage' 
+            and route != 'lbf_admin_currentOrders'
+            and route != 'lbf_admin_answer'
+            and route != 'lbf_admin_delete'
+            and route != 'lbf_admin_complete'
+            and route != 'lbf_admin_pastOrders'
+            and route != 'lbf_admin_users'
+            and route != 'lbf_admin_newsletter'
+            and route != 'lbf_admin_newsletterEmails'
+            and route != 'lbf_admin_elements'
+            and route != 'lbf_admin_new_element'
+            and route != 'lbf_admin_edit_element'
+            and route != 'lbf_admin_recipes'
+            and route != 'lbf_admin_new_recipe'
+            and route != 'lbf_admin_edit_element' 
+            and route != 'lbf_admin_newsletterEmailsSpe' %}
         <!-- BEGIN modals -->
           {% include 'includes/modals.html.twig' %}
         <!-- END modals -->
+        {% endif %}
 
         <!-- BEGIN button to top -->
           {% include 'includes/button_to_top.html.twig' %}
@@ -89,7 +106,8 @@
             and route != 'lbf_admin_edit_element'
             and route != 'lbf_admin_recipes'
             and route != 'lbf_admin_new_recipe'
-            and route != 'lbf_admin_edit_element' %}
+            and route != 'lbf_admin_edit_element' 
+            and route != 'lbf_admin_newsletterEmailsSpe' %}
             page-container 
           {% else %}
             page-container-admin
@@ -110,12 +128,12 @@
           'js/jssor.js'
           'js/jssor.slider.js'
 
-          'js/jquery-cookie/jquery.cookie.js'
-
           'redactor/redactor.js'
           'redactor/fullscreen.js'
           'redactor/fr.js'
-          'bundles/stpredactor/js/script.js'
+          
+          'js/jquery-cookie/jquery.cookie.js'
+
           
           %}
           <script src="{{ asset_url }}"></script>

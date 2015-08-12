@@ -29,6 +29,13 @@ class NewsletterEmail
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255)
+     */
+    private $category;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime", nullable=true)
@@ -40,6 +47,7 @@ class NewsletterEmail
     public function __construct()
     {
         $this->createdAt         = new \Datetime;
+        $this->category          = 'user';
     }
 
 
@@ -98,5 +106,28 @@ class NewsletterEmail
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return NewsletterEmail
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
