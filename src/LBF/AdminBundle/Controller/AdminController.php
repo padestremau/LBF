@@ -577,7 +577,7 @@ class AdminController extends Controller
             $elements = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findBy([], ['modifiedAt' => 'DESC']);
+                            ->findBy([], ['updatedAt' => 'DESC']);
         }
         
 
@@ -645,7 +645,7 @@ class AdminController extends Controller
             $recipes = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Recipe')
-                            ->findBy([], ['modifiedAt' => 'DESC']);
+                            ->findBy([], ['updatedAt' => 'DESC']);
         }
         
 

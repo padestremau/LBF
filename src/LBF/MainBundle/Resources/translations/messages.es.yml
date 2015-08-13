@@ -46,8 +46,8 @@ main:
         recipes: 		        "Recetas a seguir para disfrutir de gustosos platos a compartir con su familia y amigos."
         qualityProduct: 		"Carne de qualitad, con unico objetivo de satisfacer la curiosidad gastronmica de todos."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
-        reservation:            "Elige ahora sus artículos. Selectiona le fecha que mas le conviene y pasa recoger su pedido."
-        ourProducts:            "Para llenar vuestro carro de la compra, seleccionad las quantidades de cada producto."
+        reservation:            "Elige ahora sus artículos. Selectione le fecha que mas le conviene y pasa recoger su pedido."
+        ourProducts:            "Para llenar vuestro carro de la compra, seleccione las quantidades de cada producto."
     actions:
         learnMore: 				Mas ínfo
         discover:               Descubrir
@@ -73,7 +73,7 @@ ourProducts:
         naturalProducts:        "Productos naturales sin colorantes ni preservantes"
         pieces:                 "pedazos,"
     warning:
-        message:                "Esta pagina esta en blanco. Contactad el administratorio del sitio web por favor."
+        message:                "Esta pagina esta en blanco. Contacte el administratorio del sitio web por favor."
 
 
 # Recipes
@@ -86,7 +86,7 @@ ourRecipes:
     actions:
         discoverRecipe:         Descubrir la receta
     warning:
-        message:                "Esta pagina esta en blanco. Contactad el administratorio del sitio web por favor."
+        message:                "Esta pagina esta en blanco. Contacte el administratorio del sitio web por favor."
         noRecipe:               "Disculpa, no hay ningun receta ahora"
     
 
@@ -111,7 +111,7 @@ cart:
         order:                  Pedir
         confirm:                Confirmación
         total:                  "TOTAL :"
-        thankYou:               "Gracias por su pedido. Usted debería recibir un email de confirmación rapidamente."
+        thankYou:               "Gracias por su pedido. Debería recibir un email de confirmación rapidamente."
     tableTitles:
         item:                   Artículo
         quantity:               Quantitad
