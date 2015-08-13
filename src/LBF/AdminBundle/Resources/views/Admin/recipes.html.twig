@@ -48,6 +48,12 @@
 				                            </th>
 				                            <th class="center">
 				                              Titre
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes_sorted', {'sortBy':'title', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes_sorted', {'sortBy':'title', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+						                        </a>
 				                            </th>
 				                            <th class="center">
 				                              Tps prep (min)
@@ -78,6 +84,12 @@
 				                            </th>
 				                            <th class="center">
 				                              Statut
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes_sorted', {'sortBy':'status', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes_sorted', {'sortBy':'status', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+						                        </a>
 				                            </th>
 				                            <th class="center">
 				                              Action

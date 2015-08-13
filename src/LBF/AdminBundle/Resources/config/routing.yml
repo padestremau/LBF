@@ -152,6 +152,10 @@ lbf_admin_elements:
     path:     /elements/
     defaults: { _controller: LBFAdminBundle:Admin:elements }
 
+lbf_admin_elements_sorted:
+    path:     /elements/sortedBy/{sortBy}/{order}/
+    defaults: { _controller: LBFAdminBundle:Admin:elements }
+
 lbf_admin_new_element:
     path:     /elements/new/
     defaults: { _controller: LBFAdminBundle:Admin:newElement }
@@ -172,6 +176,10 @@ lbf_admin_delete_element:
 # Change recipes
 lbf_admin_recipes:
     path:     /recipes/
+    defaults: { _controller: LBFAdminBundle:Admin:recipes }
+
+lbf_admin_recipes_sorted:
+    path:     /recipes/sortedBy/{sortBy}/{order}/
     defaults: { _controller: LBFAdminBundle:Admin:recipes }
 
 lbf_admin_new_recipe:

@@ -565,12 +565,21 @@ class AdminController extends Controller
         return $this->redirect($this->generateUrl('lbf_admin_comments'));
     }
 
-    public function elementsAction()
+    public function elementsAction($sortBy = null, $order = null)
     {
-        $elements = $this ->getDoctrine()
+        if ($sortBy) {
+            $elements = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findAllSortedByCategory();
+                            ->findBy([], [$sortBy => $order]);
+        }
+        else {
+            $elements = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Element')
+                            ->findBy([], ['modifiedAt' => 'DESC']);
+        }
+        
 
         return $this->render('LBFAdminBundle:Admin:elements.html.twig', array(
             'elements' => $elements
@@ -624,12 +633,21 @@ class AdminController extends Controller
         return $this->redirect($this->generateUrl('lbf_admin_elements'));
     }
 
-    public function recipesAction()
+    public function recipesAction($sortBy = null, $order = null)
     {
-        $recipes = $this ->getDoctrine()
+        if ($sortBy) {
+            $recipes = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Recipe')
-                            ->findAll();
+                            ->findBy([], [$sortBy => $order]);
+        }
+        else {
+            $recipes = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Recipe')
+                            ->findBy([], ['modifiedAt' => 'DESC']);
+        }
+        
 
         return $this->render('LBFAdminBundle:Admin:recipes.html.twig', array(
             'recipes' => $recipes

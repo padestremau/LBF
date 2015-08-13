@@ -44,7 +44,13 @@
 				                              Image
 				                            </th>
 				                            <th class="center">
-				                              Nom
+				                              	Nom
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'nameFr', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'nameFr', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
 				                              Description
@@ -59,7 +65,13 @@
 				                              Modifié le
 				                            </th>
 				                            <th class="center">
-				                              Category
+				                              	Category
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'category', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'category', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
 				                              Prix (S/.)
@@ -74,7 +86,13 @@
 				                              Naturel ?
 				                            </th>
 				                            <th class="center">
-				                              Statut
+				                              	Statut
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'active', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'active', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
 				                              Action
