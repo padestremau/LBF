@@ -14,6 +14,11 @@ use LBF\MainBundle\Form\RecipeType;
 use LBF\MainBundle\Entity\Testimony;
 use LBF\MainBundle\Form\TestimonySmallType;
 
+use LBF\MainBundle\Form\NewsletterEmailType;
+
+use LBF\UserBundle\Form\EditUserType;
+use LBF\UserBundle\Form\EditCompanyType;
+
 class AdminController extends Controller
 {
     public function indexAction()
@@ -58,13 +63,21 @@ class AdminController extends Controller
             ));
     }
 
-    public function currentOrdersAction()
+    public function currentOrdersAction($sortBy = null, $order = null)
     {
-        $currentOrders = $this ->getDoctrine()
+        if ($sortBy) {
+            $currentOrders = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecificAdminNon('complete', 10);
-
+                            ->findBy(['status' => array('confirm', 'onHold', 'refused')], [$sortBy => $order]);
+        }
+        else {
+            $currentOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findBy(['status' => array('confirm', 'onHold', 'refused')], ['createdAt' => 'DESC']);
+        }
+        
         return $this->render('LBFAdminBundle:Admin:currentOrders.html.twig', array(
             'currentOrders' => $currentOrders
             ));
@@ -221,37 +234,215 @@ class AdminController extends Controller
         return $this->redirect($this->generateUrl('lbf_admin_currentOrders'));
     }
 
-    public function pastOrdersAction()
+    public function deleteOrderCompleteAction($orderId)
     {
-        $pastOrders = $this ->getDoctrine()
+        $order = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFUserBundle:Orders')
+                        ->find($orderId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($order);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_pastOrders'));
+    }
+
+    public function pastOrdersAction($sortBy = null, $order = null)
+    {
+        if ($sortBy) {
+            $pastOrders = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:Orders')
-                            ->findSpecificAdmin('complete', 10);
-
+                            ->findBy(['status' => 'complete'], [$sortBy => $order]);
+        }
+        else {
+            $pastOrders = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:Orders')
+                            ->findBy(['status' => 'complete'], ['createdAt' => 'DESC']);
+        }
+        
         return $this->render('LBFAdminBundle:Admin:pastOrders.html.twig', array(
             'pastOrders' => $pastOrders
             ));
     }
 
-    public function usersAction()
+    public function usersAction($sortBy = null, $order = null)
     {
-        $users = $this ->getDoctrine()
+        if ($sortBy) {
+            $users = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFUserBundle:User')
-                            ->findAll();
+                            ->findBy(['type' => 1], [$sortBy => $order]);
+        }
+        else {
+            $users = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:User')
+                            ->findBy(['type' => 1], ['lastLogin' => 'DESC']);
+        }
+        
 
         return $this->render('LBFAdminBundle:Admin:users.html.twig', array(
             'users' => $users
             ));
     }
 
-    public function newsletterAction()
+    public function newUserAction($userId = null)
     {
-        $newsletterEmails = $this ->getDoctrine()
-                                    ->getManager()
-                                    ->getRepository('LBFMainBundle:NewsletterEmail')
-                                    ->findAll();
+        if (sizeof($userId) > 0) {
+            $user = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:User')
+                            ->find($userId);
+        } else {
+            $user = new User;
+        }
+        
+        // On utiliser le EditAvatarType
+        $formAdminUser = $this->createForm(new EditUserType(), $user);
 
+        // On récupère la requête
+        $formAdminUser->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formAdminUser->isValid()) {
+            $user->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_users'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newUser.html.twig', array(
+            'formAdminUser' => $formAdminUser->createView()
+            ));
+    }
+
+    public function deleteUserAction($userId)
+    {
+        $user = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFUserBundle:User')
+                        ->find($userId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_users'));
+    }
+
+    public function usersEmailsAction()
+    {
+        $users = $this ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('LBFUserBundle:User')
+                                    ->findBy(['type' => 1]);
+
+        return $this->render('LBFAdminBundle:Admin:usersEmails.html.twig', array(
+            'users' => $users
+            ));
+    }
+
+    public function companiesAction($sortBy = null, $order = null)
+    {
+        if ($sortBy) {
+            $companies = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:User')
+                            ->findBy(['type' => 0], [$sortBy => $order]);
+        }
+        else {
+            $companies = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:User')
+                            ->findBy(['type' => 0], ['lastLogin' => 'DESC']);
+        }
+        
+
+        return $this->render('LBFAdminBundle:Admin:companies.html.twig', array(
+            'companies' => $companies
+            ));
+    }
+
+    public function newCompanyAction($companyId = null)
+    {
+        if (sizeof($companyId) > 0) {
+            $company = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFUserBundle:User')
+                            ->find($companyId);
+        } else {
+            $company = new User;
+        }
+        
+        // On utiliser le EditAvatarType
+        $formAdminCompany = $this->createForm(new EditCompanyType(), $company);
+
+        // On récupère la requête
+        $formAdminCompany->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formAdminCompany->isValid()) {
+            $company->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($company);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_companies'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newCompany.html.twig', array(
+            'formAdminCompany' => $formAdminCompany->createView()
+            ));
+    }
+
+    public function deleteCompanyAction($companyId)
+    {
+        $company = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFUserBundle:User')
+                        ->find($companyId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($company);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_companies'));
+    }
+
+    public function companiesEmailsAction()
+    {
+        $companies = $this ->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository('LBFUserBundle:User')
+                                    ->findBy(['type' => 0]);
+
+        return $this->render('LBFAdminBundle:Admin:companiesEmails.html.twig', array(
+            'companies' => $companies
+            ));
+    }
+
+    public function newsletterAction($sortBy = null, $order = null)
+    {
+        if ($sortBy) {
+            $newsletterEmails = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:NewsletterEmail')
+                            ->findBy([], [$sortBy => $order]);
+        }
+        else {
+            $newsletterEmails = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:NewsletterEmail')
+                            ->findBy([], ['createdAt' => 'DESC']);
+        }
+        
 
         return $this->render('LBFAdminBundle:Admin:newsletter.html.twig', array(
             'newsletterEmails' => $newsletterEmails
@@ -279,19 +470,47 @@ class AdminController extends Controller
             ));
     }
 
-    public function commentsAction($sortType = null, $order = null)
+    public function editEmailAction($emailId)
     {
-        if ($sortType == null) {
+        $email = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:NewsletterEmail')
+                        ->find($emailId);
+        
+        // On utiliser le EditAvatarType
+        $formEmail = $this->createForm(new NewsletterEmailType(), $email);
+
+        // On récupère la requête
+        $formEmail->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formEmail->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($email);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_newsletter'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:editNewsletterEmail.html.twig', array(
+            'formEmail' => $formEmail->createView()
+            ));
+    }
+
+    public function commentsAction($sortBy = null, $order = null)
+    {
+        if ($sortBy) {
             $comments = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Testimony')
-                            ->findAll();
+                            ->findBy([], [$sortBy => $order]);
         }
         else {
             $comments = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Testimony')
-                            ->findSortedByType($sortType, $order);
+                            ->findBy([], ['createdAt' => 'DESC']);
         }
         
 

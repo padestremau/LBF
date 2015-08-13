@@ -1,0 +1,57 @@
+{# src/LBF/AdminBundle/Resources/User/companiesEmails.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Emails utilisateurs
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+		        		<div id="section_admin" class="center">
+
+		        			<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>	
+
+			        		<div class="row80">
+			        			<div class="form-group">
+									<div class="input-icon">
+					        			<textarea style="color:black !important;" class="form-control select2" name="newsletterEmails_emails" id="newsletterEmails_emails">{% set index_email = 0 %}{% for company in companies %}{{ company.email }}{% if index_email < companies|length %}, {% endif %}{% set index_email = index_email + 1 %}{% endfor %}</textarea>
+									</div>
+								</div>
+			        		</div>
+		        		</div>
+		        	{% else %}
+		        		<div>
+		        			Vous n'etes pas autorisé à etre sur cette partie du site.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

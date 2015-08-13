@@ -73,7 +73,7 @@
 				                              				{% set item = single_element['item'] %}
 			                            					{% set qty = single_element['qty'] %}
 				                              				<li>
-				                              					{{ item.name }} (x{{ qty }})
+				                              					{{ item.nameFr }} (x{{ qty }})
 				                              				</li>
 				                              			{% endfor %}
 				                              		</ul>
@@ -133,7 +133,7 @@
 					                              				{% set item = single_element['item'] %}
 					                        					{% set qty = single_element['qty'] %}
 					                        					<input type="checkbox" name="{{ item.type }}" id="checkbox-{{ item.type }}" value="YES" checked/>
-					                        					<label for="{{ item.type }}">{{ item.name }} (x{{ qty }})</label> <br/>
+					                        					<label for="{{ item.type }}">{{ item.nameFr }} (x{{ qty }})</label> <br/>
 					                              			{% endfor %}
 					                              		</ul>
 					                              	{% else %}

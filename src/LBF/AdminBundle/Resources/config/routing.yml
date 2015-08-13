@@ -5,81 +5,143 @@ lbf_admin_homepage:
 
 # Answer to an order
 lbf_admin_currentOrders:
-    path:     /currentOrders
+    path:     /currentOrders/
+    defaults: { _controller: LBFAdminBundle:Admin:currentOrders }
+
+lbf_admin_currentOrders_sorted:
+    path:     /currentOrders/sortedBy/{sortBy}/{order}/
     defaults: { _controller: LBFAdminBundle:Admin:currentOrders }
 
 lbf_admin_answer:
-    path:     /answer/{orderId}
+    path:     /answer/{orderId}/
     defaults: { _controller: LBFAdminBundle:Admin:answerOrder }
     requirements:
         orderId: \d+
 
 lbf_admin_delete:
-    path:     /delete/{orderId}
+    path:     /delete/{orderId}/
     defaults: { _controller: LBFAdminBundle:Admin:deleteOrder }
     requirements:
         orderId: \d+
 
+lbf_admin_delete_complete:
+    path:     /delete/complete/{orderId}/
+    defaults: { _controller: LBFAdminBundle:Admin:deleteOrderComplete }
+    requirements:
+        orderId: \d+
+
 lbf_admin_complete:
-    path:     /complete/{orderId}
+    path:     /complete/{orderId}/
     defaults: { _controller: LBFAdminBundle:Admin:completeOrder }
     requirements:
         orderId: \d+
 
 lbf_admin_pastOrders:
-    path:     /pastOrders
+    path:     /pastOrders/
     defaults: { _controller: LBFAdminBundle:Admin:pastOrders }
 
 
 # Check about users
 lbf_admin_users:
-    path:     /users
+    path:     /users/
     defaults: { _controller: LBFAdminBundle:Admin:users }
 
+lbf_admin_users_sorted:
+    path:     /users/sortedBy/{sortBy}/{order}/
+    defaults: { _controller: LBFAdminBundle:Admin:users }
+
+lbf_admin_edit_user:
+    path:     /users/edit/{userId}/
+    defaults: { _controller: LBFAdminBundle:Admin:newUser }
+    requirements:
+        userId: \d+
+
+lbf_admin_delete_user:
+    path:     /users/delete/{userId}/
+    defaults: { _controller: LBFAdminBundle:Admin:deleteUser }
+    requirements:
+        userId: \d+
+
+lbf_admin_usersEmails:
+    path:     /users/allEmails/
+    defaults: { _controller: LBFAdminBundle:Admin:usersEmails }
+
+lbf_admin_companies:
+    path:     /companies/
+    defaults: { _controller: LBFAdminBundle:Admin:companies }
+
+lbf_admin_companies_sorted:
+    path:     /companies/sortedBy/{sortBy}/{order}/
+    defaults: { _controller: LBFAdminBundle:Admin:companies }
+
+lbf_admin_edit_company:
+    path:     /companies/edit/{companyId}/
+    defaults: { _controller: LBFAdminBundle:Admin:newCompany }
+    requirements:
+        companyId: \d+
+
+lbf_admin_delete_company:
+    path:     /companys/delete/{companyId}/
+    defaults: { _controller: LBFAdminBundle:Admin:deleteCompany }
+    requirements:
+        companyId: \d+
+
+lbf_admin_companiesEmails:
+    path:     /companies/allEmails/
+    defaults: { _controller: LBFAdminBundle:Admin:companiesEmails }
+
+
+# Check about newsletters
 lbf_admin_newsletter:
-    path:     /newsletterEmails
+    path:     /newsletterEmails/
+    defaults: { _controller: LBFAdminBundle:Admin:newsletter }
+
+lbf_admin_emails_sorted:
+    path:     /newsletterEmails/sortedBy/{sortBy}/{order}/
     defaults: { _controller: LBFAdminBundle:Admin:newsletter }
 
 lbf_admin_newsletterEmails:
-    path:     /newsletterEmails/emails
+    path:     /newsletterEmails/emails/
     defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }
 
 lbf_admin_newsletterEmailsSpe:
-    path:     /newsletterEmails/emails/{emailType}
+    path:     /newsletterEmails/emails/{emailType}/
     defaults: { _controller: LBFAdminBundle:Admin:newsletterEmails }
 
 lbf_admin_edit_email:
-    path:     /newsletterEmails/edit/{emailId}
+    path:     /newsletterEmails/edit/{emailId}/
     defaults: { _controller: LBFAdminBundle:Admin:editEmail }
     requirements:
         emailId: \d+
 
 lbf_admin_delete_email:
-    path:     /newsletterEmails/delete/{emailId}
+    path:     /newsletterEmails/delete/{emailId}/
     defaults: { _controller: LBFAdminBundle:Admin:deleteEmail }
     requirements:
         emailId: \d+
 
+
+# Check about comments
 lbf_admin_comments:
-    path:     /comments
+    path:     /comments/
     defaults: { _controller: LBFAdminBundle:Admin:comments }
 
 lbf_admin_comments_sorted:
-    path:     /comments/sortedBy/{sortBy}/{order}
+    path:     /comments/sortedBy/{sortBy}/{order}/
     defaults: { _controller: LBFAdminBundle:Admin:comments }
 
 lbf_admin_new_comment:
-    path:     /comments/new
+    path:     /comments/new/
     defaults: { _controller: LBFAdminBundle:Admin:newComment }
 
 lbf_admin_edit_comment:
-    path:     /comments/edit/{commentId}
+    path:     /comments/edit/{commentId}/
     defaults: { _controller: LBFAdminBundle:Admin:newComment }
     requirements:
         commentId: \d+
 
 lbf_admin_delete_comment:
-    path:     /comments/delete/{commentId}
+    path:     /comments/delete/{commentId}/
     defaults: { _controller: LBFAdminBundle:Admin:deleteComment }
     requirements:
         commentId: \d+
@@ -87,21 +149,21 @@ lbf_admin_delete_comment:
 
 # Change elements
 lbf_admin_elements:
-    path:     /elements
+    path:     /elements/
     defaults: { _controller: LBFAdminBundle:Admin:elements }
 
 lbf_admin_new_element:
-    path:     /elements/new
+    path:     /elements/new/
     defaults: { _controller: LBFAdminBundle:Admin:newElement }
 
 lbf_admin_edit_element:
-    path:     /elements/edit/{elementId}
+    path:     /elements/edit/{elementId}/
     defaults: { _controller: LBFAdminBundle:Admin:newElement }
     requirements:
         elementId: \d+
 
 lbf_admin_delete_element:
-    path:     /elements/delete/{elementId}
+    path:     /elements/delete/{elementId}/
     defaults: { _controller: LBFAdminBundle:Admin:deleteElement }
     requirements:
         elementId: \d+
@@ -109,21 +171,21 @@ lbf_admin_delete_element:
 
 # Change recipes
 lbf_admin_recipes:
-    path:     /recipes
+    path:     /recipes/
     defaults: { _controller: LBFAdminBundle:Admin:recipes }
 
 lbf_admin_new_recipe:
-    path:     /recipes/new
+    path:     /recipes/new/
     defaults: { _controller: LBFAdminBundle:Admin:newRecipe }
 
 lbf_admin_edit_recipe:
-    path:     /recipes/edit/{recipeId}
+    path:     /recipes/edit/{recipeId}/
     defaults: { _controller: LBFAdminBundle:Admin:newRecipe }
     requirements:
         recipeId: \d+
 
 lbf_admin_delete_recipe:
-    path:     /recipes/delete/{recipeId}
+    path:     /recipes/delete/{recipeId}/
     defaults: { _controller: LBFAdminBundle:Admin:deleteRecipe }
     requirements:
         recipeId: \d+

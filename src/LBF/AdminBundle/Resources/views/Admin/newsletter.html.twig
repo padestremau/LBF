@@ -47,16 +47,34 @@
 				                              Id
 				                            </th>
 				                            <th class="left">
-				                              Email
+				                              	Email
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_emails_sorted', {'sortBy':'email', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_emails_sorted', {'sortBy':'email', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Inscrit le
+				                              	Inscrit le
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_emails_sorted', {'sortBy':'createdAt', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_emails_sorted', {'sortBy':'createdAt', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Type
+				                              	Type
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_emails_sorted', {'sortBy':'category', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_emails_sorted', {'sortBy':'category', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Action
+				                              	Action
 				                            </th>
 				                          </tr>
 				                        </thead>
@@ -85,7 +103,7 @@
 				                              		<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_email', {'emailId':email.id}) }}')" class="btn btn-action-admin">
 						                            	<span class="glyphicon glyphicon-pencil"></span>
 					                            	</a>
-					                            	<a href="javascript:areYouSureDeleteElement('{{ path('lbf_admin_delete_email', {'emailId':email.id}) }}')" class="btn btn-action-admin">
+					                            	<a href="javascript:areYouSureDeleteNewsletter('{{ path('lbf_admin_delete_email', {'emailId':email.id}) }}')" class="btn btn-action-admin">
 						                            	<span class="glyphicon glyphicon-trash"></span>
 					                            	</a>
 					                            </td>

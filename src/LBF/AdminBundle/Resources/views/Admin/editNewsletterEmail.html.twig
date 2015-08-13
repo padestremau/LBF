@@ -1,9 +1,9 @@
-{# src/LBF/AdminBundle/Resources/Admin/elements.html.twig #}
+{# src/LBF/AdminBundle/Resources/Admin/editNewsletterEmail.html.twig #}
 
 {% extends "LBFAdminBundle::admin_general.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Nouveau commentaire
+  {{ parent() }} - Modification email
 {% endblock %}
 
 {% block LBF_Admin_body %}
@@ -28,21 +28,21 @@
 
 					  		<div class="row90">
 		        				<div class="row left">
-					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments') }}')" class="btn btn-admin">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletter') }}')" class="btn btn-admin">
 					    				Retour
 					    			</a>
 					    		</div>
 		        			</div>
 
 					  		<div class="row80">
-					  			<form method="post" {{ form_enctype(formTestimony) }}>
-					        		{% if form_errors(formTestimony) %}
+					  			<form method="post" {{ form_enctype(formEmail) }}>
+					        		{% if form_errors(formEmail) %}
 					                    <div class="error_message">
 					                      <span class="warning_word">
 					                        {{ 'user.warning.warning'|trans }}
 					                      </span>
 					                      <span class="warning_message">
-					                        {{ form_errors(formTestimony) }}
+					                        {{ form_errors(formEmail) }}
 					                      </span>
 					                    </div>
 					                    <br/>
@@ -51,60 +51,41 @@
 					                <div class="row">
 
 										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									        {% if form_errors(formTestimony.author) %}
+									        {% if form_errors(formEmail.email) %}
 							                    <div class="error_message">
 							                      	<span class="warning_word">
 							                        	{{ 'user.warning.warning'|trans }}
 							                      	</span>
 							                      	<span class="warning_message">
-							                        	{{ form_errors(formTestimony.author) }}
+							                        	{{ form_errors(formEmail.email) }}
 							                      	</span>
 							                    </div>
 							                    <br/>
 							                {% endif %}
 											<div class="input-icon">
-									        	{% set opt_author = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'type':'text','id':'author', 'name':'_author'}} %}
-									        	{{ form_widget(formTestimony.author, opt_author) }}
-									        </div>
-										</div>
-
-										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									        {% if form_errors(formTestimony.content) %}
-							                    <div class="error_message">
-							                      	<span class="warning_word">
-							                        	{{ 'user.warning.warning'|trans }}
-							                      	</span>
-							                      	<span class="warning_message">
-							                        	{{ form_errors(formTestimony.content) }}
-							                      	</span>
-							                    </div>
-							                    <br/>
-							                {% endif %}
-											<div class="input-icon">
-									        	{% set opt_content = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'type':'text','id':'content', 'name':'_content'}} %}
-									        	{{ form_widget(formTestimony.content, opt_content) }}
+									        	{% set opt_email = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text','id':'email', 'name':'_email'}} %}
+									        	{{ form_widget(formEmail.email, opt_email) }}
 									        </div>
 										</div>
 
 										<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
 										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-									        {% if form_errors(formTestimony.status) %}
+									        {% if form_errors(formEmail.category) %}
 							                    <div class="error_message">
 							                      	<span class="warning_word">
 							                        	{{ 'user.warning.warning'|trans }}
 							                      	</span>
 							                      	<span class="warning_message">
-							                        	{{ form_errors(formTestimony.status) }}
+							                        	{{ form_errors(formEmail.category) }}
 							                      	</span>
 							                    </div>
 							                    <br/>
 							                {% endif %}
 											<div class="input-icon">
-									        	{% set opt_status = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'id':'status', 'name':'_status'}} %}
-									        	{{ form_widget(formTestimony.status, opt_status) }}
+									        	{% set opt_category = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'id':'category', 'name':'_category'}} %}
+									        	{{ form_widget(formEmail.category, opt_category) }}
 									        </div>
 										</div>
 										<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
@@ -114,7 +95,7 @@
 									<br/><br/>
 									
 									<!-- Et pour le reste du formulaire ... ;) -->
-									{{ form_widget(formTestimony) }}
+									{{ form_widget(formEmail) }}
 
 									<div class="center">
 										<input type="submit" class="btn btn-admin" value="Enregistrer"/>

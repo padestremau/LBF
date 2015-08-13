@@ -364,6 +364,17 @@
 
   // END SMOOTH SCROLLING
 
+function areYouSureDeleteOrder(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cette commande terminée ?')) {
+    window.location = path;   
+  }
+}
+
+function areYouSureDeleteComplete(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cette commande terminée ?')) {
+    window.location = path;   
+  }
+}
 
 function areYouSureDeleteElement(path) {
   if (confirm('Etes-vous certain de vouloir supprimer cet élément ?')) {
@@ -385,3 +396,22 @@ function showNewsletterSelect() {
       $('#newsletter_email_input').fadeIn('fast');
   }
 }
+
+function areYouSureDeleteNewsletter(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cet email ?')) {
+    window.location = path;   
+  }
+}
+
+function areYouSureDeleteUser(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cet utilisateur ?')) {
+    window.location = path;   
+  }
+}
+
+function areYouSureDeleteCompany(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cette entreprise ?')) {
+    window.location = path;   
+  }
+}
+

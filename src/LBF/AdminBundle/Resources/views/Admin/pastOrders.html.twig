@@ -44,25 +44,55 @@
 				                        <thead>
 				                          <tr>
 				                            <th class="center">
-				                              Ordre n°
+				                              	Ordre n°
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'id', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'id', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="left">
-				                              Eléments
+				                              	Eléments
 				                            </th>
 				                            <th class="center">
 				                            	Client
+				                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'user', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'user', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Créé le
+				                              	Créé le
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'createdAt', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'createdAt', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Livraison le
+				                              	Livraison le
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'deliveryAt', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'deliveryAt', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Statut
+				                              	Statut
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'status', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders_sorted', {'sortBy':'status', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
 				                            </th>
 				                            <th class="center">
-				                              Action
+				                              	Action
 				                            </th>
 				                          </tr>
 				                        </thead>
@@ -113,7 +143,7 @@
 				                              	Livré
 				                              </td>
 				                              <td class="center">
-				                              		<a href="javascript:areYouSureDeleteComplete('{{ path('lbf_admin_delete', {'orderId':single_order.id}) }}')">
+				                              		<a href="javascript:areYouSureDeleteComplete('{{ path('lbf_admin_delete_complete', {'orderId':single_order.id}) }}')">
 					                              		<button class="btn btn-action-admin">
 						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
 					                              		</button>

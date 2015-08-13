@@ -146,38 +146,46 @@
 			        </h2>
 			      </div>
 			      <div class="modal-body">
-			        {% for testimony in testimonies %}
-			          <div class="row">
-			            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 left">
-			              {{ testimony.content }}
-			            </div>
-			            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 right">
-			              {% set numberStars = testimony.rate %}
-			              {% set numberEmptyStars = 5 - numberStars %}
-			              {% for star in 1..numberStars %}
-			                <div class="glyphicon glyphicon-star"></div>
-			              {% endfor %}
-			              {% if numberEmptyStars > 0 %}
-			                {% for starEmpty in 1..numberEmptyStars %}
-			                  <div class="glyphicon glyphicon-star-empty"></div>
-			                {% endfor %}
-			              {% endif %}
-			            </div>
-			          </div>
-			          <div class="row">
-			            <div class="col-lg-2 col-md-1 col-md-1 hidden-xs"></div>
-			            <div class="col-lg-8 col-md-9 col-md-10 col-xs-12">
-			              <h5 class="right">
-			                — {{ testimony.author }}
-			              </h5>
-			            </div>
-			            <div class="col-lg-2 col-md-2 col-md-1 hidden-xs"></div>
-			          </div>
+			      	{% if testimonies|length > 0 %}
+				        {% for testimony in testimonies %}
+				          <div class="row">
+				            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 left">
+				              {{ testimony.content }}
+				            </div>
+				            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 right">
+				              {% set numberStars = testimony.rate %}
+				              {% set numberEmptyStars = 5 - numberStars %}
+				              {% for star in 1..numberStars %}
+				                <div class="glyphicon glyphicon-star"></div>
+				              {% endfor %}
+				              {% if numberEmptyStars > 0 %}
+				                {% for starEmpty in 1..numberEmptyStars %}
+				                  <div class="glyphicon glyphicon-star-empty"></div>
+				                {% endfor %}
+				              {% endif %}
+				            </div>
+				          </div>
+				          <div class="row">
+				            <div class="col-lg-2 col-md-1 col-md-1 hidden-xs"></div>
+				            <div class="col-lg-8 col-md-9 col-md-10 col-xs-12">
+				              <h5 class="right">
+				                — {{ testimony.author }}
+				              </h5>
+				            </div>
+				            <div class="col-lg-2 col-md-2 col-md-1 hidden-xs"></div>
+				          </div>
 
-			          <br/>
-			          <hr/>
-			          <br/>
-			        {% endfor %}
+				          <br/>
+				          <hr/>
+				          <br/>
+				        {% endfor %}
+				    {% else %}
+				    	<br/><br/><br/>
+				    	<p class="center">
+					    	{{ 'modal.testimoniesModal.nothingHere' | trans }}
+				    	</p>
+				    	<br/><br/><br/>
+				    {% endif %}
 			      </div>
 			      <div class="modal-footer">
 			      	<div class="float-left">

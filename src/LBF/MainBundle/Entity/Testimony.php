@@ -43,6 +43,13 @@ class Testimony
     private $author;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="rate", type="integer")
@@ -54,6 +61,7 @@ class Testimony
     public function __construct()
     {
         $this->createdAt        = new \Datetime;
+        $this->status           = 'hidden';
     }
 
 
@@ -161,5 +169,28 @@ class Testimony
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Testimony
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

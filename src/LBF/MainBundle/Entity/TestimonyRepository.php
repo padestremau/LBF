@@ -12,11 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class TestimonyRepository extends EntityRepository
 {
-	public function findSortedByType($sortType, $order) {
-		return $this->createQueryBuilder('t')
-					->orderBy('t.parameter = :parameter', $order)
-						->setParameter('parameter', $sortType)
-					->getQuery()
-					->getResult();
-	}
 }

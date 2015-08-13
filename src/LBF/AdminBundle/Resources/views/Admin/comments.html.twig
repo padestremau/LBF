@@ -70,6 +70,15 @@
 						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
 					                            </a>
 				                            </th>
+				                            <th class="center" style="width:150px;">
+				                              	Statut
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'status', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'status', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
 				                            <th class="center">
 				                              	Action
 				                            </th>
@@ -114,6 +123,17 @@
 					                            <td class="center">
 					                              	{% if comment.createdAt|length > 0 %}
 					                              		{{ comment.createdAt|date("d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if comment.status|length > 0 %}
+					                              		{% if comment.status == 'show' %}
+					                              			Affiché
+					                              		{% else %}
+						                              		Caché
+						                              	{% endif %}	
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}

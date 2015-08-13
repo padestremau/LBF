@@ -1,0 +1,189 @@
+{# src/LBF/AdminBundle/Resources/Admin/newUser.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Modification d'utilisateur
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="">
+
+					  		<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>
+
+					  		<div class="row80">
+					  			<form method="post" {{ form_enctype(formAdminUser) }}>
+					        		{% if form_errors(formAdminUser) %}
+					                    <div class="error_message">
+					                      <span class="warning_word">
+					                        {{ 'user.warning.warning'|trans }}
+					                      </span>
+					                      <span class="warning_message">
+					                        {{ form_errors(formAdminUser) }}
+					                      </span>
+					                    </div>
+					                    <br/>
+					                {% endif %}
+
+		                            <div class="row" id="register_user">
+		                              <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		                                <div class="input-group">
+										  	<span class="input-group-addon" id="forEmail">Email</span>
+								        	{% set opt_email = {'attr': {'class': 'form-control',
+								        		'type':'email', 'placeholder':'jean@gmail.com', 'id':'email', 
+								        		'name':'_email', 'aria-describedby':'forEmail'}} %}
+								        	{{ form_widget(formAdminUser.email, opt_email) }}
+								        </div>
+		                              </div>
+		                            </div>
+
+		                            <div class="row border_top_dotted">
+		                              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		                                <div class="input-group">
+										  	<span class="input-group-addon" id="forFirstName">Prénom</span>
+								        	{% set opt_firstName = {'attr': {'class': 'form-control',
+								        		'type':'firstName', 'placeholder':'Jean', 'id':'firstName', 
+								        		'name':'_firstName', 'aria-describedby':'forFirstName'}} %}
+								        	{{ form_widget(formAdminUser.firstName, opt_firstName) }}
+								        </div>
+		                              </div>
+		                              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		                                <div class="input-group">
+										  	<span class="input-group-addon" id="forLastName">Nom</span>
+								        	{% set opt_lastName = {'attr': {'class': 'form-control',
+								        		'type':'lastName', 'placeholder':'Dupont', 'id':'lastName', 
+								        		'name':'_lastName', 'aria-describedby':'forLastName'}} %}
+								        	{{ form_widget(formAdminUser.lastName, opt_lastName) }}
+								        </div>
+		                              </div>
+		                            </div>
+
+		                            <div class="row border_top_dotted">
+		                              <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		                                <div class="input-icon">
+		                                  {% set opt_age_input = {'attr': {'class': 'form-control placeholder-no-fix',
+		                                    'type':'text', 'placeholder': '32', 'id':'age',
+		                                    'name':'age', 'required':'required'}} %}
+		                                  {{ form_widget(formAdminUser.age, opt_age_input) }}
+		                                </div>
+		                              </div>
+		                              <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		                                <div class="input-icon">
+		                                  {% set opt_gender_input = {'attr': {'class': 'form-control placeholder-no-fix',
+		                                    'type':'text', 'placeholder': 'M', 'id':'gender',
+		                                    'name':'gender', 'required':'required'}} %}
+		                                  {{ form_widget(formAdminUser.gender, opt_gender_input) }}
+		                                </div>
+		                              </div>
+		                              <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+		                                <div class="input-group">
+										  	<span class="input-group-addon" id="forTel">Tel</span>
+								        	{% set opt_tel = {'attr': {'class': 'form-control',
+								        		'type':'tel', 'placeholder':'+51999000222', 'id':'tel', 
+								        		'name':'_tel', 'aria-describedby':'forTel'}} %}
+								        	{{ form_widget(formAdminUser.tel, opt_tel) }}
+								        </div>
+		                              </div>
+		                            </div>
+
+		                            <div class="row border_top_dotted" id="register_address">
+		                              <div class="row">
+		                                <div class="form-group col-md-3 col-xs-3">
+		                                  <div class="input-icon">
+		                                    {% set opt_addressNumber = {'attr': {'class': 'form-control placeholder-no-fix',
+		                                      'type':'text', 'placeholder':'45', 'id':'addressNumber', 
+		                                      'name':'_addressNumber'}} %}
+		                                    {{ form_widget(formAdminUser.addressNumber, opt_addressNumber) }}
+		                                  </div>
+		                                </div>
+
+		                                <div class="form-group  col-md-9 col-xs-9">
+		                                  <div class="input-icon">
+		                                    {% set opt_addressStreet = {'attr': {'class': 'form-control placeholder-no-fix',
+		                                      'type':'text', 'placeholder':'Rue de la pompe', 'id':'addressStreet', 
+		                                      'name':'_addressStreet'}} %}
+		                                    {{ form_widget(formAdminUser.addressStreet, opt_addressStreet) }}
+		                                  </div>
+		                                </div>
+		                              </div>
+
+		                              <div class="row">
+		                                <div class="form-group col-md-7 col-xs-7">
+		                                  <div class="input-icon">
+		                                    {% set opt_addressCity = {'attr': {'class': 'form-control placeholder-no-fix',
+		                                      'type':'text', 'placeholder':'Paris', 'id':'addressCity', 
+		                                      'name':'_addressCity'}} %}
+		                                    {{ form_widget(formAdminUser.addressCity, opt_addressCity) }}
+		                                  </div>
+		                                </div>
+
+		                                <div class="form-group col-md-5 col-xs-5">
+		                                  <div class="input-icon">
+		                                    {% set opt_addressPostCode = {'attr': {'class': 'form-control placeholder-no-fix',
+		                                      'type':'text', 'placeholder':'75016', 'id':'addressPostCode', 
+		                                      'name':'_addressPostCode'}} %}
+		                                    {{ form_widget(formAdminUser.addressPostCode, opt_addressPostCode) }}
+		                                  </div>
+		                                </div>
+		                              </div>
+
+		                              <div class="form-group col-md-12 col-xs-12">
+		                                <div class="input-icon">
+		                                {% set opt_country = {'attr': {'class': 'form-control select2',
+		                                      'type':'text', 'placeholder':'France', 'id':'addressCountry', 'name':'_addressCountry'}} %}
+		                                  {{ form_widget(formAdminUser.addressCountry, opt_country) }}
+		                                </div>
+		                              </div>
+		                            </div>
+
+									<hr/>
+
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formAdminUser) }}
+
+									<br/>
+									<div class="center">
+										<input type="submit" class="btn btn-admin" value="Enregistrer"/>
+									</div>
+									<br/><br/><br/>
+								</form>
+					  		</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

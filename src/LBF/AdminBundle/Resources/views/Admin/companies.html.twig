@@ -1,9 +1,9 @@
-{# src/LBF/AdminBundle/Resources/Admin/users.html.twig #}
+{# src/LBF/AdminBundle/Resources/Admin/companies.html.twig #}
 
 {% extends "LBFAdminBundle::admin_general.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Utilisateurs
+  {{ parent() }} - Entreprises
 {% endblock %}
 
 {% block LBF_Admin_body %}
@@ -28,11 +28,11 @@
 
 					  		<div class="row">
 					  			<div class="row left">
-					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_usersEmails') }}')" class="btn btn-login">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companiesEmails') }}')" class="btn btn-login">
 					    				Tous les emails
 					    			</a>
 					    		</div>
-					    		{% if users|length > 0 %}
+					    		{% if companies|length > 0 %}
 									<div class="table-responsive">
 				                      <table class="table">
 				                        <thead>
@@ -41,38 +41,29 @@
 				                              Id
 				                            </th>
 				                            <th class="left">
-				                              	Prénom
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'firstName', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+				                              	Nom de l'entreprise
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'companyName', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
 					                            </a>
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'firstName', 'order':'DESC'}) }}')" class="btn btn-action-admin">
-						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
-					                            </a>
-				                            </th>
-				                            <th class="left">
-				                              	Nom
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'lastName', 'order':'ASC'}) }}')" class="btn btn-action-admin">
-					                            	<span class="glyphicon glyphicon-triangle-top"></span>
-					                            </a>
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'lastName', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'companyName', 'order':'DESC'}) }}')" class="btn btn-action-admin">
 						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
 					                            </a>
 				                            </th>
 				                            <th class="center" style="width: 120px;">
-				                            	Gendre
-				                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'gender', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+				                            	RUC
+				                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'RUCnumber', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
 					                            </a>
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'gender', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'RUCnumber', 'order':'DESC'}) }}')" class="btn btn-action-admin">
 						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
 					                            </a>
 				                            </th>
 				                            <th class="center">
 				                              	Email
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'email', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'email', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
 					                            </a>
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'email', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'email', 'order':'DESC'}) }}')" class="btn btn-action-admin">
 						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
 					                            </a>
 				                            </th>
@@ -81,10 +72,10 @@
 				                            </th>
 				                            <th class="center">
 				                              	Login
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'lastLogin', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'lastLogin', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
 					                            </a>
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_users_sorted', {'sortBy':'lastLogin', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies_sorted', {'sortBy':'lastLogin', 'order':'DESC'}) }}')" class="btn btn-action-admin">
 						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
 					                            </a>
 				                            </th>
@@ -94,60 +85,53 @@
 				                          </tr>
 				                        </thead>
 				                        <tbody>
-				                          {% for user in users %}
+				                          {% for company in companies %}
 				                            <tr>
 				                              	<th class="center">
-				                                	{{ user.id }}
+				                                	{{ company.id }}
 				                              	</th>
 					                            <td class="left">
-					                              	{% if user.firstName|length > 0 %}
-					                              		{{ user.firstName }}
+					                              	{% if company.companyName|length > 0 %}
+					                              		{{ company.companyName }}
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}
 					                            </td>
-					                            <td class="left">
-					                              	{% if user.lastName|length > 0 %}
-					                              		{{ user.lastName }}
+				                              	<td class="left">
+				                              		{% if company.RUCnumber|length > 0 %}
+					                              		{{ company.RUCnumber }}
 					                              	{% else %}
 					                              		---
-					                              	{% endif %}
-					                            </td>
-				                              	<td class="center">
-				                              		{% if user.type == 1 %}
-					                              		Homme
-					                              	{% else %}
-					                              		Femme
 					                              	{% endif %}
 				                              	</td>
 				                              	<td class="center">
-				                              		{{ user.email }}
+				                              		{{ company.email }}
 				                              	</td>
 				                              	<td class="left">
-				                              		{% if user.addressNumber|length > 0 %}
-					                              		{{ user.addressNumber }},
+				                              		{% if company.addressNumber|length > 0 %}
+					                              		{{ company.addressNumber }},
 					                              	{% endif %}
-					                              	{% if user.addressStreet|length > 0 %}
-					                              		{{ user.addressStreet }}, <br/>
+					                              	{% if company.addressStreet|length > 0 %}
+					                              		{{ company.addressStreet }}, <br/>
 					                              	{% endif %}
-					                              	{% if user.addressPostCode|length > 0 %}
-					                              		{{ user.addressPostCode }} 
+					                              	{% if company.addressPostCode|length > 0 %}
+					                              		{{ company.addressPostCode }} 
 					                              	{% endif %}
-					                              	{% if user.addressCity|length > 0 %}
-					                              		 {{ user.addressCity }} 
+					                              	{% if company.addressCity|length > 0 %}
+					                              		 {{ company.addressCity }} 
 					                              	{% endif %}
-					                              	{% if user.addressCountry|length > 0 %}
-					                              		 {{ user.addressCountry }} 
+					                              	{% if company.addressCountry|length > 0 %}
+					                              		 {{ company.addressCountry }} 
 					                              	{% endif %}
 				                              	</td>
 				                              	<td class="center">
-				                              		{{ user.lastLogin|date("H:i d/M/Y") }}
+				                              		{{ company.lastLogin|date("H:i d/M/Y") }}
 				                              	</td>
 				                              	<td class="center">
-					                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_user', {'userId':user.id}) }}')" class="btn btn-action-admin">
+					                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_company', {'companyId':company.id}) }}')" class="btn btn-action-admin">
 						                            	<span class="glyphicon glyphicon-pencil"></span>
 					                            	</a>
-					                            	<a href="javascript:areYouSureDeleteUser('{{ path('lbf_admin_delete_user', {'userId':user.id}) }}')" class="btn btn-action-admin">
+					                            	<a href="javascript:areYouSureDeleteCompany('{{ path('lbf_admin_delete_company', {'companyId':company.id}) }}')" class="btn btn-action-admin">
 						                            	<span class="glyphicon glyphicon-trash"></span>
 					                            	</a>
 					                            </td>
@@ -158,7 +142,7 @@
 				                    </div>
 								{% else %}
 									<div class="center col-md-9">
-										Désolé, aucun utilisateur par ici...
+										Désolé, aucune entreprise par ici...
 									</div>
 									<div class="col-md-3"></div>
 								{% endif %}

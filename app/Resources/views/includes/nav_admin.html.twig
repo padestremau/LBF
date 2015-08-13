@@ -20,7 +20,7 @@
 	<div class="row">
 		<ul class="nav-justified nav_tabs_admin">
 			<li class="
-				{% if route == 'lbf_admin_currentOrders' or route == 'lbf_admin_answer' %} 
+				{% if route == 'lbf_admin_currentOrders' or route == 'lbf_admin_currentOrders_sorted' or route == 'lbf_admin_answer' %} 
 					active 
 				{% endif %}
 				">
@@ -44,7 +44,7 @@
 				</a>
 			</li>
 			<li class="
-				{% if route == 'lbf_admin_users' %} 
+				{% if route == 'lbf_admin_users' or route == 'lbf_admin_users_sorted' or route == 'lbf_admin_edit_user' or route == 'lbf_admin_usersEmails' %} 
 					active 
 				{% endif %}
 				">
@@ -56,12 +56,24 @@
 				</a>
 			</li>
 			<li class="
-				{% if route == 'lbf_admin_newsletter' or route == 'lbf_admin_newsletterEmails' %} 
+				{% if route == 'lbf_admin_companies' or route == 'lbf_admin_companies_sorted' or route == 'lbf_admin_edit_company' or route == 'lbf_admin_companiesEmails'  %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_companies') }}')" class="btn btn-choice">
+					Entreprises
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/companies.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_newsletter' or route == 'lbf_admin_emails_sorted' or route == 'lbf_admin_newsletterEmails' or route == 'lbf_admin_edit_email' %} 
 					active 
 				{% endif %}
 				">
 				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_newsletter') }}')" class="btn btn-choice">
-					Newsletter emails
+					Newsletter
 					<div class="float-right inner_arrow">
 						<img src="{{ asset('img/system/defaults/emails.png') }}" alt="" class="btn_right_arrow"/>
 					</div>

@@ -266,6 +266,7 @@ modal:
         answer8bis:             "+51 984 06 06 20"
     testimoniesModal:
         title:                  "Testimonies"
+        nothingHere:            "No testimony for now..."
     actions: 
         close:                  Close
         newTestimony:           New testimony
