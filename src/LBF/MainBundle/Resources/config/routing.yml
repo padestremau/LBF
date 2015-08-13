@@ -3,53 +3,53 @@ lbf_main_homepage:
     defaults: { _controller: LBFMainBundle:Main:index }
 
 lbf_main_add_to_cart:
-    path:     /addToCart
+    path:     /addToCart/
     defaults: { _controller: LBFMainBundle:Main:addToCart }
 
 lbf_main_cart:
-    path:     /myCart
+    path:     /myCart/
     defaults: { _controller: LBFMainBundle:Main:myCart }
 
 lbf_main_order:
-    path:     /order
+    path:     /order/
     defaults: { _controller: LBFMainBundle:Main:order }
     
 lbf_main_confirm:
-    path:     /confirm
+    path:     /confirm/
     defaults: { _controller: LBFMainBundle:Main:confirm }
 
 lbf_main_delete_fromCart:
-    path:     /deleteFromCart/{type}
+    path:     /deleteFromCart/{type}/
     defaults: { _controller: LBFMainBundle:Main:deleteFromCart }
 
 lbf_main_empty_cart:
-    path:     /emptyCart
+    path:     /emptyCart/
     defaults: { _controller: LBFMainBundle:Main:emptyCart }
 
 lbf_main_empty_special:
-    path:     /emptySpecial
+    path:     /emptySpecial/
     defaults: { _controller: LBFMainBundle:Main:emptySpecial }
 
 lbf_main_newsletterEmail:
-    path:     /newsletterEmail/{path}
+    path:     /newsletterEmail/{path}/
     defaults: { _controller: LBFMainBundle:Main:newsletterEmail }
 
 lbf_main_newsletterEmail_undo:
-    path:     /newsletterEmailUndo/{email}
+    path:     /newsletterEmailUndo/{email}/
     defaults: { _controller: LBFMainBundle:Main:newsletterEmailUndo }
 
 lbf_main_footer_contact:
-    path:     /contact
+    path:     /contact/
     defaults: { _controller: LBFMainBundle:Main:footerContact }
 
 lbf_main_footer_contact_thankYou:
-    path:     /contact/thankYou
+    path:     /contact/thankYou/
     defaults: { _controller: LBFMainBundle:Main:footerContactThankYou }
 
 lbf_main_testimony_new:
-    path:     /testimony/new
+    path:     /testimony/new/
     defaults: { _controller: LBFMainBundle:Main:newTestimony }
 
 lbf_main_testimony_thankYou:
-    path:     /testimony/thankYou
+    path:     /testimony/thankYou/
     defaults: { _controller: LBFMainBundle:Main:thankYouTestimony }
