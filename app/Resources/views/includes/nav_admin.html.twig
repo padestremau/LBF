@@ -68,6 +68,18 @@
 				</a>
 			</li>
 			<li class="
+				{% if route == 'lbf_admin_comments' or route == 'lbf_admin_comments_sorted' or route == 'lbf_admin_new_comment' or route == 'lbf_admin_edit_comment' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments') }}')" class="btn btn-choice">
+					Commentaires
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/comments.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
 				{% if route == 'lbf_admin_elements' or route == 'lbf_admin_new_element' or route == 'lbf_admin_edit_element' %} 
 					active 
 				{% endif %}

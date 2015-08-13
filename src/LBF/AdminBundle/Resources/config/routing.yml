@@ -60,6 +60,31 @@ lbf_admin_delete_email:
     requirements:
         emailId: \d+
 
+lbf_admin_comments:
+    path:     /comments
+    defaults: { _controller: LBFAdminBundle:Admin:comments }
+
+lbf_admin_comments_sorted:
+    path:     /comments/sortedBy/{sortBy}/{order}
+    defaults: { _controller: LBFAdminBundle:Admin:comments }
+
+lbf_admin_new_comment:
+    path:     /comments/new
+    defaults: { _controller: LBFAdminBundle:Admin:newComment }
+
+lbf_admin_edit_comment:
+    path:     /comments/edit/{commentId}
+    defaults: { _controller: LBFAdminBundle:Admin:newComment }
+    requirements:
+        commentId: \d+
+
+lbf_admin_delete_comment:
+    path:     /comments/delete/{commentId}
+    defaults: { _controller: LBFAdminBundle:Admin:deleteComment }
+    requirements:
+        commentId: \d+
+
+
 # Change elements
 lbf_admin_elements:
     path:     /elements

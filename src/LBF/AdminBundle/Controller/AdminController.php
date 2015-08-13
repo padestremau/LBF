@@ -11,6 +11,9 @@ use LBF\UserBundle\Form\AdminConfirmOrdersType;
 use LBF\MainBundle\Form\ElementType;
 use LBF\MainBundle\Form\RecipeType;
 
+use LBF\MainBundle\Entity\Testimony;
+use LBF\MainBundle\Form\TestimonySmallType;
+
 class AdminController extends Controller
 {
     public function indexAction()
@@ -274,6 +277,73 @@ class AdminController extends Controller
         return $this->render('LBFAdminBundle:Admin:newsletterEmails.html.twig', array(
             'newsletterEmails' => $newsletterEmails
             ));
+    }
+
+    public function commentsAction($sortType = null, $order = null)
+    {
+        if ($sortType == null) {
+            $comments = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Testimony')
+                            ->findAll();
+        }
+        else {
+            $comments = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Testimony')
+                            ->findSortedByType($sortType, $order);
+        }
+        
+
+        return $this->render('LBFAdminBundle:Admin:comments.html.twig', array(
+            'comments' => $comments
+            ));
+    }
+
+    public function newCommentAction($commentId = null)
+    {
+        if (sizeof($commentId) > 0) {
+            $comment = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Testimony')
+                            ->find($commentId);
+        } else {
+            $comment = new Testimony;
+        }
+        
+        // On utiliser le EditAvatarType
+        $formTestimony = $this->createForm(new TestimonySmallType(), $comment);
+
+        // On récupère la requête
+        $formTestimony->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formTestimony->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_comments'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newTestimony.html.twig', array(
+            'formTestimony' => $formTestimony->createView()
+            ));
+    }
+
+    public function deleteCommentAction($commentId)
+    {
+        $comment = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:Testimony')
+                        ->find($commentId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_comments'));
     }
 
     public function elementsAction()

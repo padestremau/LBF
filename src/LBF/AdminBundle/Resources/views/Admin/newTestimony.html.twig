@@ -1,0 +1,118 @@
+{# src/LBF/AdminBundle/Resources/Admin/elements.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Nouveau commentaire
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="">
+
+					  		<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>
+
+					  		<div class="row80">
+					  			<form method="post" {{ form_enctype(formTestimony) }}>
+					        		{% if form_errors(formTestimony) %}
+					                    <div class="error_message">
+					                      <span class="warning_word">
+					                        {{ 'user.warning.warning'|trans }}
+					                      </span>
+					                      <span class="warning_message">
+					                        {{ form_errors(formTestimony) }}
+					                      </span>
+					                    </div>
+					                    <br/>
+					                {% endif %}
+
+					                <div class="row">
+
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {% if form_errors(formTestimony.author) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formTestimony.author) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_author = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text','id':'author', 'name':'_author'}} %}
+									        	{{ form_widget(formTestimony.author, opt_author) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {% if form_errors(formTestimony.content) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formTestimony.content) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_content = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text','id':'content', 'name':'_content'}} %}
+									        	{{ form_widget(formTestimony.content, opt_content) }}
+									        </div>
+										</div>
+
+					                </div>
+
+									<br/><br/>
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formTestimony) }}
+
+									<div class="center">
+										<input type="submit" class="btn btn-admin" value="Enregistrer"/>
+									</div>
+									<br/><br/><br/>
+								</form>
+					  		</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

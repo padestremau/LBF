@@ -1,0 +1,155 @@
+{# src/LBF/AdminBundle/Resources/Admin/comments.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Commentaires
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="center">
+
+					  		<div class="row">
+					    		<div class="row90 left">
+					    			<a href="{{ path('lbf_admin_new_comment') }}" class="btn btn-admin">
+					    				Nouveau commentaire
+					    			</a>
+					    		</div>
+					    		{% if comments|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              	Id
+				                            </th>
+				                            <th class="center" style="width:150px;">
+				                              	Auteur
+					                            <a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'author', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'author', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
+				                            <th class="center">
+				                              	Contenu
+				                            </th>
+				                            <th class="center" style="width:130px;">
+				                              	Note
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'rate', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'rate', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
+				                            <th class="center" style="width:150px;">
+				                              	Créé le
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'createdAt', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments_sorted', {'sortBy':'createdAt', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
+				                            <th class="center">
+				                              	Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for comment in comments %}
+				                            <tr>
+				                            	<th class="center">
+					                              {{ comment.id }}
+					                            </th>
+					                            <td class="center">
+					                              	{% if comment.author|length > 0 %}
+					                              		{{ comment.author }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if comment.content|length > 0 %}
+					                              		{{ comment.content }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if comment.rate|length > 0 %}
+					                              		{% set numberStars = comment.rate %}
+					                              		{% set numberEmptyStars = 5 - numberStars %}
+											            {% for star in 1..numberStars %}
+											                <div class="glyphicon glyphicon-star"></div>
+											            {% endfor %}
+											            {% if numberEmptyStars > 0 %}
+											                {% for starEmpty in 1..numberEmptyStars %}
+											                  <div class="glyphicon glyphicon-star-empty"></div>
+											                {% endfor %}
+											            {% endif %}
+					                              	{% else %}
+					                              		-
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if comment.createdAt|length > 0 %}
+					                              		{{ comment.createdAt|date("d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_comment', {'commentId':comment.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="javascript:areYouSureDeleteElement('{{ path('lbf_admin_delete_comment', {'commentId':comment.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun "élément"...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}
