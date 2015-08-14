@@ -275,7 +275,7 @@
 									{% for category in allCategories %}
 										{% set productsArray = allSortedProducts[index_general] %}
 										<li class="{% if index_general == 1 %} active {% endif %}">
-											<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+											<a href="" data-target="#tab_{{ index_general }}" data-toggle="tab">
 												{% if category == 1 %}
 													{{ 'main.second_titles.category_1' | trans }}
 												{% elseif category == 2 %}
@@ -469,7 +469,7 @@
 									      </strong>\
 									      {{ "alert.content.congratulations" | trans }}\
 									      <button class="no_style_button" onClick="addToSessionCart()">\
-									      	<a><strong>\
+									      	<a href=""><strong>\
 									      		{{ "header.titles.myCart" | trans }}\
 									      	</strong></a>\
 									      </button>\
@@ -507,7 +507,7 @@
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
+														<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
 															{% if current_language %}
 																{% if current_language == 'fr' and product.nameFr|length > 0 %}
 																	{{ product.nameFr }}
@@ -541,26 +541,15 @@
 																	{% if product.webPath|length > 0 %}
 																		<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
 																			<!-- onClick="showPhoto('{{ product.id }}')" -->
-																			<script>
-																				var widthImg = $('.product_img').width();
-																				$('.product_img').css({'height':widthImg+'px'});
-																				$(window).resize(function() {
-																				    		var widthImg = $('.product_img').width();
-																				    		$('.product_img').css({'height':widthImg+'px'});
-																			            });
-																			</script>
 																		</div>
 																	{% else %}
 																		<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
-																			<script>
-																				var widthImg = $('.product_img').width();
-																				$('.product_img').css({'height':widthImg+'px'});
-																				$(window).resize(function() {
-																				    		var widthImg = $('.product_img').width();
-																				    		$('.product_img').css({'height':cw+'px'});
-																			            });
-																			</script>
 																	{% endif %}
+																	<script type="text/javascript">
+																		// Round images
+																	    var widthImg = $('.product_img').width();
+																	    $('.product_img').css({'height':widthImg+'px'});
+																	</script>
 																	</div>
 																	<br class="hidden-xs"/>
 																	<div class="center">
@@ -762,7 +751,7 @@
 									{% for category in allCategories %}
 										{% set recipesArray = allSortedRecipes[index_general] %}
 										<li class="{% if index_general == 1 %} active {% endif %}">
-											<a data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
+											<a href="" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
 												{% if category == 1 %}
 													{{ 'main.second_titles.category_1' | trans }}
 												{% elseif category == 2 %}
@@ -806,7 +795,7 @@
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice">
+														<a href="" data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice">
 															{% if current_language %}
 																{% if current_language == 'fr' and product.nameFr|length > 0 %}
 																	{{ product.nameFr }}
@@ -974,26 +963,14 @@
 																			{% if recipe.webPath|length > 0 %}
 																				<div class="recipe_img" style="width: 100%; background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
 																					<!-- onClick="showPhoto('{{ recipe.id }}')" -->
-																					<script>
-																						var cw = $('.recipe_img').width() * 0.7;
-																						$('.recipe_img').css({'height':cw+'px'});
-																						$(window).resize(function() {
-																				    		var cw = $('.recipe_img').width() * 0.7;
-																				    		$('.recipe_img').css({'height':cw+'px'});
-																			            });
-																					</script>
 																				</div>
 																			{% else %}
 																				<img src="{{ asset('img/system/defaults/default_recipe.jpg') }}" alt="Default" class="recipe_img"/>
-																					<script>
-																						var cw = $('.recipe_img').width() * 0.7;
-																						$('.recipe_img').css({'height':cw+'px'});
-																						$(window).resize(function() {
-																				    		var cw = $('.recipe_img').width() * 0.7;
-																				    		$('.recipe_img').css({'height':cw+'px'});
-																			            });
-																					</script>
 																			{% endif %}
+																				<script type="text/javascript">
+																					var widthRecipe = $('.recipe_img').width() * 0.7;
+																				    $('.recipe_img').css({'height':widthRecipe+'px'});
+																				</script>
 																			</div>
 																		</div>
 																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sep_presentation"></div>

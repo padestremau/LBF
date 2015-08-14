@@ -62,6 +62,17 @@
 
 
 
+  // Change CSS function
+  function changeCSSsheet(selector, property, value) {
+    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+        //Try add rule
+        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+    }
+  }
+
+
+
 
 
   //  BEGIN SMOOTH SCROLLING
@@ -231,6 +242,24 @@
 
     // alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));
 
+    // Round images
+    var widthImg = $('.product_img').width();
+    $('.product_img').css({'height':widthImg+'px'});
+    changeCSSsheet('.product_img', 'height', widthImg+'px');
+    $(window).resize(function() {
+            var widthImg = $('.product_img').width();
+            $('.product_img').css({'height':widthImg+'px'});
+            changeCSSsheet('.product_img', 'height', widthImg+'px');
+              });
+    var widthRecipe = $('.recipe_img').width() * 0.7;
+    $('.recipe_img').css({'height':widthRecipe+'px'});
+    changeCSSsheet('.recipe_img', 'height', widthRecipe+'px');
+    $(window).resize(function() {
+        var widthRecipe = $('.recipe_img').width() * 0.7;
+        $('.recipe_img').css({'height':widthRecipe+'px'});
+        changeCSSsheet('.recipe_img', 'height', widthRecipe+'px');
+          });
+
 
     (function($) {
       $.fn.juizScrollTo = function( speed ) { 
@@ -364,6 +393,9 @@
 
   // END SMOOTH SCROLLING
 
+
+// Delete javascript functions
+
 function areYouSureDeleteOrder(path) {
   if (confirm('Etes-vous certain de vouloir supprimer cette commande terminée ?')) {
     window.location = path;   
@@ -414,4 +446,5 @@ function areYouSureDeleteCompany(path) {
     window.location = path;   
   }
 }
+
 
