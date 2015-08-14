@@ -542,21 +542,21 @@
 																		<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
 																			<!-- onClick="showPhoto('{{ product.id }}')" -->
 																			<script>
-																				var cw = $('.product_img').width();
-																				$('.product_img').css({'height':cw+'px'});
+																				var widthImg = $('.product_img').width();
+																				$('.product_img').css({'height':widthImg+'px'});
 																				$(window).resize(function() {
-																				    		var cw = $('.product_img').width();
-																				    		$('.product_img').css({'height':cw+'px'});
+																				    		var widthImg = $('.product_img').width();
+																				    		$('.product_img').css({'height':widthImg+'px'});
 																			            });
 																			</script>
 																		</div>
 																	{% else %}
 																		<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img"/>
 																			<script>
-																				var cw = $('.product_img').width();
-																				$('.product_img').css({'height':cw+'px'});
+																				var widthImg = $('.product_img').width();
+																				$('.product_img').css({'height':widthImg+'px'});
 																				$(window).resize(function() {
-																				    		var cw = $('.product_img').width();
+																				    		var widthImg = $('.product_img').width();
 																				    		$('.product_img').css({'height':cw+'px'});
 																			            });
 																			</script>
@@ -610,17 +610,19 @@
 																				{% set naturalProductDef = true %}
 																			{% endif %} 
 																		</h4>
-																		{% if current_language %}
-																			{% if current_language == 'fr' and product.descriptionFr|length > 0 %}
-																				{{ product.descriptionFr }}
-																			{% elseif current_language == 'en' and product.descriptionEn|length > 0 %}
-																				{{ product.descriptionEn }}
+																		<p class="center">
+																			{% if current_language %}
+																				{% if current_language == 'fr' and product.descriptionFr|length > 0 %}
+																					{{ product.descriptionFr }}
+																				{% elseif current_language == 'en' and product.descriptionEn|length > 0 %}
+																					{{ product.descriptionEn }}
+																				{% else %}
+																					{{ product.descriptionEs }}
+																				{% endif %}
 																			{% else %}
-																				{{ product.descriptionEs }}
+																					{{ product.descriptionEs }}
 																			{% endif %}
-																		{% else %}
-																				{{ product.descriptionEs }}
-																		{% endif %}
+																		</p>
 																	</div>
 																	<br/>
 																	<div class="row">

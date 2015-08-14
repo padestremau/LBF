@@ -65,65 +65,65 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredients_fr", type="array", nullable=true)
+     * @ORM\Column(name="ingredientsFr", type="array", nullable=true)
      */
-    private $ingredients_fr;
+    private $ingredientsFr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation_fr", type="array", nullable=true)
+     * @ORM\Column(name="preparationFr", type="array", nullable=true)
      */
-    private $preparation_fr;
+    private $preparationFr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description_fr", type="text", nullable=true)
+     * @ORM\Column(name="descriptionFr", type="text", nullable=true)
      */
-    private $description_fr;
+    private $descriptionFr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredients_es", type="array")
+     * @ORM\Column(name="ingredientsEs", type="array")
      */
-    private $ingredients_es;
+    private $ingredientsEs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation_es", type="array")
+     * @ORM\Column(name="preparationEs", type="array")
      */
-    private $preparation_es;
+    private $preparationEs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description_es", type="text")
+     * @ORM\Column(name="descriptionEs", type="text")
      */
-    private $description_es;
+    private $descriptionEs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredients_en", type="array", nullable=true)
+     * @ORM\Column(name="ingredientsEn", type="array", nullable=true)
      */
-    private $ingredients_en;
+    private $ingredientsEn;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparation_en", type="array", nullable=true)
+     * @ORM\Column(name="preparationEn", type="array", nullable=true)
      */
-    private $preparation_en;
+    private $preparationEn;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description_en", type="text", nullable=true)
+     * @ORM\Column(name="descriptionEn", type="text", nullable=true)
      */
-    private $description_en;
+    private $descriptionEn;
 
     /**
      * @var \DateTime
@@ -609,209 +609,209 @@ class Recipe
     }
 
     /**
-     * Set ingredients_fr
+     * Set ingredients_Ffr
      *
      * @param array $ingredientsFr
      * @return Recipe
      */
     public function setIngredientsFr($ingredientsFr)
     {
-        $this->ingredients_fr = $ingredientsFr;
+        $this->ingredientsFr = $ingredientsFr;
 
         return $this;
     }
 
     /**
-     * Get ingredients_fr
+     * Get ingredientsFr
      *
      * @return array 
      */
     public function getIngredientsFr()
     {
-        return $this->ingredients_fr;
+        return $this->ingredientsFr;
     }
 
     /**
-     * Set preparation_fr
+     * Set preparationFr
      *
      * @param array $preparationFr
      * @return Recipe
      */
     public function setPreparationFr($preparationFr)
     {
-        $this->preparation_fr = $preparationFr;
+        $this->preparationFr = $preparationFr;
 
         return $this;
     }
 
     /**
-     * Get preparation_fr
+     * Get preparationFr
      *
      * @return array 
      */
     public function getPreparationFr()
     {
-        return $this->preparation_fr;
+        return $this->preparationFr;
     }
 
     /**
-     * Set description_fr
+     * Set descriptionFr
      *
      * @param string $descriptionFr
      * @return Recipe
      */
     public function setDescriptionFr($descriptionFr)
     {
-        $this->description_fr = $descriptionFr;
+        $this->descriptionFr = $descriptionFr;
 
         return $this;
     }
 
     /**
-     * Get description_fr
+     * Get descriptionFr
      *
      * @return string 
      */
     public function getDescriptionFr()
     {
-        return $this->description_fr;
+        return $this->descriptionFr;
     }
 
     /**
-     * Set ingredients_es
+     * Set ingredients_Ees
      *
      * @param array $ingredientsEs
      * @return Recipe
      */
     public function setIngredientsEs($ingredientsEs)
     {
-        $this->ingredients_es = $ingredientsEs;
+        $this->ingredientsEs = $ingredientsEs;
 
         return $this;
     }
 
     /**
-     * Get ingredients_es
+     * Get ingredientsEs
      *
      * @return array 
      */
     public function getIngredientsEs()
     {
-        return $this->ingredients_es;
+        return $this->ingredientsEs;
     }
 
     /**
-     * Set preparation_es
+     * Set preparationEs
      *
      * @param array $preparationEs
      * @return Recipe
      */
     public function setPreparationEs($preparationEs)
     {
-        $this->preparation_es = $preparationEs;
+        $this->preparationEs = $preparationEs;
 
         return $this;
     }
 
     /**
-     * Get preparation_es
+     * Get preparationEs
      *
      * @return array 
      */
     public function getPreparationEs()
     {
-        return $this->preparation_es;
+        return $this->preparationEs;
     }
 
     /**
-     * Set description_es
+     * Set descriptionEs
      *
      * @param string $descriptionEs
      * @return Recipe
      */
     public function setDescriptionEs($descriptionEs)
     {
-        $this->description_es = $descriptionEs;
+        $this->descriptionEs = $descriptionEs;
 
         return $this;
     }
 
     /**
-     * Get description_es
+     * Get descriptionEs
      *
      * @return string 
      */
     public function getDescriptionEs()
     {
-        return $this->description_es;
+        return $this->descriptionEs;
     }
 
     /**
-     * Set ingredients_en
+     * Set ingredientsEn
      *
      * @param array $ingredientsEn
      * @return Recipe
      */
     public function setIngredientsEn($ingredientsEn)
     {
-        $this->ingredients_en = $ingredientsEn;
+        $this->ingredientsEn = $ingredientsEn;
 
         return $this;
     }
 
     /**
-     * Get ingredients_en
+     * Get ingredientsEn
      *
      * @return array 
      */
     public function getIngredientsEn()
     {
-        return $this->ingredients_en;
+        return $this->ingredientsEn;
     }
 
     /**
-     * Set preparation_en
+     * Set preparationEn
      *
      * @param array $preparationEn
      * @return Recipe
      */
     public function setPreparationEn($preparationEn)
     {
-        $this->preparation_en = $preparationEn;
+        $this->preparationEn = $preparationEn;
 
         return $this;
     }
 
     /**
-     * Get preparation_en
+     * Get preparationEn
      *
      * @return array 
      */
     public function getPreparationEn()
     {
-        return $this->preparation_en;
+        return $this->preparationEn;
     }
 
     /**
-     * Set description_en
+     * Set descriptionEn
      *
      * @param string $descriptionEn
      * @return Recipe
      */
     public function setDescriptionEn($descriptionEn)
     {
-        $this->description_en = $descriptionEn;
+        $this->descriptionEn = $descriptionEn;
 
         return $this;
     }
 
     /**
-     * Get description_en
+     * Get descriptionEn
      *
      * @return string 
      */
     public function getDescriptionEn()
     {
-        return $this->description_en;
+        return $this->descriptionEn;
     }
 }

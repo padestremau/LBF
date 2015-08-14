@@ -112,7 +112,7 @@
 					                            </td>
 					                            <td class="center">
 					                            	{% if recipe.element|length > 0 %}
-					                            		{{ recipe.element.nameFr }}
+					                            		{{ recipe.element.nameEs }}
 					                            	{% else %}
 					                            		---
 					                            	{% endif %}
@@ -154,16 +154,16 @@
 					                            </td>
 					                            <td class="center">
 					                            	Description
-					                            	{% if recipe.descriptionFr|length > 0 %}
-					                            		{{ recipe.descriptionFr }}
+					                            	{% if recipe.descriptionEs|length > 0 %}
+					                            		{{ recipe.descriptionEs }}
 					                            	{% else %}
 					                            		---
 					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                            	{% if recipe.ingredientsFr|length > 0 %}
+					                            	{% if recipe.ingredientsEs|length > 0 %}
 					                            		<ul class="left">
-					                            		{% for ing in recipe.ingredientsFr %}
+					                            		{% for ing in recipe.ingredientsEs %}
 					                            			{# evaluates to true if the variable is iterable #}
 															{% if ing is iterable %}
 																<ul class="left">
@@ -194,9 +194,9 @@
 					                            	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                            	{% if recipe.preparationFr|length > 0 %}
+					                            	{% if recipe.preparationEs|length > 0 %}
 					                            		<ul class="left">
-					                            		{% for prep in recipe.preparationFr %}
+					                            		{% for prep in recipe.preparationEs %}
 					                            			{# evaluates to true if the variable is iterable #}
 															{% if prep is iterable %}
 																<ul class="left">

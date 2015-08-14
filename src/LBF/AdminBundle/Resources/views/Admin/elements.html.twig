@@ -45,10 +45,10 @@
 				                            </th>
 				                            <th class="center">
 				                              	Nom
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'nameFr', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'nameEs', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
 					                            </a>
-				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'nameFr', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'nameEs', 'order':'DESC'}) }}')" class="btn btn-action-admin">
 						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
 					                            </a>
 				                            </th>
@@ -114,15 +114,15 @@
 													{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.nameFr|length > 0 %}
-					                              		{{ element.nameFr }}
+					                              	{% if element.nameEs|length > 0 %}
+					                              		{{ element.nameEs }}
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
-					                              	{% if element.descriptionFr|length > 0 %}
-					                              		{{ element.descriptionFr }}
+					                              	{% if element.descriptionEs|length > 0 %}
+					                              		{{ element.descriptionEs }}
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}
