@@ -18,7 +18,7 @@ class MainController extends Controller
     	$allProducts = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findAll();
+                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')]);
 
         $allPanVino = array();
         $allBufSalado = array();
@@ -214,7 +214,7 @@ class MainController extends Controller
         $allProducts = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findAll();
+                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')]);
 
         for ($i=0; $i < sizeof($cart); $i++) { 
             $single_el = $cart[$i];
@@ -285,7 +285,7 @@ class MainController extends Controller
         $allProducts = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findAll();
+                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')]);
 
         return $this->render('LBFMainBundle:Main:cart.html.twig', array(
             'cart' => $cart,

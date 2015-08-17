@@ -201,6 +201,8 @@
 					                            	{% if element.active %}
 					                              		{% if element.active == "active" %}
 					                              			Actif
+					                              		{% elseif element.active == "new" %}
+					                              			Nouveauté
 					                              		{% elseif element.active == "toCome" %}
 					                              			A venir
 					                              		{% elseif element.active == "soldOut" %}

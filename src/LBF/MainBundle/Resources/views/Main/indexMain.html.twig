@@ -506,6 +506,7 @@
 												<ul class="ver-inline-menu tabbable list_no_style_li">
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
+													{% if product.active != 'inactive' %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
 														<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
 															{% if current_language %}
@@ -524,6 +525,7 @@
 															</div>
 														</a>
 													</li>
+													{% endif %}
 													{% set index_category = index_category + 1 %}
 												{% endfor %}
 												</ul>
@@ -533,6 +535,7 @@
 													{% set index_category = 1 %}
 													{% set naturalProductDef = false %}
 													{% for product in productsArray %}
+														{% if product.active != 'inactive' %}
 														<div id="tab_{{ index_general }}-{{ index_category }}" class="tab-pane fade
 															{% if index_category == 1 %} active in {% endif %}">
 															<div class="row product_info_xs">
@@ -582,14 +585,19 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 																	<div class="row product_description">
+																		{% if product.active == 'new' %}
+																		<div class="float-right" style="width:10%;">
+																			<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
+																		</div>
+																		{% endif %}
 																		<h4>
 																			{% if current_language %}
 																				{% if current_language == 'fr' and product.nameFr|length > 0 %}
-																					{{ product.nameFr }}.
+																					{{ product.nameFr }}
 																				{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-																					{{ product.nameEn }}. 
+																					{{ product.nameEn }} 
 																				{% else %}
-																					{{ product.nameEs }}. 
+																					{{ product.nameEs }}
 																				{% endif %}
 																			{% else %}
 																				{{ product.nameEs }}
@@ -612,6 +620,7 @@
 																					{{ product.descriptionEs }}
 																			{% endif %}
 																		</p>
+																		
 																	</div>
 																	<br/>
 																	<div class="row">
@@ -642,7 +651,9 @@
 																	</div>
 																</div>
 															</div>
+
 															<br/>
+															{% if product.active != 'soldOut' and product.active != 'toCome' %}
 															<div class="row right">
 																<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 inline_div margin_right_10">
 																	<div class="row hidden-xs">
@@ -694,8 +705,18 @@
 																	</button>
 																</div>
 															</div>
+															{% elseif product.active == "soldOut" %}
+															<div class="row right">
+																{{ 'ourProducts.announces.soldOut' | trans }}
+															</div>
+															{% elseif product.active == "toCome" %}
+															<div class="row right">
+																{{ 'ourProducts.announces.toCome' | trans }}
+															</div>
+															{% endif %}
 
 														</div>
+														{% endif %}
 														{% set index_category = index_category + 1 %}
 													{% endfor %}
 												</div>
@@ -794,6 +815,7 @@
 												<ul class="ver-inline-menu tabbable list_no_style_li" id="recipe_nav_ul_{{ category |replace({' ': '_'}) }}">
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
+													{% if product.active != 'inactive' %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
 														<a href="" data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice">
 															{% if current_language %}
@@ -812,6 +834,7 @@
 															</div>
 														</a>
 													</li>
+													{% endif %}
 													{% set index_category = index_category + 1 %}
 												{% endfor %}
 												<script>
@@ -826,6 +849,7 @@
 												<div class="tab-content">
 													{% set index_category = 1 %}
 													{% for product in productsArray %}
+														{% if product.active != 'inactive' %}
 														<div id="tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="tab-pane fade
 															{% if index_category == 1 %} active in {% endif %}">
 															<div class="row product_info_xs">
@@ -833,11 +857,11 @@
 																	<h4>
 																		{% if current_language %}
 																			{% if current_language == 'fr' and product.nameFr|length > 0 %}
-																				{{ product.nameFr }}.
+																				{{ product.nameFr }}
 																			{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-																				{{ product.nameEn }}. 
+																				{{ product.nameEn }} 
 																			{% else %}
-																				{{ product.nameEs }}. 
+																				{{ product.nameEs }}
 																			{% endif %}
 																		{% else %}
 																			{{ product.nameEs }}
@@ -847,8 +871,13 @@
 																<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
 																{% set empty_list = 'YES' %}
 																{% for recipe in recipesArray %}
-																	{% if recipe.element == product %}
+																	{% if recipe.element == product and recipe.active != 'inactive' %}
 																		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+																			{% if recipe.active == 'new' %}
+																			<div class="float-right" style="width:10%;">
+																				<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
+																			</div>
+																			{% endif %}
 																			<h5>
 																				{{ recipe.title }}
 																			</h5>
@@ -988,6 +1017,7 @@
 															</div>
 
 														</div>
+														{% endif %}
 														{% set index_category = index_category + 1 %}
 													{% endfor %}
 												</div>

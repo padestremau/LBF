@@ -70,8 +70,11 @@ ourProducts:
         price:                  "Price:"
         for:                    "for "
         piece:                  " piece(s)"
-        naturalProducts:        "Natural products without colorants or preservants"
+        naturalProducts:        "Natural product without colorants or preservants"
         pieces:                 "pieces,"
+    announces:
+        soldOut:                "Product sold out. Be patient, it will come around very soon !"
+        toCome:                 "Product to come. We leave you to languish in front of it ..."
     warning:
         message:                "This page is empty. Contact the web-master."
 

@@ -70,8 +70,11 @@ ourProducts:
         price:                  "Precio:"
         for:                    "para "
         piece:                  " pedazo(s)"
-        naturalProducts:        "Productos naturales sin colorantes ni preservantes"
+        naturalProducts:        "Producto natural sin colorantes ni preservantes"
         pieces:                 "pedazos,"
+    announces:
+        soldOut:                "Producto liquidado. Espere pro favor, no debería demorar tanto !"
+        toCome:                 "Producto futuro. Le dejamos languidecer ..."
     warning:
         message:                "Esta pagina esta en blanco. Contacte el administratorio del sitio web por favor."
 

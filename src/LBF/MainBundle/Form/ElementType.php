@@ -37,6 +37,7 @@ class ElementType extends AbstractType
                                                                                                         '0' => 'Non'))))
             ->add('active', 'choice', array('label' => 'Active',
                                                 'choices' => array( 'active' => 'Actif',
+                                                                    'new' => 'Nouveauté', 
                                                                     'toCome' => 'A venir', 
                                                                     'soldOut' => 'Epuisé',
                                                                     'inactive' => 'Inactif')))

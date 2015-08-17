@@ -244,12 +244,10 @@
 					                            	{% if recipe.active %}
 					                              		{% if recipe.active == "active" %}
 					                              			Actif
+					                              		{% elseif recipe.active == "new" %}
+					                              			Nouveauté
 					                              		{% elseif recipe.active == "toCome" %}
 					                              			A venir
-					                              		{% elseif recipe.active == "soldOut" %}
-					                              			Epuisé
-					                              		{% elseif recipe.active == "inactive" %}
-					                              			Inactif
 					                              		{% else %}
 					                              			Erreur
 					                              			<span class="italic">

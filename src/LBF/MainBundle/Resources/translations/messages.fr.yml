@@ -70,8 +70,11 @@ ourProducts:
         price:                  "Prix :"
         for:                    "pour "
         piece:                  " pièce(s)"
-        naturalProducts:        "Produits naturels sans colorants ni conservateurs"
+        naturalProducts:        "Produit naturel sans colorants ni conservateurs"
         pieces:                 "pièces,"
+    announces:
+        soldOut:                "Produit épuisé. Faîtes preuve de patience, ça ne saurait tarder !"
+        toCome:                 "Nouveauté à venir. Nous vous lançons languir ..."
     warning:
         message:                "Cette page est vide. Contactez l'administrateur de ce site web s'il vous plait."
 
