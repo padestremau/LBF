@@ -559,7 +559,7 @@
 															<div class="row product_info_xs">
 																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 																	<div class="product_img_div">
-																	{% if product.active != 'new' %}
+																	{% if product.active == 'new' %}
 																		<div class="float-right" style="width:36%;">
 																			<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
 																		</div>
