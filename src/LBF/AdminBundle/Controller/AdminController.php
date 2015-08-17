@@ -645,7 +645,7 @@ class AdminController extends Controller
             $recipes = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Recipe')
-                            ->findBy([], ['nameEs' => 'ASC']);
+                            ->findBy([], ['title' => 'ASC']);
         }
         
 

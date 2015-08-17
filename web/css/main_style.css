@@ -1321,6 +1321,18 @@ body.modal-open {
 	}
 }
 
+.btn_right_arrow_spe {
+	width: 20px;
+	position: relative;
+	top: -2px;
+}
+@media (max-width: 477px) {
+	.btn_right_arrow_spe {
+		width: 14px !important;
+		top: 0px !important;
+	}
+}
+
 #product_content {
 	color: rgba(41,41,41,0.95) !important;
 }
@@ -1707,6 +1719,21 @@ body.modal-open {
 		font-size: 0.9em;
 	}
 }
+
+
+.news_on_page {
+	position: fixed;
+	left: 40px;
+	bottom: 40px;
+	width: 200px;
+	opacity: 1;
+}
+
+.news_on_page_img {
+	width: 100%;
+	opacity: 1;
+}
+
 
 /* ------------------------------------------------------ Login ------------------------------------------------------ */
 .login_background {

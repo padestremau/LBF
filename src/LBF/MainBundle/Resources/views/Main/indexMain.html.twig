@@ -33,6 +33,9 @@
 		          {% endif %}
 		        {% endif %}
 
+		        <!-- Pour l'insigne nouveauté -->
+		        {% set newsOnThePage = 'no' %}
+
 				<div class="presentation_photos row">
 
 					<div class="content_presentation row">
@@ -290,6 +293,17 @@
 												<span class="hidden-xs">
 													({{ productsArray|length }})
 												</span>
+												{% set showLogo = 'no' %}
+												{% for product in productsArray %}
+													{% if product.active == "new" %}
+														{% set showLogo = 'yes' %}
+													{% endif %}
+												{% endfor %}
+												{% if showLogo == "yes" %}
+													<div class="float-right">
+														<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="" class="btn_right_arrow_spe"/>
+													</div>
+												{% endif %}
 											</a>
 										</li>
 										{% set index_general = index_general + 1 %}
@@ -521,8 +535,13 @@
 																	{{ product.nameEs }}
 															{% endif %}
 															<div class="float-right inner_arrow hidden-xs">
-																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																	<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 															</div>
+															{% if product.active == 'new' %}
+																<div class="float-right hidden-xs">
+																	<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="" class="btn_right_arrow_spe"/>
+																</div>
+															{% endif %}
 														</a>
 													</li>
 													{% endif %}
@@ -586,9 +605,12 @@
 																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 																	<div class="row product_description">
 																		{% if product.active == 'new' %}
-																		<div class="float-right" style="width:10%;">
-																			<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
-																		</div>
+																			<div class="float-right" style="width:10%;">
+																				<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
+																			</div>
+																			{% set newsOnThePage = 'yes' %}
+																			{% set generalIdNew = index_category %}
+																			{% set categoryIdNew = category %}
 																		{% endif %}
 																		<h4>
 																			{% if current_language %}
@@ -874,9 +896,10 @@
 																	{% if recipe.element == product and recipe.active != 'inactive' %}
 																		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 																			{% if recipe.active == 'new' %}
-																			<div class="float-right" style="width:10%;">
-																				<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
-																			</div>
+																				<div class="float-right" style="width:10%;">
+																					<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
+																				</div>
+																				{% set newsOnThePage = 'yes' %}
 																			{% endif %}
 																			<h5>
 																				{{ recipe.title }}
@@ -1112,6 +1135,13 @@
 					</div>
 				</div>
 			</div>
+
+			{% if newsOnThePage == "yes" %}
+				{% set generalIdNew = '' %}
+				<div class="news_on_page">
+					<img src="{{ asset('img/system/defaults/new_2_ES.png') }}" alt="New" class="news_on_page_img"/>
+				</div>
+			{% endif %}
 
 			<!-- BEGIN FOOTER -->
               {% include 'includes/footer.html.twig' %}
