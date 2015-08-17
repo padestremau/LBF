@@ -1324,7 +1324,7 @@ body.modal-open {
 .btn_right_arrow_spe {
 	width: 30px;
 	position: relative;
-	top: -2px;
+	top: -4px;
 	margin-right: 5px;
 }
 @media (max-width: 477px) {
