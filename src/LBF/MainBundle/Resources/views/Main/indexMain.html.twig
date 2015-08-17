@@ -33,9 +33,6 @@
 		          {% endif %}
 		        {% endif %}
 
-		        <!-- Pour l'insigne nouveauté -->
-		        {% set newsOnThePage = 'no' %}
-
 				<div class="presentation_photos row">
 
 					<div class="content_presentation row">
@@ -522,27 +519,33 @@
 												{% for product in productsArray %}
 													{% if product.active != 'inactive' %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
-															{% if current_language %}
-																{% if current_language == 'fr' and product.nameFr|length > 0 %}
-																	{{ product.nameFr }}
-																{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-																	{{ product.nameEn }}
-																{% else %}
-																	{{ product.nameEs }}
-																{% endif %}
-															{% else %}
-																	{{ product.nameEs }}
-															{% endif %}
-															<div class="float-right inner_arrow hidden-xs">
-																	<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+														{% if product.active == 'new' %}
+															<div class="inline_div left hidden-xs">
+																<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="" class="btn_right_arrow_spe_2"/>
 															</div>
-															{% if product.active == 'new' %}
-																<div class="float-right hidden-xs">
-																	<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="" class="btn_right_arrow_spe"/>
+														{% else %}
+															<div class="inline_div left hidden-xs">
+																<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="" class="btn_right_arrow_spe_2" style="opacity:0 !important;"/>
+															</div>
+														{% endif %}
+														<div class="inline_div">
+															<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
+																{% if current_language %}
+																	{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																		{{ product.nameFr }}
+																	{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																		{{ product.nameEn }}
+																	{% else %}
+																		{{ product.nameEs }}
+																	{% endif %}
+																{% else %}
+																		{{ product.nameEs }}
+																{% endif %}
+																<div class="float-right inner_arrow hidden-xs">
+																	<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																</div>
-															{% endif %}
-														</a>
+															</a>
+														</div>
 													</li>
 													{% endif %}
 													{% set index_category = index_category + 1 %}
@@ -560,6 +563,9 @@
 															<div class="row product_info_xs">
 																<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 																	<div class="product_img_div">
+																		<div class="float-right" style="width:36%;">
+																			<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
+																		</div>
 																	{% if product.webPath|length > 0 %}
 																		<div class="product_img" style="width: 100%; background-image: url('{{ asset(product.webPath) }}'); background-size: cover; background-position: 50%;">
 																			<!-- onClick="showPhoto('{{ product.id }}')" -->
@@ -605,9 +611,6 @@
 																<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 																	<div class="row product_description">
 																		{% if product.active == 'new' %}
-																			<div class="float-right" style="width:10%;">
-																				<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
-																			</div>
 																			{% set newsOnThePage = 'yes' %}
 																			{% set generalIdNew = index_category %}
 																			{% set categoryIdNew = category %}
@@ -1135,13 +1138,6 @@
 					</div>
 				</div>
 			</div>
-
-			{% if newsOnThePage == "yes" %}
-				{% set generalIdNew = '' %}
-				<div class="news_on_page hidden-xs">
-					<img src="{{ asset('img/system/defaults/new_2_ES.png') }}" alt="New" class="news_on_page_img"/>
-				</div>
-			{% endif %}
 
 			<!-- BEGIN FOOTER -->
               {% include 'includes/footer.html.twig' %}
