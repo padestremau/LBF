@@ -69,7 +69,7 @@ ourProducts:
         weight:                 "Poids :"
         price:                  "Prix :"
         for:                    "pour "
-        piece:                  " pièce(s)"
+        piece:                  " unité(s)"
         naturalProducts:        "Produit naturel sans colorants ni conservateurs"
         pieces:                 "pièces,"
     announces:
