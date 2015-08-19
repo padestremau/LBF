@@ -15,15 +15,21 @@ class ElementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nameFr', 'text', array('label' => 'Name Fr'))
-            ->add('descriptionFr', 'textarea', array('label' => 'Description Fr'))
             ->add('nameEs', 'text', array('label' => 'Name Es'))
             ->add('descriptionEs', 'textarea', array('label' => 'Description Es'))
-            ->add('nameEn', 'text', array('label' => 'Name En'))
-            ->add('descriptionEn', 'textarea', array('label' => 'Description En'))
+            ->add('nameFr', 'text', array('label' => 'Name Fr',
+                                            'required' => false))
+            ->add('descriptionFr', 'textarea', array('label' => 'Description Fr',
+                                                    'required' => false))
+            ->add('nameEn', 'text', array('label' => 'Name En',
+                                            'required' => false))
+            ->add('descriptionEn', 'textarea', array('label' => 'Description En',
+                                                    'required' => false))
             ->add('price', 'text', array('label' => 'Prix'))
-            ->add('quantity', 'text', array('label' => 'Quantité'))
-            ->add('unit', 'text', array('label' => 'Unité'))
+            ->add('quantity', 'text', array('label' => 'Quantité',
+                                            'required' => false))
+            ->add('unit', 'text', array('label' => 'Unité',
+                                        'required' => false))
             ->add('weight', 'text', array('label' => 'Poids'))
             ->add('type', 'text', array('label' => 'Type'))
             ->add('category', 'choice', array('label' => 'Categorie',
@@ -41,7 +47,8 @@ class ElementType extends AbstractType
                                                                     'toCome' => 'A venir', 
                                                                     'soldOut' => 'Epuisé',
                                                                     'inactive' => 'Inactif')))
-            ->add('file', 'file')
+            ->add('file', 'file', array('label'=> 'file',
+                                        'required' => false))
         ;
     }
     
