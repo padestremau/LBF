@@ -71,7 +71,7 @@ ourProducts:
         for:                    "pour "
         piece:                  " unité(s)"
         naturalProducts:        "Produit naturel sans colorants ni conservateurs"
-        pieces:                 "pièces,"
+        pieces:                 "unité(s),"
     announces:
         soldOut:                "Produit épuisé. Faîtes preuve de patience, ça ne saurait tarder !"
         toCome:                 "Nouveauté à venir. Nous vous lançons languir ..."

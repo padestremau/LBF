@@ -71,7 +71,7 @@ ourProducts:
         for:                    "for "
         piece:                  " unit(s)"
         naturalProducts:        "Natural product without colorants or preservants"
-        pieces:                 "pieces,"
+        pieces:                 "unit(s),"
     announces:
         soldOut:                "Product sold out. Be patient, it will come around very soon !"
         toCome:                 "Product to come. We leave you to languish in front of it ..."
