@@ -9,7 +9,7 @@ header:
         register:               REGISTRACIÓN
         aboutUs: 				A PROPUESTO
         ourProducts: 			PRODUCTOS
-        myCart: 				MIS PEDIDOS
+        myCart: 				MI CANASTA
     special:
         buttonToTop: 			ARRIBA
 
@@ -46,8 +46,8 @@ main:
         recipes: 		        "Recetas a seguir para disfrutir de gustosos platos a compartir con su familia y amigos."
         qualityProduct: 		"Carne de qualitad, con unico objetivo de satisfacer la curiosidad gastronmica de todos."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
-        reservation:            "Elige ahora sus artículos. Selectione le fecha que mas le conviene y pasa recoger su pedido."
-        ourProducts:            "Para llenar vuestro carro de la compra, seleccione las quantidades de cada producto."
+        reservation:            "Elige ahora sus artículos. Selectione la fecha que mas le conviene y pasa recoger su pedido."
+        ourProducts:            "Para llenar vuestra canasta de la compra, seleccione las quantidades de cada producto."
     actions:
         learnMore: 				Mas ínfo
         discover:               Descubrir
@@ -99,12 +99,12 @@ alert:
         congratulations:        "Felicitationes !"
         careful:                "Cuidado !"
     content: 
-        congratulations:        "El elemento fue correctamente añadido a su carro de compra."
-        pleaseRefresh:          "Refresque su carro de compra por favor."
+        congratulations:        "El elemento fue correctamente añadido a su canasta de compra."
+        pleaseRefresh:          "Refresque su canasta de compra por favor."
         elementDeleted:         "Elemento barrado."
-        cartEmptied:            "Carro de compra completamente vacío."
+        cartEmptied:            "canasta de compra completamente vacío."
         noChangeMade:           "Ningún cambio."
-        cartIsEmpty:            "Su carro de compra esta vacío."
+        cartIsEmpty:            "Su canasta de compra esta vacío."
 
 
 # Cart
@@ -122,8 +122,8 @@ cart:
         price:                  Precio
         action:                 Acción
     actions:
-        emptyCart:              Vaciar el carro
-        refreshCart:            Refrescar el carro
+        emptyCart:              Vaciar la canasta
+        refreshCart:            Refrescar la canasta
         continueShopping:       "Seguir mis compras ..."
         delete:                 Borrar
         previous:               Atrás
@@ -131,9 +131,9 @@ cart:
         deleteElement:          Borrar el artículo
     alert:
         sureDelete:             "Usted esta seguro que quiere borrar este artículo?"
-        sureDeleteAll:          "Usted esta seguro que quiere vaciar su carro de compra? Todo su pedido sera borrado."
+        sureDeleteAll:          "Usted esta seguro que quiere vaciar su canasta de compra? Todo su pedido sera borrado."
     errors:
-        nothingHere:            "Lo siento, su carro de compra esta vacío ..."
+        nothingHere:            "Lo siento, su canasta de compra esta vacío ..."
     orderContent:
         dear:                   Querido
         finalize:               "Usted esta finalizando su pedido de :"
@@ -151,12 +151,12 @@ cart:
 aboutUs:
     titles:
         title_aboutUs: 			A propuesto
-        title_aboutUs_s: 		Historias y anecdotas
+        title_aboutUs_s: 		Historias y anécdotas
         contact:                ESCRÍBENOS
     descriptions:
-        aude:                   "Desde el sur-oeste de Francia, región del 'foie gras'. El refinamiento culinario frances no tiene secretos para ella. Con su sentido de acogida, viajarán algunos momentos en Francia. Con sed de descubrimientos y encuentros, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
-        antoine:                "Francés, natural de Bretaña, una de las primeras áreas de producción de cerdos en el mundo. Está hecho a mano de la niñez a la corte y elaboración de carne. Con sed de compartir la cultura culinaria francesa a su país de adopción, decidió con su familia a dejar todo para lograr sus sueños en el Cusco."
-        pierreArnaud:           "Ingeniero francés, se unió al equipo en enero de 2015 para sacar partido de su experiencia en la comunicación. Apasionado por los viajes y reuniones, decidió romper su rutina para descubrir Perú. Viajen en nuestro mundo culinario gracias a su talento."
+        aude:                   "Originaria del sur-oeste de Francia, región del 'foie gras'. El refinamiento culinario frances no tiene secretos para ella. Con su sentido de acogida, viajarán algunos momentos en Francia. Sed de descubrimientos y encuentros, decidió con su familia dejar todo para lograr sus sueños en el Cusco."
+        antoine:                "Francés, natural de Bretaña, una de las primeras áreas de producción de cerdos en el mundo. Desde su niñez conece la corte y la elaboración de carne. Con sed de compartir la cultura culinaria francesa a su país de adopción, decidió con su familia dejar todo para lograr sus sueños en el Cusco."
+        pierreArnaud:           "Ingeniero francés, se unió al equipo en enero de 2015 para compartir su experiencia en la comunicación. Apasionado por los viajes y encuentros, decidió romper su rutina para descubrir Perú. Viajen en nuestro mundo culinario gracias a su talento."
 
 
 # Footer
@@ -210,23 +210,23 @@ modal:
     modalQuality:
         intro:                  "Le Buffet Francés es una allianza entre productos locales de riqueza excepcional y recetas tradicionales francésas. "
         quote1:                 "Estos productos son frescos y cuidadosamente seleccionados para ofrecer los mejores sabores."
-        quote2:                 "Nuestros productos son envasado al vacío para proporcionarles una mejor conservación."
-        quote3:                 "Hemos seleccionado las recetas tradicionales de embutidos, de paté y de jamón que se pueden cocinar con nuestros productos de delicadeces. La oferta no sería completa sin nuestras mermeladas y nuestros licores caseros. Por último, podran pronto encontrar una variedad de conservas y una selección de vinos franceses."
+        quote2:                 "Nuestros productos son envasados al vacío para proporcionarles una mejor conservación."
+        quote3:                 "Hemos seleccionado las recetas tradicionales de embutidos, de paté y de jamón que se pueden cocinar con nuestros productos de delicadeces. La oferta no sería completa sin nuestras mermeladas y nuestros licores caseros. Por último, podran encontrar una variedad de conservas y una selección de vinos franceses."
         dontWait:               "No espere a probar "
-        products:               " nuestors productos "
+        products:               " nuestros productos "
         thanksTo:               " gracias a "
         recipes:                " nuestras recetas "
         tested:                 "probadas y aprobadas."
     modalReservation:
         intro:                  "Principio de la reserva :"
-        quote1:                 "Elige los artículos que le gusta y añadilos a su carro de compras "
-        quote2:                 "Pase a su carro de compra y valide su pedido desde su cuenta "
-        quote3:                 "Elija la fecha y hora que funcione mejor para usted para recoger su pedido en la tienda "
+        quote1:                 "Elige los artículos que le gusta y añadelos a su canasta de compras "
+        quote2:                 "Pase a su canasta de compra y valide su pedido desde su cuenta "
+        quote3:                 "Elije la fecha y hora que le conviene más a usted para recoger su pedido en la tienda "
         quote4:                 "Haga clic en enviar "
         quote5:                 "Usted recibirá un correo electrónico de confirmación de pedido, a la espera de la validación de un gerente de la tienda "
         quote6:                 "Una vez que su pedido sea validado, simplemente vaya a la tienda a recoger su pedido en la dirección siguiente: "
         remark:                 "Nota:"
-        remarkContent:          "Si usted no tiene una cuenta, podra simplemente crear uno rápidamente con un correo electrónico y una contraseña!"
+        remarkContent:          "Si usted no tiene una cuenta, podra simplemente crear una rápidamente con un correo electrónico y una contraseña!"
     modalRecipe:
         origin:                 "Origen: "
         forHowMany:             "Para: "

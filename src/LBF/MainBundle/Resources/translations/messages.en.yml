@@ -45,8 +45,8 @@ main:
     content:
         recipes: 		        "Recipes to follow for extra gourmet meals to share with your relatives and friends."
         qualityProduct: 		"Quality meat with sole purpose of satisfying the gastronomical curisoty of all."
-        securedPayment: 		"100% secured online payment with our 3D-secure system, either with yourcredit card or your Paypal account."
-        reservation:            "Choose now your products and your delivery date, and come and pick it up! Easy."
+        securedPayment: 		"100% secured online payment with our 3D-secure system, either with your credit card or your Paypal account."
+        reservation:            "Choose now your products and your delivery date, and come and pick them up! Easy."
         ourProducts:            "In order to fill your cart, select the quantity of elements you want of each product."
     actions:
         learnMore: 				Learn more
@@ -149,12 +149,12 @@ cart:
 aboutUs:
     titles:
         title_aboutUs: 			About us
-        title_aboutUs_s: 		Histoires et anecdotes
+        title_aboutUs_s: 		Anecdotes
         contact:                CONTACT US
     descriptions:
-        aude:                   "Native from the south-west of France, region of the 'foie gras'. The French culinary refinement has no secrets for her. With her sense of welcome, you will travel a few moments throughout France. Thirst for discoveries and encounters, she decided with her family to drop everything to achieve their dreams in Cusco."
-        antoine:                "French, native from Britain, one of the first porc-producing areas in the world. He got his hand in the cutting and processing of meat since his early childhood. Thirst to share the French culinary culture to his country of adoption, he decided with his family to drop everything to achieve their dreams in Cusco."
-        pierreArnaud:           "French engineer, he joined the team in January 2015 to make the best use of his expertise in communication. Travel geek, always looking forward to making new friends, he decided to break his routine to discover Peru. Traveling in our culinary world thanks to his talents."
+        aude:                   "Native of the south-west of France, region of the 'foie gras'. The French culinary refinement has no secret for her. With her sense of welcome, you will travel a few moments throughout France. Thirst of discoveries and encounters, she decided with her family to drop everything to achieve their dreams in Cusco."
+        antoine:                "French, native of Britain, one of the first porc-producing areas in the world. He has known the cutting and the processing of meat since his early childhood. Thirst to share the French culinary culture to his country of adoption, he decided with his family to drop everything to achieve their dreams in Cusco."
+        pierreArnaud:           "French engineer, he joined the team in January 2015 to share his expertise in communication. Travel geek, always looking forward to making new friends, he decided to break his routine to discover Peru. Traveling in our culinary world thanks to his talents."
 
 
 # Footer
@@ -209,7 +209,7 @@ modal:
         intro:                  "The Buffet Francés is an alliance between the products of a local terroir of exceptional wealth and traditional French recipes. "
         quote1:                 "These products are fresh and carefully selected to offer you the best flavors."
         quote2:                 "Our fresh products are vacuum packaged for better conservation."
-        quote3:                 "We selected traditional recipes with sausages, pâté and ham, that can be cooked with our delicatessen products. The offer would not be complete without our jams and our homemade liqueurs. You will soon find as well a variety of canned food and a selection of French wines."
+        quote3:                 "We selected traditional recipes with sausages, pâté and ham, that can be cooked with our delicatessen products. The offer would not be complete without our jams and our homemade liqueurs. You will find as well a variety of canned food and a selection of French wines."
         dontWait:               "Don't wait to test "
         products:               " our products "
         thanksTo:               " thanks to "
@@ -219,12 +219,12 @@ modal:
         intro:                  "Principle of the booking:"
         quote1:                 "Choose the items you like and add them to your shopping cart "
         quote2:                 "Go to your shopping cart and confirm your order from your account "
-        quote3:                 "Choose the date and time that most suit you to come and pick up your order at the store "
+        quote3:                 "Choose the date and time to come and pick up your order at the store "
         quote4:                 "Click send "
-        quote5:                 "You should receive a confirmation email that your order is on hold waiting for one of the managers to validate it "
+        quote5:                 "You should receive a confirmation email that your order is on hold waiting for the validation of the manager "
         quote6:                 "Once your order is validated, you may come and pick it up at the store, located at the following address: "
         remark:                 "Note:"
-        remarkContent:          "If your don't have an account, you'll be able to easily and quickly create one with your email and a password!"
+        remarkContent:          "If your don't have any account, you'll be able to create it easily and quickly with your email and a password!"
     modalRecipe:
         origin:                 "Origin : "
         forHowMany:             "For: "

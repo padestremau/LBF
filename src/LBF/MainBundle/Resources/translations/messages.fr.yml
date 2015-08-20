@@ -46,7 +46,7 @@ main:
         recipes: 		        "Un ensemble de recettes à suivre méticuleusement, aux goûts de chacun et aux bonheurs de tous."
         qualityProduct: 		"Notre particularité est de concevoir des produits sains et de qualité sans colorant ni conservateur."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
-        reservation:            "Réserver dès maintenant. Choisissez la date que vous désirez et venez la récupérer !"
+        reservation:            "Réserver dès maintenant. Choisissez la date que vous désirez et venez récupérer votre commande !"
         ourProducts:            "Pour remplir votre panier, veuillez choisir la quantité d'éléments à y ajouter dans la section 'Nos Produits'."
     actions:
         learnMore: 				En savoir plus
@@ -205,10 +205,10 @@ footer:
 # Modal
 modal:
     modalQuality:
-        intro:                  "Le Buffet Francés c'est une alliance entre les produits d'un terroir local d'une exceptionnelle richesse et des recettes françaises traditionnelles. "
+        intro:                  "Le Buffet Francés : une alliance entre les produits d'un terroir local d'une exceptionnelle richesse et des recettes françaises traditionnelles. "
         quote1:                 "Ces produits sont frais et sélectionnés avec soin pour vous offrir les meilleures saveurs."
         quote2:                 "Nos produits frais sont conditionnés sous vide afin de leur procurer une meilleure conservation."
-        quote3:                 "Nous avons sélectionné des recettes traditionnelles de saucisses, pâtés, jambon qui peuvent être cuisinées avec nos produits d'épicerie fine.  L'offre ne serait pas complète sans nos confitures et nos liqueurs maison. Vous pourrez enfin bientôt retrouver toute une variété de conserves ainsi qu'une sélection de vins français."
+        quote3:                 "Nous avons sélectionné des recettes traditionnelles de saucisses, pâtés, jambon qui peuvent être cuisinés avec nos produits d'épicerie fine.  L'offre ne serait pas complète sans nos confitures et nos liqueurs maison. Vous pourrez enfin retrouver toute une variété de conserves ainsi qu'une sélection de vins français."
         dontWait:               "N'attendez pas pour tester "
         products:               " nos produits "
         thanksTo:               " grâce à "
@@ -218,9 +218,9 @@ modal:
         intro:                  "Principe de la réservation : "
         quote1:                 "Choisissez les éléments qui vous plaisent et ajoutez-les à votre panier "
         quote2:                 "Rendez-vous sur votre panier et validez votre commande depuis votre compte "
-        quote3:                 "Choisissez la date et l'heure qui vous conviennent le mieux pour venir les récupérer au magasin "
+        quote3:                 "Choisissez la date et l'heure pour venir récupérer votre commande au magasin "
         quote4:                 "Cliquez sur envoyer "
-        quote5:                 "Vous recevrez un email de confirmation de commande, en attente de la validation d'un gérant de magasin "
+        quote5:                 "Vous recevrez un email de confirmation de commande, en attente de la validation du gérant du magasin "
         quote6:                 "Une fois votre commande validée, il vous suffira de passer au magasin la récupérer à l'adresse suivante : "
         remark:                 "Remarque :"
         remarkContent:          "Si vous n'avez pas de compte, il vous suffira d'en créer un rapidement avec un email et un mot de passe !"
