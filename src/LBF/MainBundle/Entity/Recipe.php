@@ -66,14 +66,14 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredientsFr", type="array", nullable=true)
+     * @ORM\Column(name="ingredientsFr", type="text", nullable=true)
      */
     private $ingredientsFr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparationFr", type="array", nullable=true)
+     * @ORM\Column(name="preparationFr", type="text", nullable=true)
      */
     private $preparationFr;
 
@@ -87,14 +87,14 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredientsEs", type="array")
+     * @ORM\Column(name="ingredientsEs", type="text")
      */
     private $ingredientsEs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparationEs", type="array")
+     * @ORM\Column(name="preparationEs", type="text")
      */
     private $preparationEs;
 
@@ -108,14 +108,14 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredientsEn", type="array", nullable=true)
+     * @ORM\Column(name="ingredientsEn", type="text", nullable=true)
      */
     private $ingredientsEn;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preparationEn", type="array", nullable=true)
+     * @ORM\Column(name="preparationEn", type="text", nullable=true)
      */
     private $preparationEn;
 

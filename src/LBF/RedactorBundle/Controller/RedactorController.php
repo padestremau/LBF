@@ -69,6 +69,8 @@ class RedactorController extends Controller
 
         $filename = sha1(uniqId()) . date('YmdHis') . ".png";
 
+        // $dir = "c:/Users/Dell/Documents/Github/MACapital/web/uploads/images/";
+
         $config = $this->getRedactor()->getConfiguration($env);
         $dir = $this->get('kernel')->getRootDir() . $config['upload_image']['dir'];
         $uploadUrl = $dir . $filename;

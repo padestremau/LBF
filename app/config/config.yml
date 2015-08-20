@@ -100,7 +100,7 @@ fos_user:
 
 # Redactor bundle
 lbf_redactor:
-    admin_main:
+    admin_recipe:
         upload_file:
             dir: /../web/uploads/files
             web_dir : /uploads/files/
@@ -124,7 +124,7 @@ lbf_redactor:
             # maxHeight:              1000
             folders: false
         settings:
-            # lang:                   fr
+            lang:                   fr
             minHeight:              200
             plugins:                ['fullscreen']
             tabindex : 0
@@ -140,3 +140,5 @@ lbf_redactor:
             clipboardUpload:        true
             clipboardUploadUrl:     '/redactor/clipboardUpload/default'
         role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+
+

@@ -18,8 +18,17 @@
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta content="Website for the Le Buffet Francés shop" name="description"/>
     <meta content="Pierre-Arnaud Destremau" name="author"/>
+    <meta content="Le Buffet Francés" name="title"/>
+    <meta content="Sitio web del Buffet Francés. Tienda en D-21, calle los Sauces, Larapa, Cusco, Peru. Ven a descubrir nuestros productos de las 9am a las 7pm." name="description"/>
+    <meta content="http://www.lebuffetfrances.com{{ asset('img/system/logo/logo-300x300.png') }}" name="image"/>
+
+    <!-- Facebook -->
+    <meta property="og:title" content="Le Buffet Francés"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.lebuffetfrances.com{{ asset('img/system/logo/logo-300x300.png') }}"/>
+    <meta property="og:url" content="http://www.lebuffetfrances.com/"/>
+    <meta property="og:description" content="Sitio web del Buffet Francés. Tienda en D-21, calle los Sauces, Larapa, Cusco, Peru. Ven a descubrir nuestros productos de las 9am a las 7pm."/>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
@@ -40,9 +49,19 @@
 
       'redactor/redactor.css'
 
+      'bundles/stpredactor/css/sonata.css'
       filter='cssrewrite' %}
       <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
     {% endstylesheets %}
+    
+    {% javascripts 
+      'redactor/redactor.js'
+      'redactor/fullscreen.js'
+      'redactor/fr.js'
+      'bundles/lbfredactor/js/script.js'
+      %}
+      <script type="text/javascript" src="{{ asset_url }}"> </script>
+    {% endjavascripts %}
         
 
 
@@ -106,7 +125,7 @@
             and route != 'lbf_admin_recipes'
             and route != 'lbf_admin_recipes_sorted'
             and route != 'lbf_admin_new_recipe'
-            and route != 'lbf_admin_edit_element' 
+            and route != 'lbf_admin_edit_recipe' 
             and route != 'lbf_admin_newsletterEmailsSpe' %}
             page-container 
           {% else %}
@@ -121,20 +140,13 @@
 
         <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
         {% javascripts 
-
           'js/javascripts_lbf.js'
           'js/ajax_load.js'
           
           'js/jssor.js'
           'js/jssor.slider.js'
 
-          'redactor/redactor.js'
-          'redactor/fullscreen.js'
-          'redactor/fr.js'
-          
           'js/jquery-cookie/jquery.cookie.js'
-
-          
           %}
           <script src="{{ asset_url }}"></script>
         {% endjavascripts %}

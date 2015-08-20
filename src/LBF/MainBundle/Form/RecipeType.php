@@ -2,6 +2,7 @@
 
 namespace LBF\MainBundle\Form;
 
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -21,37 +22,29 @@ class RecipeType extends AbstractType
             ->add('cooking', 'text', array('label' => 'Cooking'))
             ->add('origin', 'text', array('label' => 'Origin',
                 'required' => false))
-            ->add('ingredientsFr', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('ingredientsFr', 'textarea', array(
                 'label' => 'Ingredients Fr',
                 'required' => false))
-            ->add('preparationFr', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('preparationFr', 'textarea', array(
                 'label' => 'Preparation Fr',
                 'required' => false))
-            ->add('descriptionFr', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('descriptionFr', 'textarea', array(
                 'label' => 'Description Fr',
                 'required' => false))
             ->add('ingredientsEs', 'redactor', array(
-                "redactor"=>"admin_main",
+                'redactor' => 'admin_recipe',
                 'label' => 'Ingredients Es'))
-            ->add('preparationEs', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('preparationEs', 'textarea', array(
                 'label' => 'Preparation Es'))
-            ->add('descriptionEs', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('descriptionEs', 'textarea', array(
                 'label' => 'Description Es'))
-            ->add('ingredientsEn', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('ingredientsEn', 'textarea', array(
                 'label' => 'Ingredients En',
                 'required' => false))
-            ->add('preparationEn', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('preparationEn', 'textarea', array(
                 'label' => 'Preparation En',
                 'required' => false))
-            ->add('descriptionEn', 'redactor', array(
-                "redactor"=>"admin_main",
+            ->add('descriptionEn', 'textarea', array(
                 'label' => 'Description En',
                 'required' => false))
             ->add('active', 'choice', array('label' => 'Active',
