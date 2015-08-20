@@ -947,14 +947,14 @@
 																						{% set preparationForRecipe = recipe.preparationEs %}
 																				{% endif %}
 																				<button class="btn btn-login" 
-																					onClick="showFullRecipe('{{ recipe.title }}', '{{ descriptionForRecipe }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ ingredientsForRecipe|json_encode() }}', '{{ preparationForRecipe|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
+																					onClick="showFullRecipe('{{ recipe.title }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ ingredientsForRecipe|json_encode() }}', '{{ preparationForRecipe|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
 																					{{ 'ourRecipes.actions.discoverRecipe' | trans }}
 																					<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																				</button>			
 																			</div>
 
 																			<script>
-																				function showFullRecipe(title, description, duration, forHowMany, cooking, origin, photo_webPath, ingredients, preparation, updatedAt_date, updatedAt_time) {
+																				function showFullRecipe(title, duration, forHowMany, cooking, origin, photo_webPath, ingredients, preparation, updatedAt_date, updatedAt_time) {
 																					document.getElementById('recipeModalTitle').innerHTML = title;
 																					document.getElementById('recipeModalContent_ForHowMany').innerHTML = forHowMany;
 																					document.getElementById('recipeModalContent_Duration').innerHTML = duration;
@@ -963,6 +963,7 @@
 																					document.getElementById('recipeModalContent_UpdatedAt_date').innerHTML = updatedAt_date;
 																					document.getElementById('recipeModalContent_UpdatedAt_time').innerHTML = updatedAt_time;
 																					document.getElementById('recipeModalContent_PhotoRecipe').style.backgroundImage = 'url('+photo_webPath+')';
+
 																					var ingredients_j = JSON.parse(ingredients);	
 																					var ingredients_str = '<ul class="margin0">';
 																					for (var i = 0; i < ingredients_j.length; i++) {

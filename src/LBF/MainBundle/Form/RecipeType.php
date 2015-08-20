@@ -19,16 +19,20 @@ class RecipeType extends AbstractType
             ->add('duration', 'text', array('label' => 'Duration'))
             ->add('forHowMany', 'text', array('label' => 'For how many'))
             ->add('cooking', 'text', array('label' => 'Cooking'))
-            ->add('origin', 'text', array('label' => 'Origin'))
+            ->add('origin', 'text', array('label' => 'Origin',
+                'required' => false))
             ->add('ingredientsFr', 'redactor', array(
                 "redactor"=>"admin_main",
-                'label' => 'Ingredients Fr'))
+                'label' => 'Ingredients Fr',
+                'required' => false))
             ->add('preparationFr', 'redactor', array(
                 "redactor"=>"admin_main",
-                'label' => 'Preparation Fr'))
+                'label' => 'Preparation Fr',
+                'required' => false))
             ->add('descriptionFr', 'redactor', array(
                 "redactor"=>"admin_main",
-                'label' => 'Description Fr'))
+                'label' => 'Description Fr',
+                'required' => false))
             ->add('ingredientsEs', 'redactor', array(
                 "redactor"=>"admin_main",
                 'label' => 'Ingredients Es'))
@@ -40,18 +44,22 @@ class RecipeType extends AbstractType
                 'label' => 'Description Es'))
             ->add('ingredientsEn', 'redactor', array(
                 "redactor"=>"admin_main",
-                'label' => 'Ingredients En'))
+                'label' => 'Ingredients En',
+                'required' => false))
             ->add('preparationEn', 'redactor', array(
                 "redactor"=>"admin_main",
-                'label' => 'Preparation En'))
+                'label' => 'Preparation En',
+                'required' => false))
             ->add('descriptionEn', 'redactor', array(
                 "redactor"=>"admin_main",
-                'label' => 'Description En'))
+                'label' => 'Description En',
+                'required' => false))
             ->add('active', 'choice', array('label' => 'Active',
                                             'choices' => array( 'active' => 'Actif',
                                                                 'new' => 'Nouveauté', 
                                                                 'inactive' => 'Inactif')))
-            ->add('file', 'file')
+            ->add('file', 'file', array('label' => 'file',
+                                        'required' => false))
             ->add('element', 'entity', array(   'class' => 'LBFMainBundle:Element',
                                                 'property' => 'NameEs'
                                                 // 'multiple' => true
