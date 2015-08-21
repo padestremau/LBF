@@ -147,7 +147,6 @@ class Recipe
      */
     private $active;
 
-
     /**
      * @var string
      *

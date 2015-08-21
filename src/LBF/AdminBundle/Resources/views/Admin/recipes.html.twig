@@ -77,6 +77,9 @@
 				                              Préparation
 				                            </th>
 				                            <th class="center">
+				                              Langues dispo
+				                            </th>
+				                            <th class="center">
 				                              Créée le
 				                            </th>
 				                            <th class="center">
@@ -225,6 +228,17 @@
 					                            	{% else %}
 					                            		---
 					                            	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if recipe.descriptionEs|length > 0 and recipe.ingredientsEs|length > 0 and recipe.preparationEs|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                              	{% if recipe.descriptionFr|length > 0 and recipe.ingredientsFr|length > 0 and recipe.preparationFr|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                              	{% if recipe.descriptionEn|length > 0 and recipe.ingredientsEn|length > 0 and element.preparationEn|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag_sm_admin"/>
+					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
 					                            	{% if recipe.createdAt|length > 0 %}

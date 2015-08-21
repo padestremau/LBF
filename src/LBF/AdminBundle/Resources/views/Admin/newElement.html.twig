@@ -379,6 +379,36 @@
 									        	{{ form_widget(formElement.active, opt_active) }}
 									        </div>
 										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
+										
+									</div>
+
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
+											Et s'affiche dans l'ordre au numéro :
+										</div>
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									        {% if form_errors(formElement.orderList) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formElement.orderList) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+									        <div class="input-group">
+												<span class="input-group-addon" id="orderList_orderList">#</span>
+									        	{% set opt_orderList = {'attr': {'class': 'form-control',
+									        		'type':'text', 'placeholder':"Ex: 8", 'id':'orderList', 
+									        		'name':'_orderList', 'aria-describedby':'orderList_orderList'}} %}
+									        	{{ form_widget(formElement.orderList, opt_orderList) }}
+									        </div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
+
 									</div>
 
 									<hr/>

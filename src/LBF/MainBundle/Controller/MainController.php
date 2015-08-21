@@ -18,7 +18,7 @@ class MainController extends Controller
     	$allProducts = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')]);
+                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')], ['orderList' => 'ASC']);
 
         $allPanVino = array();
         $allBufSalado = array();

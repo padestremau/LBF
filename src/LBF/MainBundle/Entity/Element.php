@@ -140,6 +140,13 @@ class Element
     private $active;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="orderList", type="integer", nullable=true)
+     */
+    private $orderList;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
@@ -691,5 +698,28 @@ class Element
     public function getDescriptionEn()
     {
         return $this->descriptionEn;
+    }
+
+    /**
+     * Set orderList
+     *
+     * @param integer $orderList
+     * @return Element
+     */
+    public function setOrderList($orderList)
+    {
+        $this->orderList = $orderList;
+
+        return $this;
+    }
+
+    /**
+     * Get orderList
+     *
+     * @return integer 
+     */
+    public function getOrderList()
+    {
+        return $this->orderList;
     }
 }

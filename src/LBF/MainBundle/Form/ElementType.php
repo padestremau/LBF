@@ -47,6 +47,7 @@ class ElementType extends AbstractType
                                                                     'toCome' => 'A venir', 
                                                                     'soldOut' => 'Epuisé',
                                                                     'inactive' => 'Inactif')))
+            ->add('orderList', 'text', array('label' => 'Ordre'))
             ->add('file', 'file', array('label'=> 'file',
                                         'required' => false))
         ;

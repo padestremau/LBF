@@ -86,6 +86,9 @@
 				                              Naturel ?
 				                            </th>
 				                            <th class="center">
+				                              #
+				                            </th>
+				                            <th class="center">
 				                              	Statut
 				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'active', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
@@ -173,21 +176,21 @@
 					                              	{% if element.price|length > 0 %}
 					                              		{{ element.price }}
 					                              	{% else %}
-					                              		---
+					                              		-
 					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
 					                              	{% if element.weight|length > 0 %}
 					                              		{{ element.weight }}
 					                              	{% else %}
-					                              		---
+					                              		-
 					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
 					                              	{% if element.unit|length > 0 %}
 					                              		{{ element.unit }}
 					                              	{% else %}
-					                              		---
+					                              		-
 					                              	{% endif %}
 					                            </td>
 					                            <td class="center">
@@ -195,6 +198,13 @@
 					                              		Oui
 					                              	{% else %}
 					                              		Non
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if element.orderList|length > 0 %}
+					                              		{{ element.orderList }}
+					                              	{% else %}
+					                              		-
 					                              	{% endif %}
 					                            </td>
 					                            <th class="center hover_popup">
