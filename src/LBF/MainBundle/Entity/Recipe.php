@@ -23,7 +23,7 @@ class Recipe
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="LBF\MainBundle\Entity\Element")
+     * @ORM\ManyToOne(targetEntity="LBF\MainBundle\Entity\Element", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $element;
@@ -64,16 +64,16 @@ class Recipe
     private $origin;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="ingredientsFr", type="text", nullable=true)
+     * @ORM\Column(name="ingredientsFr", type="array", nullable=true)
      */
     private $ingredientsFr;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="preparationFr", type="text", nullable=true)
+     * @ORM\Column(name="preparationFr", type="array", nullable=true)
      */
     private $preparationFr;
 
@@ -85,16 +85,16 @@ class Recipe
     private $descriptionFr;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="ingredientsEs", type="text")
+     * @ORM\Column(name="ingredientsEs", type="array")
      */
     private $ingredientsEs;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="preparationEs", type="text")
+     * @ORM\Column(name="preparationEs", type="array")
      */
     private $preparationEs;
 
@@ -106,16 +106,16 @@ class Recipe
     private $descriptionEs;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="ingredientsEn", type="text", nullable=true)
+     * @ORM\Column(name="ingredientsEn", type="array", nullable=true)
      */
     private $ingredientsEn;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="preparationEn", type="text", nullable=true)
+     * @ORM\Column(name="preparationEn", type="array", nullable=true)
      */
     private $preparationEn;
 

@@ -22,31 +22,69 @@ class RecipeType extends AbstractType
             ->add('cooking', 'text', array('label' => 'Cooking'))
             ->add('origin', 'text', array('label' => 'Origin',
                 'required' => false))
-            ->add('ingredientsFr', 'textarea', array(
-                'label' => 'Ingredients Fr',
-                'required' => false))
-            ->add('preparationFr', 'textarea', array(
-                'label' => 'Preparation Fr',
-                'required' => false))
+            
+            ->add('ingredientsFr', 'collection', array(
+                'type' => 'text',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => 'ingredientsFr__name__',
+                'by_reference' => false,
+                'error_bubbling' => false
+            ))
+            ->add('preparationFr', 'collection', array(
+                'type' => 'textarea',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => 'preparationFr__name__',
+                'by_reference' => false,
+                'error_bubbling' => false
+            ))
             ->add('descriptionFr', 'textarea', array(
-                'label' => 'Description Fr',
                 'required' => false))
-            ->add('ingredientsEs', 'redactor', array(
-                'redactor' => 'admin_recipe',
-                'label' => 'Ingredients Es'))
-            ->add('preparationEs', 'textarea', array(
-                'label' => 'Preparation Es'))
-            ->add('descriptionEs', 'textarea', array(
-                'label' => 'Description Es'))
-            ->add('ingredientsEn', 'textarea', array(
-                'label' => 'Ingredients En',
-                'required' => false))
-            ->add('preparationEn', 'textarea', array(
-                'label' => 'Preparation En',
-                'required' => false))
+
+            ->add('ingredientsEs', 'collection', array(
+                'type' => 'text',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => 'ingredientsEs__name__',
+                'by_reference' => false,
+                'error_bubbling' => false
+            ))
+            ->add('preparationEs', 'collection', array(
+                'type' => 'textarea',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => 'preparationEs__name__',
+                'by_reference' => false,
+                'error_bubbling' => false
+            ))
+            ->add('descriptionEs', 'textarea')
+            
+            ->add('ingredientsEn', 'collection', array(
+                'type' => 'text',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => 'ingredientsEn__name__',
+                'by_reference' => false,
+                'error_bubbling' => false
+            ))
+            ->add('preparationEn', 'collection', array(
+                'type' => 'textarea',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'prototype_name' => 'preparationEn__name__',
+                'by_reference' => false,
+                'error_bubbling' => false
+            ))
             ->add('descriptionEn', 'textarea', array(
-                'label' => 'Description En',
                 'required' => false))
+            
             ->add('active', 'choice', array('label' => 'Active',
                                             'choices' => array( 'active' => 'Actif',
                                                                 'new' => 'Nouveauté', 

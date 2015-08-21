@@ -23,8 +23,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new LBF\MainBundle\LBFMainBundle(),
             new LBF\UserBundle\LBFUserBundle(),
-            new LBF\AdminBundle\LBFAdminBundle(),
-            new LBF\RedactorBundle\LBFRedactorBundle()
+            new LBF\AdminBundle\LBFAdminBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

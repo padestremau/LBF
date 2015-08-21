@@ -180,6 +180,11 @@
 										<div class="tab-content" id="product_content">
 											<div class="tab-pane fade active in" id="tab_1">
 												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Descripción:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.descriptionEs) %}
 										                    <div class="error_message">
@@ -200,6 +205,58 @@
 												        </div>
 													</div>
 
+												    {% macro widget_prototype(widget) %}
+													    {% if widget.vars.prototype is defined %}
+														    {% set form = widget.vars.prototype %}
+														    {% set name = widget.vars.prototype.vars.name %}
+														{% else %}
+														    {% set form = widget %}
+														    {% set name = widget.vars.full_name %}
+														{% endif %}
+
+													    <div class="input-group" data-content="{{ name }}">
+														  	<span class="input-group-addon" id="prototype_delete">
+														  		<a class="btn-remove float-left" data-related="{{ name }}">
+														        	<span class="glyphicon glyphicon-trash"></span>
+														        </a>
+														  	</span>
+												        	{% set opt_ingredientsEs = {'attr': {'class': 'form-control', 'aria-describedby':'prototype_delete'}} %}
+												        	{{ form_widget(form, opt_ingredientsEs) }}
+												        </div>
+													{% endmacro %}
+
+											        <script type="text/javascript">
+											        	jQuery(function($) {
+														    $(document).on('click', '.btn-add[data-target]', function(event) {
+														        var collectionHolder = $('#' + $(this).attr('data-target'));
+
+														        if (!collectionHolder.attr('data-counter')) {
+														            collectionHolder.attr('data-counter', collectionHolder.children().length);
+														        }
+
+														        var prototype = collectionHolder.attr('data-prototype');
+														        var form = prototype.replace(/__name__/g, collectionHolder.attr('data-counter'));
+
+														        collectionHolder.attr('data-counter', Number(collectionHolder.attr('data-counter')) + 1);
+														        collectionHolder.append(form);
+
+														        event && event.preventDefault();
+														    });
+
+														    $(document).on('click', '.btn-remove[data-related]', function(event) {
+														        var name = $(this).attr('data-related');
+														        $('*[data-content="'+name+'"]').remove();
+
+														        event && event.preventDefault();
+														    });
+														});  
+											        </script>
+
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Ingredientes:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.ingredientsEs) %}
 										                    <div class="error_message">
@@ -212,14 +269,22 @@
 										                    </div>
 										                    <br/>
 										                {% endif %}
-														<div class="input-icon">
-												        	{% set opt_ingredientsEs = {'attr': {'class': 'redactor',
-												        		'placeholder':'Ingredientes de la receta', 'id':'ingredientsEs',
-												        		'name':'_ingredientsEs'}} %}
-												        	{{ form_widget(formRecipe.ingredientsEs, opt_ingredientsEs) }}
+												        <div class="input-icon" id="_ingredientsEs" data-prototype="{{ _self.widget_prototype(formRecipe.ingredientsEs)|escape }}">
+												            {% for widget in formRecipe.ingredientsEs.children %}
+												                {{ _self.widget_prototype(widget) }}
+												            {% endfor %}
 												        </div>
+												        
+												        <a href="" class="btn btn-default btn-add" data-target="_ingredientsEs">
+												        	<span class="glyphicon glyphicon-plus"></span>
+												        </a>
 													</div>
 
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Preparación:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.preparationEs) %}
 										                    <div class="error_message">
@@ -232,17 +297,25 @@
 										                    </div>
 										                    <br/>
 										                {% endif %}
-														<div class="input-icon">
-												        	{% set opt_preparationEs = {'attr': {'class': 'form-control placeholder-no-fix',
-												        		'placeholder':'Preparación de la receta', 'id':'preparationEs', 'type':'text',
-												        		'name':'_preparationEs'}} %}
-												        	{{ form_widget(formRecipe.preparationEs, opt_preparationEs) }}
+												        <div class="input-icon" id="_preparationEs" data-prototype="{{ _self.widget_prototype(formRecipe.preparationEs)|escape }}">
+												            {% for widget in formRecipe.preparationEs.children %}
+												                {{ _self.widget_prototype(widget) }}
+												            {% endfor %}
 												        </div>
+												        
+												        <a href="" class="btn btn-default btn-add" data-target="_preparationEs">
+												        	<span class="glyphicon glyphicon-plus"></span>
+												        </a>
 													</div>
 												</div>
 											</div>
 											<div class="tab-pane fade" id="tab_2">
 												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Description:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.descriptionFr) %}
 										                    <div class="error_message">
@@ -263,6 +336,11 @@
 												        </div>
 													</div>
 
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Ingrédients:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.ingredientsFr) %}
 										                    <div class="error_message">
@@ -275,14 +353,22 @@
 										                    </div>
 										                    <br/>
 										                {% endif %}
-														<div class="input-icon">
-												        	{% set opt_ingredientsFr = {'attr': {'class': 'form-control placeholder-no-fix',
-												        		'placeholder':'Ingredients de la recette', 'id':'ingredientsFr', 'type':'text',
-												        		'name':'_ingredientsFr'}} %}
-												        	{{ form_widget(formRecipe.ingredientsFr, opt_ingredientsFr) }}
+												        <div class="input-icon" id="_ingredientsFr" data-prototype="{{ _self.widget_prototype(formRecipe.ingredientsFr)|escape }}">
+												            {% for widget in formRecipe.ingredientsFr.children %}
+												                {{ _self.widget_prototype(widget) }}
+												            {% endfor %}
 												        </div>
+												        
+												        <a href="" class="btn btn-default btn-add" data-target="_ingredientsFr">
+												        	<span class="glyphicon glyphicon-plus"></span>
+												        </a>
 													</div>
 
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Préparation:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.preparationFr) %}
 										                    <div class="error_message">
@@ -295,17 +381,25 @@
 										                    </div>
 										                    <br/>
 										                {% endif %}
-														<div class="input-icon">
-												        	{% set opt_preparationFr = {'attr': {'class': 'form-control placeholder-no-fix',
-												        		'placeholder':'Preparation de la recette', 'id':'preparationFr', 'type':'text',
-												        		'name':'_preparationFr'}} %}
-												        	{{ form_widget(formRecipe.preparationFr, opt_preparationFr) }}
+												        <div class="input-icon" id="_preparationFr" data-prototype="{{ _self.widget_prototype(formRecipe.preparationFr)|escape }}">
+												            {% for widget in formRecipe.preparationFr.children %}
+												                {{ _self.widget_prototype(widget) }}
+												            {% endfor %}
 												        </div>
+												        
+												        <a href="" class="btn btn-default btn-add" data-target="_preparationFr">
+												        	<span class="glyphicon glyphicon-plus"></span>
+												        </a>
 													</div>
 												</div>
 											</div>
 											<div class="tab-pane fade" id="tab_3">
 												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Description:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.descriptionEn) %}
 										                    <div class="error_message">
@@ -326,6 +420,11 @@
 												        </div>
 													</div>
 
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Ingredients:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.ingredientsEn) %}
 										                    <div class="error_message">
@@ -338,14 +437,22 @@
 										                    </div>
 										                    <br/>
 										                {% endif %}
-														<div class="input-icon">
-												        	{% set opt_ingredientsEn = {'attr': {'class': 'form-control placeholder-no-fix',
-												        		'placeholder':'Ingredients of the recipe', 'id':'ingredientsEn', 'type':'text',
-												        		'name':'_ingredientsEn'}} %}
-												        	{{ form_widget(formRecipe.ingredientsEn, opt_ingredientsEn) }}
+												        <div class="input-icon" id="_ingredientsEn" data-prototype="{{ _self.widget_prototype(formRecipe.ingredientsEn)|escape }}">
+												            {% for widget in formRecipe.ingredientsEn.children %}
+												                {{ _self.widget_prototype(widget) }}
+												            {% endfor %}
 												        </div>
+												        
+												        <a href="" class="btn btn-default btn-add" data-target="_ingredientsEn">
+												        	<span class="glyphicon glyphicon-plus"></span>
+												        </a>
 													</div>
 
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<strong>
+															Preparation:
+														</strong>
+													</div>
 													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
 												        {% if form_errors(formRecipe.preparationEn) %}
 										                    <div class="error_message">
@@ -358,12 +465,15 @@
 										                    </div>
 										                    <br/>
 										                {% endif %}
-														<div class="input-icon">
-												        	{% set opt_preparationEn = {'attr': {'class': 'form-control placeholder-no-fix',
-												        		'placeholder':'Recipe preparation', 'id':'preparationEn', 'type':'text',
-												        		'name':'_preparationEn'}} %}
-												        	{{ form_widget(formRecipe.preparationEn, opt_preparationEn) }}
+												        <div class="input-icon" id="_preparationEn" data-prototype="{{ _self.widget_prototype(formRecipe.preparationEn)|escape }}">
+												            {% for widget in formRecipe.preparationEn.children %}
+												                {{ _self.widget_prototype(widget) }}
+												            {% endfor %}
 												        </div>
+												        
+												        <a href="" class="btn btn-default btn-add" data-target="_preparationEn">
+												        	<span class="glyphicon glyphicon-plus"></span>
+												        </a>
 													</div>
 												</div>
 											</div>

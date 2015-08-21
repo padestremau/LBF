@@ -48,10 +48,3 @@ fos_user_change_password:
     prefix:     /{_locale}/changePassword/
     requirements:
         _locale: es|en|fr
-
-
-# Redactor 
-lbf_redactor:
-    resource: "@LBFRedactorBundle/Controller/"
-    type:     annotation
-    prefix:   /redactor/

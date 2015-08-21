@@ -946,66 +946,140 @@
 																				{% else %}
 																						{% set preparationForRecipe = recipe.preparationEs %}
 																				{% endif %}
-																				<button class="btn btn-login" 
-																					onClick="showFullRecipe('{{ recipe.title }}', '{{ recipe.duration }}', '{{ recipe.forHowMany }}', '{{ recipe.cooking }}', '{{ recipe.origin }}', '{{ image_url_recipe }}', '{{ ingredientsForRecipe|json_encode() }}', '{{ preparationForRecipe|json_encode() }}', '{{ recipe.updatedAt|date('d M Y') }}', '{{ recipe.updatedAt|date('H:i') }}')">
+																				<button class="btn btn-login" type="button" data-toggle="modal" data-target="#recipe_{{ recipe.id }}_Modal">
 																					{{ 'ourRecipes.actions.discoverRecipe' | trans }}
 																					<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-																				</button>			
+																				</button>	
+																				<!-- Modal recipe {{ recipe.id }} -->
+																				<div class="modal bs-example-modal-lg fade" id="recipe_{{ recipe.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="recipe_{{ recipe.id }}_ModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+																				  <div class="modal-dialog modal-lg">
+																				    <div class="modal-content">
+																				      <div class="modal-header">
+																				        <button type="button" class="close white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																				        <h2 class="modal-title center">
+																				        	{{ recipe.title }}
+																				        </h2>
+																				      </div>
+																				      <div class="modal-body" id="recipeModalContent">
+																				        <div class="modal-body-inner row">
+																				          
+																				          <div class="row">
+																				            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_LeftPart">
+																				              <div class="recipe_border">
+																				                <div class="left">
+																				                  <span>
+																				                    <strong>
+																				                      {{ 'modal.modalRecipe.origin' | trans }}
+																				                    </strong>
+																				                  </span> 
+																				                  <span>
+																				                  	{{ recipe.origin }}
+																				                  </span> 
+																				                  <br/>
+																				                  <span>
+																				                    <strong>
+																				                      {{ 'modal.modalRecipe.forHowMany' | trans }}
+																				                    </strong>
+																				                  </span> 
+																				                  <span>
+																				                  	{{ recipe.forHowMany }}
+																				                  </span> 
+																				                  <span>
+																				                    {{ 'modal.modalRecipe.people' | trans }}
+																				                  </span> 
+																				                  <br/>
+																				                  <span>
+																				                    <strong>
+																				                      {{ 'modal.modalRecipe.duration' | trans }}
+																				                    </strong>
+																				                  </span> 
+																				                  <span>
+																				                  	{{ recipe.duration }}
+																				                  </span> 
+																				                  <span>
+																				                    {{ 'modal.modalRecipe.min' | trans }}
+																				                  </span> 
+																				                  <br/>
+																				                  <span>
+																				                    <strong>
+																				                      {{ 'modal.modalRecipe.cooking' | trans }}
+																				                    </strong>
+																				                  </span> 
+																				                  <span>
+																				                  	{{ recipe.cooking }}
+																				                  </span> 
+																				                  <span>
+																				                    {{ 'modal.modalRecipe.min' | trans }}
+																				                  </span>
+																				                  <hr/>
+																				                  <strong class="text-decoration:underline;">
+																				                    {{ 'modal.modalRecipe.ingredients' | trans }}
+																				                  </strong>
+																				                  <div>
+																				                  	<ul class="margin0">
+																				                    {% for ingr in ingredientsForRecipe %}
+																				                    	<li>
+																				                    		{{ ingr }}
+																				                    	</li>
+																				                  	{% endfor %}
+																				                  	</ul>
+																				                  </div>
+																				                </div>
+																				              </div>
+																				            </div>
+																				            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
+																				              <div class="recipe_border">
+																				                <strong class="text-decoration:underline;">
+																				                  {{ 'modal.modalRecipe.preparation' | trans }}
+																				                </strong>
+																				                <div class="left">
+																				                  	<ul class="margin0">
+																				                    {% for ingr in preparationForRecipe %}
+																				                    	<li>
+																				                    		{{ ingr }}
+																				                    	</li>
+																				                  	{% endfor %}
+																				                  	</ul>
+																				                </div>
+																				              </div>
+																				            </div>
+																				          </div>
+
+																				          <br/><br/>
+																				          <div class="row">
+																				            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				              <div class="center">
+																				                <span>
+																				                  {{ 'modal.modalRecipe.lastEdit' | trans }}
+																				                </span> 
+																				                <span>
+																				                	{{ recipe.updatedAt|date('d M Y') }}
+																				                </span> 
+																				                {{ 'modal.modalRecipe.atTime' | trans }}
+																				                <span>
+																				                	{{ recipe.updatedAt|date('H:i') }}
+																				                </span>
+																				              </div>
+																				              <div id="recipeModalContent_PhotoRecipe" class="recipe_img_lg" style="width: 100%; background-size: cover; background-position: 50%; background-image: url({{ image_url_recipe }})">
+																				                <script type="text/javascript">
+																				                  var recipe_height_lg = $('.recipe_img_lg').width() * 0.8;
+																				                  $('.recipe_img_lg').css({'height':recipe_height_lg+'px'});
+																				                </script>
+																				              </div>
+																				            </div>
+																				          </div>
+																				        </div>
+																				      </div>
+																				      <div class="modal-footer">
+																				        <button type="button" class="btn btn-modal" data-dismiss="modal">
+																				          {{ 'modal.actions.close' | trans }}
+																				        </button>
+																				      </div>
+																				    </div>
+																				  </div>
+																				</div>		
 																			</div>
 
-																			<script>
-																				function showFullRecipe(title, duration, forHowMany, cooking, origin, photo_webPath, ingredients, preparation, updatedAt_date, updatedAt_time) {
-																					document.getElementById('recipeModalTitle').innerHTML = title;
-																					document.getElementById('recipeModalContent_ForHowMany').innerHTML = forHowMany;
-																					document.getElementById('recipeModalContent_Duration').innerHTML = duration;
-																					document.getElementById('recipeModalContent_Cooking').innerHTML = cooking;
-																					document.getElementById('recipeModalContent_Origin').innerHTML = origin;
-																					document.getElementById('recipeModalContent_UpdatedAt_date').innerHTML = updatedAt_date;
-																					document.getElementById('recipeModalContent_UpdatedAt_time').innerHTML = updatedAt_time;
-																					document.getElementById('recipeModalContent_PhotoRecipe').style.backgroundImage = 'url('+photo_webPath+')';
-
-																					var ingredients_j = JSON.parse(ingredients);	
-																					var ingredients_str = '<ul class="margin0">';
-																					for (var i = 0; i < ingredients_j.length; i++) {
-																						if (typeof ingredients_j[i] == 'string') {
-																							ingredients_str = ingredients_str+'<li>'+ingredients_j[i]+'</li>';
-																						}
-																						else {
-																							var ingredients_sub = ingredients_j[i];
-																							ingredients_str = ingredients_str+'<li><strong>'+ingredients_sub['title']+'</strong></li>';
-																							ingredients_str = ingredients_str+'<ul class="margin0">';
-																							for (var k = 0; k < Object.keys(ingredients_sub).length; k++) {
-																								ingredients_str = ingredients_str+'<li>'+ingredients_sub[k]+'</li>';
-																							};
-																							ingredients_str = ingredients_str+'</ul><br/>';
-																						}
-																					};
-																					ingredients_str = ingredients_str+'</ul>';
-																					document.getElementById('recipeModalContent_Ingredients').innerHTML = ingredients_str;
-
-																					var preparation_j = JSON.parse(preparation);	
-																					var preparation_str = '<ul class="margin0">';
-																					for (var i = 0; i < preparation_j.length; i++) {
-																						if (typeof preparation_j[i] == 'string') {
-																							preparation_str = preparation_str+'<li>'+preparation_j[i]+'</li>';
-																						}
-																						else {
-																							var preparation_sub = preparation_j[i];
-																							preparation_str = preparation_str+'<li><strong>'+preparation_sub['title']+'</strong></li>';
-																							preparation_str = preparation_str+'<ul class="margin0">';
-																							for (var k = 0; k < Object.keys(preparation_sub).length; k++) {
-																								preparation_str = preparation_str+'<li>'+preparation_sub[k]+'</li>';
-																							};
-																							preparation_str = preparation_str+'</ul><br/>';
-																						}
-																					};
-																					preparation_str = preparation_str+'</ul>';
-																					document.getElementById('recipeModalContent_Preparation').innerHTML = preparation_str;
-
-																					$('#recipeModal').modal('toggle');
-
-																				}
-																			</script>
 																		</div>
 																		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 																			<div class="recipe_img_div">
