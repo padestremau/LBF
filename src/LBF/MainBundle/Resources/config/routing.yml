@@ -1,7 +1,9 @@
+# homepage
 lbf_main_homepage:
     path:     /
     defaults: { _controller: LBFMainBundle:Main:index }
 
+# cart
 lbf_main_add_to_cart:
     path:     /addToCart/
     defaults: { _controller: LBFMainBundle:Main:addToCart }
@@ -30,6 +32,7 @@ lbf_main_empty_special:
     path:     /emptySpecial/
     defaults: { _controller: LBFMainBundle:Main:emptySpecial }
 
+# newsletter email
 lbf_main_newsletterEmail:
     path:     /newsletterEmail/{path}/
     defaults: { _controller: LBFMainBundle:Main:newsletterEmail }
@@ -38,6 +41,7 @@ lbf_main_newsletterEmail_undo:
     path:     /newsletterEmailUndo/{email}/
     defaults: { _controller: LBFMainBundle:Main:newsletterEmailUndo }
 
+# contact
 lbf_main_footer_contact:
     path:     /contact/
     defaults: { _controller: LBFMainBundle:Main:footerContact }
@@ -46,6 +50,7 @@ lbf_main_footer_contact_thankYou:
     path:     /contact/thankYou/
     defaults: { _controller: LBFMainBundle:Main:footerContactThankYou }
 
+# testimony
 lbf_main_testimony_new:
     path:     /testimony/new/
     defaults: { _controller: LBFMainBundle:Main:newTestimony }

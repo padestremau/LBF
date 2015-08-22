@@ -18,11 +18,11 @@ class TestimonyType extends AbstractType
             ->add('content', 'textarea', array('label' => 'Content'))
             ->add('author', 'text', array('label' => 'Author'))
             ->add('rate', 'choice', array('label' => 'Rate',
-                    'choices' => array(   1 => ' ', 
-                                        2 => ' ',
-                                        3 => ' ',
+                    'choices' => array(   5 => ' ', 
                                         4 => ' ',
-                                        5 => ' '),
+                                        3 => ' ',
+                                        2 => ' ',
+                                        1 => ' '),
                     'expanded' => true,
                     'multiple' => false
                     ))

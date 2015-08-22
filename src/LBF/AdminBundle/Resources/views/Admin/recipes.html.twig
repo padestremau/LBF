@@ -106,7 +106,7 @@
 				                            		{{ recipe.id }}
 					                            </th>
 					                            <td class="center">
-					                              	{% if recipe.webPath|length > 0 %}
+					                              	{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
 														<div class="product_img_admin" style="background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
 														</div>
 													{% else %}
@@ -236,7 +236,7 @@
 					                              	{% if recipe.descriptionFr|length > 0 and recipe.ingredientsFr|length > 0 and recipe.preparationFr|length > 0 %}
 					                              		<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag_sm_admin"/>
 					                              	{% endif %}
-					                              	{% if recipe.descriptionEn|length > 0 and recipe.ingredientsEn|length > 0 and element.preparationEn|length > 0 %}
+					                              	{% if recipe.descriptionEn|length > 0 and recipe.ingredientsEn|length > 0 and recipe.preparationEn|length > 0 %}
 					                              		<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag_sm_admin"/>
 					                              	{% endif %}
 					                            </td>

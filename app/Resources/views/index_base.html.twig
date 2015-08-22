@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
       {% block title %}
-        Le Buffet Frances
+        Le Buffet Francés
       {% endblock %}
     </title>
 
@@ -50,6 +50,24 @@
       filter='cssrewrite' %}
       <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
     {% endstylesheets %}
+
+    {% if route == 'lbf_admin_new_page'
+        or route == 'lbf_admin_edit_page' %}
+    {% stylesheets
+      'redactor/redactor.css'
+      'bundles/lbfredactor/css/sonata.css'
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+    {% javascripts 
+      'redactor/redactor.js'
+      'redactor/fullscreen.js'
+      'redactor/fr.js'
+      'bundles/lbfredactor/js/script.js'
+      %}
+      <script type="text/javascript" src="{{ asset_url }}"> </script>
+      {% endjavascripts %}
+    {% endif %}
 
 </head>
 <!-- END HEAD -->
@@ -112,7 +130,19 @@
             and route != 'lbf_admin_recipes_sorted'
             and route != 'lbf_admin_new_recipe'
             and route != 'lbf_admin_edit_recipe' 
-            and route != 'lbf_admin_newsletterEmailsSpe' %}
+            and route != 'lbf_admin_newsletterEmailsSpe' 
+            and route != 'lbf_admin_pages'
+            and route != 'lbf_admin_pages_asked'
+            and route != 'lbf_admin_new_page'
+            and route != 'lbf_admin_edit_page'
+            and route != 'lbf_admin_members'
+            and route != 'lbf_admin_members_sorted'
+            and route != 'lbf_admin_new_member'
+            and route != 'lbf_admin_edit_member'
+            and route != 'lbf_admin_photos'
+            and route != 'lbf_admin_photos_sorted'
+            and route != 'lbf_admin_new_photo'
+            and route != 'lbf_admin_edit_photo' %}
             page-container 
           {% else %}
             page-container-admin

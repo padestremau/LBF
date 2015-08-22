@@ -1,0 +1,490 @@
+{# src/LBF/AdminBundle/Resources/Admin/newPage.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Nouvelle page
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="">
+
+					  		<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pages') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>
+
+					  		<div class="row80">
+					  			<form method="post" {{ form_enctype(formPage) }}>
+					        		{% if form_errors(formPage) %}
+					                    <div class="error_message">
+					                      <span class="warning_word">
+					                        {{ 'user.warning.warning'|trans }}
+					                      </span>
+					                      <span class="warning_message">
+					                        {{ form_errors(formPage) }}
+					                      </span>
+					                    </div>
+					                    <br/>
+					                {% endif %}
+
+					                <div class="row">
+
+										<div class="row">
+											<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										        {% if form_errors(formPage.title) %}
+								                    <div class="error_message">
+								                      	<span class="warning_word">
+								                        	{{ 'user.warning.warning'|trans }}
+								                      	</span>
+								                      	<span class="warning_message">
+								                        	{{ form_errors(formPage.title) }}
+								                      	</span>
+								                    </div>
+								                    <br/>
+								                {% endif %}
+												<div class="input-icon">
+										        	{% set title = {'attr': {'class': 'form-control placeholder-no-fix',
+										        		'type':'text', 'placeholder':'Titre de la page', 'id':'title'}} %}
+										        	{{ form_widget(formPage.title, title) }}
+										        </div>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
+												Le page est de type :
+											</div>
+											<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+										        {% if form_errors(formPage.type) %}
+								                    <div class="error_message">
+								                      	<span class="warning_word">
+								                        	{{ 'user.warning.warning'|trans }}
+								                      	</span>
+								                      	<span class="warning_message">
+								                        	{{ form_errors(formPage.type) }}
+								                      	</span>
+								                    </div>
+								                    <br/>
+								                {% endif %}
+												<div class="input-icon">
+										        	{% set opt_type = {'attr': {'class': 'form-control placeholder-no-fix',
+										        		'id':'_type', 'name':'_type', 'onClick':'displayPageOptions()'}} %}
+										        	{{ form_widget(formPage.type, opt_type) }}
+										        </div>
+										        <script type="text/javascript">
+								                  	function displayPageOptions() {
+								                  		var e = document.getElementById("lbf_mainbundle_page_type");
+								                  		var optionSelected = e.options[e.selectedIndex].value;
+								                      	if (optionSelected == "lhdc") { 
+								                      		document.getElementById('filePageInput').style.display = 'block';
+								                      		document.getElementById('headerEsInput').style.display = 'block';
+								                      		document.getElementById('descriptionEsInput').style.display = 'block';
+								                      		document.getElementById('contentEsInput').style.display = 'block';
+								                      		document.getElementById('headerFrInput').style.display = 'block';
+								                      		document.getElementById('descriptionFrInput').style.display = 'block';
+								                      		document.getElementById('contentFrInput').style.display = 'block';
+								                      		document.getElementById('headerEnInput').style.display = 'block';
+								                      		document.getElementById('descriptionEnInput').style.display = 'block';
+								                      		document.getElementById('contentEnInput').style.display = 'block';
+								                      	}
+								                      	else if (optionSelected == "lhd") { 
+								                      		document.getElementById('filePageInput').style.display = 'block';
+								                      		document.getElementById('headerEsInput').style.display = 'block';
+								                      		document.getElementById('descriptionEsInput').style.display = 'block';
+								                      		document.getElementById('contentEsInput').style.display = 'none';
+								                      		document.getElementById('headerFrInput').style.display = 'block';
+								                      		document.getElementById('descriptionFrInput').style.display = 'block';
+								                      		document.getElementById('contentFrInput').style.display = 'none';
+								                      		document.getElementById('headerEnInput').style.display = 'block';
+								                      		document.getElementById('descriptionEnInput').style.display = 'block';
+								                      		document.getElementById('contentEnInput').style.display = 'none';
+								                      	}
+								                      	else if (optionSelected == "hdc") { 
+								                      		document.getElementById('filePageInput').style.display = 'none';
+								                      		document.getElementById('headerEsInput').style.display = 'block';
+								                      		document.getElementById('descriptionEsInput').style.display = 'block';
+								                      		document.getElementById('contentEsInput').style.display = 'block';
+								                      		document.getElementById('headerFrInput').style.display = 'block';
+								                      		document.getElementById('descriptionFrInput').style.display = 'block';
+								                      		document.getElementById('contentFrInput').style.display = 'block';
+								                      		document.getElementById('headerEnInput').style.display = 'block';
+								                      		document.getElementById('descriptionEnInput').style.display = 'block';
+								                      		document.getElementById('contentEnInput').style.display = 'block';
+								                      	}
+								                      	else if (optionSelected == "hd") { 
+								                      		document.getElementById('filePageInput').style.display = 'none';
+								                      		document.getElementById('headerEsInput').style.display = 'block';
+								                      		document.getElementById('descriptionEsInput').style.display = 'block';
+								                      		document.getElementById('contentEsInput').style.display = 'none';
+								                      		document.getElementById('headerFrInput').style.display = 'block';
+								                      		document.getElementById('descriptionFrInput').style.display = 'block';
+								                      		document.getElementById('contentFrInput').style.display = 'none';
+								                      		document.getElementById('headerEnInput').style.display = 'block';
+								                      		document.getElementById('descriptionEnInput').style.display = 'block';
+								                      		document.getElementById('contentEnInput').style.display = 'none';
+								                      	}
+								                      	else if (optionSelected == "hc") { 
+								                      		document.getElementById('filePageInput').style.display = 'none';
+								                      		document.getElementById('headerEsInput').style.display = 'block';
+								                      		document.getElementById('descriptionEsInput').style.display = 'none';
+								                      		document.getElementById('contentEsInput').style.display = 'block';
+								                      		document.getElementById('headerFrInput').style.display = 'block';
+								                      		document.getElementById('descriptionFrInput').style.display = 'none';
+								                      		document.getElementById('contentFrInput').style.display = 'block';
+								                      		document.getElementById('headerEnInput').style.display = 'block';
+								                      		document.getElementById('descriptionEnInput').style.display = 'none';
+								                      		document.getElementById('contentEnInput').style.display = 'block';
+								                      	}
+								                      	else {
+								                        	document.getElementById('filePageInput').style.display = 'none';
+								                      		document.getElementById('headerEsInput').style.display = 'none';
+								                      		document.getElementById('descriptionEsInput').style.display = 'none';
+								                      		document.getElementById('contentEsInput').style.display = 'none';
+								                      		document.getElementById('headerFrInput').style.display = 'none';
+								                      		document.getElementById('descriptionFrInput').style.display = 'none';
+								                      		document.getElementById('contentFrInput').style.display = 'none';
+								                      		document.getElementById('headerEnInput').style.display = 'none';
+								                      		document.getElementById('descriptionEnInput').style.display = 'none';
+								                      		document.getElementById('contentEnInput').style.display = 'none';
+								                        }
+								                    }
+								                </script>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
+											
+										</div>
+					                	
+
+					                	
+						  				<div class="row" id="filePageInput" {% if 'l' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+					                	<hr/>
+							  				<strong>
+							  					Logo de la page :
+							  				</strong>
+							  				<br/>
+
+											{{ form_errors(formPage) }}
+											<div class="input-icon left">
+									        	Image du produit (recommandé): {{ form_widget(formPage.file) }}
+									        </div>
+										</div>
+
+										<br/><br/>
+
+						  				<ul class="nav nav-tabs">
+											{% set index_general = 1 %}
+											{% for lang in 1..3 %}
+												<li class="{% if index_general == 1 %} active {% endif %}">
+													<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+														{% if lang == 1 %}
+															<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+														{% elseif lang == 2 %}
+															<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
+														{% elseif lang == 3 %}
+															<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+														{% endif %}
+													</a>
+												</li>
+												{% set index_general = index_general + 1 %}
+											{% endfor %}
+										</ul>
+
+										<div class="tab-content" id="product_content">
+											<div class="tab-pane fade active in" id="tab_1">
+												<div class="row">
+													<div class="row" id="headerEsInput" {% if 'h' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Título aparente:
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.headerEs) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.headerEs) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set opt_nameEs = {'attr': {'class': 'form-control placeholder-no-fix',
+													        		'type':'text', 'placeholder':'Titulo aparente', 'id':'_headerEs'}} %}
+													        	{{ form_widget(formPage.headerEs, opt_nameEs) }}
+													        </div>
+														</div>
+									  				</div>
+
+													<div class="row" id="descriptionEsInput" {% if 'd' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Descripción:
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.descriptionEs) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.descriptionEs) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set opt_descriptionEs = {'attr': {'class': 'form-control placeholder-no-fix',
+													        		'type':'text', 'placeholder':'Descripción', 'id':'_descriptionEs'}} %}
+													        	{{ form_widget(formPage.descriptionEs, opt_descriptionEs) }}
+													        </div>
+														</div>
+									  				</div>
+
+													<div class="row" id="contentEsInput" {% if 'c' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Contenido:
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.contentEs) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.contentEs) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set contentEs = {'attr': {'class': 'redactor', 'placeholder':'Contenido', 'id':'_contentEs', 'name':'_contentEs'}} %}
+													        	{{ form_widget(formPage.contentEs, contentEs) }}
+													        </div>
+														</div>
+									  				</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="tab_2">
+												<div class="row">
+													<div class="row" id="headerFrInput" {% if 'h' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Titre apparent :
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.headerFr) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.headerFr) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set opt_headerFr = {'attr': {'class': 'form-control placeholder-no-fix',
+													        		'type':'text', 'placeholder':'En tête ', 'id':'_headerFr'}} %}
+													        	{{ form_widget(formPage.headerFr, opt_headerFr) }}
+													        </div>
+														</div>
+									  				</div>
+
+													<div class="row" id="descriptionFrInput" {% if 'd' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Description :
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.descriptionFr) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.descriptionFr) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set opt_descriptionFr = {'attr': {'class': 'form-control placeholder-no-fix',
+													        		'type':'text', 'placeholder':'Brêve description ', 'id':'_descriptionFr'}} %}
+													        	{{ form_widget(formPage.descriptionFr, opt_descriptionFr) }}
+													        </div>
+														</div>
+									  				</div>
+
+													<div class="row" id="contentFrInput" {% if 'c' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Contenu :
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.contentFr) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.contentFr) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set contentFr = {'attr': {'class': 'redactor', 'placeholder':'Contenu', 'id':'_contentFr', 'name':'_contentFr'}} %}
+													        	{{ form_widget(formPage.contentFr, contentFr) }}
+													        </div>
+														</div>
+									  				</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="tab_3">
+												<div class="row">
+													<div class="row" id="headerEnInput" {% if 'h' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Title displayed:
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.headerEn) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.headerEn) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set opt_headerEn = {'attr': {'class': 'form-control placeholder-no-fix',
+													        		'type':'text', 'placeholder':'Header', 'id':'_headerEn'}} %}
+													        	{{ form_widget(formPage.headerEn, opt_headerEn) }}
+													        </div>
+														</div>
+									  				</div>
+
+													<div class="row" id="descriptionEnInput" {% if 'd' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Description:
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.descriptionEn) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.descriptionEn) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set opt_descriptionEn = {'attr': {'class': 'form-control placeholder-no-fix',
+													        		'type':'text', 'placeholder':'Short description', 'id':'_descriptionEn'}} %}
+													        	{{ form_widget(formPage.descriptionEn, opt_descriptionEn) }}
+													        </div>
+														</div>
+									  				</div>
+
+													<div class="row" id="contentEnInput" {% if 'c' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
+										  				<strong>
+										  					Content:
+										  				</strong>
+														<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													        {% if form_errors(formPage.contentEn) %}
+											                    <div class="error_message">
+											                      	<span class="warning_word">
+											                        	{{ 'user.warning.warning'|trans }}
+											                      	</span>
+											                      	<span class="warning_message">
+											                        	{{ form_errors(formPage.contentEn) }}
+											                      	</span>
+											                    </div>
+											                    <br/>
+											                {% endif %}
+															<div class="input-icon">
+													        	{% set contentEn = {'attr': {'class': 'redactor', 'placeholder':'Content', 'id':'_contentEn', 'name':'_contentEn'}} %}
+													        	{{ form_widget(formPage.contentEn, contentEn) }}
+													        </div>
+														</div>
+									  				</div>
+												</div>
+											</div>
+										</div>
+
+										<hr/>
+										
+										<div class="row">
+							  				<strong>
+							  					Nom dans la base de données (sans espaces) :
+							  				</strong>
+						  				</div>
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {% if form_errors(formPage.dataBaseName) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formPage.dataBaseName) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_dataBaseName = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':"Nom dans la base de données (ex: Page_Principale)", 'id':'dataBaseName', 
+									        		'name':'_dataBaseName'}} %}
+									        	{{ form_widget(formPage.dataBaseName, opt_dataBaseName) }}
+									        </div>
+										</div>
+										
+					                </div>
+
+									<hr/>
+
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formPage) }}
+
+									<div class="center">
+										<input type="submit" class="btn btn-admin" value="Enregistrer"/>
+									</div>
+									<br/><br/><br/>
+								</form>
+					  		</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

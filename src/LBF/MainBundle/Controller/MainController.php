@@ -112,6 +112,21 @@ class MainController extends Controller
                             ->getRepository('LBFMainBundle:Testimony')
                             ->findAll();
 
+        $pages = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Page')
+                            ->findAll();
+
+        $creators = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Member')
+                            ->findAll();
+
+        $homePhotos = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:HomePhoto')
+                            ->findAll();
+
         return $this->render('LBFMainBundle:Main:indexMain.html.twig', array(
         	'allPanVino' => $allPanVino,
         	'allBufSalado' => $allBufSalado,
@@ -129,7 +144,10 @@ class MainController extends Controller
             'recipesMermeladas' => $recipesMermeladas,
             'allRecipes' => $allRecipes,
 			'allSortedRecipes' => $allSortedRecipes,
-            'testimonies' => $testimonies
+            'testimonies' => $testimonies,
+            'pages' => $pages,
+            'creators' => $creators,
+            'homePhotos' => $homePhotos
         	));
     }
 
@@ -403,30 +421,6 @@ class MainController extends Controller
             $senderEmail = $_POST['emailContact'];
         }
         $senderSubject = $_POST['sujetMail'];
-        // if ($senderSubject == 'SM0') {
-        //     $senderSubject = "Commande non validée";
-        // }
-        // else if ($senderSubject == 'SM1') {
-        //     $senderSubject = "Commande vide";
-        // }
-        // else if ($senderSubject == 'SM2') {
-        //     $senderSubject = "Commande refusée";
-        // }
-        // else if ($senderSubject == 'SM3') {
-        //     $senderSubject = "Compte utilisateur défaillant";
-        // }
-        // else if ($senderSubject == 'SM4') {
-        //     $senderSubject = "Erreur de site web";
-        // }
-        // else if ($senderSubject == 'SM5') {
-        //     $senderSubject = "Demande de renseignements";
-        // }
-        // else if ($senderSubject == 'SM6') {
-        //     $senderSubject = "Nouveaux produits";
-        // }
-        // else {
-        //     $senderSubject = "Erreur ";
-        // }
         
         $senderOrderNumber = '';
         if ($_POST['orderNumber']) {

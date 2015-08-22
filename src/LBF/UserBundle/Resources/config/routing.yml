@@ -1,10 +1,4 @@
+# homepage
 lbf_user_homepage:
     path:     /
     defaults: { _controller: LBFUserBundle:User:index }
-
-
-# gbe_presentation_photos_routes:
-#     pattern:  /photos/{routesId}
-#     defaults: { _controller: GBEPresentationBundle:Photos:photosRoutes }
-#     requirements:
-#         routesId: \d*

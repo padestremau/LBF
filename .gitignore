@@ -7,7 +7,6 @@ bin/*
 */logs/*
 */cache/*
 web/uploads/*
-web/bundles/*
 
 # Configuration files
 app/config/parameters.ini
@@ -17,5 +16,8 @@ app/config/parameters.yml
 composer.phar
 
 # UserFiles (No need to exchange those files. Keep them local.)
-# web/img/products
-# web/img/profiles
+web/img/products
+web/img/profiles
+web/img/recipes
+web/img/presentation
+web/img/creators

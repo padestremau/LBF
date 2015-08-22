@@ -1,0 +1,129 @@
+{# src/LBF/AdminBundle/Resources/Admin/newPhoto.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Nouvelle photo
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="">
+
+					  		<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_photos') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>
+
+					  		<div class="row80">
+					  			<form method="post" {{ form_enctype(formPhoto) }}>
+					        		{% if form_errors(formPhoto) %}
+					                    <div class="error_message">
+					                      <span class="warning_word">
+					                        {{ 'user.warning.warning'|trans }}
+					                      </span>
+					                      <span class="warning_message">
+					                        {{ form_errors(formPhoto) }}
+					                      </span>
+					                    </div>
+					                    <br/>
+					                {% endif %}
+
+					                <div class="row">
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        La photo doit prendre la taille (proportions égales) suivante : 
+											<br/>
+											<div class="row">
+										  		<div class="col-lg-2 col-md-1 hidden-sm hidden-xs"></div>
+										  		<div class="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+										  			<img src="{{ asset('img/system/defaults/default_sizing_foto.png') }}" alt="Default photo"/>
+										  		</div>
+										  		<div class="col-lg-2 col-md-1 hidden-sm hidden-xs"></div>
+									  			
+									  		</div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
+											La photo est affichée dans l'ordre au numéro :
+										</div>
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									        {% if form_errors(formPhoto.photoOrder) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formPhoto.photoOrder) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_photoOrder = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'id':'_photoOrder', 'name':'_photoOrder', 'type':'text'}} %}
+									        	{{ form_widget(formPhoto.photoOrder, opt_photoOrder) }}
+									        </div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
+										
+									</div>
+				                	
+
+				                	
+					  				<div class="row">
+				                	<hr/>
+						  				<strong>
+						  					Photo :
+						  				</strong>
+						  				<br/>
+
+										{{ form_errors(formPhoto) }}
+										<div class="input-icon left">
+								        	Sélectionnez la photo : {{ form_widget(formPhoto.file) }}
+								        </div>
+									</div>
+
+									<hr/>
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formPhoto) }}
+
+									<div class="center">
+										<input type="submit" class="btn btn-admin" value="Enregistrer"/>
+									</div>
+									<br/><br/><br/>
+								</form>
+					  		</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

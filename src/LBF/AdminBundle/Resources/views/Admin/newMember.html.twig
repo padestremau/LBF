@@ -1,0 +1,245 @@
+{# src/LBF/AdminBundle/Resources/Admin/newMember.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Nouveau membre
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="">
+
+					  		<div class="row90">
+		        				<div class="row left">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_members') }}')" class="btn btn-admin">
+					    				Retour
+					    			</a>
+					    		</div>
+		        			</div>
+
+					  		<div class="row80">
+					  			<form method="post" {{ form_enctype(formMember) }}>
+					        		{% if form_errors(formMember) %}
+					                    <div class="error_message">
+					                      <span class="warning_word">
+					                        {{ 'user.warning.warning'|trans }}
+					                      </span>
+					                      <span class="warning_message">
+					                        {{ form_errors(formMember) }}
+					                      </span>
+					                    </div>
+					                    <br/>
+					                {% endif %}
+
+					                <div class="row">
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {% if form_errors(formMember.name) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formMember.name) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set name = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':'Titre de la page', 'id':'name'}} %}
+									        	{{ form_widget(formMember.name, name) }}
+									        </div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
+											Le membre est affiché dans l'ordre au numéro :
+										</div>
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									        {% if form_errors(formMember.orderList) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formMember.orderList) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_orderList = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'id':'_orderList', 'name':'_orderList', 'type':'text'}} %}
+									        	{{ form_widget(formMember.orderList, opt_orderList) }}
+									        </div>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
+										
+									</div>
+				                	
+
+				                	
+					  				<div class="row left">
+				                	<hr/>
+						  				<strong>
+						  					Photo du membre :
+						  				</strong>
+						  				<br/>
+						  				<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        La photo doit prendre la taille (proportions égales) suivante : 
+											<br/>
+											<div class="row">
+										  		<div class="col-lg-4 col-md-3 col-sm-2 col-xs-1"></div>
+										  		<div class="col-lg-4 col-md-6 col-sm-8 col-xs-10">
+										  			<img src="{{ asset('img/system/defaults/default_sizing_creator.png') }}" alt="Default photo"/>
+										  		</div>
+										  		<div class="col-lg-4 col-md-3 col-sm-2 col-xs-1"></div>
+									  			
+									  		</div>
+										</div>
+
+										{{ form_errors(formMember) }}
+										<div class="input-icon left">
+								        	Image affichée sur le site (recommandé): {{ form_widget(formMember.file) }}
+								        </div>
+									</div>
+
+									<br/><br/>
+
+					  				<ul class="nav nav-tabs">
+										{% set index_general = 1 %}
+										{% for lang in 1..3 %}
+											<li class="{% if index_general == 1 %} active {% endif %}">
+												<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+													{% if lang == 1 %}
+														<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+													{% elseif lang == 2 %}
+														<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
+													{% elseif lang == 3 %}
+														<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+													{% endif %}
+												</a>
+											</li>
+											{% set index_general = index_general + 1 %}
+										{% endfor %}
+									</ul>
+
+									<div class="tab-content" id="product_content">
+										<div class="tab-pane fade active in" id="tab_1">
+											<div class="row">
+								  				<strong>
+								  					Descripción:
+								  				</strong>
+												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											        {% if form_errors(formMember.descriptionEs) %}
+									                    <div class="error_message">
+									                      	<span class="warning_word">
+									                        	{{ 'user.warning.warning'|trans }}
+									                      	</span>
+									                      	<span class="warning_message">
+									                        	{{ form_errors(formMember.descriptionEs) }}
+									                      	</span>
+									                    </div>
+									                    <br/>
+									                {% endif %}
+													<div class="input-icon">
+											        	{% set opt_descriptionEs = {'attr': {'class': 'form-control placeholder-no-fix',
+											        		'type':'text', 'placeholder':'Descripción', 'id':'_descriptionEs'}} %}
+											        	{{ form_widget(formMember.descriptionEs, opt_descriptionEs) }}
+											        </div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab_2">
+											<div class="row">
+								  				<strong>
+								  					Description :
+								  				</strong>
+												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											        {% if form_errors(formMember.descriptionFr) %}
+									                    <div class="error_message">
+									                      	<span class="warning_word">
+									                        	{{ 'user.warning.warning'|trans }}
+									                      	</span>
+									                      	<span class="warning_message">
+									                        	{{ form_errors(formMember.descriptionFr) }}
+									                      	</span>
+									                    </div>
+									                    <br/>
+									                {% endif %}
+													<div class="input-icon">
+											        	{% set opt_descriptionFr = {'attr': {'class': 'form-control placeholder-no-fix',
+											        		'type':'text', 'placeholder':'Brêve description ', 'id':'_descriptionFr'}} %}
+											        	{{ form_widget(formMember.descriptionFr, opt_descriptionFr) }}
+											        </div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="tab_3">
+											<div class="row">
+								  				<strong>
+								  					Description:
+								  				</strong>
+												<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											        {% if form_errors(formMember.descriptionEn) %}
+									                    <div class="error_message">
+									                      	<span class="warning_word">
+									                        	{{ 'user.warning.warning'|trans }}
+									                      	</span>
+									                      	<span class="warning_message">
+									                        	{{ form_errors(formMember.descriptionEn) }}
+									                      	</span>
+									                    </div>
+									                    <br/>
+									                {% endif %}
+													<div class="input-icon">
+											        	{% set opt_descriptionEn = {'attr': {'class': 'form-control placeholder-no-fix',
+											        		'type':'text', 'placeholder':'Short description', 'id':'_descriptionEn'}} %}
+											        	{{ form_widget(formMember.descriptionEn, opt_descriptionEn) }}
+											        </div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<hr/>
+									
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formMember) }}
+
+									<div class="center">
+										<input type="submit" class="btn btn-admin" value="Enregistrer"/>
+									</div>
+									<br/><br/><br/>
+								</form>
+					  		</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

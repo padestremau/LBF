@@ -1,0 +1,125 @@
+{# src/LBF/AdminBundle/Resources/Admin/pages.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Photos
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="center">
+
+					  		<div class="row">
+					    		<div class="row90 left">
+					    			<a href="{{ path('lbf_admin_new_photo') }}" class="btn btn-admin">
+					    				Nouvelle photo
+					    			</a>
+					    		</div>
+					    		{% if photos|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="center">
+				                              Image
+				                            </th>
+				                            <th class="center">
+				                              Créée le
+				                            </th>
+				                            <th class="center">
+				                              	Ordre
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'orderList', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'orderList', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for photo in photos %}
+				                            <tr>
+				                            	<th class="center">
+					                              {{ photo.id }}
+					                            </th>
+					                            <td class="center">
+					                              	{% if photo.alt|length > 0 and photo.url|length > 0 %}
+														<div class="coverPhoto_img_admin" style="background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%;">
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="coverPhoto_img_admin"/>
+													{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if photo.createdAt|length > 0 %}
+					                              		{{ photo.createdAt|date("d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if photo.photoOrder|length > 0 %}
+					                              		{{ photo.photoOrder }}
+					                              	{% else %}
+					                              		-
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_photo', {'photoId':photo.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="javascript:areYouSureDeletePhoto('{{ path('lbf_admin_delete_photo', {'photoId':photo.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucune "photo"...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

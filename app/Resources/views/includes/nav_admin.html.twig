@@ -25,7 +25,7 @@
 				{% endif %}
 				">
 				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_currentOrders') }}')" class="btn btn-choice">
-					Commandes en cours
+					Comm. en cours
 					<div class="float-right inner_arrow">
 						<img src="{{ asset('img/system/defaults/currentOrders.png') }}" alt="" class="btn_right_arrow"/>
 					</div>
@@ -37,7 +37,7 @@
 				{% endif %}
 				">
 				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pastOrders') }}')" class="btn btn-choice">
-					Commandes passées
+					Comm. passées
 					<div class="float-right inner_arrow">
 						<img src="{{ asset('img/system/defaults/pastOrders.png') }}" alt="" class="btn_right_arrow"/>
 					</div>
@@ -85,7 +85,7 @@
 				{% endif %}
 				">
 				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_comments') }}')" class="btn btn-choice">
-					Commentaires
+					Avis
 					<div class="float-right inner_arrow">
 						<img src="{{ asset('img/system/defaults/comments.png') }}" alt="" class="btn_right_arrow"/>
 					</div>
@@ -112,6 +112,42 @@
 					Recettes
 					<div class="float-right inner_arrow">
 						<img src="{{ asset('img/system/defaults/recipes.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_pages' or route == 'lbf_admin_pages_asked' or route == 'lbf_admin_new_page' or route == 'lbf_admin_edit_page' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_pages') }}')" class="btn btn-choice">
+					Pages
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/pages.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_members' or route == 'lbf_admin_members_sorted' or route == 'lbf_admin_new_member' or route == 'lbf_admin_edit_member'  %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_members') }}')" class="btn btn-choice">
+					Membres
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/members.png') }}" alt="" class="btn_right_arrow"/>
+					</div>
+				</a>
+			</li>
+			<li class="
+				{% if route == 'lbf_admin_photos' or route == 'lbf_admin_photos_sorted' or route == 'lbf_admin_new_photo' or route == 'lbf_admin_edit_photo' %} 
+					active 
+				{% endif %}
+				">
+				<a href="javascript:loadContentAdmin('{{ path('lbf_admin_photos') }}')" class="btn btn-choice">
+					Photos
+					<div class="float-right inner_arrow">
+						<img src="{{ asset('img/system/defaults/images.png') }}" alt="" class="btn_right_arrow"/>
 					</div>
 				</a>
 			</li>

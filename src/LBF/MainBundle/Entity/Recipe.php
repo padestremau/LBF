@@ -4,6 +4,12 @@ namespace LBF\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * Recipe
  *
@@ -129,14 +135,14 @@ class Recipe
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=true)
+     * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updatedAt", type="datetime")
      */
     private $updatedAt;
 
@@ -146,6 +152,13 @@ class Recipe
      * @ORM\Column(name="active", type="string", length=255, nullable=true)
      */
     private $active;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="taste", type="boolean")
+     */
+    private $taste;
 
     /**
      * @var string
@@ -173,6 +186,7 @@ class Recipe
         $this->createdAt        = new \Datetime;
         $this->updatedAt        = new \Datetime;
         $this->active           = "active";
+        $this->taste            = true;
     }
 
 
@@ -813,5 +827,28 @@ class Recipe
     public function getDescriptionEn()
     {
         return $this->descriptionEn;
+    }
+
+    /**
+     * Set taste
+     *
+     * @param boolean $taste
+     * @return Recipe
+     */
+    public function setTaste($taste)
+    {
+        $this->taste = $taste;
+
+        return $this;
+    }
+
+    /**
+     * Get taste
+     *
+     * @return boolean 
+     */
+    public function getTaste()
+    {
+        return $this->taste;
     }
 }

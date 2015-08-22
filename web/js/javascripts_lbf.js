@@ -260,6 +260,15 @@
         changeCSSsheet('.recipe_img', 'height', widthRecipe+'px');
           });
 
+    var coverPhoto_height_lg = $('.coverPhoto_img_admin').width() / 3.030303;
+    $('.coverPhoto_img_admin').css({'height':coverPhoto_height_lg+'px'});
+    changeCSSsheet('.coverPhoto_img_admin', 'height', coverPhoto_height_lg+'px');
+    $(window).resize(function() {
+          var coverPhoto_height_lg = $('.coverPhoto_img_admin').width() / 3.030303;
+          $('.coverPhoto_img_admin').css({'height':coverPhoto_height_lg+'px'});
+          changeCSSsheet('.coverPhoto_img_admin', 'height', coverPhoto_height_lg+'px');
+    });
+
 
     (function($) {
       $.fn.juizScrollTo = function( speed ) { 
@@ -447,4 +456,14 @@ function areYouSureDeleteCompany(path) {
   }
 }
 
+function areYouSureDeleteMember(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer ce membre ?')) {
+    window.location = path;   
+  }
+}
 
+function areYouSureDeletePhoto(path) {
+  if (confirm('Etes-vous certain de vouloir supprimer cette photo ?')) {
+    window.location = path;   
+  }
+}

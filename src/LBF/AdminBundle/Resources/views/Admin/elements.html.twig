@@ -109,7 +109,7 @@
 					                              {{ element.id }}
 					                            </th>
 					                            <td class="center">
-					                              	{% if element.webPath|length > 0 %}
+					                              	{% if element.alt|length > 0 and element.url|length > 0 %}
 														<div class="product_img_admin" style="background-image: url('{{ asset(element.webPath) }}'); background-size: cover; background-position: 50%;">
 														</div>
 													{% else %}

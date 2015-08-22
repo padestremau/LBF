@@ -1,0 +1,175 @@
+{# src/LBF/AdminBundle/Resources/Admin/members.html.twig #}
+
+{% extends "LBFAdminBundle::admin_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Membres
+{% endblock %}
+
+{% block LBF_Admin_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content_admin" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_padding" id="section9">
+
+					<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+		        	{% if is_granted("ROLE_ADMIN") %}
+
+		        		<!-- BEGIN nav admin -->
+				          {% include 'includes/nav_admin.html.twig' %}
+				        <!-- END nav admin -->
+
+					  	<div id="section_admin" class="center">
+
+					  		<div class="row">
+					    		<div class="row90 left">
+					    			<a href="{{ path('lbf_admin_new_member') }}" class="btn btn-admin">
+					    				Nouveau membre
+					    			</a>
+					    		</div>
+					    		{% if members|length > 0 %}
+									<div class="table-responsive">
+				                      <table class="table">
+				                        <thead>
+				                          <tr>
+				                            <th class="center">
+				                              Id
+				                            </th>
+				                            <th class="center">
+				                              Image
+				                            </th>
+				                            <th class="center">
+				                              	Nom
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'name', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'name', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
+				                            <th class="center">
+				                              Description
+				                            </th>
+				                            <th class="center">
+				                              Langues dispo
+				                            </th>
+				                            <th class="center">
+				                              Créé le
+				                            </th>
+				                            <th class="center">
+				                              Modifié le
+				                            </th>
+				                            <th class="center">
+				                              	Ordre
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'orderList', 'order':'ASC'}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-triangle-top"></span>
+					                            </a>
+				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements_sorted', {'sortBy':'orderList', 'order':'DESC'}) }}')" class="btn btn-action-admin">
+						                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+					                            </a>
+				                            </th>
+				                            <th class="center">
+				                              Action
+				                            </th>
+				                          </tr>
+				                        </thead>
+				                        <tbody>
+				                          {% for member in members %}
+				                            <tr>
+				                            	<th class="center">
+					                              {{ member.id }}
+					                            </th>
+					                            <td class="center">
+					                              	{% if member.webPath|length > 0 %}
+														<div class="product_img_admin" style="background-image: url('{{ asset(member.webPath) }}'); background-size: cover; background-position: 50%;">
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
+													{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if member.name|length > 0 %}
+					                              		{{ member.name }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if member.descriptionEs|length > 0 %}
+					                              		{{ member.descriptionEs }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if member.descriptionEs|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                              	{% if member.descriptionFr|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                              	{% if member.descriptionEn|length > 0 %}
+					                              		<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag_sm_admin"/>
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if member.createdAt|length > 0 %}
+					                              		{{ member.createdAt|date("d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if member.updatedAt|length > 0 %}
+					                              		{{ member.updatedAt|date("d/M/Y") }}
+					                              	{% else %}
+					                              		---
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                              	{% if member.orderList|length > 0 %}
+					                              		{{ member.orderList }}
+					                              	{% else %}
+					                              		-
+					                              	{% endif %}
+					                            </td>
+					                            <td class="center">
+					                            	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_edit_member', {'memberId':member.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-pencil"></span>
+					                            	</a>
+					                            	<a href="javascript:areYouSureDeleteMember('{{ path('lbf_admin_delete_member', {'memberId':member.id}) }}')" class="btn btn-action-admin">
+						                            	<span class="glyphicon glyphicon-trash"></span>
+					                            	</a>
+					                            </td>
+				                            </tr>
+				                          {% endfor %}
+				                        </tbody>
+				                      </table>
+				                    </div>
+								{% else %}
+									<div class="center col-md-9">
+										Désolé, aucun "membre"...
+									</div>
+									<div class="col-md-3"></div>
+								{% endif %}
+					    	</div>
+
+					  	</div>
+		        	{% else %}
+		        		<div>
+		        			<br/><br/><br/><br/><br/>
+		        			You're not allowed on this part of the website.
+		        		</div>
+		        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Admin_body %}

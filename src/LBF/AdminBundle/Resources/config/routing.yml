@@ -197,3 +197,84 @@ lbf_admin_delete_recipe:
     defaults: { _controller: LBFAdminBundle:Admin:deleteRecipe }
     requirements:
         recipeId: \d+
+
+
+# Pages
+lbf_admin_pages:
+    path:     /pages/
+    defaults: { _controller: LBFAdminBundle:Admin:pages }
+
+lbf_admin_pages_asked:
+    path:     /pages/asked/{pageId}/
+    defaults: { _controller: LBFAdminBundle:Admin:pages }
+    requirements:
+        pageId: \d+
+
+lbf_admin_new_page:
+    path:     /pages/new/
+    defaults: { _controller: LBFAdminBundle:Admin:newPage }
+
+lbf_admin_edit_page:
+    path:     /pages/edit/{pageId}/
+    defaults: { _controller: LBFAdminBundle:Admin:newPage }
+    requirements:
+        pageId: \d+
+
+lbf_admin_delete_page:
+    path:     /pages/delete/{pageId}/
+    defaults: { _controller: LBFAdminBundle:Admin:deletePage }
+    requirements:
+        pageId: \d+
+
+# Members
+lbf_admin_members:
+    path:     /members/
+    defaults: { _controller: LBFAdminBundle:Admin:members }
+
+lbf_admin_members_sorted:
+    path:     /members/sortedBy/{sortBy}/{order}/
+    defaults: { _controller: LBFAdminBundle:Admin:members }
+
+lbf_admin_new_member:
+    path:     /members/new/
+    defaults: { _controller: LBFAdminBundle:Admin:newMember }
+
+lbf_admin_edit_member:
+    path:     /members/edit/{memberId}/
+    defaults: { _controller: LBFAdminBundle:Admin:newMember }
+    requirements:
+        memberId: \d+
+
+lbf_admin_delete_member:
+    path:     /members/delete/{memberId}/
+    defaults: { _controller: LBFAdminBundle:Admin:deleteMember }
+    requirements:
+        memberId: \d+
+
+# Photos
+lbf_admin_photos:
+    path:     /photos/
+    defaults: { _controller: LBFAdminBundle:Admin:photos }
+
+lbf_admin_photos_sorted:
+    path:     /photos/sortedBy/{sortBy}/{order}/
+    defaults: { _controller: LBFAdminBundle:Admin:photos }
+
+lbf_admin_new_photo:
+    path:     /photos/new/
+    defaults: { _controller: LBFAdminBundle:Admin:newPhoto }
+
+lbf_admin_edit_photo:
+    path:     /photos/edit/{photoId}/
+    defaults: { _controller: LBFAdminBundle:Admin:newPhoto }
+    requirements:
+        photoId: \d+
+
+lbf_admin_delete_photo:
+    path:     /photos/delete/{photoId}/
+    defaults: { _controller: LBFAdminBundle:Admin:deletePhoto }
+    requirements:
+        photoId: \d+
+
+
+

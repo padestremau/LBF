@@ -19,6 +19,15 @@ use LBF\MainBundle\Form\NewsletterEmailType;
 use LBF\UserBundle\Form\EditUserType;
 use LBF\UserBundle\Form\EditCompanyType;
 
+use LBF\MainBundle\Entity\Page;
+use LBF\MainBundle\Form\PageType;
+
+use LBF\MainBundle\Entity\Member;
+use LBF\MainBundle\Form\MemberType;
+
+use LBF\MainBundle\Entity\HomePhoto;
+use LBF\MainBundle\Form\HomePhotoType;
+
 class AdminController extends Controller
 {
     public function indexAction()
@@ -699,6 +708,222 @@ class AdminController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('lbf_admin_recipes'));
+    }
+
+    public function pagesAction($pageId = null)
+    {
+        if ($pageId != null) {
+            $pageAsked = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Page')
+                            ->find($pageId);
+        }
+        else {
+            $pageAsked = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Page')
+                            ->findLatestOne();
+
+            if (sizeof($pageAsked) > 0) {
+                $pageAsked = $pageAsked[0];
+            }
+            else {
+                $pageAsked = new Page;
+            }
+        }
+
+        $pages = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:Page')
+                        ->findAll();
+
+        return $this->render('LBFAdminBundle:Admin:pages.html.twig', array(
+            'pageAsked' => $pageAsked, 
+            'pages' => $pages
+            ));
+    }
+
+    public function newPageAction($pageId = null)
+    {
+        if (sizeof($pageId) > 0) {
+            $page = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Page')
+                            ->find($pageId);
+        } else {
+            $page = new Page;
+        }
+        
+        // On utiliser le PageType
+        $formPage = $this->createForm(new PageType(), $page);
+
+        // On récupère la requête
+        $formPage->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formPage->isValid()) {
+            $page->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($page);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_pages'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newPage.html.twig', array(
+            'formPage' => $formPage->createView(),
+            'pageAsked' => $page
+            ));
+    }
+
+    public function deletePageAction($pageId)
+    {
+        $page = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:Page')
+                        ->find($pageId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($page);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_pages'));
+    }
+
+    public function membersAction($sortBy = null, $order = null)
+    {
+        if ($sortBy) {
+            $members = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Member')
+                            ->findBy([], [$sortBy => $order]);
+        }
+        else {
+            $members = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Member')
+                            ->findBy([], ['orderList' => 'ASC']);
+        }
+        
+
+        return $this->render('LBFAdminBundle:Admin:members.html.twig', array(
+            'members' => $members
+            ));
+    }
+
+    public function newMemberAction($memberId = null)
+    {
+        if (sizeof($memberId) > 0) {
+            $member = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:Member')
+                            ->find($memberId);
+        } else {
+            $member = new Member;
+        }
+        
+        // On utiliser le MemberType
+        $formMember = $this->createForm(new MemberType(), $member);
+
+        // On récupère la requête
+        $formMember->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formMember->isValid()) {
+            $member->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($member);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_members'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newMember.html.twig', array(
+            'formMember' => $formMember->createView()
+            ));
+    }
+
+    public function deleteMemberAction($memberId)
+    {
+        $member = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:Member')
+                        ->find($memberId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($member);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_members'));
+    }
+
+    public function photosAction($sortBy = null, $order = null)
+    {
+        if ($sortBy) {
+            $photos = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:HomePhoto')
+                            ->findBy([], [$sortBy => $order]);
+        }
+        else {
+            $photos = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:HomePhoto')
+                            ->findBy([], ['photoOrder' => 'ASC']);
+        }
+        
+
+        return $this->render('LBFAdminBundle:Admin:photos.html.twig', array(
+            'photos' => $photos
+            ));
+    }
+
+    public function newPhotoAction($photoId = null)
+    {
+        if (sizeof($photoId) > 0) {
+            $photo = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('LBFMainBundle:HomePhoto')
+                            ->find($photoId);
+        } else {
+            $photo = new HomePhoto;
+        }
+        
+        // On utiliser le PhotoType
+        $formPhoto = $this->createForm(new HomePhotoType(), $photo);
+
+        // On récupère la requête
+        $formPhoto->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formPhoto->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($photo);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('lbf_admin_photos'));
+        }
+
+        return $this->render('LBFAdminBundle:Admin:newPhoto.html.twig', array(
+            'formPhoto' => $formPhoto->createView()
+            ));
+    }
+
+    public function deletePhotoAction($photoId)
+    {
+        $photo = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:HomePhoto')
+                        ->find($photoId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($photo);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_photos'));
     }
 
     
