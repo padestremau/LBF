@@ -108,10 +108,38 @@
 							<div class="col-lg-3 col-md-3 hidden-sm hidden-xs"></div>
 			        		<div class="col-lg-6 col-md-6 col-sm-9 col-xs-12">
 								<h2>
-									{{ 'main.titles.title_meat' | trans }}
+									{% set pagePrincipale = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Page_Principale' %}
+												{% set pagePrincipale = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+									{% if current_language %}
+										{% if current_language == 'fr' and pagePrincipale.headerFr|length > 0 %}
+											{{ pagePrincipale.headerFr }}
+										{% elseif current_language == 'en' and pagePrincipale.headerEn|length > 0 %}
+											{{ pagePrincipale.headerEn }} 
+										{% else %}
+											{{ pagePrincipale.headerEs }}
+										{% endif %}
+									{% else %}
+										{{ pagePrincipale.headerEs }}
+									{% endif %}
 									<br/>
 									<span>
-										{{ 'main.titles.title_meat_s' | trans }}
+										{% if current_language %}
+											{% if current_language == 'fr' and pagePrincipale.descriptionFr|length > 0 %}
+												{{ pagePrincipale.descriptionFr }}
+											{% elseif current_language == 'en' and pagePrincipale.descriptionEn|length > 0 %}
+												{{ pagePrincipale.descriptionEn }} 
+											{% else %}
+												{{ pagePrincipale.descriptionEs }}
+											{% endif %}
+										{% else %}
+											{{ pagePrincipale.descriptionEs }}
+										{% endif %}
 									</span>
 								</h2>
 			        		</div>
@@ -138,13 +166,47 @@
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 								<button class="no_style_button pres_a" type="button" data-toggle="modal" data-target="#qualityModal">
+									{% set pageQuality = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Qualite_Principal' %}
+												{% set pageQuality = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
+										{% if pageQuality.url|length > 0 and pageQuality.alt|length > 0 %}
+											<img alt="Quality" src="{{ asset(pageQuality.webPath) }}" class="icon_presentation"/>
+										{% else %}
+											<img alt="Quality" src="{{ asset('img/system/icons/quality.png') }}" class="icon_presentation"/>
+										{% endif %}
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<h3> {{ 'main.titles.qualityProduct' | trans }} </h3>
+										<h3> 
+											{% if current_language %}
+												{% if current_language == 'fr' and pageQuality.headerFr|length > 0 %}
+													{{ pageQuality.headerFr }}
+												{% elseif current_language == 'en' and pageQuality.headerEn|length > 0 %}
+													{{ pageQuality.headerEn }} 
+												{% else %}
+													{{ pageQuality.headerEs }}
+												{% endif %}
+											{% else %}
+												{{ pageQuality.headerEs }}
+											{% endif %}
+										</h3>
 										<p>
-											{{ 'main.content.qualityProduct' | trans }}
+											{% if current_language %}
+												{% if current_language == 'fr' and pageQuality.descriptionFr|length > 0 %}
+													{{ pageQuality.descriptionFr }}
+												{% elseif current_language == 'en' and pageQuality.descriptionEn|length > 0 %}
+													{{ pageQuality.descriptionEn }} 
+												{% else %}
+													{{ pageQuality.descriptionEs }}
+												{% endif %}
+											{% else %}
+												{{ pageQuality.descriptionEs }}
+											{% endif %}
 
 											<!-- Button trigger modal -->
 											<span class="read-more" >
@@ -156,13 +218,47 @@
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 						        <a href="#ourProducts" class="no_style_a pres_a">
+						        	{% set pageProducts = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Produits_Principal' %}
+												{% set pageProducts = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
 						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
+						        		{% if pageProducts.url|length > 0 and pageProducts.alt|length > 0 %}
+											<img alt="Products" src="{{ asset(pageProducts.webPath) }}" class="icon_presentation"/>
+										{% else %}
+											<img alt="Products" src="{{ asset('img/system/icons/products.png') }}" class="icon_presentation"/>
+										{% endif %}
 						        	</div>
 						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<h3> {{ 'main.titles.ourProducts' | trans }} </h3>
+										<h3> 
+											{% if current_language %}
+												{% if current_language == 'fr' and pageProducts.headerFr|length > 0 %}
+													{{ pageProducts.headerFr }}
+												{% elseif current_language == 'en' and pageProducts.headerEn|length > 0 %}
+													{{ pageProducts.headerEn }} 
+												{% else %}
+													{{ pageProducts.headerEs }}
+												{% endif %}
+											{% else %}
+												{{ pageProducts.headerEs }}
+											{% endif %}
+										</h3>
 										<p>
-											{{ 'main.content.ourProducts' | trans }}
+											{% if current_language %}
+												{% if current_language == 'fr' and pageProducts.descriptionFr|length > 0 %}
+													{{ pageProducts.descriptionFr }}
+												{% elseif current_language == 'en' and pageProducts.descriptionEn|length > 0 %}
+													{{ pageProducts.descriptionEn }} 
+												{% else %}
+													{{ pageProducts.descriptionEs }}
+												{% endif %}
+											{% else %}
+												{{ pageProducts.descriptionEs }}
+											{% endif %}
 
 								          	<span class="read-more" >
 												{{ 'main.actions.discover' | trans }}
@@ -174,13 +270,47 @@
 							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 								<a href="#ourRecipes" class="no_style_a pres_a">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<img alt="Recipe" src="{{ asset('img/system/icons/recipe.png') }}" class="icon_presentation"/>
+									{% set pageRecettes = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Recettes_Principal' %}
+												{% set pageRecettes = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+						        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						        		{% if pageRecettes.url|length > 0 and pageRecettes.alt|length > 0 %}
+											<img alt="Products" src="{{ asset(pageRecettes.webPath) }}" class="icon_presentation"/>
+										{% else %}
+											<img alt="Recipe" src="{{ asset('img/system/icons/recipe.png') }}" class="icon_presentation"/>
+										{% endif %}
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<h3> {{ 'main.titles.recipes' | trans }} </h3>
+										<h3> 
+											{% if current_language %}
+												{% if current_language == 'fr' and pageRecettes.headerFr|length > 0 %}
+													{{ pageRecettes.headerFr }}
+												{% elseif current_language == 'en' and pageRecettes.headerEn|length > 0 %}
+													{{ pageRecettes.headerEn }} 
+												{% else %}
+													{{ pageRecettes.headerEs }}
+												{% endif %}
+											{% else %}
+												{{ pageRecettes.headerEs }}
+											{% endif %}
+										</h3>
 										<p>
-											{{ 'main.content.recipes' | trans }}
+											{% if current_language %}
+												{% if current_language == 'fr' and pageRecettes.descriptionFr|length > 0 %}
+													{{ pageRecettes.descriptionFr }}
+												{% elseif current_language == 'en' and pageRecettes.descriptionEn|length > 0 %}
+													{{ pageRecettes.descriptionEn }} 
+												{% else %}
+													{{ pageRecettes.descriptionEs }}
+												{% endif %}
+											{% else %}
+												{{ pageRecettes.descriptionEs }}
+											{% endif %}
 
 											<!-- Button trigger modal -->
 											<span class="read-more" >
@@ -192,13 +322,47 @@
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 center">
 								<button type="button" class="no_style_button pres_a" data-toggle="modal" data-target="#reservationModal">
+									{% set pageReservation = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Reservation_Principal' %}
+												{% set pageReservation = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<img alt="Reservation" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
+										{% if pageReservation.url|length > 0 and pageReservation.alt|length > 0 %}
+											<img alt="Quality" src="{{ asset(pageReservation.webPath) }}" class="icon_presentation"/>
+										{% else %}
+											<img alt="Reservation" src="{{ asset('img/system/icons/reservation.png') }}" class="icon_presentation"/>
+										{% endif %}
 									</div>
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<h3> {{ 'main.titles.reservation' | trans }} </h3>
+										<h3> 
+											{% if current_language %}
+												{% if current_language == 'fr' and pageReservation.headerFr|length > 0 %}
+													{{ pageReservation.headerFr }}
+												{% elseif current_language == 'en' and pageReservation.headerEn|length > 0 %}
+													{{ pageReservation.headerEn }} 
+												{% else %}
+													{{ pageReservation.headerEs }}
+												{% endif %}
+											{% else %}
+												{{ pageReservation.headerEs }}
+											{% endif %}
+										</h3>
 										<p>
-											{{ 'main.content.reservation' | trans }}
+											{% if current_language %}
+												{% if current_language == 'fr' and pageReservation.descriptionFr|length > 0 %}
+													{{ pageReservation.descriptionFr }}
+												{% elseif current_language == 'en' and pageReservation.descriptionEn|length > 0 %}
+													{{ pageReservation.descriptionEn }} 
+												{% else %}
+													{{ pageReservation.descriptionEs }}
+												{% endif %}
+											{% else %}
+												{{ pageReservation.descriptionEs }}
+											{% endif %}
 
 											<!-- Button trigger modal -->
 											<span class="read-more" >
@@ -743,10 +907,38 @@
 		        		</div>
 		        		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 							<h2>
-								{{ 'ourRecipes.titles.title_ourRecipes' | trans }}
+								{% set pageRecettesPrincipale = '' %}
+								{% if pages|length > 0 %}
+									{% for page in pages %}
+										{% if page.dataBaseName == 'Page_Recettes' %}
+											{% set pageRecettesPrincipale = page %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								{% if current_language %}
+									{% if current_language == 'fr' and pageRecettesPrincipale.headerFr|length > 0 %}
+										{{ pageRecettesPrincipale.headerFr }}
+									{% elseif current_language == 'en' and pageRecettesPrincipale.headerEn|length > 0 %}
+										{{ pageRecettesPrincipale.headerEn }} 
+									{% else %}
+										{{ pageRecettesPrincipale.headerEs }}
+									{% endif %}
+								{% else %}
+									{{ pageRecettesPrincipale.headerEs }}
+								{% endif %}
 								<br/>
 								<span>
-									{{ 'ourRecipes.titles.title_ourRecipes_s' | trans }}
+									{% if current_language %}
+										{% if current_language == 'fr' and pageRecettesPrincipale.descriptionFr|length > 0 %}
+											{{ pageRecettesPrincipale.descriptionFr }}
+										{% elseif current_language == 'en' and pageRecettesPrincipale.descriptionEn|length > 0 %}
+											{{ pageRecettesPrincipale.descriptionEn }} 
+										{% else %}
+											{{ pageRecettesPrincipale.descriptionEs }}
+										{% endif %}
+									{% else %}
+										{{ pageRecettesPrincipale.descriptionEs }}
+									{% endif %}
 								</span>
 							</h2>
 		        		</div>
@@ -1115,10 +1307,38 @@
 		        		<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs"></div>
 		        		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 							<h2>
-								{{ 'aboutUs.titles.title_aboutUs' | trans }}
+								{% set pageAProposPrincipale = '' %}
+								{% if pages|length > 0 %}
+									{% for page in pages %}
+										{% if page.dataBaseName == 'Page_A_Propos' %}
+											{% set pageAProposPrincipale = page %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								{% if current_language %}
+									{% if current_language == 'fr' and pageAProposPrincipale.headerFr|length > 0 %}
+										{{ pageAProposPrincipale.headerFr }}
+									{% elseif current_language == 'en' and pageAProposPrincipale.headerEn|length > 0 %}
+										{{ pageAProposPrincipale.headerEn }} 
+									{% else %}
+										{{ pageAProposPrincipale.headerEs }}
+									{% endif %}
+								{% else %}
+									{{ pageAProposPrincipale.headerEs }}
+								{% endif %}
 								<br/>
 								<span>
-									{{ 'aboutUs.titles.title_aboutUs_s' | trans }}
+									{% if current_language %}
+										{% if current_language == 'fr' and pageAProposPrincipale.descriptionFr|length > 0 %}
+											{{ pageAProposPrincipale.descriptionFr }}
+										{% elseif current_language == 'en' and pageAProposPrincipale.descriptionEn|length > 0 %}
+											{{ pageAProposPrincipale.descriptionEn }} 
+										{% else %}
+											{{ pageAProposPrincipale.descriptionEs }}
+										{% endif %}
+									{% else %}
+										{{ pageAProposPrincipale.descriptionEs }}
+									{% endif %}
 								</span>
 							</h2>
 		        		</div>
@@ -1213,6 +1433,9 @@
 			<!-- BEGIN FOOTER -->
               {% include 'includes/footer.html.twig' %}
             <!-- END FOOTER -->
+            <!-- BEGIN modals -->
+	          {% include 'includes/modals.html.twig' %}
+	        <!-- END modals -->
 		</div>
 	</div>
 	<!-- END CONTENT -->

@@ -507,7 +507,7 @@ class Page
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'img/system/icons';
+        return 'img/icons';
     }
 
     protected function getUploadRootDir()

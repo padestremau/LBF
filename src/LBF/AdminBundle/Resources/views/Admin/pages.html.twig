@@ -85,14 +85,17 @@
 															le {{ pageAsked.updatedAt|date('d M Y') }} à {{ pageAsked.updatedAt|date('H:i') }}
 														{% endif %}
 													</div>
+													<!-- A ENLEVER !!! -->
+													<div class="center">
+														{{ pageAsked.dataBaseName }}
+													</div>
 												</div>
 
 												{% if 'l' in pageAsked.type %}
 												<div class="row center">
 													<br/>
 											        {% if pageAsked.alt|length > 0 and pageAsked.url|length > 0 %}
-														<div class="page_img_admin" style="background-image: url('{{ asset(pageAsked.webPath) }}'); background-size: cover; background-position: 50%;">
-														</div>
+														<img src="{{ asset(pageAsked.webPath) }}" alt="Logo" class="page_img_admin" />
 													{% else %}
 														<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="page_img_admin"/>
 													{% endif %}

@@ -85,10 +85,38 @@
 	</div>
 	<div class="row border_white_top footer_part">
 		<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12">
+			{% set pageFooterNewsletter = '' %}
+			{% if pages|length > 0 %}
+				{% for page in pages %}
+					{% if page.dataBaseName == 'Footer_Newsletter' %}
+						{% set pageFooterNewsletter = page %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
 			<h4>
-				{{ 'footer.titles.receiveOurNewsletter' | trans }}
+				{% if current_language %}
+					{% if current_language == 'fr' and pageFooterNewsletter.headerFr|length > 0 %}
+						{{ pageFooterNewsletter.headerFr }}
+					{% elseif current_language == 'en' and pageFooterNewsletter.headerEn|length > 0 %}
+						{{ pageFooterNewsletter.headerEn }} 
+					{% else %}
+						{{ pageFooterNewsletter.headerEs }}
+					{% endif %}
+				{% else %}
+					{{ pageFooterNewsletter.headerEs }}
+				{% endif %}
 			</h4>
-			{{ 'footer.content.receiveOurNewsletter' | trans }}
+			{% if current_language %}
+				{% if current_language == 'fr' and pageFooterNewsletter.descriptionFr|length > 0 %}
+					{{ pageFooterNewsletter.descriptionFr }}
+				{% elseif current_language == 'en' and pageFooterNewsletter.descriptionEn|length > 0 %}
+					{{ pageFooterNewsletter.descriptionEn }} 
+				{% else %}
+					{{ pageFooterNewsletter.descriptionEs }}
+				{% endif %}
+			{% else %}
+				{{ pageFooterNewsletter.descriptionEs }}
+			{% endif %}
 
 			<br/>
 
@@ -126,13 +154,41 @@
 		<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
 		<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12">
 	 		<a data-toggle="modal" data-target="#testimoniesModal">
-		 	<h4>
-		 		{{ 'footer.titles.testimonies' | trans }}
-		 	</h4>
-		 	{{ 'footer.content.testimonies' | trans }}
-		 	<div class="center">
-			 	<img alt="Comment" src="{{ asset('img/system/icons/comment.png') }}" class="icon_presentation_footer"/>
-		 	</div>
+			 	{% set pageFooterTemoignages = '' %}
+				{% if pages|length > 0 %}
+					{% for page in pages %}
+						{% if page.dataBaseName == 'Footer_Temoignages' %}
+							{% set pageFooterTemoignages = page %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+				<h4>
+					{% if current_language %}
+						{% if current_language == 'fr' and pageFooterTemoignages.headerFr|length > 0 %}
+							{{ pageFooterTemoignages.headerFr }}
+						{% elseif current_language == 'en' and pageFooterTemoignages.headerEn|length > 0 %}
+							{{ pageFooterTemoignages.headerEn }} 
+						{% else %}
+							{{ pageFooterTemoignages.headerEs }}
+						{% endif %}
+					{% else %}
+						{{ pageFooterTemoignages.headerEs }}
+					{% endif %}
+				</h4>
+				{% if current_language %}
+					{% if current_language == 'fr' and pageFooterTemoignages.descriptionFr|length > 0 %}
+						{{ pageFooterTemoignages.descriptionFr }}
+					{% elseif current_language == 'en' and pageFooterTemoignages.descriptionEn|length > 0 %}
+						{{ pageFooterTemoignages.descriptionEn }} 
+					{% else %}
+						{{ pageFooterTemoignages.descriptionEs }}
+					{% endif %}
+				{% else %}
+					{{ pageFooterTemoignages.descriptionEs }}
+				{% endif %}
+			 	<div class="center">
+				 	<img alt="Comment" src="{{ asset('img/system/icons/comment.png') }}" class="icon_presentation_footer"/>
+			 	</div>
 		 	</a>
 
 		 	<!-- Modal 10. Témoignages -->
@@ -206,14 +262,39 @@
 		</div>
 		<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation_footer"></div>
 		<div class="col-lg-4 col-md-4 col-sm-4 col-sm-12">
-		 	<h4>
-		 		{{ 'footer.titles.clientService' | trans }}
-		 	</h4>
-		 	{{ 'footer.content.clientService' | trans }}
-		 	<br/>
-		 	<a href="tel:+51984060620">
-		 		+51 984 06 06 20
-		 	</a>
+			{% set pageFooterServiceClient = '' %}
+			{% if pages|length > 0 %}
+				{% for page in pages %}
+					{% if page.dataBaseName == 'Footer_Service_Client' %}
+						{% set pageFooterServiceClient = page %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<h4>
+				{% if current_language %}
+					{% if current_language == 'fr' and pageFooterServiceClient.headerFr|length > 0 %}
+						{{ pageFooterServiceClient.headerFr }}
+					{% elseif current_language == 'en' and pageFooterServiceClient.headerEn|length > 0 %}
+						{{ pageFooterServiceClient.headerEn }} 
+					{% else %}
+						{{ pageFooterServiceClient.headerEs }}
+					{% endif %}
+				{% else %}
+					{{ pageFooterServiceClient.headerEs }}
+				{% endif %}
+			</h4>
+			{% if current_language %}
+				{% if current_language == 'fr' and pageFooterServiceClient.contentFr|length > 0 %}
+					{{ pageFooterServiceClient.contentFr|raw }}
+				{% elseif current_language == 'en' and pageFooterServiceClient.contentEn|length > 0 %}
+					{{ pageFooterServiceClient.contentEn|raw }} 
+				{% else %}
+					{{ pageFooterServiceClient.contentEs|raw }}
+				{% endif %}
+			{% else %}
+				{{ pageFooterServiceClient.contentEs|raw }}
+			{% endif %}
+
 		 	<!-- <div class="center">
 			 	<img alt="Payment" src="{{ asset('img/system/icons/payment.png') }}" class="icon_presentation_footer"/>
 		 	</div> -->
@@ -234,17 +315,71 @@
 					</li>
 					<li>
 						<a data-toggle="modal" data-target="#shopsModal">
-							{{ 'footer.content.shops' | trans }}
+							{% set pageFooterMagasins = '' %}
+							{% if pages|length > 0 %}
+								{% for page in pages %}
+									{% if page.dataBaseName == 'Footer_Nos_Magasins' %}
+										{% set pageFooterMagasins = page %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if current_language %}
+								{% if current_language == 'fr' and pageFooterMagasins.headerFr|length > 0 %}
+									{{ pageFooterMagasins.headerFr|upper }}
+								{% elseif current_language == 'en' and pageFooterMagasins.headerEn|length > 0 %}
+									{{ pageFooterMagasins.headerEn|upper }} 
+								{% else %}
+									{{ pageFooterMagasins.headerEs|upper }}
+								{% endif %}
+							{% else %}
+								{{ pageFooterMagasins.headerEs|upper }}
+							{% endif %}
 						</a>
 					</li>
 					<li>
 						<a data-toggle="modal" data-target="#CGVModal">
-							{{ 'footer.content.sellingConditions' | trans }}
+							{% set pageFooterCGV = '' %}
+							{% if pages|length > 0 %}
+								{% for page in pages %}
+									{% if page.dataBaseName == 'Footer_Conditions_Vente' %}
+										{% set pageFooterCGV = page %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if current_language %}
+								{% if current_language == 'fr' and pageFooterCGV.headerFr|length > 0 %}
+									{{ pageFooterCGV.headerFr|upper }}
+								{% elseif current_language == 'en' and pageFooterCGV.headerEn|length > 0 %}
+									{{ pageFooterCGV.headerEn|upper }} 
+								{% else %}
+									{{ pageFooterCGV.headerEs|upper }}
+								{% endif %}
+							{% else %}
+								{{ pageFooterCGV.headerEs|upper }}
+							{% endif %}
 						</a>
 					</li>
 					<li>
 						<a data-toggle="modal" data-target="#legalMentionsModal">
-							{{ 'footer.content.legalMentions' | trans }}
+							{% set pageFooterMentionsLegales = '' %}
+							{% if pages|length > 0 %}
+								{% for page in pages %}
+									{% if page.dataBaseName == 'Footer_Mentions_Legales' %}
+										{% set pageFooterMentionsLegales = page %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if current_language %}
+								{% if current_language == 'fr' and pageFooterMentionsLegales.headerFr|length > 0 %}
+									{{ pageFooterMentionsLegales.headerFr|upper }}
+								{% elseif current_language == 'en' and pageFooterMentionsLegales.headerEn|length > 0 %}
+									{{ pageFooterMentionsLegales.headerEn|upper }} 
+								{% else %}
+									{{ pageFooterMentionsLegales.headerEs|upper }}
+								{% endif %}
+							{% else %}
+								{{ pageFooterMentionsLegales.headerEs|upper }}
+							{% endif %}
 						</a>
 					</li>
 				</ul>
@@ -261,7 +396,25 @@
 				<ul class="list_no_style_li">
 					<li>
 						<a data-toggle="modal" data-target="#deliveryModal">
-							{{ 'footer.content.delivery' | trans }}
+							{% set pageFooterLivraison = '' %}
+							{% if pages|length > 0 %}
+								{% for page in pages %}
+									{% if page.dataBaseName == 'Footer_Livraison' %}
+										{% set pageFooterLivraison = page %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if current_language %}
+								{% if current_language == 'fr' and pageFooterLivraison.headerFr|length > 0 %}
+									{{ pageFooterLivraison.headerFr|upper }}
+								{% elseif current_language == 'en' and pageFooterLivraison.headerEn|length > 0 %}
+									{{ pageFooterLivraison.headerEn|upper }} 
+								{% else %}
+									{{ pageFooterLivraison.headerEs|upper }}
+								{% endif %}
+							{% else %}
+								{{ pageFooterLivraison.headerEs|upper }}
+							{% endif %}
 						</a>
 					</li>
 					<li>
@@ -271,12 +424,48 @@
 					</li>
 					<li>
 						<a data-toggle="modal" data-target="#ourWorkModal">
-							{{ 'footer.content.ourWork' | trans }}
+							{% set pageFooterTravail = '' %}
+							{% if pages|length > 0 %}
+								{% for page in pages %}
+									{% if page.dataBaseName == 'Footer_Notre_Travail' %}
+										{% set pageFooterTravail = page %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if current_language %}
+								{% if current_language == 'fr' and pageFooterTravail.headerFr|length > 0 %}
+									{{ pageFooterTravail.headerFr|upper }}
+								{% elseif current_language == 'en' and pageFooterTravail.headerEn|length > 0 %}
+									{{ pageFooterTravail.headerEn|upper }} 
+								{% else %}
+									{{ pageFooterTravail.headerEs|upper }}
+								{% endif %}
+							{% else %}
+								{{ pageFooterTravail.headerEs|upper }}
+							{% endif %}
 						</a>
 					</li>
 					<li>
 						<a data-toggle="modal" data-target="#FAQModal">
-							{{ 'footer.content.questions' | trans }}
+							{% set pageFooterFAQ = '' %}
+							{% if pages|length > 0 %}
+								{% for page in pages %}
+									{% if page.dataBaseName == 'Footer_FAQ' %}
+										{% set pageFooterFAQ = page %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if current_language %}
+								{% if current_language == 'fr' and pageFooterFAQ.headerFr|length > 0 %}
+									{{ pageFooterFAQ.headerFr|upper }}
+								{% elseif current_language == 'en' and pageFooterFAQ.headerEn|length > 0 %}
+									{{ pageFooterFAQ.headerEn|upper }} 
+								{% else %}
+									{{ pageFooterFAQ.headerEs|upper }}
+								{% endif %}
+							{% else %}
+								{{ pageFooterFAQ.headerEs|upper }}
+							{% endif %}
 						</a>
 					</li> 	
 				</ul>
@@ -285,7 +474,8 @@
 		  	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	        	<!-- 16:9 aspect ratio -->
 				<div class="embed-responsive embed-responsive-16by9">
-				  <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.0289476897924!2d-71.90520600000005!3d-13.533814999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDMyJzAxLjciUyA3McKwNTQnMTguNyJX!5e0!3m2!1sfr!2sfr!4v1425744003816"></iframe>
+				  <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.0289476897924!2d-71.90520600000005!3d-13.533814999999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDMyJzAxLjciUyA3McKwNTQnMTguNyJX!5e0!3m2!1sfr!2sfr!4v1425744003816">
+				  </iframe>
 				</div>
 	        </div>
 		</div>

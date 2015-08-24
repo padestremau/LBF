@@ -84,6 +84,7 @@ h2
 	color: inherit;
 }
 h2 span {
+	text-align: center !important;
 	margin: 0 !important;
 	/*margin-top: -8px !important;*/
 	margin-bottom: 8px !important;
@@ -322,7 +323,7 @@ a:hover {
 }
 p {	
 	margin: 5px 10px 5px 10px;
-	text-align: center;
+	text-align: left;
 	color: inherit;
 }
 @media (min-width: 992px) {
@@ -2214,6 +2215,7 @@ body.modal-open {
 }
 
 .page_img_admin {
+	text-align: center !important;
 	border-radius: 0;
 	width: 150px;
 	height: 150px;
