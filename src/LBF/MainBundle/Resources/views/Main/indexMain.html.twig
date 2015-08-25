@@ -958,22 +958,28 @@
 											{{ 'ourRecipes.titles.nada' | trans }}
 										</option>
 										{% for product in allProducts %}
-											<script type="text/javascript">
-												list_types[list_types.length] = '{{ product.type }}';
-							                </script>
-											<option value="{{ product.type }}" id="filter_for_{{ product.type }}">
-												{% if current_language %}
-													{% if current_language == 'fr' and product.nameFr|length > 0 %}
-														{{ product.nameFr }}
-													{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-														{{ product.nameEn }} 
-													{% else %}
-														{{ product.nameEs }}
-													{% endif %}
-												{% else %}
-													{{ product.nameEs }}
+											{% set index_product_sorter = 'NO' %}
+											{% for recipe in allRecipes %}
+												{% if recipe.element == product and index_product_sorter == 'NO' %}
+													<script type="text/javascript">
+														list_types[list_types.length] = '{{ product.type }}';
+									                </script>
+													<option value="{{ product.type }}" id="filter_for_{{ product.type }}">
+														{% if current_language %}
+															{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																{{ product.nameFr }}
+															{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																{{ product.nameEn }} 
+															{% else %}
+																{{ product.nameEs }}
+															{% endif %}
+														{% else %}
+															{{ product.nameEs }}
+														{% endif %}
+													</option>
+													{% set index_product_sorter = 'YES' %}
 												{% endif %}
-											</option>
+											{% endfor %}
 										{% endfor %}
 									</select>
 								</div>
