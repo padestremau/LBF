@@ -507,6 +507,20 @@ class AdminController extends Controller
             ));
     }
 
+    public function deleteEmailAction($emailId)
+    {
+        $email = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('LBFMainBundle:NewsletterEmail')
+                        ->find($emailId);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($email);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('lbf_admin_newsletter'));
+    }
+
     public function commentsAction($sortBy = null, $order = null)
     {
         if ($sortBy) {

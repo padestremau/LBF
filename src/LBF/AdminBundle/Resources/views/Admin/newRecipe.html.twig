@@ -28,7 +28,7 @@
 
 					  		<div class="row90">
 		        				<div class="row left">
-					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_elements') }}')" class="btn btn-admin">
+					    			<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes') }}')" class="btn btn-admin">
 					    				Retour
 					    			</a>
 					    		</div>
@@ -216,7 +216,7 @@
 
 													    <div class="input-group" data-content="{{ name }}">
 														  	<span class="input-group-addon" id="prototype_delete">
-														  		<a class="btn-remove float-left" data-related="{{ name }}">
+														  		<a href="" class="btn-remove float-left" data-related="{{ name }}">
 														        	<span class="glyphicon glyphicon-trash"></span>
 														        </a>
 														  	</span>
@@ -522,7 +522,7 @@
 						  				<hr/>
 										
 										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
-											Le produit est:
+											La recette est:
 										</div>
 										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
 									        {% if form_errors(formRecipe.active) %}
@@ -540,6 +540,28 @@
 									        	{% set opt_active = {'attr': {'class': 'form-control placeholder-no-fix',
 									        		'id':'active', 'name':'_active'}} %}
 									        	{{ form_widget(formRecipe.active, opt_active) }}
+									        </div>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+											Elle est plutôt :
+										</div>
+										<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									        {% if form_errors(formRecipe.taste) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formRecipe.taste) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_taste = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'id':'taste', 'name':'_taste'}} %}
+									        	{{ form_widget(formRecipe.taste, opt_taste) }}
 									        </div>
 										</div>
 									</div>

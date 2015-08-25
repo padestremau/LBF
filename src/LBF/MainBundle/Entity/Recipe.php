@@ -156,7 +156,7 @@ class Recipe
     /**
      * @var boolean
      *
-     * @ORM\Column(name="taste", type="boolean")
+     * @ORM\Column(name="taste", type="boolean", nullable=true)
      */
     private $taste;
 

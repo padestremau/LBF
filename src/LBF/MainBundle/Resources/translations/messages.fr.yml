@@ -85,6 +85,10 @@ ourRecipes:
         title_ourRecipes:       Nos recettes
         title_ourRecipes_s:     Une nouvelle façon de cuisiner
         products:               PRODUITS
+        salted:                 Salé
+        sugared:                Sucré
+        filteredBy:             "Filtrer par :"
+        nada:                   Aucun
     actions:
         discoverRecipe:         Découvrir la recette
     warning:
@@ -304,6 +308,46 @@ emailContact:
         quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
         clickHere:              cliquer ici
 
+
+# Email newsletter
+emailNewsletter:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                Email enregistré
+        emailSaved:             Email enregistré    
+    content:
+        receiveNewsletterFrom:  "Vous êtes maintenant connecté aux newsletter de "
+        contentOfIt:            "Dans ces lettres, vous trouverez toutes nos promotions, nos offres, nos nouveautés, et toute l'inforamtion concernant nos produits. Tenez-vous au courant !"
+    footer:
+        anecdote:               "est un nouveau magasin de charcuterie à Cusco, qui vend des produits faits avec la viande locale mais coupée et cuisinée selon les méthodes et techniques françaises. La start-up a ouvert le 1er Mars 2015 au Perou, avec leur premier atelier. D'autres suivront."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
+
+newsletterThankYou:
+    titles:
+        thankYou:               "Email enregistré !"
+    content:
+        thankYou:               "Vous êtes maintenant abonnés à nos newsletters. Vous recevrez toutes nos promotions, nos offres, nos nouveautés, et toute l'inforamtion concernant nos produits. Tenez-vous au courant !"
+        thankYou2:              "Vous devriez recevoir un mail d'ici peu."
+        team:                   "L'équipe "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Accueil"
+
+newsletterQuit:
+    titles:
+        thankYou:               "Email supprimé !"
+    content:
+        thankYou:               "Vous êtes maintenant désabonnés de nos newsletters. L'email suivant a été supprimé de nos bases de données :"
+        thankYou2:              "Merci de votre confiance."
+        team:                   "L'équipe "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Accueil"
 
 
 # Testimony

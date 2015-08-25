@@ -1179,7 +1179,7 @@ a.captionOrange:hover
 .sep_presentation {
 	padding: 0 !important;
 	margin: 5px 0 5px 0 !important;
-	border-bottom: 1px dotted rgba(41,41,41,0.5);
+	border-top: 1px dotted rgba(41,41,41,0.5);
 }
 
 .title_div {

@@ -99,13 +99,7 @@ class MainController extends Controller
             '5' => $allMermeladas
         	);
 
-        $allSortedRecipes = array(
-            '1' => $recipesPanVino,
-            '2' => $recipesBufSalado,
-            '3' => $recipesEmbutidos,
-            '4' => $recipesBufDulce,
-            '5' => $recipesMermeladas
-            );
+        $allSortedRecipes = array_merge($recipesPanVino, $recipesBufSalado, $recipesEmbutidos, $recipesBufDulce, $recipesMermeladas);
 
         $testimonies = $this ->getDoctrine()
                             ->getManager()
@@ -151,7 +145,7 @@ class MainController extends Controller
         	));
     }
 
-    public function newsletterEmailAction($path)
+    public function newsletterEmailAction()
     {
         $allMails = $this ->getDoctrine()
                                 ->getManager()
@@ -174,13 +168,26 @@ class MainController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($newsletterEmail);
             $em->flush();
+
+            // Message for manager/admin
+            $message = \Swift_Message::newInstance()
+                ->setContentType('text/html')
+                ->setSubject('[Le Buffet Francés] ')
+                ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView('LBFAdminBundle:Admin:emailNewsletterClient.html.twig',
+                        array(  
+                            'emailClient' => $email
+                            )
+                    )
+                )
+            ;
+
+            $this->get('mailer')->send($message);
         }
 
-        if (sizeof($path) > 0) {
-            return $this->redirect($this->generateUrl($path));
-        }
-
-        return $this->redirect($this->generateUrl('lbf_main_homepage'));
+        return $this->render('LBFMainBundle:Main:thankYouNewsletterEmail.html.twig');
     }
 
     public function newsletterEmailUndoAction($email)
@@ -204,7 +211,9 @@ class MainController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('lbf_main_homepage'));
+        return $this->render('LBFMainBundle:Main:confirmQuitNewsletterEmail.html.twig', array(
+            'emailQuit' => $email
+            ));
     }
 
     public function addToCartAction()

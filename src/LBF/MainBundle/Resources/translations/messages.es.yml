@@ -86,6 +86,10 @@ ourRecipes:
         title_ourRecipes:       Nuestras recetas
         title_ourRecipes_s:     Un nuevo modo de cocinar
         products:               PRODUCTOS
+        salted:                 Salado
+        sugared:                Dulce
+        filteredBy:             "Filtrar por:"
+        nada:                   Nada
     actions:
         discoverRecipe:         Descubrir la receta
     warning:
@@ -291,7 +295,7 @@ emailContact:
     notes: 
         topSentence:            "Esto es un mensaje de "
     titles:
-        general:                Usted not envió un mensaje
+        general:                Usted nos envió un mensaje
         thankYou:               GRACIAS
         forMessage:             POR SU MENSAJE
         messageWritten:         MENSAJE
@@ -307,6 +311,46 @@ emailContact:
         here:                   "aquí"
         quitSubscription:       "Usted recibe este email siguiendo o un pedido sobre nuestro sitio web, o su abono a nuestras newsletters. Para deshuesarse de la newsletter, por favor haga "
         clickHere:              clic aquí
+
+# Email newsletter
+emailNewsletter:
+    notes: 
+        topSentence:            "Esto es un mensaje de "
+    titles:
+        general:                Email registrado
+        emailSaved:             Email registrado
+    content:
+        receiveNewsletterFrom:  "Usted ahora podra recibir la newsletter del sitio "
+        contentOfIt:            "En esta newsletter usted podra encontrar promociones, ofertas, novedades, y mucho más informaciones sobre nuestros productos. Manténganse al tanto!"
+    footer:
+        anecdote:               "es una nueva tienda de charcuteria en Cusco, que viende productos de carne local, pero cortada y cocinada según los metodos y tecnicas francéses. La start-up ha abierta el 1ero de Marso de 2015 en Perú, con su primera fabrica. Otras seguiron."
+        keepInTouch:            "Mantener el contacto : "
+        ifWantToJoin:           "Si alguien le ha mandado este email y usted quiere sumarse a la lista de distribución de las newsletters, usted puede añadir su email "
+        here:                   "aquí"
+        quitSubscription:       "Usted recibe este email siguiendo o un pedido sobre nuestro sitio web, o su abono a nuestras newsletters. Para deshuesarse de la newsletter, por favor haga "
+        clickHere:              clic aquí
+
+newsletterThankYou:
+    titles:
+        thankYou:               "Email registrado!"
+    content:
+        thankYou:               "Usted esta ahora conectado a nuestras newsletters. Usted podra encontrar promociones, ofertas, novedades, y mucho más informaciones sobre nuestros productos. Manténganse al tanto!"
+        thankYou2:              "Debería recibir un email en algunos minutos."
+        team:                   "El equipo "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Página de inicio"
+
+newsletterQuit:
+    titles:
+        thankYou:               "Email suprimido!"
+    content:
+        thankYou:               "Usted esta ahora desconectado de nuestras newsletters. El email siguiente fue correctamente suprimido de nuestras bases de datos:"
+        thankYou2:              "Gracias por su confianza."
+        team:                   "El equipo "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Página de inicio"
 
 
 # Testimony

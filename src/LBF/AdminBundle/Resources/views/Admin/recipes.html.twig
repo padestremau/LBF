@@ -86,6 +86,9 @@
 				                              Modifiée le
 				                            </th>
 				                            <th class="center">
+				                              Goût
+				                            </th>
+				                            <th class="center">
 				                              Statut
 				                              	<a href="javascript:loadContentAdmin('{{ path('lbf_admin_recipes_sorted', {'sortBy':'status', 'order':'ASC'}) }}')" class="btn btn-action-admin">
 					                            	<span class="glyphicon glyphicon-triangle-top"></span>
@@ -254,6 +257,25 @@
 					                            		---
 					                            	{% endif %}
 					                            </td>
+					                            <th class="center hover_popup">
+					                            	{% if recipe.taste %}
+					                              		{% if recipe.taste == 1 %}
+					                              			Salée
+					                              		{% elseif recipe.taste == 0 %}
+					                              			Sucrée
+					                              		{% else %}
+					                              			Erreur
+					                              			<span class="italic">
+					                              				Vous devez choisir parmi les statuts proposés
+						                              		</span>
+					                              		{% endif %}
+					                              	{% else %}
+					                              		Erreur
+					                              		<span class="italic">
+															Vous devez choisir parmi les statuts proposés
+					                              		</span>
+					                              	{% endif %}
+					                            </th>
 					                            <th class="center hover_popup">
 					                            	{% if recipe.active %}
 					                              		{% if recipe.active == "active" %}

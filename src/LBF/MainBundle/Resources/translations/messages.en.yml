@@ -85,6 +85,10 @@ ourRecipes:
         title_ourRecipes:       Our recipes
         title_ourRecipes_s:     A new way to cook
         products:               PRODUCTS
+        salted:                 Salt
+        sugared:                Sugar
+        filteredBy:             "Filter by:"
+        nada:                   Nothing
     actions:
         discoverRecipe:         Discover the recipe
     warning:
@@ -305,6 +309,45 @@ emailContact:
         quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
         clickHere:              click here
 
+# Email newsletter
+emailNewsletter:
+    notes: 
+        topSentence:            "This is a letter from "
+    titles:
+        general:                Email saved
+        emailSaved:             Email saved
+    content:
+        receiveNewsletterFrom:  "Your email is now registered to all the newsletters from "
+        contentOfIt:            "In these newsletters you will find all our promotions, offers, new products, and all the information you need about our products. Stay tuned!"
+    footer:
+        anecdote:               "is new shop in Cusco, selling Delicatessens made out of local meat but cut and cooked according to French techniques. The start-up opened March 1st, 2015 in Perú, with their first shop. More are on the way."
+        keepInTouch:            "Keep in touch: "
+        ifWantToJoin:           "If someone sent you this email and you'd like to join our mailing list, you can sign up "
+        here:                   "here"
+        quitSubscription:       "You're receiving cet email following either a new order made on the website, or the fact you're in the mailing list for the newsletter. If you would like to unsubscribe from our newsletters, please "
+        clickHere:              click here
+
+newsletterThankYou:
+    titles:
+        thankYou:               "Email saved!"
+    content:
+        thankYou:               "You are now connected to our newsletters. You will find all our promotions, offers, new products, and all the information you need about our products. Stay tuned!"
+        thankYou2:              "You should receive an email very shortly."
+        team:                   "Team "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Homepage"
+
+newsletterQuit:
+    titles:
+        thankYou:               "Email deleted!"
+    content:
+        thankYou:               "You're now disconnected from our newsletters. The following email has been correctly deleted from our database:"
+        thankYou2:              "Thank your for your trust."
+        team:                   "Team "
+        LBF:                    "Le Buffet Francés"
+    action:     
+        main:                   "Homepage"
 
 # Testimony
 testimony:

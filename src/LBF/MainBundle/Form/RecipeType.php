@@ -86,9 +86,12 @@ class RecipeType extends AbstractType
                 'required' => false))
             
             ->add('active', 'choice', array('label' => 'Active',
-                                            'choices' => array( 'active' => 'Actif',
+                                            'choices' => array( 'active' => 'Active',
                                                                 'new' => 'Nouveauté', 
-                                                                'inactive' => 'Inactif')))
+                                                                'inactive' => 'Inactive')))
+            ->add('taste', 'choice', array('label' => 'Taste',
+                                            'choices' => array( 1 => 'Salée',
+                                                                0 => 'Sucrée')))
             ->add('file', 'file', array('label' => 'file',
                                         'required' => false))
             ->add('element', 'entity', array(   'class' => 'LBFMainBundle:Element',

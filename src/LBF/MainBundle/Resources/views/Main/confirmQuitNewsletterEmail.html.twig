@@ -1,0 +1,57 @@
+{# src/LBF/MainBundle/Resources/Main/confirmQuitNewsletterEmail.html.twig #}
+
+{% extends "LBFMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block LBF_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section row" id="mainSection">
+				<div class="row">
+
+					<br/><br/><br/><br/>
+
+					<div class="row60">
+						<h3 class="center">
+							{{ 'newsletterQuit.titles.thankYou'|trans }}
+						</h3>
+						<br/>
+						<p class="left">
+							{{ 'newsletterQuit.content.thankYou'|trans }}
+						</p>
+						<p class="center">
+							{{ 'newsletterQuit.content.thankYou2'|trans }}
+						</p>
+						<br/>
+						<p class="center">
+							<strong>
+								{{ 'newsletterQuit.content.team'|trans }} {{ 'newsletterQuit.content.LBF'|trans }}
+							</strong>
+						</p>
+
+						<br/><br/><br/><br/><br/>
+
+						<p class="center">
+							<a href="{{ path('lbf_main_homepage') }}" class="no_style_a btn btn-login">
+								{{ 'newsletterQuit.action.main'|trans }}
+							</a>
+						</p>
+					</div>
+				</div>
+
+				<br/><br/><br/>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock LBF_Main_body %}

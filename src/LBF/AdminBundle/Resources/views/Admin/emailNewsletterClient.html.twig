@@ -1,4 +1,4 @@
-{# src/LBF/AdminBundle/Resources/views/Admin/emailCompleteClient.html.twig #}
+{# src/LBF/AdminBundle/Resources/views/Admin/emailConfirmClient.html.twig #}
 
 {% block body_html %}
 {#
@@ -18,7 +18,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>
-      Le Buffet Francés - {{ 'emailComplete.titles.general' | trans }}
+      Le Buffet Francés - {{ 'emailNewsletter.titles.general' | trans }}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
@@ -31,7 +31,7 @@
             <tr >
               <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                 <div style="width:100%; " class="" id="pre-header-text" >
-                  {{ 'emailComplete.notes.topSentence' | trans }} <strong> Le Buffet Francés.</strong>
+                  {{ 'emailNewsletter.notes.topSentence' | trans }} <strong> Le Buffet Francés.</strong>
                 </div>
               </td>
             </tr>
@@ -51,50 +51,14 @@
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
                             <div style="width:100%; " class="" id="title_one_half" >
-                              {{ 'emailComplete.titles.orderComplete' | trans }}
+                              {{ 'emailNewsletter.titles.emailSaved' | trans }}
                             </div>
                           </td>
                         </tr>
                         <tr >
                           <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
                             <div style="width:100%; text-align:justify;">
-                                {{ 'emailComplete.content.thankYouAgain' | trans }} <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. 
-                                {{ 'emailComplete.content.orderIs' | trans }} <strong> {{ 'emailComplete.content.completed' | trans }} </strong>. 
-                                <br/>
-                                {{ 'emailComplete.content.asReminder' | trans }} <strong>{{ order.id }}</strong> {{ 'emailComplete.content.of' | trans }} 
-                                {% set total_price_general = 0 %}
-                                {% for item_array in order.elements %}
-                                  {% set item = item_array['item'] %}
-                                  {% set qty = item_array['qty'] %}
-                                          {% set total_price = qty * item.price %}
-                                          {% set total_price_general = total_price_general + total_price %}
-                                {% endfor %}
-                                <strong>S/. {{ total_price_general }}</strong>.
-                                <br/>
-                                {{ 'emailComplete.content.deliveredAt' | trans }} <strong>{{ order.deliveryAt|date('d M Y') }}</strong> {{ 'emailComplete.content.at' | trans }} <strong>{{ order.deliveryAt|date('H:i') }}</strong> {{ 'emailComplete.content.didSo' | trans }}.
-
-                                <br/>
-                                {{ 'emailComplete.content.seeYouSoon' | trans }} 
-                                <br/>
-                                {{ 'emailComplete.content.enjoy' | trans }} 
-                                <br/>
-                                <br/>
-                                <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>
-                                <br/>
-                                <br/>
-                                <br/>
-                                {{ 'emailComplete.content.ifYouHaveTime' | trans }} 
-                                <br/>
-                                <a href="http://www.lebuffetfrances.com/es/testimony/new" style="
-                                  padding: 6px 10px;
-                                  font-size:12px;
-                                  text-decoration:none;
-                                  background-color: rgba(120,30,20,0.99);
-                                  border-radius: 0;
-                                  color: white;">
-                                  {{ 'emailComplete.content.leaveComment' | trans }} 
-                                </a>
-
+                                {{ 'emailNewsletter.content.receiveNewsletterFrom' | trans }} <strong><a href="www.lebuffetfrances.com" target="_blank" style="color: #4d5259; text-decoration:none;">Le Buffet Francés</a></strong>. {{ 'emailNewsletter.content.contentOfIt' | trans }}
                             </div>
                           </td>
                         </tr>
@@ -116,13 +80,13 @@
                             <tr>
                               <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
                                 <strong><a href="http://www.lebuffetfrances.com" target="_blank" style="color:rgba(120,30,20,0.99); text-decoration:none; font-size: 12px;">Le Buffet Francés</a></strong>
-                                {{ 'emailComplete.footer.anecdote' | trans }}
+                                {{ 'emailNewsletter.footer.anecdote' | trans }}
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
                                 <div style="display:inline-block; margin-right : 10px;">
-                                  Keep in touch: 
+                                  {{ 'emailNewsletter.footer.keepInTouch' | trans }}
                                 </div>
                                 <div style="display:inline-block;">
                                   <a href="https://www.facebook.com/pages/Epicerie-de-Cusco/928893590468462" style="position:relative; top:4px;">
@@ -133,18 +97,18 @@
                             </tr>
                             <tr>
                               <td style="padding-top: 10px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                {{ 'emailComplete.footer.ifWantToJoin' | trans }}
+                                {{ 'emailNewsletter.footer.ifWantToJoin' | trans }}
                                 <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com#footerSection" target="_blank">
-                                  {{ 'emailComplete.footer.here' | trans }}
+                                  {{ 'emailNewsletter.footer.here' | trans }}
                                 </a>
                                 .
                               </td>
                             </tr>
                             <tr>
                               <td style="padding-top: 15px; padding-right: 0px; padding-bottom: 15px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
-                                {{ 'emailComplete.footer.quitSubscription' | trans }}
-                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/es/newsletterEmailUndo/{{ order.user.email }}" target="_blank">
-                                  {{ 'emailComplete.footer.clickHere' | trans }}
+                                {{ 'emailNewsletter.footer.quitSubscription' | trans }}
+                                <a style="text-decoration: none; color: rgba(120,30,20,0.99);" href="http://www.lebuffetfrances.com/es/newsletterEmailUndo/{{ emailClient }}" target="_blank">
+                                  {{ 'emailNewsletter.footer.clickHere' | trans }}
                                 </a>
                                 .
                               </td>

@@ -789,20 +789,21 @@
 																	</div>
 																	<br class="hidden-xs"/>
 																	<div class="row center">
-																		<button class="btn btn-login" onClick="goToTab('#tab_recipe_{{ category |replace({' ': '_'}) }}', 'recipe_nav_ul_{{ category |replace({' ': '_'}) }}', '#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}')">
+																		<button class="btn btn-login" onClick="goToRecipesFrom('{{ product.type }}')">
 																			{{ 'ourProducts.actions.seeRecipes' | trans }}
 																			<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
 																		</button>
 
 																		<script>
-																			function goToTab(tab_gen_id, nav_id, tab_id) {
-																				$('#btn_section3').trigger('click', '', showTab(tab_gen_id, nav_id, tab_id));
-																			}
-																			function showTab(tab_gen_id, nav_id, tab_id) {
-																				tab_gen_loc = '#recipe_nav_ul a[data-target="'+tab_gen_id+'"]';
-																				$(tab_gen_loc).tab('show');
-																				tab_loc = '#'+nav_id+' a[data-target="'+tab_id+'"]';
-																				$(tab_loc).tab('show');
+																			function goToRecipesFrom(product_type) {
+																				var newID ;
+																				for (var i = 0; i < list_types.length; i++) {
+																					if (list_types[i] == product_type) {
+												                  						document.getElementById('filter_for_'+list_types[i]).selected = true;
+												                  						;
+																					}
+																				}
+																				$('#btn_section3').trigger('click', '', displayFilteredElements());
 																			}
 																		</script>
 																	</div>
@@ -899,13 +900,13 @@
 			<div class="section section_padding row" id="ourRecipes">
 				<div class="presentation_texte">
 					<div class="row center">
-		        		<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs" data-menuanchor="ourProducts">
+		        		<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs" data-menuanchor="ourProducts">
 		        			<a href="#ourProducts" class="btn btn-login">
 								<img src="{{ asset('img/system/defaults/up_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourRecipes.titles.products' | trans }}
 							</a>
 		        		</div>
-		        		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+		        		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							<h2>
 								{% set pageRecettesPrincipale = '' %}
 								{% if pages|length > 0 %}
@@ -942,352 +943,546 @@
 								</span>
 							</h2>
 		        		</div>
-						<div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+									{{ 'ourRecipes.titles.filteredBy' | trans }}
+								</div>
+								<script type="text/javascript">
+									var list_types = [];
+									var list_recipes = [];
+				                </script>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left">
+									<select name="filter_by_product" id="filter_by_product" class="form-control placeholder-no-fix" onClick="displayFilteredElements()">
+										<option value="NONE" id="filter_for_NONE">
+											{{ 'ourRecipes.titles.nada' | trans }}
+										</option>
+										{% for product in allProducts %}
+											<script type="text/javascript">
+												list_types[list_types.length] = '{{ product.type }}';
+							                </script>
+											<option value="{{ product.type }}" id="filter_for_{{ product.type }}">
+												{% if current_language %}
+													{% if current_language == 'fr' and product.nameFr|length > 0 %}
+														{{ product.nameFr }}
+													{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+														{{ product.nameEn }} 
+													{% else %}
+														{{ product.nameEs }}
+													{% endif %}
+												{% else %}
+													{{ product.nameEs }}
+												{% endif %}
+											</option>
+										{% endfor %}
+									</select>
+								</div>
+
+								<script type="text/javascript">
+				                  	function displayFilteredElements() {
+				                  		var newID ;
+				                  		if (document.getElementById('filter_for_NONE').selected) { 
+				                  			for (var i = 0; i < list_types.length; i++) {
+				                  				newID = '.recipe_for_'+list_types[i];
+				                  				$(newID).css({'display':'block'});
+				                  				// document.getElementById(newID).style.display = 'none';
+					                  		}
+				                  		}
+					                  	else {
+					                  		for (var i = 0; i < list_types.length; i++) {
+					                  			if (document.getElementById('filter_for_'+list_types[i]).selected) { 
+			                  						$('[class^=recipe_for_]').css({'display':'none'});
+			                  						newID = '.recipe_for_'+list_types[i];
+			                  						$(newID).css({'display':'block'});
+					                  			}
+					                  			else {
+					                  				newID = '.recipe_for_'+list_types[i];
+			                  						$(newID).css({'display':'none'});
+					                  			}
+					                  		}
+					                  	}
+				                  		return false;
+				                    }
+				                </script>
+							</div>
 						</div>
 					</div>
 					<br/>
 
 					<div class="row90">
+
 						
 						<!-- Recipes content -->
-						{% if allRecipes|length > 0 %}
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<ul class="nav nav-tabs nav-justified" id="recipe_nav_ul">
-									{% set index_general = 1 %}
-									{% for category in allCategories %}
-										{% set recipesArray = allSortedRecipes[index_general] %}
-										<li class="{% if index_general == 1 %} active {% endif %}">
-											<a href="" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}">
-												{% if category == 1 %}
-													{{ 'main.second_titles.category_1' | trans }}
-												{% elseif category == 2 %}
-													{{ 'main.second_titles.category_2' | trans }}
-												{% elseif category == 3 %}
-													{{ 'main.second_titles.category_3' | trans }}
-												{% elseif category == 4 %}
-													{{ 'main.second_titles.category_4' | trans }}
-												{% elseif category == 5 %}
-													{{ 'main.second_titles.category_5' | trans }}
-												{% endif %}
-												<span class="hidden-xs">
-													({{ recipesArray|length }})
-												</span>
-											</a>
-										</li>
-										{% set index_general = index_general + 1 %}
-									{% endfor %}
-
-									<script>
-										$('#recipe_nav_ul a').click(function (e) {
-											e.preventDefault();
-											$(this).tab('show');
-										});
-									</script>
-								</ul>
-							</div>
-							<br class="hidden-xs"/>
-							<div class="hidden-lg hidden-md hidden-sm col-xs-12 sep_presentation"></div>
-							<div class="tab-content" id="recipe_content">
-								{% set index_general = 1 %}
-								{% for category in allCategories %}
-									{% set productsArray = allSortedProducts[index_general] %}
-									{% set recipesArray = allSortedRecipes[index_general] %}
-									<!-- BEGIN Tab pane {{ index_general }}  -->
-									<div class="tab-pane fade 
-										{% if index_general == 1 %} active in {% endif %}" id="tab_recipe_{{ category |replace({' ': '_'}) }}">
-										<div class="row">
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
-												<ul class="ver-inline-menu tabbable list_no_style_li" id="recipe_nav_ul_{{ category |replace({' ': '_'}) }}">
-												{% set index_category = 1 %}
-												{% for product in productsArray %}
-													{% if product.active != 'inactive' %}
-													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
-														<a href="" data-toggle="tab" data-target="#tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="btn btn-choice">
-															{% if current_language %}
-																{% if current_language == 'fr' and product.nameFr|length > 0 %}
-																	{{ product.nameFr }}
-																{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-																	{{ product.nameEn }}
-																{% else %}
-																	{{ product.nameEs }}
-																{% endif %}
-															{% else %}
-																	{{ product.nameEs }}
-															{% endif %}
-															<div class="float-right inner_arrow hidden-xs">
-																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-															</div>
-														</a>
-													</li>
-													{% endif %}
-													{% set index_category = index_category + 1 %}
-												{% endfor %}
-												<script>
-													$('#recipe_nav_ul_{{ category |replace({' ': '_'}) }} a').click(function (e) {
-														e.preventDefault();
-														$(this).tab('show');
-													});
-												</script>
-												</ul>
-											</div>
-											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
-												<div class="tab-content">
-													{% set index_category = 1 %}
-													{% for product in productsArray %}
-														{% if product.active != 'inactive' %}
-														<div id="tab_recipe_{{ category |replace({' ': '_'}) }}-{{ product.type }}" class="tab-pane fade
-															{% if index_category == 1 %} active in {% endif %}">
-															<div class="row product_info_xs">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<h4>
-																		{% if current_language %}
-																			{% if current_language == 'fr' and product.nameFr|length > 0 %}
-																				{{ product.nameFr }}
-																			{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-																				{{ product.nameEn }} 
-																			{% else %}
-																				{{ product.nameEs }}
-																			{% endif %}
-																		{% else %}
-																			{{ product.nameEs }}
-																		{% endif %}
-																	</h4>
-																</div>
-																<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
-																{% set empty_list = 'YES' %}
-																{% for recipe in recipesArray %}
-																	{% if recipe.element == product and recipe.active != 'inactive' %}
-																		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-																			{% if recipe.active == 'new' %}
-																				<div class="float-right" style="width:10%;">
-																					<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
-																				</div>
-																				{% set newsOnThePage = 'yes' %}
-																			{% endif %}
-																			<h5>
-																				{{ recipe.title }}
-																			</h5>
-																			<br/>
-																			{% set descriptionForRecipe = '' %}
-																			{% if current_language %}
-																				{% if current_language == 'fr' and recipe.descriptionFr|length > 0 %}
-																					{% set descriptionForRecipe = recipe.descriptionFr %}
-																				{% elseif current_language == 'en' and recipe.descriptionEn|length > 0 %}
-																					{% set descriptionForRecipe = recipe.descriptionEn %}
-																				{% else %}
-																					{% set descriptionForRecipe = recipe.descriptionEs %}
-																				{% endif %}
-																			{% else %}
-																					{% set descriptionForRecipe = recipe.descriptionEs %}
-																			{% endif %}
-																			
-																			{{ descriptionForRecipe | truncate(120, false, '...')  }}
-
-																			<br/>
-																			{% set image_url_recipe = asset('img/system/defaults/default_recipe.jpg') %}
-																			{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
-																				{% set image_url_recipe = asset(recipe.webPath) %}
-																			{% endif %}
-																			<div class="center">
-																				{% set ingredientsForRecipe = '' %}
-																				{% if current_language %}
-																					{% if current_language == 'fr' and recipe.ingredientsFr|length > 0 %}
-																						{% set ingredientsForRecipe = recipe.ingredientsFr %}
-																					{% elseif current_language == 'en' and recipe.ingredientsEn|length > 0 %}
-																						{% set ingredientsForRecipe = recipe.ingredientsEn %}
-																					{% else %}
-																						{% set ingredientsForRecipe = recipe.ingredientsEs %}
-																					{% endif %}
-																				{% else %}
-																						{% set ingredientsForRecipe = recipe.ingredientsEs %}
-																				{% endif %}
-																				{% set preparationForRecipe = '' %}
-																				{% if current_language %}
-																					{% if current_language == 'fr' and recipe.preparationFr|length > 0 %}
-																						{% set preparationForRecipe = recipe.preparationFr %}
-																					{% elseif current_language == 'en' and recipe.preparationEn|length > 0 %}
-																						{% set preparationForRecipe = recipe.preparationEn %}
-																					{% else %}
-																						{% set preparationForRecipe = recipe.preparationEs %}
-																					{% endif %}
-																				{% else %}
-																						{% set preparationForRecipe = recipe.preparationEs %}
-																				{% endif %}
-																				<button class="btn btn-login" type="button" data-toggle="modal" data-target="#recipe_{{ recipe.id }}_Modal">
-																					{{ 'ourRecipes.actions.discoverRecipe' | trans }}
-																					<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-																				</button>	
-																				<!-- Modal recipe {{ recipe.id }} -->
-																				<div class="modal bs-example-modal-lg fade" id="recipe_{{ recipe.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="recipe_{{ recipe.id }}_ModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-																				  <div class="modal-dialog modal-lg">
-																				    <div class="modal-content">
-																				      <div class="modal-header">
-																				        <button type="button" class="close white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																				        <h2 class="modal-title center">
-																				        	{{ recipe.title }}
-																				        </h2>
-																				      </div>
-																				      <div class="modal-body" id="recipeModalContent">
-																				        <div class="modal-body-inner row">
-																				          
-																				          <div class="row">
-																				            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_LeftPart">
-																				              <div class="recipe_border">
-																				                <div class="left">
-																				                  <span>
-																				                    <strong>
-																				                      {{ 'modal.modalRecipe.origin' | trans }}
-																				                    </strong>
-																				                  </span> 
-																				                  <span>
-																				                  	{{ recipe.origin }}
-																				                  </span> 
-																				                  <br/>
-																				                  <span>
-																				                    <strong>
-																				                      {{ 'modal.modalRecipe.forHowMany' | trans }}
-																				                    </strong>
-																				                  </span> 
-																				                  <span>
-																				                  	{{ recipe.forHowMany }}
-																				                  </span> 
-																				                  <span>
-																				                    {{ 'modal.modalRecipe.people' | trans }}
-																				                  </span> 
-																				                  <br/>
-																				                  <span>
-																				                    <strong>
-																				                      {{ 'modal.modalRecipe.duration' | trans }}
-																				                    </strong>
-																				                  </span> 
-																				                  <span>
-																				                  	{{ recipe.duration }}
-																				                  </span> 
-																				                  <span>
-																				                    {{ 'modal.modalRecipe.min' | trans }}
-																				                  </span> 
-																				                  <br/>
-																				                  <span>
-																				                    <strong>
-																				                      {{ 'modal.modalRecipe.cooking' | trans }}
-																				                    </strong>
-																				                  </span> 
-																				                  <span>
-																				                  	{{ recipe.cooking }}
-																				                  </span> 
-																				                  <span>
-																				                    {{ 'modal.modalRecipe.min' | trans }}
-																				                  </span>
-																				                  <hr/>
-																				                  <strong class="text-decoration:underline;">
-																				                    {{ 'modal.modalRecipe.ingredients' | trans }}
-																				                  </strong>
-																				                  <div>
-																				                  	<ul class="margin0">
-																				                    {% for ingr in ingredientsForRecipe %}
-																				                    	<li>
-																				                    		{{ ingr }}
-																				                    	</li>
-																				                  	{% endfor %}
-																				                  	</ul>
-																				                  </div>
-																				                </div>
-																				              </div>
-																				            </div>
-																				            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
-																				              <div class="recipe_border">
-																				                <strong class="text-decoration:underline;">
-																				                  {{ 'modal.modalRecipe.preparation' | trans }}
-																				                </strong>
-																				                <div class="left">
-																				                  	<ul class="margin0">
-																				                    {% for ingr in preparationForRecipe %}
-																				                    	<li>
-																				                    		{{ ingr }}
-																				                    	</li>
-																				                  	{% endfor %}
-																				                  	</ul>
-																				                </div>
-																				              </div>
-																				            </div>
-																				          </div>
-
-																				          <br/><br/>
-																				          <div class="row">
-																				            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																				              <div class="center">
-																				                <span>
-																				                  {{ 'modal.modalRecipe.lastEdit' | trans }}
-																				                </span> 
-																				                <span>
-																				                	{{ recipe.updatedAt|date('d M Y') }}
-																				                </span> 
-																				                {{ 'modal.modalRecipe.atTime' | trans }}
-																				                <span>
-																				                	{{ recipe.updatedAt|date('H:i') }}
-																				                </span>
-																				              </div>
-																				              <div class="recipe_img_lg" style="width: 100%; background-size: cover; background-position: 50%; background-image: url({{ image_url_recipe }})">
-																				                <script type="text/javascript">
-																				                  var recipe_height_lg = $('.recipe_img_lg').width() * 0.8;
-																				                  $('.recipe_img_lg').css({'height':recipe_height_lg+'px'});
-																				                </script>
-																				              </div>
-																				            </div>
-																				          </div>
-																				        </div>
-																				      </div>
-																				      <div class="modal-footer">
-																				        <button type="button" class="btn btn-modal" data-dismiss="modal">
-																				          {{ 'modal.actions.close' | trans }}
-																				        </button>
-																				      </div>
-																				    </div>
-																				  </div>
-																				</div>		
-																			</div>
-
-																		</div>
-																		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-																			<div class="recipe_img_div">
-																			{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
-																				<div class="recipe_img" style="width: 100%; background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
-																					<!-- onClick="showPhoto('{{ recipe.id }}')" -->
-																				</div>
-																			{% else %}
-																				<img src="{{ asset('img/system/defaults/default_recipe.jpg') }}" alt="Default" class="recipe_img"/>
-																			{% endif %}
-																				<script type="text/javascript">
-																					var widthRecipe = $('.recipe_img').width() * 0.7;
-																				    $('.recipe_img').css({'height':widthRecipe+'px'});
-																				</script>
-																			</div>
-																		</div>
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sep_presentation"></div>
-
-																		{% set empty_list = 'NO' %}
-																	{% endif %}
-																{% endfor %}
-
-																{% if empty_list == 'YES' %}
-																<div class="row center italic">
-																	<br class="hidden-xs"/>
-																	{{ 'ourRecipes.warning.noRecipe' | trans }}
-																</div>
-																{% endif %}
-															</div>
-
+						{% if allSortedRecipes|length > 0 %}
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<h3 class="center">
+									{{ 'ourRecipes.titles.salted' | trans }}
+								</h3>
+								{% for recipe in allSortedRecipes %}
+									{% if recipe.taste == 1 %}
+										<div class="row product_info_xs recipe_for_{{ recipe.element.type }}">
+											<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
+											{% if recipe.active != 'inactive' %}
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+													{% if recipe.active == 'new' %}
+														<div class="float-right" style="width:10%;">
+															<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
 														</div>
+													{% endif %}
+													<h4>
+														{{ recipe.title }}
+													</h4>
+													<h5>
+														con 
+														{% if current_language %}
+															{% if current_language == 'fr' and recipe.element.nameFr|length > 0 %}
+																{{ recipe.element.nameFr }}
+															{% elseif current_language == 'en' and recipe.element.nameEn|length > 0 %}
+																{{ recipe.element.nameEn }} 
+															{% else %}
+																{{ recipe.element.nameEs }}
+															{% endif %}
+														{% else %}
+															{{ recipe.element.nameEs }}
 														{% endif %}
-														{% set index_category = index_category + 1 %}
-													{% endfor %}
-												</div>
-											</div>	
-										</div>
-									</div>
-									<!-- END Tab pane {{ index_general }}  -->
+													</h5>
+													<br/>
+													{% set descriptionForRecipe = '' %}
+													{% if current_language %}
+														{% if current_language == 'fr' and recipe.descriptionFr|length > 0 %}
+															{% set descriptionForRecipe = recipe.descriptionFr %}
+														{% elseif current_language == 'en' and recipe.descriptionEn|length > 0 %}
+															{% set descriptionForRecipe = recipe.descriptionEn %}
+														{% else %}
+															{% set descriptionForRecipe = recipe.descriptionEs %}
+														{% endif %}
+													{% else %}
+															{% set descriptionForRecipe = recipe.descriptionEs %}
+													{% endif %}
+													
+													{{ descriptionForRecipe | truncate(120, false, '...')  }}
 
-									{% set index_general = index_general + 1 %}
+													<br/>
+													{% set image_url_recipe = asset('img/system/defaults/default_recipe.jpg') %}
+													{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
+														{% set image_url_recipe = asset(recipe.webPath) %}
+													{% endif %}
+													<div class="center">
+														{% set ingredientsForRecipe = '' %}
+														{% if current_language %}
+															{% if current_language == 'fr' and recipe.ingredientsFr|length > 0 %}
+																{% set ingredientsForRecipe = recipe.ingredientsFr %}
+															{% elseif current_language == 'en' and recipe.ingredientsEn|length > 0 %}
+																{% set ingredientsForRecipe = recipe.ingredientsEn %}
+															{% else %}
+																{% set ingredientsForRecipe = recipe.ingredientsEs %}
+															{% endif %}
+														{% else %}
+																{% set ingredientsForRecipe = recipe.ingredientsEs %}
+														{% endif %}
+														{% set preparationForRecipe = '' %}
+														{% if current_language %}
+															{% if current_language == 'fr' and recipe.preparationFr|length > 0 %}
+																{% set preparationForRecipe = recipe.preparationFr %}
+															{% elseif current_language == 'en' and recipe.preparationEn|length > 0 %}
+																{% set preparationForRecipe = recipe.preparationEn %}
+															{% else %}
+																{% set preparationForRecipe = recipe.preparationEs %}
+															{% endif %}
+														{% else %}
+																{% set preparationForRecipe = recipe.preparationEs %}
+														{% endif %}
+														<button class="btn btn-login" type="button" data-toggle="modal" data-target="#recipe_{{ recipe.id }}_Modal">
+															{{ 'ourRecipes.actions.discoverRecipe' | trans }}
+															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+														</button>	
+														<!-- Modal recipe {{ recipe.id }} -->
+														<div class="modal bs-example-modal-lg fade" id="recipe_{{ recipe.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="recipe_{{ recipe.id }}_ModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+														  <div class="modal-dialog modal-lg">
+														    <div class="modal-content">
+														      <div class="modal-header">
+														        <button type="button" class="close white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+														        <h2 class="modal-title center">
+														        	{{ recipe.title }}
+														        </h2>
+														      </div>
+														      <div class="modal-body" id="recipeModalContent">
+														        <div class="modal-body-inner row">
+														          
+														          <div class="row">
+														            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_LeftPart">
+														              <div class="recipe_border">
+														                <div class="left">
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.origin' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.origin }}
+														                  </span> 
+														                  <br/>
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.forHowMany' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.forHowMany }}
+														                  </span> 
+														                  <span>
+														                    {{ 'modal.modalRecipe.people' | trans }}
+														                  </span> 
+														                  <br/>
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.duration' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.duration }}
+														                  </span> 
+														                  <span>
+														                    {{ 'modal.modalRecipe.min' | trans }}
+														                  </span> 
+														                  <br/>
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.cooking' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.cooking }}
+														                  </span> 
+														                  <span>
+														                    {{ 'modal.modalRecipe.min' | trans }}
+														                  </span>
+														                  <hr/>
+														                  <strong class="text-decoration:underline;">
+														                    {{ 'modal.modalRecipe.ingredients' | trans }}
+														                  </strong>
+														                  <div>
+														                  	<ul class="margin0">
+														                    {% for ingr in ingredientsForRecipe %}
+														                    	<li>
+														                    		{{ ingr }}
+														                    	</li>
+														                  	{% endfor %}
+														                  	</ul>
+														                  </div>
+														                </div>
+														              </div>
+														            </div>
+														            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
+														              <div class="recipe_border">
+														                <strong class="text-decoration:underline;">
+														                  {{ 'modal.modalRecipe.preparation' | trans }}
+														                </strong>
+														                <div class="left">
+														                  	<ul class="margin0">
+														                    {% for ingr in preparationForRecipe %}
+														                    	<li>
+														                    		{{ ingr }}
+														                    	</li>
+														                  	{% endfor %}
+														                  	</ul>
+														                </div>
+														              </div>
+														            </div>
+														          </div>
+
+														          <br/><br/>
+														          <div class="row">
+														            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+														              <div class="center">
+														                <span>
+														                  {{ 'modal.modalRecipe.lastEdit' | trans }}
+														                </span> 
+														                <span>
+														                	{{ recipe.updatedAt|date('d M Y') }}
+														                </span> 
+														                {{ 'modal.modalRecipe.atTime' | trans }}
+														                <span>
+														                	{{ recipe.updatedAt|date('H:i') }}
+														                </span>
+														              </div>
+														              <div class="recipe_img_lg" style="width: 100%; background-size: cover; background-position: 50%; background-image: url({{ image_url_recipe }})">
+														                <script type="text/javascript">
+														                  var recipe_height_lg = $('.recipe_img_lg').width() * 0.8;
+														                  $('.recipe_img_lg').css({'height':recipe_height_lg+'px'});
+														                </script>
+														              </div>
+														            </div>
+														          </div>
+														        </div>
+														      </div>
+														      <div class="modal-footer">
+														        <button type="button" class="btn btn-modal" data-dismiss="modal">
+														          {{ 'modal.actions.close' | trans }}
+														        </button>
+														      </div>
+														    </div>
+														  </div>
+														</div>		
+													</div>
+
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+													<div class="recipe_img_div">
+													{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
+														<div class="recipe_img" style="width: 100%; background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
+															<!-- onClick="showPhoto('{{ recipe.id }}')" -->
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_recipe.jpg') }}" alt="Default" class="recipe_img"/>
+													{% endif %}
+														<script type="text/javascript">
+															var widthRecipe = $('.recipe_img').width() * 0.7;
+														    $('.recipe_img').css({'height':widthRecipe+'px'});
+														</script>
+													</div>
+												</div>
+
+												{% set empty_list = 'NO' %}
+											{% endif %}
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+
+							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+								<h3 class="center">
+									{{ 'ourRecipes.titles.sugared' | trans }}
+								</h3>
+								{% for recipe in allSortedRecipes %}
+									{% if recipe.taste == 0 %}
+										<div class="row product_info_xs recipe_for_{{ recipe.element.type }}">
+											<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
+											{% if recipe.active != 'inactive' %}
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+													{% if recipe.active == 'new' %}
+														<div class="float-right" style="width:10%;">
+															<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
+														</div>
+													{% endif %}
+													<h4>
+														{{ recipe.title }}
+													</h4>
+													<h5>
+														con 
+														{% if current_language %}
+															{% if current_language == 'fr' and recipe.element.nameFr|length > 0 %}
+																{{ recipe.element.nameFr }}
+															{% elseif current_language == 'en' and recipe.element.nameEn|length > 0 %}
+																{{ recipe.element.nameEn }} 
+															{% else %}
+																{{ recipe.element.nameEs }}
+															{% endif %}
+														{% else %}
+															{{ recipe.element.nameEs }}
+														{% endif %}
+													</h5>
+													<br/>
+													{% set descriptionForRecipe = '' %}
+													{% if current_language %}
+														{% if current_language == 'fr' and recipe.descriptionFr|length > 0 %}
+															{% set descriptionForRecipe = recipe.descriptionFr %}
+														{% elseif current_language == 'en' and recipe.descriptionEn|length > 0 %}
+															{% set descriptionForRecipe = recipe.descriptionEn %}
+														{% else %}
+															{% set descriptionForRecipe = recipe.descriptionEs %}
+														{% endif %}
+													{% else %}
+															{% set descriptionForRecipe = recipe.descriptionEs %}
+													{% endif %}
+													
+													{{ descriptionForRecipe | truncate(120, false, '...')  }}
+
+													<br/>
+													{% set image_url_recipe = asset('img/system/defaults/default_recipe.jpg') %}
+													{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
+														{% set image_url_recipe = asset(recipe.webPath) %}
+													{% endif %}
+													<div class="center">
+														{% set ingredientsForRecipe = '' %}
+														{% if current_language %}
+															{% if current_language == 'fr' and recipe.ingredientsFr|length > 0 %}
+																{% set ingredientsForRecipe = recipe.ingredientsFr %}
+															{% elseif current_language == 'en' and recipe.ingredientsEn|length > 0 %}
+																{% set ingredientsForRecipe = recipe.ingredientsEn %}
+															{% else %}
+																{% set ingredientsForRecipe = recipe.ingredientsEs %}
+															{% endif %}
+														{% else %}
+																{% set ingredientsForRecipe = recipe.ingredientsEs %}
+														{% endif %}
+														{% set preparationForRecipe = '' %}
+														{% if current_language %}
+															{% if current_language == 'fr' and recipe.preparationFr|length > 0 %}
+																{% set preparationForRecipe = recipe.preparationFr %}
+															{% elseif current_language == 'en' and recipe.preparationEn|length > 0 %}
+																{% set preparationForRecipe = recipe.preparationEn %}
+															{% else %}
+																{% set preparationForRecipe = recipe.preparationEs %}
+															{% endif %}
+														{% else %}
+																{% set preparationForRecipe = recipe.preparationEs %}
+														{% endif %}
+														<button class="btn btn-login" type="button" data-toggle="modal" data-target="#recipe_{{ recipe.id }}_Modal">
+															{{ 'ourRecipes.actions.discoverRecipe' | trans }}
+															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+														</button>	
+														<!-- Modal recipe {{ recipe.id }} -->
+														<div class="modal bs-example-modal-lg fade" id="recipe_{{ recipe.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="recipe_{{ recipe.id }}_ModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+														  <div class="modal-dialog modal-lg">
+														    <div class="modal-content">
+														      <div class="modal-header">
+														        <button type="button" class="close white" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+														        <h2 class="modal-title center">
+														        	{{ recipe.title }}
+														        </h2>
+														      </div>
+														      <div class="modal-body" id="recipeModalContent">
+														        <div class="modal-body-inner row">
+														          
+														          <div class="row">
+														            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_LeftPart">
+														              <div class="recipe_border">
+														                <div class="left">
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.origin' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.origin }}
+														                  </span> 
+														                  <br/>
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.forHowMany' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.forHowMany }}
+														                  </span> 
+														                  <span>
+														                    {{ 'modal.modalRecipe.people' | trans }}
+														                  </span> 
+														                  <br/>
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.duration' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.duration }}
+														                  </span> 
+														                  <span>
+														                    {{ 'modal.modalRecipe.min' | trans }}
+														                  </span> 
+														                  <br/>
+														                  <span>
+														                    <strong>
+														                      {{ 'modal.modalRecipe.cooking' | trans }}
+														                    </strong>
+														                  </span> 
+														                  <span>
+														                  	{{ recipe.cooking }}
+														                  </span> 
+														                  <span>
+														                    {{ 'modal.modalRecipe.min' | trans }}
+														                  </span>
+														                  <hr/>
+														                  <strong class="text-decoration:underline;">
+														                    {{ 'modal.modalRecipe.ingredients' | trans }}
+														                  </strong>
+														                  <div>
+														                  	<ul class="margin0">
+														                    {% for ingr in ingredientsForRecipe %}
+														                    	<li>
+														                    		{{ ingr }}
+														                    	</li>
+														                  	{% endfor %}
+														                  	</ul>
+														                  </div>
+														                </div>
+														              </div>
+														            </div>
+														            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
+														              <div class="recipe_border">
+														                <strong class="text-decoration:underline;">
+														                  {{ 'modal.modalRecipe.preparation' | trans }}
+														                </strong>
+														                <div class="left">
+														                  	<ul class="margin0">
+														                    {% for ingr in preparationForRecipe %}
+														                    	<li>
+														                    		{{ ingr }}
+														                    	</li>
+														                  	{% endfor %}
+														                  	</ul>
+														                </div>
+														              </div>
+														            </div>
+														          </div>
+
+														          <br/><br/>
+														          <div class="row">
+														            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+														              <div class="center">
+														                <span>
+														                  {{ 'modal.modalRecipe.lastEdit' | trans }}
+														                </span> 
+														                <span>
+														                	{{ recipe.updatedAt|date('d M Y') }}
+														                </span> 
+														                {{ 'modal.modalRecipe.atTime' | trans }}
+														                <span>
+														                	{{ recipe.updatedAt|date('H:i') }}
+														                </span>
+														              </div>
+														              <div class="recipe_img_lg" style="width: 100%; background-size: cover; background-position: 50%; background-image: url({{ image_url_recipe }})">
+														                <script type="text/javascript">
+														                  var recipe_height_lg = $('.recipe_img_lg').width() * 0.8;
+														                  $('.recipe_img_lg').css({'height':recipe_height_lg+'px'});
+														                </script>
+														              </div>
+														            </div>
+														          </div>
+														        </div>
+														      </div>
+														      <div class="modal-footer">
+														        <button type="button" class="btn btn-modal" data-dismiss="modal">
+														          {{ 'modal.actions.close' | trans }}
+														        </button>
+														      </div>
+														    </div>
+														  </div>
+														</div>		
+													</div>
+
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+													<div class="recipe_img_div">
+													{% if recipe.alt|length > 0 and recipe.url|length > 0 %}
+														<div class="recipe_img" style="width: 100%; background-image: url('{{ asset(recipe.webPath) }}'); background-size: cover; background-position: 50%;">
+															<!-- onClick="showPhoto('{{ recipe.id }}')" -->
+														</div>
+													{% else %}
+														<img src="{{ asset('img/system/defaults/default_recipe.jpg') }}" alt="Default" class="recipe_img"/>
+													{% endif %}
+														<script type="text/javascript">
+															var widthRecipe = $('.recipe_img').width() * 0.7;
+														    $('.recipe_img').css({'height':widthRecipe+'px'});
+														</script>
+													</div>
+												</div>
+
+												{% set empty_list = 'NO' %}
+											{% endif %}
+										</div>
+									{% endif %}
 								{% endfor %}
 							</div>
 
