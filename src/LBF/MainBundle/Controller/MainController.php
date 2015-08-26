@@ -221,6 +221,7 @@ class MainController extends Controller
 
         $request = Request::createFromGlobals();
         $cart = json_decode($request->cookies->get('sessionCart'), true);
+        // $response->headers->setCookie(new Cookie('foo', 'bar'));
 
         // Système de session pour éviter de créer des comptes.
         $session = $this->getRequest()->getSession();
@@ -241,7 +242,7 @@ class MainController extends Controller
         $allProducts = $this ->getDoctrine()
                             ->getManager()
                             ->getRepository('LBFMainBundle:Element')
-                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')]);
+                            ->findBy(['active' => array('active', 'new')]);
 
         for ($i=0; $i < sizeof($cart); $i++) { 
             $single_el = $cart[$i];
@@ -309,15 +310,7 @@ class MainController extends Controller
             $session->set('cart',array());
         }
 
-        $allProducts = $this ->getDoctrine()
-                            ->getManager()
-                            ->getRepository('LBFMainBundle:Element')
-                            ->findBy(['active' => array('active', 'new', 'toCome', 'soldOut')]);
-
-        return $this->render('LBFMainBundle:Main:cart.html.twig', array(
-            'cart' => $cart,
-            'allProducts' => $allProducts
-        ));
+        return $this->render('LBFMainBundle:Main:cart.html.twig');
     }
 
     public function emptyCartAction()

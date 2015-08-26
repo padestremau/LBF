@@ -322,6 +322,9 @@ a:hover {
 	background-color: transparent;
 	box-shadow: none;
 }
+.cart_alert_button:hover {
+	text-decoration: underline !important;
+}
 .btn:focus {
 	outline:none;
 	color: inherit;

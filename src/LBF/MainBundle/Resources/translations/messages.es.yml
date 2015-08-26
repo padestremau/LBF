@@ -107,9 +107,9 @@ alert:
         congratulations:        "El elemento fue correctamente añadido a su canasta de compra."
         pleaseRefresh:          "Refresque su canasta de compra por favor."
         elementDeleted:         "Elemento barrado."
-        cartEmptied:            "canasta de compra completamente vacío."
+        cartEmptied:            "canasta de compra completamente vacía."
         noChangeMade:           "Ningún cambio."
-        cartIsEmpty:            "Su canasta de compra esta vacío."
+        cartIsEmpty:            "Su canasta de compra esta vacía."
 
 
 # Cart

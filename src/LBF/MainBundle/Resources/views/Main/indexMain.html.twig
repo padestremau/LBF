@@ -588,7 +588,7 @@
 							            		var add_it = true;
 							            		for (var i = 0; i < sessionCart.length; i++) {
 							            			if (sessionCart[i].type == div_types[pos]) {
-							            				sessionCart[i].qty ++;
+							            				sessionCart[i].qty = sessionCart[i].qty + div_counter_values[pos];
 							            				add_it = false;
 							            				break;
 							            			}
@@ -641,10 +641,10 @@
 									      	{{ "alert.title.congratulations" | trans }}\
 									      </strong>\
 									      {{ "alert.content.congratulations" | trans }}\
-									      <button class="no_style_button" onClick="addToSessionCart()">\
-									      	<a href=""><strong>\
+									      <button class="no_style_button cart_alert_button" onClick="addToSessionCart(); addToSessionCartXS();">\
+									      	<strong>\
 									      		{{ "header.titles.myCart" | trans }}\
-									      	</strong></a>\
+									      	</strong>\
 									      </button>\
 									    </div>';
 									    setTimeout(function() {

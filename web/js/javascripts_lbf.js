@@ -6,8 +6,7 @@
     var sessionCart = $.cookie("sessionCart");
     if (sessionCart) {}
     else {
-      var sessionCart = [];
-      $.cookie("sessionCart", sessionCart);
+      $.cookie("sessionCart", []);
     }
     updateNotifNumber();
     updateNotifNumberXS();
@@ -19,8 +18,7 @@
   function onLoadDataSpecial() {
     // Cookies
     $.cookie.json = true;
-    var sessionCart = [];
-    $.cookie("sessionCart", sessionCart);
+    $.cookie("sessionCart", []);
     updateNotifNumber();
     updateNotifNumberXS();
   }

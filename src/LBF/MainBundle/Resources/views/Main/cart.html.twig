@@ -31,7 +31,7 @@
 
 				<script type="text/javascript">
 					// script for the login - Loaded in advance to avoid ajax problems
-                  function showRegisterSelect() {
+                  	function showRegisterSelect() {
                       if (document.getElementById('user_type').checked) {
                           document.getElementById('register_company').style.display = 'none';
                           document.getElementById('register_user').style.display = 'block';
@@ -79,45 +79,8 @@
 
 					<div id="sessionFlash" class="sessionFlash">
 					</div>
-					
-		        	<!-- Varying numbers -->
-					<script type="text/javascript">
-						var div_types = [];
-						// var div_maxs = [];
-						var div_counter_values = [];
-						var div_weights_values = [];
-						var div_finalWeight = [];
-						var div_prices_values = [];
-						var div_cart_values = [];
-					</script>
-					{% for product in allProducts %}
-						<script type="text/javascript">
-							div_types[div_types.length] = "{{ product.type }}";
-							// div_maxs[div_maxs.length] = eval('{{ product.quantity }}');
-							div_counter_values[div_counter_values.length] = 0;
-							div_weights_values[div_weights_values.length] = eval('{{ product.weight }}');
-							div_finalWeight[div_finalWeight.length] = 0;
-							div_prices_values[div_prices_values.length] = eval('{{ product.price }}');
-							div_cart_values[div_cart_values.length] = 0;
-						</script>
-					{% endfor %}
 
 			        <script type="text/javascript">
-			        	// To read the cart:
-			            // var sessionCart = JSON.parse($.cookie("sessionCart"));
-		            	// if (sessionCart.length > 0) {
-		            	// 	var add_it = true;
-		            	// 	for (var i = 0; i < sessionCart.length; i++) {
-		            	// 		var pos = 0;
-				           //    	for (var j = 0; j < div_types.length; j++) {
-				           //      	pos = j;
-				           //      	if (sessionCart[i].type == div_types[pos]) {
-				           //        		break;
-				           //      	}
-				           //    	}
-				           //    	div_counter_values[pos] = sessionCart[i].qty;
-		            	// 	}
-		            	// }
 
 			            function addOneToCart(type_c) {
 			              	var pos = 0;
@@ -192,10 +155,9 @@
 						    },8000);
 			            }
 
-			            function deleteTotalFromCart(type_c) {
+			            function deleteAllOfItFromCart(type_c) {
 			              if (confirm("{{ 'cart.alert.sureDelete' | trans }}")) {
 			              	var sessionCart = $.cookie("sessionCart");
-			              	// var sessionCart = JSON.parse($.cookie("sessionCart"));
 		              		for (var i = 0; i < sessionCart.length; i++) {
 		            			if (sessionCart[i].type == type_c) {
 		            				sessionCart.splice(i, 1);
@@ -203,6 +165,7 @@
 		            			}
 		            		}
 							if (sessionCart.length == 0) {
+								$.cookie("sessionCart", []);
 								window.location = "{{ path('lbf_main_empty_cart') }}";
 							}
 							else {
@@ -226,7 +189,7 @@
 
 			            function emptyCart() {
 			              if (confirm("{{ 'cart.alert.sureDeleteAll' | trans }}")) {
-			                $.cookie("sessionCart", null);
+			                $.cookie("sessionCart", []);
 			                // Flash message
 			                document.getElementById("sessionFlash").style.display = "block";
 			                document.getElementById("sessionFlash").innerHTML = '\
@@ -282,7 +245,7 @@
 
 			        <div class="row cart_content">
 			        	<div class="col-md-4">
-					        <button onClick="emptyCart()" class="no_style_button float-left delete_buttons_cart" type="button" value="Empty cart">
+					        <button onClick="emptyCart();" class="no_style_button float-left delete_buttons_cart" type="button" value="Empty cart">
 					            {{ 'cart.actions.emptyCart' | trans }}
 					            <span class="glyphicon glyphicon-trash bin_icon" aria-hidden="true"></span>
 					        </button>
@@ -291,7 +254,7 @@
 			        	</div>
 			        	<div class="col-md-4">
 			        		<div id="refresh_button" style="display:none;">
-				        		<button onClick="refreshCart()" class="no_style_button float-right delete_buttons_cart" type="button" value="Refresh cart">
+				        		<button onClick="refreshCart();" class="no_style_button float-right delete_buttons_cart" type="button" value="Refresh cart">
 				        			{{ 'cart.actions.refreshCart' | trans }}
 						        </button>
 			        		</div>
@@ -372,7 +335,9 @@
 		                              <td class="center">
 		                                <!-- <input onClick="addOneToCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="+" title="Add one more"/>
 		                                <input onClick="deleteOneFromCart('{{ item.type }}')" class="add_buttons_cart" type="button" value="-" title="Delete one"/> -->
-		                                <input onClick="deleteTotalFromCart('{{ item.type }}')" class="delete_buttons_cart" type="button" value="{{ 'cart.actions.delete' | trans }}" title="{{ 'cart.actionTitles.deleteElement' | trans }}"/>
+		                                <button onClick="deleteAllOfItFromCart('{{ item.type }}');" class="delete_buttons_cart" >
+		                                	{{ 'cart.actionTitles.deleteElement' | trans }}
+		                                </button>
 		                              </td>
 		                            </tr>
 		                          {% endfor %}

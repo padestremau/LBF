@@ -179,7 +179,7 @@
                 or route == 'lbf_main_order'
                 or route == 'lbf_main_confirm' %}
               btn-log-active
-            {% endif %}" onClick="addToSessionCart()" disabled>
+            {% endif %}" onClick="addToSessionCart();" disabled>
           <div class="cart_label">
             {{ 'header.titles.myCart' | trans }}
           </div>
@@ -206,10 +206,10 @@
               }
 
               function addToSessionCart() {
-                var sessionCart = $.cookie("sessionCart"); 
+                var sessionCart = $.cookie("sessionCart");
                 // var sessionCart = JSON.parse($.cookie("sessionCart"));
                 if (sessionCart.length > 0) {
-                  window.location = '{{ path('lbf_main_add_to_cart') }}';
+                  window.location = "{{ path('lbf_main_add_to_cart') }}";
                 }
                 else {
                   // Flash message
@@ -425,7 +425,7 @@
                   or route == 'lbf_main_order'
                   or route == 'lbf_main_confirm' %}
                 btn-log-active
-              {% endif %}" onClick="addToSessionCartXS()">
+              {% endif %}" onClick="addToSessionCartXS();">
             <div class="cart_label">
               {{ 'header.titles.myCart' | trans }}
             </div>
@@ -436,7 +436,7 @@
               <script type="text/javascript">
                 function updateNotifNumberXS() {
                   // To empty cart manually
-                  // $.cookie("sessionCart", null);
+                  // $.cookie("sessionCart", []);
 
                   var sessionCart = $.cookie("sessionCart");
                   if (sessionCart) {
@@ -455,10 +455,10 @@
                 }
 
                 function addToSessionCartXS() {
-                  var sessionCart = $.cookie("sessionCart"); 
+                  var sessionCart = $.cookie("sessionCart");
                   // var sessionCart = JSON.parse($.cookie("sessionCart"));
                   if (sessionCart.length > 0) {
-                    window.location = '{{ path('lbf_main_add_to_cart') }}';
+                    window.location = "{{ path('lbf_main_add_to_cart') }}";
                   }
                   else {
                     // Flash message
