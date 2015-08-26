@@ -161,7 +161,7 @@
 					                            <td class="center">
 					                            	Description
 					                            	{% if recipe.descriptionEs|length > 0 %}
-					                            		{{ recipe.descriptionEs }}
+					                            		{{ recipe.descriptionEs | truncate(100, false, '...')  }}
 					                            	{% else %}
 					                            		---
 					                            	{% endif %}
@@ -169,30 +169,16 @@
 					                            <td class="center">
 					                            	{% if recipe.ingredientsEs|length > 0 %}
 					                            		<ul class="left">
+				                            			{% set ing_index = 0 %}
 					                            		{% for ing in recipe.ingredientsEs %}
-					                            			{# evaluates to true if the variable is iterable #}
-															{% if ing is iterable %}
-																<ul class="left">
-																{% set index_ing = 0 %}
-															    {% for sub_ing in ing %}
-															        <li>
-															        	{% if index_ing == 0 %}
-															        	<strong>
-															        		{{ sub_ing }}
-															        	</strong>
-															        	{% else %}
-															        	{{ sub_ing }}
-															        	{% endif %}
-															        </li>
-															        {% set index_ing = index_ing + 1 %}
-															    {% endfor %}
-																</ul>
-															{% else %}
-															    {# ing is probably a string #}
-						                            			<li>
-						                            				{{ ing }}
-						                            			</li>
-															{% endif %}
+					                            			{% if ing_index < 2 %}
+					                            			<li>
+					                            				{{ ing }}
+					                            			</li>
+					                            			{% elseif ing_index == 2 %}
+					                            			...
+					                            			{% endif %}
+					                            			{% set ing_index = ing_index + 1 %}
 					                            		{% endfor %}
 					                            		</ul>
 					                            	{% else %}
@@ -202,30 +188,16 @@
 					                            <td class="center">
 					                            	{% if recipe.preparationEs|length > 0 %}
 					                            		<ul class="left">
+					                            		{% set prep_index = 0 %}
 					                            		{% for prep in recipe.preparationEs %}
-					                            			{# evaluates to true if the variable is iterable #}
-															{% if prep is iterable %}
-																<ul class="left">
-																{% set index_prep = 0 %}
-															    {% for sub_prep in prep %}
-															        <li>
-															        	{% if index_prep == 0 %}
-															        	<strong>
-															        		{{ sub_prep }}
-															        	</strong>
-															        	{% else %}
-															        	{{ sub_prep }}
-															        	{% endif %}
-															        </li>
-															        {% set index_prep = index_prep + 1 %}
-															    {% endfor %}
-																</ul>
-															{% else %}
-															    {# prep is probably a string #}
-						                            			<li>
-						                            				{{ prep }}
-						                            			</li>
-															{% endif %}
+					                            			{% if prep_index < 2 %}
+					                            			<li>
+					                            				{{ prep }}
+					                            			</li>
+					                            			{% elseif prep_index == 2 %}
+					                            			...
+					                            			{% endif %}
+					                            			{% set prep_index = prep_index + 1 %}
 					                            		{% endfor %}
 					                            		</ul>
 					                            	{% else %}

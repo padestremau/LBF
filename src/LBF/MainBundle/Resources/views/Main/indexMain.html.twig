@@ -652,18 +652,36 @@
 									<div class="tab-pane fade 
 										{% if index_general == 1 %} active in {% endif %}" id="tab_{{ index_general }}">
 										<div class="row">
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 menu_small_hidden">
 												<ul class="ver-inline-menu tabbable list_no_style_li">
 												{% set index_category = 1 %}
 												{% for product in productsArray %}
 													{% if product.active != 'inactive' %}
 													<li class="tab_select {% if index_category == 1 %} active {% endif %}">
 														{% if product.active == 'new' %}
-															<div class="inline_div left hidden-xs">
+															<div class="inline_div left">
 																<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="" class="btn_right_arrow_spe_2"/>
 															</div>
 														{% endif %}
-														<div class="inline_div">
+														<div class="inline_div hidden-lg hidden-md hidden-sm">
+															<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
+																{% if current_language %}
+																	{% if current_language == 'fr' and product.nameFr|length > 0 %}
+																		{{ product.nameFr | truncate(20, false, '...')  }}
+																	{% elseif current_language == 'en' and product.nameEn|length > 0 %}
+																		{{ product.nameEn | truncate(20, false, '...')  }}
+																	{% else %}
+																		{{ product.nameEs | truncate(20, false, '...')  }}
+																	{% endif %}
+																{% else %}
+																		{{ product.nameEs | truncate(20, false, '...')  }}
+																{% endif %}
+																<div class="float-right inner_arrow hidden-xs">
+																	<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+																</div>
+															</a>
+														</div>
+														<div class="inline_div hidden-xs">
 															<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
 																{% if current_language %}
 																	{% if current_language == 'fr' and product.nameFr|length > 0 %}
@@ -900,13 +918,13 @@
 			<div class="section section_padding row" id="ourRecipes">
 				<div class="presentation_texte">
 					<div class="row center">
-		        		<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs" data-menuanchor="ourProducts">
+		        		<div class="col-lg-4 col-md-4 col-sm-3 hidden-xs left" data-menuanchor="ourProducts">
 		        			<a href="#ourProducts" class="btn btn-login">
 								<img src="{{ asset('img/system/defaults/up_arrow.png') }}" alt="" class="btn_right_arrow"/>
 								{{ 'ourRecipes.titles.products' | trans }}
 							</a>
 		        		</div>
-		        		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		        		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 							<h2>
 								{% set pageRecettesPrincipale = '' %}
 								{% if pages|length > 0 %}
@@ -943,16 +961,16 @@
 								</span>
 							</h2>
 		        		</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+						<div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
 							<div class="row">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 right">
 									{{ 'ourRecipes.titles.filteredBy' | trans }}
 								</div>
 								<script type="text/javascript">
 									var list_types = [];
 									var list_recipes = [];
 				                </script>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left">
+								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 left">
 									<select name="filter_by_product" id="filter_by_product" class="form-control placeholder-no-fix" onClick="displayFilteredElements()">
 										<option value="NONE" id="filter_for_NONE">
 											{{ 'ourRecipes.titles.nada' | trans }}
@@ -1020,25 +1038,27 @@
 						
 						<!-- Recipes content -->
 						{% if allSortedRecipes|length > 0 %}
-							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<h3 class="center">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<h4 class="center">
 									{{ 'ourRecipes.titles.salted' | trans }}
-								</h3>
+								</h4>
+								{% set recipeSalt = "NO" %}
 								{% for recipe in allSortedRecipes %}
 									{% if recipe.taste == 1 %}
-										<div class="row product_info_xs recipe_for_{{ recipe.element.type }}">
-											<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
+										{% set recipeSalt = "YES" %}
+										<div class="row bio product_info_xs recipe_for_{{ recipe.element.type }}">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sep_presentation"></div>
 											{% if recipe.active != 'inactive' %}
-												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 center">
 													{% if recipe.active == 'new' %}
 														<div class="float-right" style="width:10%;">
 															<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
 														</div>
 													{% endif %}
-													<h4>
-														{{ recipe.title }}
-													</h4>
 													<h5>
+														{{ recipe.title }}
+													</h5>
+													<h6>
 														con 
 														{% if current_language %}
 															{% if current_language == 'fr' and recipe.element.nameFr|length > 0 %}
@@ -1051,7 +1071,7 @@
 														{% else %}
 															{{ recipe.element.nameEs }}
 														{% endif %}
-													</h5>
+													</h6>
 													<br/>
 													{% set descriptionForRecipe = '' %}
 													{% if current_language %}
@@ -1098,10 +1118,12 @@
 														{% else %}
 																{% set preparationForRecipe = recipe.preparationEs %}
 														{% endif %}
-														<button class="btn btn-login" type="button" data-toggle="modal" data-target="#recipe_{{ recipe.id }}_Modal">
-															{{ 'ourRecipes.actions.discoverRecipe' | trans }}
-															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
-														</button>	
+														<p class="center">
+															<button class="btn btn-login" type="button" data-toggle="modal" data-target="#recipe_{{ recipe.id }}_Modal">
+																{{ 'ourRecipes.actions.discoverRecipe' | trans }}
+																<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>
+															</button>	
+														</p>
 														<!-- Modal recipe {{ recipe.id }} -->
 														<div class="modal bs-example-modal-lg fade" id="recipe_{{ recipe.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="recipe_{{ recipe.id }}_ModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="true">
 														  <div class="modal-dialog modal-lg">
@@ -1254,27 +1276,41 @@
 										</div>
 									{% endif %}
 								{% endfor %}
+								{% if recipeSalt == "NO" %}
+									<p class="center">
+										{{ 'ourRecipes.warning.none' | trans }}
+									</p>
+								{% endif %}
 							</div>
 
-							<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-								<h3 class="center">
+
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<div class="hidden-lg hidden-md hidden-sm">
+									<hr/>	
+								</div>
+
+								<h4 class="center">
 									{{ 'ourRecipes.titles.sugared' | trans }}
-								</h3>
+								</h4>
+								{% set recipeSugared = "NO" %}
 								{% for recipe in allSortedRecipes %}
 									{% if recipe.taste == 0 %}
-										<div class="row product_info_xs recipe_for_{{ recipe.element.type }}">
-											<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs sep_presentation"></div>
+										{% set recipeSugared = "YES" %}
+										<div class="row bio product_info_xs recipe_for_{{ recipe.element.type }}">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sep_presentation"></div>
 											{% if recipe.active != 'inactive' %}
-												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+												<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 center">
 													{% if recipe.active == 'new' %}
 														<div class="float-right" style="width:10%;">
 															<img src="{{ asset('img/system/defaults/new_ES.png') }}" alt="New" style="width:100%;"/>
 														</div>
 													{% endif %}
-													<h4>
-														{{ recipe.title }}
-													</h4>
 													<h5>
+														<strong>
+															{{ recipe.title }}
+														</strong>
+													</h5>
+													<h6>
 														con 
 														{% if current_language %}
 															{% if current_language == 'fr' and recipe.element.nameFr|length > 0 %}
@@ -1287,7 +1323,7 @@
 														{% else %}
 															{{ recipe.element.nameEs }}
 														{% endif %}
-													</h5>
+													</h6>
 													<br/>
 													{% set descriptionForRecipe = '' %}
 													{% if current_language %}
@@ -1416,7 +1452,7 @@
 														              </div>
 														            </div>
 														            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id="recipeModalContent_RightPart">
-														              <div class="recipe_border">
+														              <div class="recipe_border left">
 														                <strong class="text-decoration:underline;">
 														                  {{ 'modal.modalRecipe.preparation' | trans }}
 														                </strong>
@@ -1490,6 +1526,11 @@
 										</div>
 									{% endif %}
 								{% endfor %}
+								{% if recipeSugared == "NO" %}
+									<p class="center">
+										{{ 'ourRecipes.warning.none' | trans }}
+									</p>
+								{% endif %}
 							</div>
 
 						<!-- Otherwise .... -->

@@ -125,7 +125,7 @@
 					                            </td>
 					                            <td class="center">
 					                              	{% if element.descriptionEs|length > 0 %}
-					                              		{{ element.descriptionEs }}
+					                              		{{ element.descriptionEs | truncate(100, false, '...')  }}
 					                              	{% else %}
 					                              		---
 					                              	{% endif %}

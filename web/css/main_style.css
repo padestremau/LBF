@@ -162,17 +162,17 @@ h4
 }
 @media (min-width: 1400px) {
 	h4 {
-		font-size: 1.3em;
+		font-size: 1.5em;
 	}
 }
 @media (min-width: 992px) and (max-width: 1399px){
 	h4 {
-		font-size: 1.2em;
+		font-size: 1.3em;
 	}
 }
 @media (min-width: 478px) and (max-width: 991px) {
 	h4 {
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 }
 @media (max-width: 477px) {
@@ -181,7 +181,7 @@ h4
 	}
 }
 
-h5
+h5, h6
 {	
 	padding: 0;
 	margin: 0;
@@ -189,24 +189,31 @@ h5
 }
 @media (min-width: 1400px) {
 	h5 {
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 }
 @media (min-width: 992px) and (max-width: 1399px){
 	h5 {
-		font-size: 1em;
+		font-size: 1.1em;
 	}
 }
 @media (min-width: 478px) and (max-width: 991px) {
 	h5 {
-		font-size: 0.9em;
+		font-size: 1em;
 	}
 }
 @media (max-width: 477px) {
 	h5 {
-		font-size: 0.8em;
+		font-size: 1.1em;
 	}
 }
+
+h6
+{
+	font-weight: 200 !important;
+	font-style: italic !important;
+}
+
 
 hr {
 	margin-top: 10px;
@@ -1310,6 +1317,12 @@ body.modal-open {
 	}
 }
 
+@media (max-width: 477px) {
+	.menu_small_hidden {
+		overflow: hidden;
+	}
+}
+
 .btn_right_arrow {
 	width: 20px;
 	position: relative;
@@ -1839,7 +1852,7 @@ body.modal-open {
 }
 @media (min-width: 1400px) {
 	.btn-login {
-		font-size: 1.1em;
+		font-size: 1em;
 	}
 }
 @media (min-width: 992px) and (max-width: 1399px){

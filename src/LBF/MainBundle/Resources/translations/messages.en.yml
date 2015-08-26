@@ -92,6 +92,7 @@ ourRecipes:
     actions:
         discoverRecipe:         Discover the recipe
     warning:
+        none:                   "No recipe at the moment."
         message:                "This page is empty. Contact the web-master."
         noRecipe:               "Sorry, no recipe at the moment"
 

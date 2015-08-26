@@ -92,6 +92,7 @@ ourRecipes:
     actions:
         discoverRecipe:         Découvrir la recette
     warning:
+        none:                   "Aucune recette actuellement."
         message:                "Cette page est vide. Contactez l'administrateur de ce site web s'il vous plait."
         noRecipe:               "Désolé, aucune recette pour l'instant"
     

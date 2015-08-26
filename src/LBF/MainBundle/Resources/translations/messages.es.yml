@@ -93,6 +93,7 @@ ourRecipes:
     actions:
         discoverRecipe:         Descubrir la receta
     warning:
+        none:                   "Ningún receta ahora."
         message:                "Esta pagina esta en blanco. Contacte el administratorio del sitio web por favor."
         noRecipe:               "Disculpa, no hay ningun receta ahora"
     
