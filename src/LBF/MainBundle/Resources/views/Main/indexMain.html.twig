@@ -36,70 +36,93 @@
 				<div class="presentation_photos row">
 
 					<div class="content_presentation row">
+
+						<div class="hidden-lg hidden-md hidden-sm height_top">
+						</div>
 						
 	    				<script>
-					        jQuery(document).ready(function ($) {
-					            //Reference http://www.jssor.com/development/slider-with-slideshow-jquery.html
-					            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
-
-					            var _SlideshowTransitions = [
+					        jssor_slider1_starter = function (containerId) {
+					        	var _SlideshowTransitions = [
 					            //Fade
 					            { $Duration: 1400, $Opacity: 2 }
 					            ];
 
 					            var options = {
-					                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
-					                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+					                $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
 					                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
 					                $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+					                $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+					                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+					                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+					                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+
 					                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
 					                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
 					                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
 					                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
-					                    $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
 					                }
 					            };
 
-					            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+					            var jssor_slider1 = new $JssorSlider$(containerId, options);
 
-					        });
+					            //responsive code begin
+					            //you can remove responsive code if you don't want the slider scales while window resizes
+					            function ScaleSlider() {
+					                var bodyWidth = document.body.clientWidth;
+					                if (bodyWidth)
+					                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 1920));
+					                else
+					                    $Jssor$.$Delay(ScaleSlider, 30);
+					            }
+
+					            ScaleSlider();
+					            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+
+					            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+					            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+					            //responsive code end
+					            var slider_width = $('#page_container_gen').innerWidth();
+			            		var slider_height = window.innerHeight * 0.45;
+								$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+								$('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+								$(window).resize(function() {
+						    		var slider_width = $('#page_container_gen').innerWidth();
+				            		var slider_height = window.innerHeight * 0.45;
+									$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+									$('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+					            });
+					        };
 					    </script>
 					    <!-- Jssor Slider Begin -->
 					    <!-- You can move inline styles to css file or css block. -->
-					    <div id="slider1_container" style="position: relative; top: 0px; right: 0px; width: 1200px;
-					        height: 400px; margin:auto; overflow: hidden ; opacity: 1 !important; z-index: 1;">
-
+					    <div id="slider1_container" style="position: relative; margin: 0 auto;
+					        top: 0px; left: 0px; width: 1200px; height: 340px; overflow: hidden; opacity: 1 !important; z-index: 1;">
 					        <!-- Loading Screen -->
-					        <div u="loading" style="position: absolute; top: 0px; right: 0px;">
-					            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-					                background-color: #000; top: 0px; right: 0px; width: 1200px; height: 400px;">
+					        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+					            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
+					                top: 0px; left: 0px; width: 100%; height: 100%;">
 					            </div>
 					            <div style="position: absolute; display: block; background: url("{{ asset('img/system/slideshow/loader2.gif') }}") no-repeat center center;
-					                top: 0px; right: 0px; width: 1200px; height: 400px;">
+					                top: 0px; left: 0px; width: 100%; height: 100%;">
 					            </div>
 					        </div>
-					        
 					        <!-- Slides Container -->
-					        <div id="slider1_container_content" u="slides" style="cursor: move; position: absolute; right: 0px; top: 0px; width: 1200px; height: 400px; overflow: hidden;">
-					            
-								{% for image in homePhotos %}
+					        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1200px;
+					            height: 340px; overflow: hidden;">
+					            {% for image in homePhotos %}
 									<div>
 										<img u=image src="{{ asset(image.webPath) }}" />
 									</div>
 								{% endfor %}
 					        </div>
 					    </div>
-
+					    <!-- Trigger -->
 					    <script>
-		            		var slider_width = $('#page_container_gen').innerWidth;
-		            		var slider_height = window.innerHeight * 0.45;
-							$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-					    	$(window).resize(function() {
-					    		var slider_width = $('#page_container_gen').innerWidth;
-			            		var slider_height = window.innerHeight * 0.45;
-								$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-				            });
-						</script>
+					        jssor_slider1_starter('slider1_container');
+					    </script>
+					    <!-- Jssor Slider End -->
+
+	    				
 					</div>
 
 					<div class="presentation_texte row">
@@ -971,7 +994,7 @@
 									var list_recipes = [];
 				                </script>
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 left">
-									<select name="filter_by_product" id="filter_by_product" class="form-control placeholder-no-fix" onClick="displayFilteredElements()">
+									<select name="filter_by_product" id="filter_by_product" class="form-control placeholder-no-fix" onchange="displayFilteredElements()">
 										<option value="NONE" id="filter_for_NONE">
 											{{ 'ourRecipes.titles.nada' | trans }}
 										</option>
