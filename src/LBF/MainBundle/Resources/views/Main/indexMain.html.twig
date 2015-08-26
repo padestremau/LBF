@@ -81,16 +81,16 @@
 					            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
 					            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
 					            //responsive code end
-					            var slider_width = $('#page_container_gen').innerWidth();
-			            		var slider_height = window.innerHeight * 0.45;
-								$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-								$('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-								$(window).resize(function() {
-						    		var slider_width = $('#page_container_gen').innerWidth();
-				            		var slider_height = window.innerHeight * 0.45;
-									$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-									$('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-					            });
+								// var slider_width = $('#page_container_gen').innerWidth();
+								// var slider_height = window.innerHeight * 0.45;
+								// $('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+								// $('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+								// $(window).resize(function() {
+								// 	var slider_width = $('#page_container_gen').innerWidth();
+								// 	var slider_height = window.innerHeight * 0.45;
+								// 	$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+								// 	$('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
+								// });
 					        };
 					    </script>
 					    <!-- Jssor Slider Begin -->
@@ -690,14 +690,14 @@
 															<a href="" data-toggle="tab" data-target="#tab_{{ index_general }}-{{ index_category }}" class="btn btn-choice">
 																{% if current_language %}
 																	{% if current_language == 'fr' and product.nameFr|length > 0 %}
-																		{{ product.nameFr | truncate(20, false, '...')  }}
+																		{{ product.nameFr | truncate(14, false, '...')  }}
 																	{% elseif current_language == 'en' and product.nameEn|length > 0 %}
-																		{{ product.nameEn | truncate(20, false, '...')  }}
+																		{{ product.nameEn | truncate(14, false, '...')  }}
 																	{% else %}
-																		{{ product.nameEs | truncate(20, false, '...')  }}
+																		{{ product.nameEs | truncate(14, false, '...')  }}
 																	{% endif %}
 																{% else %}
-																		{{ product.nameEs | truncate(20, false, '...')  }}
+																		{{ product.nameEs | truncate(14, false, '...')  }}
 																{% endif %}
 																<div class="float-right inner_arrow hidden-xs">
 																	<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_right_arrow"/>

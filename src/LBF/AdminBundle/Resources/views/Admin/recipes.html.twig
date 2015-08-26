@@ -161,7 +161,7 @@
 					                            <td class="center">
 					                            	Description
 					                            	{% if recipe.descriptionEs|length > 0 %}
-					                            		{{ recipe.descriptionEs | truncate(100, false, '...')  }}
+					                            		{{ recipe.descriptionEs | truncate(50, false, '...')  }}
 					                            	{% else %}
 					                            		---
 					                            	{% endif %}
@@ -173,7 +173,7 @@
 					                            		{% for ing in recipe.ingredientsEs %}
 					                            			{% if ing_index < 2 %}
 					                            			<li>
-					                            				{{ ing }}
+					                            				{{ ing | truncate(50, false, '...')  }}
 					                            			</li>
 					                            			{% elseif ing_index == 2 %}
 					                            			...
@@ -192,7 +192,7 @@
 					                            		{% for prep in recipe.preparationEs %}
 					                            			{% if prep_index < 2 %}
 					                            			<li>
-					                            				{{ prep }}
+					                            				{{ prep | truncate(50, false, '...')  }}
 					                            			</li>
 					                            			{% elseif prep_index == 2 %}
 					                            			...
