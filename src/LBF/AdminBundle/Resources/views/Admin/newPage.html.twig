@@ -69,11 +69,11 @@
 										        	{{ form_widget(formPage.title, title) }}
 										        </div>
 											</div>
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
+											<!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right">
 												Le page est de type :
 											</div>
 											<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-										        {% if form_errors(formPage.type) %}
+										        {# if form_errors(formPage.type) %}
 								                    <div class="error_message">
 								                      	<span class="warning_word">
 								                        	{{ 'user.warning.warning'|trans }}
@@ -86,8 +86,8 @@
 								                {% endif %}
 												<div class="input-icon">
 										        	{% set opt_type = {'attr': {'class': 'form-control placeholder-no-fix',
-										        		'id':'_type', 'name':'_type', 'onClick':'displayPageOptions()'}} %}
-										        	{{ form_widget(formPage.type, opt_type) }}
+										        		'id':'_type', 'name':'_type', 'onchange':'displayPageOptions()'}} %}
+										        	{{ form_widget(formPage.type, opt_type) #}
 										        </div>
 										        <script type="text/javascript">
 								                  	function displayPageOptions() {
@@ -168,7 +168,7 @@
 								                    }
 								                </script>
 											</div>
-											<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div>
+											<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs"></div> -->
 											
 										</div>
 					                	
@@ -434,13 +434,13 @@
 
 										<hr/>
 										
-										<div class="row">
+										<!-- <div class="row">
 							  				<strong>
 							  					Nom dans la base de données (sans espaces) :
 							  				</strong>
 						  				</div>
 										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									        {% if form_errors(formPage.dataBaseName) %}
+									        {# if form_errors(formPage.dataBaseName) %}
 							                    <div class="error_message">
 							                      	<span class="warning_word">
 							                        	{{ 'user.warning.warning'|trans }}
@@ -455,9 +455,9 @@
 									        	{% set opt_dataBaseName = {'attr': {'class': 'form-control placeholder-no-fix',
 									        		'type':'text', 'placeholder':"Nom dans la base de données (ex: Page_Principale)", 'id':'dataBaseName', 
 									        		'name':'_dataBaseName'}} %}
-									        	{{ form_widget(formPage.dataBaseName, opt_dataBaseName) }}
+									        	{{ form_widget(formPage.dataBaseName, opt_dataBaseName) #}
 									        </div>
-										</div>
+										</div> -->
 										
 					                </div>
 

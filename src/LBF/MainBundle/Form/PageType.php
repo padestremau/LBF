@@ -17,7 +17,6 @@ class PageType extends AbstractType
     {
         $builder
             ->add('title', 'text', array('label' => 'Title'))
-            ->add('dataBaseName', 'text', array('label' => 'Database name'))
             ->add('headerEs', 'text', array('label' => 'Header Es'))
             ->add('headerFr', 'text', array('label' => 'Header Fr',
                                                     'required' => false))
@@ -38,16 +37,17 @@ class PageType extends AbstractType
             ->add('contentEn', 'redactor', array('label' => 'Content En',
                                                     'redactor' => "admin_page",
                                                     'required' => false))
-            ->add('type', 'choice', array(
-                'label' => 'type',
-                'choices' => array(
-                                    'lhdc' => 'Logo, Titre, Description, Contenu',
-                                    'lhd' => 'Logo, Titre, Description',
-                                    'hdc' => 'Titre, Description, Contenu',
-                                    'hd' => 'Titre, Description',
-                                    'hc' => 'Titre, Contenu'
-                    )
-                ))
+            // ->add('dataBaseName', 'text', array('label' => 'Database name'))
+            // ->add('type', 'choice', array(
+            //     'label' => 'type',
+            //     'choices' => array(
+            //                         'lhdc' => 'Logo, Titre, Description, Contenu',
+            //                         'lhd' => 'Logo, Titre, Description',
+            //                         'hdc' => 'Titre, Description, Contenu',
+            //                         'hd' => 'Titre, Description',
+            //                         'hc' => 'Titre, Contenu'
+            //         )
+            //     ))
             ->add('file','file', array('label' => 'File',
                                     'required' => false))
         ;
