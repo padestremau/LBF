@@ -6,12 +6,6 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 <url>
   <loc>http://www.lebuffetfrances.com/</loc>
   <priority>1.00</priority>
@@ -21,7 +15,7 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.lebuffetfrances.com/en/</loc>
+  <loc>http://www.lebuffetfrances.com/es/login</loc>
   <priority>0.80</priority>
 </url>
 <url>
@@ -29,7 +23,11 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.lebuffetfrances.com/es/login</loc>
+  <loc>http://www.lebuffetfrances.com/en/</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.lebuffetfrances.com/es/testimony/new/</loc>
   <priority>0.80</priority>
 </url>
 <url>
@@ -38,6 +36,14 @@
 </url>
 <url>
   <loc>http://www.lebuffetfrances.com/en/login</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lebuffetfrances.com/fr/testimony/new/</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.lebuffetfrances.com/en/testimony/new/</loc>
   <priority>0.64</priority>
 </url>
 </urlset>

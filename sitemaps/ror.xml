@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<channel>
+  <title>ROR Sitemap for http://www.lebuffetfrances.com/</title>
+  <link>http://www.lebuffetfrances.com/</link>
+
+<item>
+     <link>http://www.lebuffetfrances.com/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/es/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/es/login</link>
+     <title>
+              Le Buffet Francés
+          </title>
+     <description>
+              Le Buffet Francés
+          </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/fr/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/en/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/es/testimony/new/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/fr/login</link>
+     <title>
+              Le Buffet Francés
+          </title>
+     <description>
+              Le Buffet Francés
+          </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/en/login</link>
+     <title>
+              Le Buffet Francés
+          </title>
+     <description>
+              Le Buffet Francés
+          </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/fr/testimony/new/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.lebuffetfrances.com/en/testimony/new/</link>
+     <title>
+                  Le Buffet Francés
+      
+
+    </title>
+     <description>
+                  Le Buffet Francés
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+</channel>
+</rss>
+  
