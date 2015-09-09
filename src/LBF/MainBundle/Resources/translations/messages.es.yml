@@ -47,7 +47,7 @@ main:
         qualityProduct: 		"Carne de qualitad, con unico objetivo de satisfacer la curiosidad gastronmica de todos."
         securedPayment: 		"Un paiement en ligne 100% sécurisé avec 3D-secure system avec votre carte bancaire ou votre compte Paypal."
         reservation:            "Elige ahora sus artículos. Selectione la fecha que mas le conviene y pasa recoger su pedido."
-        ourProducts:            "Para llenar vuestra canasta de la compra, seleccione las quantidades de cada producto."
+        ourProducts:            "Para llenar vuestra canasta de compra, seleccione las quantidades de cada producto."
     actions:
         learnMore: 				Mas ínfo
         discover:               Descubrir
